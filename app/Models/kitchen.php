@@ -8,10 +8,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class Waiter extends Authenticatable
+class Kitchen extends Authenticatable
 {
     use Notifiable;
-    protected $guard = 'waiter';
+    protected $guard = 'kitchen';
     protected $fillable = ['name', 'email', 'password'];
 
     protected $hidden = [
