@@ -5,17 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <!-- <div class="card-header">{{ __('Register') }}</div> -->
-                <div class="card-header"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Register') }}</div>
+                <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <!-- <form method="POST" action="{{ route('register') }}"> -->
-                    @isset($url)
-                        <form method="POST" action='{{ url("register/$url") }}' aria-label="{{ __('Register') }}">
-                        @else
-                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-                    @endisset
-                    
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -65,6 +58,28 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Phone') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="text" class="form-control" name="phone" required autocomplete="phone">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                        <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Select Role') }}</label>
+                        <div class="col-md-6">
+                            <select name="role" class="form-select" >
+                            <option selected>select Role</option>
+                            <option value="1">Admin</option>
+                            <option value="2">Owner</option>
+                            <option value="3">Cashier</option>
+                            <option value="4">Manager</option>
+                            <option value="5">Waiter</option>
+                            <option value="6">Kitchen</option>
+                            </select>
                             </div>
                         </div>
 

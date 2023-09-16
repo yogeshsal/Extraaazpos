@@ -40,35 +40,7 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',
-        ],
-        'owner' => [
-            'driver' => 'session',
-            'provider' => 'owners',
-        ],
-        'cashier' => [
-            'driver' => 'session',
-            'provider' => 'cashiers',
-        ],
-        'manager' => [
-            'driver' => 'session',
-            'provider' => 'managers',
-        ],
-        'kitchen' => [
-            'driver' => 'session',
-            'provider' => 'kitchens',
-        ],
-        'waiter' => [
-            'driver' => 'session',
-            'provider' => 'waiters',
-        ],
-        
     ],
-
-
-    
 
     /*
     |--------------------------------------------------------------------------
@@ -91,30 +63,6 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
-        ],
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
-        ],
-        'owners' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Owner::class,
-        ],
-        'cashiers' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Cashier::class,
-        ],
-        'waiters' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Waiter::class,
-        ],
-        'managers' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Manager::class,
-        ],
-        'kitchens' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Kitchen::class,
         ],
 
         // 'users' => [

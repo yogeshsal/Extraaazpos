@@ -7,7 +7,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class RedirectIfAuthenticated
 {
     /**
@@ -18,44 +17,16 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-
-
-    // public function handle(Request $request, Closure $next, ...$guards)
-    // {
-    //     $guards = empty($guards) ? [null] : $guards;
-
-    //     foreach ($guards as $guard) {
-    //         if (Auth::guard($guard)->check()) {
-    //             return redirect(RouteServiceProvider::HOME);
-    //         }
-    //     }
-
-    //     return $next($request);
-    // }
-
-    public function handle($request, Closure $next, $guard = null)
+    public function handle(Request $request, Closure $next, ...$guards)
     {
-        if ($guard == "admin" && Auth::guard($guard)->check()) {
-            return redirect('/admin');
+        $guards = empty($guards) ? [null] : $guards;
+
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+                return redirect(RouteServiceProvider::HOME);
+            }
         }
-        if ($guard == "owner" && Auth::guard($guard)->check()) {
-            return redirect('/owner');
-        }
-        if ($guard == "cashier" && Auth::guard($guard)->check()) {
-            return redirect('/cashier');
-        }
-        if ($guard == "manager" && Auth::guard($guard)->check()) {
-            return redirect('/manager');
-        }
-        if ($guard == "waiter" && Auth::guard($guard)->check()) {
-            return redirect('/waiter');
-        }
-        if ($guard == "kitchen" && Auth::guard($guard)->check()) {
-            return redirect('/kitchen');
-        }
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
-        }
+
         return $next($request);
     }
 }

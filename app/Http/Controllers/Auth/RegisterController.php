@@ -5,16 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use App\Models\Admin;
-use App\Models\Owner;
-use App\Models\Cashier;
-use App\Models\Manager;
-use App\Models\Waiter;
-use App\Models\Kitchen;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -36,7 +30,43 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::LOGIN;
+    // protected $redirectTo;
+    // public function redirectTo()
+    // {
+    // //    dd(Auth::user()->role);
+    //     // switch(Auth::user()->role){
+    //     //     case 2:
+    //     //     $this->redirectTo = '/owner';
+    //     //     return $this->redirectTo;
+    //     //         break;
+    //     //     case 4:
+    //     //             $this->redirectTo = '/manager';
+    //     //         return $this->redirectTo;
+    //     //         break;
+    //     //     case 3:
+    //     //         $this->redirectTo = '/cashier';
+    //     //         return $this->redirectTo;
+    //     //         break;
+    //     //     case 5:
+    //     //             $this->redirectTo = '/waiter';
+    //     //         return $this->redirectTo;
+    //     //         break;
+    //     //     case 6:
+    //     //         $this->redirectTo = '/kitchen';
+    //     //         return $this->redirectTo;
+    //     //         break;
+    //     //     case 1:
+    //     //         $this->redirectTo = '/admin';
+    //     //         return $this->redirectTo;
+    //     //         break;
+    //     //     default:
+    //     //         $this->redirectTo = '/login';
+    //     //         return $this->redirectTo;
+    //     // }
+    //     $this->redirectTo = '/login';
+    //     return $this->redirectTo;
+    // } 
 
     /**
      * Create a new controller instance.
@@ -46,12 +76,6 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->middleware('guest:admin');
-        $this->middleware('guest:owner');
-        $this->middleware('guest:cashier');
-        $this->middleware('guest:manager');
-        $this->middleware('guest:waiter');
-        $this->middleware('guest:kitchen');
     }
 
     /**
@@ -81,101 +105,10 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
+            'state' => "Maharashtra",
+            'role' => $data['role'],
+            'status_id' => 1,
         ]);
-    }
-
-    protected function createAdmin(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        $admin = Admin::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-        return redirect()->intended('login/admin');
-    }
-
-    protected function createOwner(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        $owner = Owner::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-        return redirect()->intended('login/owner');
-    }
-
-    protected function createCashier(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        $cashier = Cashier::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-        return redirect()->intended('login/cashier');
-    }
-
-    protected function createManager(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        $manager = Manager::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-        return redirect()->intended('login/manager');
-    }
-
-    protected function createWaiter(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        $waiter = Waiter::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-        return redirect()->intended('login/waiter');
-    }
-
-    protected function createKitchen(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        $kitchen = Kitchen::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-        return redirect()->intended('login/kitchen');
-    }
-    
-
-
-    public function showAdminRegisterForm()
-    {
-        return view('auth.register', ['url' => 'admin']);
-    }
-
-    public function showOwnerRegisterForm()
-    {
-        return view('auth.register', ['url' => 'owner']);
-    }
-
-    public function showCashierRegisterForm()
-    {
-        return view('auth.register', ['url' => 'cashier']);
-    }
-    public function showManagerRegisterForm()
-    {
-        return view('auth.register', ['url' => 'manager']);
-    }
-    public function showWaiterRegisterForm()
-    {
-        return view('auth.register', ['url' => 'waiter']);
-    }
-    public function showKitchenRegisterForm()
-    {
-        return view('auth.register', ['url' => 'kitchen']);
     }
 }

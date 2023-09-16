@@ -19,52 +19,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']);
-Route::get('/login/owner', [App\Http\Controllers\Auth\LoginController::class, 'showOwnerLoginForm']);
-Route::get('/register/admin', [App\Http\Controllers\Auth\RegisterController::class, 'showAdminRegisterForm']);
-Route::get('/register/owner', [App\Http\Controllers\Auth\RegisterController::class, 'showOwnerRegisterForm']);
-
-Route::get('/login/cashier', [App\Http\Controllers\Auth\LoginController::class, 'showCashierLoginForm']);
-Route::get('/register/cashier', [App\Http\Controllers\Auth\RegisterController::class, 'showCashierRegisterForm']);
-
-Route::get('/login/manager', [App\Http\Controllers\Auth\LoginController::class, 'showManagerLoginForm']);
-Route::get('/register/manager', [App\Http\Controllers\Auth\RegisterController::class, 'showManagerRegisterForm']);
-
-Route::get('/login/kitchen', [App\Http\Controllers\Auth\LoginController::class, 'showKitchenLoginForm']);
-Route::get('/register/kitchen', [App\Http\Controllers\Auth\RegisterController::class, 'showKitchenRegisterForm']);
-
-Route::get('/login/waiter', [App\Http\Controllers\Auth\LoginController::class, 'showWaiterLoginForm']);
-Route::get('/register/waiter', [App\Http\Controllers\Auth\RegisterController::class, 'showWaiterRegisterForm']);
+Route::get('/owner', [App\Http\Controllers\OwnerController::class, 'index'])->name('owner')->middleware('owner');
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin')->middleware('admin');
+Route::get('/cashier', [App\Http\Controllers\CashierController::class, 'index'])->name('cashier')->middleware('cashier');
+Route::get('/manager', [App\Http\Controllers\ManagerController::class, 'index'])->name('manager')->middleware('manager');
+Route::get('/waiter', [App\Http\Controllers\WaiterController::class, 'index'])->name('waiter')->middleware('waiter');
+Route::get('/kitchen', [App\Http\Controllers\KitchenController::class, 'index'])->name('kitchen')->middleware('kitchen');
 
 
-
-Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'adminLogin']);
-Route::post('/login/owner', [App\Http\Controllers\Auth\LoginController::class, 'ownerLogin']);
-Route::post('/register/admin', [App\Http\Controllers\Auth\RegisterController::class, 'createAdmin']);
-Route::post('/register/owner', [App\Http\Controllers\Auth\RegisterController::class, 'createOwner']);
-
-Route::post('/login/cashier', [App\Http\Controllers\Auth\LoginController::class, 'cashierLogin']);
-Route::post('/register/cashier', [App\Http\Controllers\Auth\RegisterController::class, 'createCashier']);
-
-Route::post('/login/manager', [App\Http\Controllers\Auth\LoginController::class, 'managerLogin']);
-Route::post('/register/manager', [App\Http\Controllers\Auth\RegisterController::class, 'createManager']);
-
-Route::post('/login/kitchen', [App\Http\Controllers\Auth\LoginController::class, 'kitchenLogin']);
-Route::post('/register/kitchen', [App\Http\Controllers\Auth\RegisterController::class, 'createKitchen']);
-
-Route::post('/login/waiter', [App\Http\Controllers\Auth\LoginController::class, 'waiterLogin']);
-Route::post('/register/waiter', [App\Http\Controllers\Auth\RegisterController::class, 'createWaiter']);
-
-
-
-
-Route::view('/home', 'home')->middleware('auth');
-Route::view('/admin', 'admin');
-Route::view('/owner', 'owner');
-
-Route::view('/cashier', 'cashier');
-Route::view('/manager', 'manager');
-Route::view('/waiter', 'waiter');
-Route::view('/kitchen', 'kitchen');
+Route::get('/dailyregister', function () {
+    return view('dailyregister');
+});
