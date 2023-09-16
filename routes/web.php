@@ -32,3 +32,10 @@ Route::get('/kitchen', [App\Http\Controllers\KitchenController::class, 'index'])
 Route::get('/dailyregister', function () {
     return view('dailyregister');
 });
+
+Route::get('/location', function () {
+    return view('location');
+});
+
+
+Route::post('store-form', [App\Http\Controllers\LocationController::class, 'store']);
