@@ -12,6 +12,8 @@
       <li>     
         <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Point of sale</a>
         <ul id="pageSubmenu">
+
+       
           <li><a href="/dailyregister">Register</a></li>
           <li><a href="#">Billing</a></li>
           <li><a href="#">Register Sessions</a></li>
@@ -37,19 +39,13 @@
                     <i class="fa fa-bars" aria-hidden="true"></i>                                
                     </button>
 
-                            <hr>
+                            
                             <div class="container-fluid">
                                
                             
     <div>
 
-    <div class="row">
-    <div class="card" style="width: 100%;">
-        <div class="row">
-            
-        </div>
-    </div>
-</div>
+   
 
 
 

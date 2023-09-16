@@ -1,95 +1,89 @@
 
+@extends('layouts.ownerlayout')
 @extends('layouts.app')
 
-@section('content')
-
-<div class="wrapper">
-  <!-- Sidebar Holder -->
-  <nav id="sidebar">
-    <div class="sidebar-header">
-      <h3><a href="/">Extraswad POS</a></h3>      
-    </div>
-
-    <ul class="list-unstyled components">
-     
-      <li>
-        <a href="/owner">Home</a>        
-      </li>
-      <li>
-     
-        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Point of sale</a>
-        <ul id="pageSubmenu">
-          <li><a href="/">Register</a></li>
-          <li><a href="#">Billing</a></li>
-          <li><a href="#">Register Sessions</a></li>
-          <li><a href="#">Bill History</a></li>
-        </ul>
-      </li>
-      <!-- <li>
-        <a href="#">Portfolio</a>
-      </li>
-      <li>
-        <a href="#">Contact</a>
-      </li> -->
-    </ul>
-
-    <!-- <ul class="list-unstyled CTAs">
-      <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to the article</a></li>
-    </ul> -->
-  </nav>
-
-  <!-- Page Content Holder -->
-    <div id="content">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                                <i class="glyphicon glyphicon-align-left"></i>
-                                <span>Toggle Sidebar</span>                               
-                            </button>
-
-                            <hr>
-                            <div class="container-fluid">
-                               
-                            
-    <div>
-
-    
-    <div class="row">
-    <div class="card" style="width: 100%;">
-        <div class="row">
-            <div class="col-12">
-            <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+@section('ownercontent')
+<div class="row text-center">
+   
+    <!-- <div class="card" >
+      <div class="card-body">
+           <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
-            </div>
-            
-           
-        </div>
+    </div> -->
+    <div class="center-container">
+    <div class="centered-card">
+    <h5 class="card-title">No Register Selected</h5>
+                <p class="card-text">Choose a register to open to start making sales.</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Choose Register
+              </button>
     </div>
-    </div>
+</div>
+         
+   
+</div>
 
+
+<!-- Modal -->
+<div class="modal fade  bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select Register</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select><br>
+      <h5>$location_name</h5>
+      <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">$location_name</h5>
         
+        <a href="/create_register" class="btn btn-primary">Select Register</a>
+      </div>
     </div>
-
-    
-      
-<!-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are in ADMIN Dashboard!
-                </div>
-            </div>
-        </div>
+  </div>
+</div>
+</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       
+      </div>
     </div>
-</div> -->
+  </div>
+</div>
+
+
+
+
+
+
+
 @endsection
+
+<style>
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.centered-card {
+   margin-top:200px;
+  
+}
+
+
+</style>

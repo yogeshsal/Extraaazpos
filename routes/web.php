@@ -29,6 +29,18 @@ Route::get('/waiter', [App\Http\Controllers\WaiterController::class, 'index'])->
 Route::get('/kitchen', [App\Http\Controllers\KitchenController::class, 'index'])->name('kitchen')->middleware('kitchen');
 
 
-Route::get('/dailyregister', function () {
-    return view('dailyregister');
-});
+
+
+// Route::get('/dailyregister', function () {
+//     return view('dailyregister');
+// });
+
+ Route::view('dailyregister','dailyregister');
+
+Route::post('/create_register', [App\Http\Controllers\DailyRegisterController::class, 'create']);
+
+Route::view('create_register','create_register');
+
+Route::view('close_register','close_register');
+
+ Route::get('dailyregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegisterOpen']);
