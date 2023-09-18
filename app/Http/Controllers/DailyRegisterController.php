@@ -16,7 +16,7 @@ class DailyRegisterController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -108,18 +108,33 @@ class DailyRegisterController extends Controller
         $lastInsertedUserId = DB::table('daily_registers')
             ->where('status', 1)
             ->latest('id')
-            ->value('user_id');
+            ->value('id');
 
-        // dd($lastInsertedUserId);
+        //  dd($lastInsertedUserId);
 
-            $lastInsertedUser = Daily_register::where('id', $lastInsertedUserId)->first()->toarray();
+            $lastInsertedUser = Daily_register::where('id', $lastInsertedUserId)->first();
 
-          //dd($lastInsertedUser['status']);
-          $status =$lastInsertedUser['status'];
+        //   dd($lastInsertedUser['opening_cash']);
+          $status = $lastInsertedUser['status'];
+          $opening_cash = $lastInsertedUser['opening_cash'];
+          $opening_card = $lastInsertedUser['opening_card'];
+          $opening_credit = $lastInsertedUser['opening_credit'];
+          $opening_upi = $lastInsertedUser['opening_upi'];
         
-           return view('layouts.ownerlayout', compact('status'));
-             
+        //   dd( $lastInsertedUser );
+         $lastInsertedUser->created_at = $lastInsertedUser->created_at->addHours(24);
+         $current_date = date('Y-m-d H:i:s');
+        //  dd(  $current_date , $lastInsertedUser->created_at);
 
+          if( $status == 0 || ($current_date >= $lastInsertedUser->created_at))
+          {
+            return view('dailyregister', compact('status'));
+          }
+          else{
+            
+            return view('close_register', compact('status','opening_cash','opening_card','opening_credit','opening_upi'));
+          }
+        
     }
 
 

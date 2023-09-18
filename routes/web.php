@@ -28,19 +28,12 @@ Route::get('/manager', [App\Http\Controllers\ManagerController::class, 'index'])
 Route::get('/waiter', [App\Http\Controllers\WaiterController::class, 'index'])->name('waiter')->middleware('waiter');
 Route::get('/kitchen', [App\Http\Controllers\KitchenController::class, 'index'])->name('kitchen')->middleware('kitchen');
 
-
-
-
-// Route::get('/dailyregister', function () {
-//     return view('dailyregister');
-// });
-
- Route::view('dailyregister','dailyregister');
-
+//register
+Route::view('create_register', 'create_register');
 Route::post('/create_register', [App\Http\Controllers\DailyRegisterController::class, 'create']);
+Route::get('dailyregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegisterOpen'])->middleware('owner');
+Route::get('close_register', [App\Http\Controllers\DailyRegisterController::class, 'checkRegisterOpen'])->middleware('owner');
 
-Route::view('create_register','create_register');
+//billing
 
-Route::view('close_register','close_register');
-
- Route::get('dailyregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegisterOpen']);
+Route::view('billing', 'billing');
