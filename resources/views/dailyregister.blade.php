@@ -36,16 +36,26 @@
         </button>
       </div>
       <div class="modal-body">
-      <select id="mySelect" class="form-select" aria-label="Default select example">
-        <!-- <option selected>Choose Location Here</option> -->
-        <option value="" disabled selected>Select a location</option>
-        <php $i = 1 ?>
+      
+      @if (count($loc) === 0)
+    <!-- Display a button when $loc is empty -->
+    <div class="text-center">
+        <p>Registered Locations not found ! Kindly add.</p>
+        <a href="/location"><button type="button" class="btn btn-primary">Add Location</button></a>
+    </div>
+@else
+    <!-- Display the select element when $loc is not empty -->
+    <select id="mySelect" class="form-select" aria-label="Default select example">
+        <option value="" disabled required selected>Select a location</option>
         @foreach ($loc as $location)
-        
-        <option value = "{{ $location['name'] }}" >{{ $location['name'] }}</option>
-        <php $i++ ?>
+            <option value="{{ $location['name'] }}">{{ $location['name'] }}</option>
         @endforeach
-      </select><br>
+    </select>
+@endif
+      
+      
+      
+      <br>
          
       <div class="row">
         <div class="col">
@@ -53,7 +63,7 @@
             <div class="card-body">
               <h5 class="card-title"><h1 id= "selectedOption"></h1></h5>
               
-              <a href="/create_register" class="btn btn-primary">Select Register</a>
+              <a href="/create_register"><button type="button" class="btn btn-success" >Select Register</button></a>
             </div>
           </div>
         </div>
