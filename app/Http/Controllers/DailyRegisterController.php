@@ -105,7 +105,9 @@ class DailyRegisterController extends Controller
 
     function checkRegisterOpen()
     {
+        $currentUserId = Auth::user()->id;
         $lastInsertedUserId = DB::table('daily_registers')
+            ->where('user_id', $currentUserId)
             ->where('status', 1)
             ->latest('id')
             ->value('id');
@@ -141,12 +143,6 @@ class DailyRegisterController extends Controller
             return view('dailyregister');
         }
 
-
-        
-         
-        //  dd(  $current_date , $lastInsertedUser->created_at);
-            //$status = 1;
-         
         
     }
 
