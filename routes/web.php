@@ -37,3 +37,14 @@ Route::get('close_register', [App\Http\Controllers\DailyRegisterController::clas
 //billing
 
 Route::view('billing', 'billing');
+
+Route::get('/dailyregister', function () {
+    return view('dailyregister');
+});
+
+Route::get('/location', function () {
+    return view('location');
+});
+
+
+Route::post('store-form', [App\Http\Controllers\LocationController::class, 'store']);

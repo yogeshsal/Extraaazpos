@@ -18,22 +18,12 @@
         <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Point of sale</a>
         <ul id="pageSubmenu">
           <li><a href="/dailyregister">Register</a></li>
-          <li><a href="#">Billing</a></li>
+          <li><a href="#">Billingqqqqqq</a></li>
           <li><a href="#">Register Sessions</a></li>
           <li><a href="#">Bill History</a></li>
         </ul>
-      </li>
-      <!-- <li>
-        <a href="#">Portfolio</a>
-      </li>
-      <li>
-        <a href="#">Contact</a>
-      </li> -->
-    </ul>
-
-    <!-- <ul class="list-unstyled CTAs">
-      <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to the article</a></li>
-    </ul> -->
+      </li>     
+    </ul>   
   </nav>
 
   <!-- Page Content Holder -->

@@ -72,9 +72,15 @@ a:focus {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
-.wrapper {
+/* .wrapper {
   display: flex;
   align-items: stretch;
+} */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
 }
 
 #sidebar {
@@ -86,12 +92,6 @@ a:focus {
   transition: all 0.3s;
 }
 
-/* #sidebar a,*/
-/* #sidebar a:hover, */
-/* #sidebar a:focus {
-  color: inherit;
-}  */
-
 #navbar {
     background:#ADD8E6;
 }
@@ -101,8 +101,7 @@ a:focus {
 }
 
 #sidebar .sidebar-header {
-  padding: 20px;
-  /* background: #2b2b2b; */
+  padding: 20px; 
   background: #e6e6e6;
 }
 
@@ -124,16 +123,10 @@ a:focus {
   color: #000000;
 }
 
-/* #sidebar ul li a:hover {
-  color: #7386D5;
-  background: #fff;
-} */
 
 #sidebar ul li.active > a,
 a[aria-expanded="true"] {
-  color: #000000;
-  /* home button turned black  */
-  /* background: #6d7fcc; */
+  color: #000000;  
 }
 
 a[data-toggle="collapse"] {
@@ -141,8 +134,7 @@ a[data-toggle="collapse"] {
 }
 
 a[aria-expanded="false"]::before,
-a[aria-expanded="true"]::before {
-  /* content: '\e259'; */
+a[aria-expanded="true"]::before { 
   display: block;
   position: absolute;
   right: 20px;
@@ -150,14 +142,12 @@ a[aria-expanded="true"]::before {
   font-size: 0.6em;
 }
 
-a[aria-expanded="true"]::before {
-  /* content: '\e260'; */
+a[aria-expanded="true"]::before { 
 }
 
 ul ul a {
   font-size: 0.9em !important;
-  padding-left: 30px !important;
-  /* background: #6d7fcc; */
+  padding-left: 30px !important;  
 }
 
 ul.CTAs {
@@ -172,21 +162,7 @@ ul.CTAs a {
   margin-bottom: 5px;
 }
 
-/* a.download {
-  background: #fff;
-  color: #7386D5;
-} */
 
-/* a.article, */
-/* a.article:hover {
-  background: #6d7fcc !important;
-  color: #fff !important;
-} */
-
-#sidebar1 .insidesp .widget {
-  border-radius: 2px;/* 角を丸くする */
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.22);
-}
 
 
 /* ---------------------------------------------------
@@ -196,6 +172,7 @@ ul.CTAs a {
 #content {
   width:100%;
   padding: 20px;
+  width:100%;
   min-height: 100vh;
   transition: all 0.3s;
 }
@@ -220,8 +197,10 @@ ul.CTAs a {
     display: none;
   }
 }
+</style>
 
-    </style>
+
+
 
 
 <script>
@@ -232,6 +211,7 @@ $(document).ready(function() {
   });
 });
 </script>
+
 
 </head>
 <body>
@@ -291,8 +271,6 @@ $(document).ready(function() {
                 </div>
             </div>
         </nav>
-       
-
        
     
         <main class="py-0">

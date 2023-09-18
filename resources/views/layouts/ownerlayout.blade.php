@@ -1,15 +1,15 @@
-<div class="wrapper">
-  <!-- Sidebar Holder -->
+<div class="wrapper">  
   <nav id="sidebar">
     <div class="sidebar-header">
-      <h3>Extraswad POS</h3>          
+      <!-- <h3>Extraswad POS</h3>           -->
+      <img src="images/logo1.png" class="img-fluid" alt="...">
     </div>
 
     <ul>     
-      <li class="active">
-        <a href="/owner" data-toggle="collapse" aria-expanded="false">Home</a>        
+      <li class="nav-item">
+        <a href="/owner"><i class="fa fa-fw fa-home"></i>&nbsp;Home</a>        
       </li>
-      <li>     
+      <li class="nav-item">     
         <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Point of sale</a>
         <ul id="pageSubmenu">
 
@@ -20,17 +20,10 @@
           <li><a href="#">Bill History</a></li>
         </ul>
       </li>
-      <!-- <li>
-        <a href="#">Portfolio</a>
-      </li>
-      <li>
-        <a href="#">Contact</a>
-      </li> -->
-    </ul>
-
-    <!-- <ul class="list-unstyled CTAs">
-      <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to the article</a></li>
-    </ul> -->
+      <li class="nav-item">
+        <a class="nav-link" href="/location">Add Location</a>
+      </li>     
+    </ul>   
   </nav>
 
   <!-- Page Content Holder -->
@@ -40,12 +33,9 @@
                     </button>
 
                             
-                            <div class="container-fluid">
-                               
-                            
-    <div>
-
-   
+                    <div class="container-fluid">
+                    <div>    
+    </div>
 
 
 

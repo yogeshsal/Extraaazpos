@@ -1,4 +1,3 @@
-
 @extends('layouts.ownerlayout')
 @extends('layouts.app')
 
