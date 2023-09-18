@@ -3,8 +3,10 @@
 @extends('layouts.app')
 
 @section('ownercontent')
+<!-- <p>Welcome, {{ auth()->user()->name }}</p> -->
+<br>
 <div class="row">
-    <h1>Opening register $user at $location</h1>
+    <h2>Opening register for {{ auth()->user()->name }} at $location</h2>
     <div class="card" style="width: 100%;">
         <div class="row">
         <form action ="" method="post">

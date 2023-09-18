@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Daily_register;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
@@ -133,6 +134,7 @@ class DailyRegisterController extends Controller
 
             if( $status == 0 || ($current_date >= $lastInsertedUser->created_at))
             {
+
               return view('dailyregister', compact('status'));
             }
             else{
@@ -140,11 +142,19 @@ class DailyRegisterController extends Controller
               return view('close_register', compact('status','opening_cash','opening_card','opening_credit','opening_upi'));
             }
         } else {
-            return view('dailyregister');
+            $location = Location::where('user_id', $currentUserId)->get()->toArray();
+           // dd($location);
+            return view('dailyregister', ['loc'=>$location]);
         }
 
         
     }
+
+    // public function getlocation(){
+    //     $location = Location::all();
+    //     dd($data);
+    //     return view('dailyregister')->with('data', $data);
+    // }
 
 
 }

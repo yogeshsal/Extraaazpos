@@ -30,38 +30,42 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Select Register</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Select Location</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-      <select class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select><br>
-      <h5>$location_name</h5>
-      <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">$location_name</h5>
+      <select id="mySelect" class="form-select" aria-label="Default select example">
+        <!-- <option selected>Choose Location Here</option> -->
+        <option value="" disabled selected>Select a location</option>
+        <php $i = 1 ?>
+        @foreach ($loc as $location)
         
-        <a href="/create_register" class="btn btn-primary">Select Register</a>
+        <option value = "{{ $location['name'] }}" >{{ $location['name'] }}</option>
+        <php $i++ ?>
+        @endforeach
+      </select><br>
+         
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><h1 id= "selectedOption"></h1></h5>
+              
+              <a href="/create_register" class="btn btn-primary">Select Register</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
-</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-       
       </div>
-    </div>
-  </div>
-</div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
@@ -86,3 +90,18 @@
 
 
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectElement = document.getElementById('mySelect');
+        const selectedOptionElement = document.getElementById('selectedOption');
+
+        // Initialize the selected option element with the default selected value
+        selectedOptionElement.textContent = selectElement.value;
+
+        // Add an event listener to the select element
+        selectElement.addEventListener('change', function () {
+            selectedOptionElement.textContent = selectElement.value;
+        });
+    });
+</script>
