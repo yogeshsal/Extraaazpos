@@ -3,57 +3,73 @@
 @extends('layouts.app')
 
 @section('ownercontent')
-
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-      <div class="card">
-        <div class="card-header">
-          <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link"  href="#history" role="tab" aria-controls="history" aria-selected="false">History</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#deals" role="tab" aria-controls="deals" aria-selected="false">Deals</a>
-            </li>
-          </ul>
-        </div>
-        <div class="card-body">
-          <h4 class="card-title">Bologna</h4>
-          <h6 class="card-subtitle mb-2">Emilia-Romagna Region, Italy</h6>
-          
-           <div class="tab-content mt-3">
-            <div class="tab-pane active" id="description" role="tabpanel">
-              <p class="card-text">It is the seventh most populous city in Italy, at the heart of a metropolitan area of about one million people. </p>
-              <a href="#" class="card-link text-danger">Read more</a>
-            </div>
-             
-            <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="history-tab">  
-              <p class="card-text">First settled around 1000 BCE and then founded as the Etruscan Felsina about 500 BCE, it was occupied by the Boii in the 4th century BCE and became a Roman colony and municipium with the name of Bononia in 196 BCE. </p>
-              <a href="#" class="card-link text-danger">Read more</a>
-            </div>
-             
-            <div class="tab-pane" id="deals" role="tabpanel" aria-labelledby="deals-tab">
-              <p class="card-text">Immerse yourself in the colours, aromas and traditions of Emilia-Romagna with a holiday in Bologna, and discover the city's rich artistic heritage.</p>
-              <a href="#" class="btn btn-danger btn-sm">Get Deals</a>
-            </div>
-          </div>
-        </div>
+<br>
+<div class="container">    
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a href="#delivery" role="tab" data-toggle="tab"
+           class="nav-link active"> Delivery </a>
+      </li>
+      <li class="nav-item">
+        <a href="#dinein" role="tab" data-toggle="tab"
+           class="nav-link"> Dinein </a>
+      </li>
+      <li class="nav-item">
+        <a href="#qsr" role="tab" data-toggle="tab"
+           class="nav-link"> QSR </a>
+      </li>
+      <li class="nav-item">
+        <a href="#takeaway" role="tab" data-toggle="tab"
+           class="nav-link"> Takeaway </a>
+      </li>
+      <li class="nav-item">
+        <a href="#advanceorder" role="tab" data-toggle="tab"
+           class="nav-link"> Advance Orders </a>
+      </li>
+      <li class="nav-item">
+        <a href="#plus" role="tab" data-toggle="tab"
+           class="nav-link"> + </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" role="tabpanel" id="delivery">
+        <h3> delivery </h3>
+        <p> Lorem ipsum sit amet </p>
+      </div>
+      <div class="tab-pane" role="tabpanel" id="dinein">
+        <h3> dinein </h3>
+        <p> Lorem ipsum dolorem </p>
+      </div>
+      <div class="tab-pane" role="tabpanel" id="qsr">
+        <h3> QSR </h3>
+        <p> Lorem ipsum dolorem </p>
+      </div>
+      <div class="tab-pane" role="tabpanel" id="takeaway">
+        <h3> Take Away </h3>
+        <p> Lorem ipsum dolorem </p>
+      </div>
+      <div class="tab-pane" role="tabpanel" id="advanceorder">
+        <h3> Advance Order </h3>
+        <p> Lorem ipsum dolorem </p>
       </div>
     </div>
-  </div>
 </div>
+<script
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous">
+</script>
+<script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous">
+</script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous">
+</script>
+
 
 
 @endsection
-
-<script>
-$('#bologna-list a').on('click', function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
-
-</script>
