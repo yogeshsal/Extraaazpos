@@ -12,6 +12,8 @@
       <li class="nav-item">     
         <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Point of sale</a>
         <ul id="pageSubmenu">
+
+       
           <li><a href="/dailyregister">Register</a></li>
           <li><a href="#">Billing</a></li>
           <li><a href="#">Register Sessions</a></li>
