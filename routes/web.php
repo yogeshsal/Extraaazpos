@@ -38,9 +38,9 @@ Route::get('close_register', [App\Http\Controllers\DailyRegisterController::clas
 
 Route::view('billing', 'billing');
 
-Route::get('/dailyregister', function () {
-    return view('dailyregister');
-});
+// Route::get('/dailyregister', function () {
+//     return view('dailyregister');
+// });
 
 Route::get('/location', function () {
     return view('location');
