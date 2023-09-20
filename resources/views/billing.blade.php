@@ -3,6 +3,44 @@
 @extends('layouts.app')
 
 @section('ownercontent')
+
+<style>
+  .menu ul {
+      list-style-type: none;
+  }
+  .menu li {
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+  }
+  .circle {
+      border-radius: 100px;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      background: #999da3;
+      margin-left: 5px;
+  }
+  </style>
+
+  <style>
+    .selectWrapper{
+    border-radius:0px;
+    display:inline-block;
+    overflow:hidden;
+    background:#cccccc;
+    border:1px solid #cccccc;
+    margin-left: 555px;
+  }
+    .selectBox{
+    width:140px;
+    height:40px;
+    border:0px;
+    outline:none;
+  }
+  </style>
+  
+
 <br>
 <div class="container">    
     <ul class="nav nav-tabs" role="tablist">
@@ -37,9 +75,42 @@
         <p> Lorem ipsum sit amet </p>
       </div>
       <div class="tab-pane" role="tabpanel" id="dinein">
-        <h3> dinein </h3>
-        <p> Lorem ipsum dolorem </p>
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="card" >
+              <div class="card-body"> 
+                <!-- <div class="alert alert-secondary" role="alert"> -->
+                  <div class="selectWrapper">
+                    <select class="selectBox">
+                      <option>Balcony Section</option>
+                      <option>Table</option>  
+                    </select>
+                  </div>
+                <!-- </div> -->
+                <hr>
+                <div class="menu">
+                    <ul>
+                        <a href=""><li class="circle">One</li></a>
+                        <li class="circle">Two</li>
+                        <li class="circle">Three</li>
+                        <li class="circle">Four</li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card" style="display: none">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="tab-pane" role="tabpanel" id="qsr">
         <h3> QSR </h3>
         <p> Lorem ipsum dolorem </p>
