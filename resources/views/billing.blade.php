@@ -39,6 +39,13 @@
     outline:none;
   }
   </style>
+
+<style>
+        /* Center-align the text */
+        .card-title {
+            text-align: center;
+        }
+    </style>
   
 
 <br>
@@ -75,6 +82,7 @@
         <p> Lorem ipsum sit amet </p>
       </div>
       <div class="tab-pane" role="tabpanel" id="dinein">
+        <br>
         <div class="row">
           <div class="col-sm-8">
             <div class="card" >
@@ -90,7 +98,7 @@
                 <hr>
                 <div class="menu">
                     <ul>
-                        <a href=""><li class="circle">One</li></a>
+                        <li class="circle" onclick="showtable1()">One</li>
                         <li class="circle">Two</li>
                         <li class="circle">Three</li>
                         <li class="circle">Four</li>
@@ -100,11 +108,32 @@
             </div>
           </div>
           <div class="col-sm-4">
-            <div class="card" style="display: none">
+            <div id = "table1" class="card" style="display: none">
               <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h4 class="card-title">Balcony Section / Table 1</h4>
+                <center><p class="card-text">How many people are at the table ?</p></center>
+                <br>
+
+
+                <center>
+                <!-- counter -->
+                <div class="counter-container">                
+                  <button class="counter-button" id="minusButton">-</button>  
+                  <span id="counterValue">0</span>
+                  <button class="counter-button" id="plusButton">+</button>
+                </div>
+                </center>
+                <!-- counter -->
+                <br>
+                <center><p class="card-text">Add Customer</p></center>
+                
+                <center><button type="button" class="btn btn-outline-secondary">Customer : Select Customer</button><center>
+                
+                <br>
+                <center><p class="card-text">Add Server</p></center>
+                
+                <center><button type="button" class="btn btn-outline-secondary">Server : Select Server</button><center>
+                <button type="button" class="btn btn-primary mt-2">New Bill</button>
               </div>
             </div>
           </div>
@@ -143,4 +172,35 @@
 
 
 
+
+<script>
+        // Function to show the div
+        function showtable1() {
+            var div = document.getElementById('table1');
+            div.style.display = 'block';
+        }
+    </script>
+
+
+<script>
+        // Get references to the buttons and the counter value
+        const minusButton = document.getElementById('minusButton');
+        const plusButton = document.getElementById('plusButton');
+        const counterValue = document.getElementById('counterValue');
+
+        // Initialize the counter value
+        let count = 0;
+
+        // Function to decrease the counter value
+        minusButton.addEventListener('click', function () {
+            count--;
+            counterValue.textContent = count;
+        });
+
+        // Function to increase the counter value
+        plusButton.addEventListener('click', function () {
+            count++;
+            counterValue.textContent = count;
+        });
+    </script>
 @endsection
