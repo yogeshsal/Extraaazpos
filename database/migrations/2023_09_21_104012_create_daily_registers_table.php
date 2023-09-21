@@ -19,6 +19,14 @@ return new class extends Migration
             $table->string('opening_card')->nullable();
             $table->string('opening_credit')->nullable();
             $table->string('opening_upi')->nullable();
+            $table->string('closing_cash')->nullable();
+            $table->string('closing_card')->nullable();
+            $table->string('closing_credit')->nullable();
+            $table->string('closing_upi')->nullable();
+            $table->string('difference_cash')->nullable();
+            $table->string('difference_card')->nullable();
+            $table->string('difference_credit')->nullable();
+            $table->string('difference_upi')->nullable();
             $table->integer('user_id');
             $table->integer('status')->default(1);
             $table->timestamps();
