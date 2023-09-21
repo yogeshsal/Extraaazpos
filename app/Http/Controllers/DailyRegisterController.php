@@ -220,7 +220,7 @@ class DailyRegisterController extends Controller
                 ->where('user_id', $currentUserId)
              ->where('status', 1)
             ->update(['status' => '0','closing_cash' => $closing_cash, 'closing_card' => $closing_card, 'closing_credit' => $closing_credit, 'closing_upi' => $closing_upi,]);        
-        return view('create_register');       
+        return redirect('create_register');       
     }   
 
 
