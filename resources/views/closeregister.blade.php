@@ -199,8 +199,7 @@ function updatecashDifference() {
     // Check if the input value is a valid number
     if (!isNaN(userValue)) {
         const diff = expected_cash - userValue;
-        cash_differenceCell.textContent = -diff;
-        cash.textContent = diff;
+        cash_differenceCell.textContent = -diff;        
          // Add a CSS class for positive values
          if (diff == 0) {
           cash_differenceCell.style.color = 'green';
