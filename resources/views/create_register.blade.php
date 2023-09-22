@@ -6,7 +6,7 @@
 <!-- <p>Welcome, {{ auth()->user()->name }}</p> -->
 <br>
 <div class="row">
-    <h2>Opening register for {{ auth()->user()->name }} at $location</h2>
+    <h2>Opening register for {{ auth()->user()->name }} at  </h2>
     <div class="card" style="width: 100%;">
         <div class="row">
         <form action ="" method="post">
@@ -27,6 +27,8 @@
                   <input name="opening_upi" type="text" class="form-control" placeholder="Opening UPI Amount">
                 </div>
                 
+                <input name="loc_id" type="text" class="form-control"  value ="{{$loc_id}}">
+                <input name="locationname" type="text" class="form-control"  value="{{$locationname}}">
               </div>
               <div class="p-4">
 

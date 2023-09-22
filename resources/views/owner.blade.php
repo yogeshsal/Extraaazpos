@@ -4,8 +4,7 @@
 
 @section('ownercontent')
 <br>
-<h1>Sales Dashboard</h1>
-    <!-- <div class="card" style="width: 100%;">  -->
+<h1>Sales Dashboard</h1>    
 <div class="row">
   <div class="col-sm-6">
     <div class="card">

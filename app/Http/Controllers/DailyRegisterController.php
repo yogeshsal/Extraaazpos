@@ -27,10 +27,18 @@ class DailyRegisterController extends Controller
      */
     public function create(Request $request)
     {
+        
        $data = new Daily_register;
+        
+       $data->loc_id = $request->loc_id;
+       $data->location = $request->locationname;
+    
+       
        $data->opening_cash = $request->opening_cash ?? 0.00;
        $data->opening_card = $request->opening_card ?? 0.00;
        $data->opening_credit = $request->opening_credit ?? 0.00;
+       $data->opening_upi = $request->opening_upi ?? 0.00;
+       $data->opening_upi = $request->opening_upi ?? 0.00;
        $data->opening_upi = $request->opening_upi ?? 0.00;
        $data->user_id = Auth::user()->id;
        
@@ -221,7 +229,20 @@ class DailyRegisterController extends Controller
              ->where('status', 1)
             ->update(['status' => '0','closing_cash' => $closing_cash, 'closing_card' => $closing_card, 'closing_credit' => $closing_credit, 'closing_upi' => $closing_upi,]);        
         return redirect('create_register');       
-    }   
+    }  
+    
+    
+    public function passlocation(Request $request) 
+    {     
+        $currentUserId = Auth::user()->id;    
+        $locationname = $request->location_name;  
+        $id = DB::table('locations')
+        ->where('name', $locationname)
+        ->where('user_id', $currentUserId)
+        ->value('id');         
+        return view('/create_register', ['locationname'=>$locationname, 'loc_id'=>$id]);
+       
+        }
 
 
 }

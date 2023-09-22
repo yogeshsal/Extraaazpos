@@ -25,7 +25,7 @@
 
 
 <br>
-<div class="row card">
+<div class="row card p-3">
 <h3>Register Sessions</h3>
 <div class="row">
     <div class="col-lg-8">
@@ -49,7 +49,7 @@
     </div>
 </div>
 
-    <div class="card" style="width: 100%;">
+    <div class="card">
         <div class="row">
         <table class="table table-responsive table-hover">
   <thead>

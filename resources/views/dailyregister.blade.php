@@ -1,39 +1,38 @@
 @extends('layouts.ownerlayout')
 @extends('layouts.app')
-
 @section('ownercontent')
-<div class="row text-center">
-   
-    <!-- <div class="card" >
-      <div class="card-body">
-           <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div> -->
-    <div class="center-container">
-    <div class="centered-card">
-    <h5 class="card-title">No Register Selected</h5>
-                <p class="card-text">Choose a register to open to start making sales.</p>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Choose Register
-              </button>
-    </div>
-</div>
-         
-   
-</div>
 
+<style>
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+.centered-card {
+   margin-top:200px;  
+}
+</style>
+
+<br>
+<div class="row text-center">
+  <div class="center-container">
+    <div class="centered-card">
+      <h5 class="card-title">No Register Selected</h5>
+      <p class="card-text">Choose a register to open to start making sales.</p>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Choose Register
+      </button>
+    </div>
+  </div>
+</div>
 
 <!-- Modal -->
-<div class="modal fade  bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade  bd-example-modal-md" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Select Location</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="exampleModalLabel">Select Location</h5>        
       </div>
       <div class="modal-body">
       
@@ -45,61 +44,37 @@
     </div>
 @else
     <!-- Display the select element when $loc is not empty -->
-    <select id="mySelect" class="form-select" aria-label="Default select example">
+    <select id="selectedOption" class="form-select" aria-label="Default select example" onchange="updateTextbox()">
         <option value="" disabled required selected>Select a location</option>
         @foreach ($loc as $location)
             <option value="{{ $location['name'] }}">{{ $location['name'] }}</option>
         @endforeach
     </select>
-@endif
-      
-      
-      
-      <br>
-         
+@endif             
       <div class="row">
         <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"><h1 id= "selectedOption"></h1></h5>
-              
-              <a href="/create_register"><button type="button" class="btn btn-success" >Select Register</button></a>
-            </div>
-          </div>
+                 
+              <form name="add_location" id="add_location" method="post" action="{{url('select_register')}}">
+                @csrf
+                <div class="form-group">          
+                <input type="text" name ="location_name" hidden id="displayedValue">
+                </div> 
+                <div class="text-center">       
+                <button type="submit" class="btn btn-success m-3" >Select Register</button>
+                </div>
+              </form>
+
+              <!-- <a href="/create_register"><button type="submit" class="btn btn-success m-3" >Select Register</button></a> -->
+        
         </div>
       </div>
-      </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-
-
-
-
+      </div>      
+    </div>
+  </div>
+</div>
 @endsection
 
-<style>
-  .center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-}
 
-.centered-card {
-   margin-top:200px;
-  
-}
-
-
-</style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -112,6 +87,29 @@
         // Add an event listener to the select element
         selectElement.addEventListener('change', function () {
             selectedOptionElement.textContent = selectElement.value;
+            var selectedOptionValue = selectElement.value;
+            var optionValue = selectedOptionValue;
+            document.getElementById("optionValue").value = optionValue;
         });
     });
 </script>
+
+
+<script>
+        function updateTextbox() {
+            // Get the selected option element
+            var selectedOptionElement = document.getElementById("selectedOption");
+
+            // Get the selected option's value
+            var selectedOptionValue = selectedOptionElement.value;
+
+            // Display the selected value in the textbox
+            var displayedValueElement = document.getElementById("displayedValue");
+            displayedValueElement.value = selectedOptionValue;
+        }
+
+        // Call the function to initialize the textbox value
+        updateTextbox();
+    </script>
+
+

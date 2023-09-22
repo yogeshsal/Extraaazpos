@@ -51,6 +51,7 @@ Route::get('/location', function () {
 
 
 Route::post('store-form', [App\Http\Controllers\LocationController::class, 'store']);
+Route::post('select_register', [App\Http\Controllers\DailyRegisterController::class, 'passlocation']);
 
 Route::post('/closeregister', [App\Http\Controllers\DailyRegisterController::class, 'closeregister'])->middleware('owner');
 
