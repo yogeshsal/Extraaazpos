@@ -90,6 +90,7 @@ a:focus {
   background: #FFFFFF;
   color: #fff;
   transition: all 0.3s;
+  margin-top: 50px;
 }
 
 #navbar {
@@ -216,7 +217,7 @@ $(document).ready(function() {
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" >
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm" >
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}

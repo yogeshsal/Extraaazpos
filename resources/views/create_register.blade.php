@@ -30,8 +30,9 @@
               </div>
               <div class="p-4">
 
-              <button type="submit" class="btn btn-primary">Open Register</button>
-              <button class="btn btn-info m-3">Choose Another Register</button>
+              <button type="submit" class="btn btn-primary">View Register</button>
+              <button type="button" class="btn btn-outline-primary m-2">Choose Another Register</button>
+              <!-- <button class="btn btn-info m-3">Choose Another Register</button> -->
               </div>
          </form>
         </div>
