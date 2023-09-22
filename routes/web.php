@@ -32,7 +32,7 @@ Route::get('/kitchen', [App\Http\Controllers\KitchenController::class, 'index'])
 Route::view('create_register', 'create_register');
 Route::view('close_register', 'close_register');
 // Route::view('closeregister', 'closeregister');
-Route::post('/create_register', [App\Http\Controllers\DailyRegisterController::class, 'create']);
+
 Route::get('dailyregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegisterOpen'])->middleware('owner');
 Route::get('closeregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegister'])->middleware('owner');
 
@@ -52,6 +52,7 @@ Route::get('/location', function () {
 
 Route::post('store-form', [App\Http\Controllers\LocationController::class, 'store']);
 Route::post('select_register', [App\Http\Controllers\DailyRegisterController::class, 'passlocation']);
+Route::post('/storeRegister', [App\Http\Controllers\DailyRegisterController::class, 'storeregister'])->name('storeRegister');
 
 Route::post('/closeregister', [App\Http\Controllers\DailyRegisterController::class, 'closeregister'])->middleware('owner');
 

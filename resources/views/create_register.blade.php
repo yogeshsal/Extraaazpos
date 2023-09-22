@@ -9,7 +9,7 @@
     <h2>Opening register for {{ auth()->user()->name }} at  </h2>
     <div class="card" style="width: 100%;">
         <div class="row">
-        <form action ="" method="post">
+        <form action="{{ route('storeRegister') }}" method="post">
           @csrf
               <div class="row p-4">
                 <div class="col">
@@ -25,11 +25,10 @@
                 </div>
                 <div class="col">
                   <input name="opening_upi" type="text" class="form-control" placeholder="Opening UPI Amount">
+                </div> 
+                <input name="loc_id" type="text" class="form-control" hidden  value ="{{ isset($loc_id) ? $loc_id : '' }}">
+                <input name="locationname" type="text" class="form-control" hidden  value="{{isset($locationname)? $locationname : ''}}">
                 </div>
-                
-                <input name="loc_id" type="text" class="form-control"  value ="{{$loc_id}}">
-                <input name="locationname" type="text" class="form-control"  value="{{$locationname}}">
-              </div>
               <div class="p-4">
 
               <button type="submit" class="btn btn-primary">View Register</button>

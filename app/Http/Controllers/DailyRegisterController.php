@@ -26,25 +26,8 @@ class DailyRegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
-        
-       $data = new Daily_register;
-        
-       $data->loc_id = $request->loc_id;
-       $data->location = $request->locationname;
-    
-       
-       $data->opening_cash = $request->opening_cash ?? 0.00;
-       $data->opening_card = $request->opening_card ?? 0.00;
-       $data->opening_credit = $request->opening_credit ?? 0.00;
-       $data->opening_upi = $request->opening_upi ?? 0.00;
-       $data->opening_upi = $request->opening_upi ?? 0.00;
-       $data->opening_upi = $request->opening_upi ?? 0.00;
-       $data->user_id = Auth::user()->id;
-       
-       $data->save();
-       
-       return redirect('/billing');
+    {        
+      
     }
    
     /**
@@ -228,7 +211,7 @@ class DailyRegisterController extends Controller
                 ->where('user_id', $currentUserId)
              ->where('status', 1)
             ->update(['status' => '0','closing_cash' => $closing_cash, 'closing_card' => $closing_card, 'closing_credit' => $closing_credit, 'closing_upi' => $closing_upi,]);        
-        return redirect('create_register');       
+        return redirect('dailyregister');       
     }  
     
     
@@ -242,6 +225,22 @@ class DailyRegisterController extends Controller
         ->value('id');         
         return view('/create_register', ['locationname'=>$locationname, 'loc_id'=>$id]);
        
+        }
+
+        public function storeRegister(Request $request) 
+        {             
+            $data = new Daily_register;        
+            $data->loc_id = $request->loc_id;
+            $data->location = $request->locationname;
+            $data->opening_cash = $request->opening_cash ?? 0.00;
+            $data->opening_card = $request->opening_card ?? 0.00;
+            $data->opening_credit = $request->opening_credit ?? 0.00;
+            $data->opening_upi = $request->opening_upi ?? 0.00;
+            $data->opening_upi = $request->opening_upi ?? 0.00;
+            $data->opening_upi = $request->opening_upi ?? 0.00;
+            $data->user_id = Auth::user()->id;            
+            $data->save();            
+            return redirect('/billing');
         }
 
 
