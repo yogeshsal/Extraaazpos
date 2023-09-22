@@ -42,16 +42,16 @@
       <li class="nav-item">
         <a href="/owner"><i class="fa fa-fw fa-home"></i>&nbsp;Home</a>        
       </li>
-      <li class="nav-item">     
-        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Point of sale</a>
-        <ul id="pageSubmenu">
-
-       
+      <li class="nav-item">
+          <a class="nav-link" onclick="togglepointofsale()" href="#pointofsale" data-toggle="collapse" aria-expanded="false">
+            <i class="fa-solid fa-store"></i>&nbsp;Point of sale
+          </a>
+          <ul id="pointofsale">
           <li><a href="/dailyregister">Register</a></li>
           <li><a href="/billing">Billing</a></li>
-          <li><a href="/session">Register Sessions</a></li>
+          <li><a href="#">Register Sessions</a></li>
           <li><a href="#">Bill History</a></li>
-        </ul>
+          </ul>
       </li>
 
       <li class="nav-item">
