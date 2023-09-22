@@ -51,7 +51,7 @@
 
     <div class="card" style="width: 100%;">
         <div class="row">
-        <table class="table table-hover">
+        <table class="table table-responsive table-hover">
   <thead>
     <tr>
       <th scope="col">NO</th>

@@ -87,7 +87,7 @@
             <li><a href="/owner">Billing Entities</a></li>
         </ul>
       </li>  
-      <li class="nav-item">
+      <li class="nav-item" >
         <a class="nav-link"  onclick="togglerawmaterial()" href="#rawmaterial" data-toggle="collapse" >
         <i class="fa-solid fa-basket-shopping"></i>&nbsp;Raw Materials
         </a>
