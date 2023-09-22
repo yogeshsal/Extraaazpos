@@ -53,3 +53,8 @@ Route::get('/location', function () {
 Route::post('store-form', [App\Http\Controllers\LocationController::class, 'store']);
 
 Route::post('/closeregister', [App\Http\Controllers\DailyRegisterController::class, 'closeregister'])->middleware('owner');
+
+
+//register Session
+Route::get('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('owner');
+

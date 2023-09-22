@@ -16,7 +16,7 @@
        
           <li><a href="/dailyregister">Register</a></li>
           <li><a href="/billing">Billing</a></li>
-          <li><a href="#">Register Sessions</a></li>
+          <li><a href="/session">Register Sessions</a></li>
           <li><a href="#">Bill History</a></li>
         </ul>
       </li>
