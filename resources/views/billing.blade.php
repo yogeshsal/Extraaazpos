@@ -38,13 +38,38 @@
     border:0px;
     outline:none;
   }
-  </style>
 
-<style>
         /* Center-align the text */
         .card-title {
             text-align: center;
         }
+
+        .circle-container {
+        display: flex;
+        flex-wrap: wrap; /* Wrap circles to the next line when they don't fit horizontally */
+        justify-content: center; /* Center the circles horizontally */
+    }
+
+    .circle {
+        width: 100px; /* Adjust the width of each circle */
+        height: 100px; /* Adjust the height of each circle */
+        background-color: #3498db;
+        border-radius: 50%;
+        margin: 30px; /* Add spacing between circles */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        color: white;
+    }
+    .clicked-circle {
+    background-color: #F37429; /* Change the background color to your desired color */
+    color: white; /* Change the text color to contrast with the new background color */
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Adjust the shadow properties as needed */
+}
     </style>
   
 
@@ -89,28 +114,48 @@
               <div class="card-body"> 
                 <!-- <div class="alert alert-secondary" role="alert"> -->
                   <div class="selectWrapper">
-                    <select class="selectBox">
-                      <option>Balcony Section</option>
-                      <option>Table</option>  
-                    </select>
+                   <select class="selectBox " id="dropdown">
+                      <option value="balcony">Balcony Section</option>
+                      <option value="table">Table</option>
+                  </select>
                   </div>
                 <!-- </div> -->
                 <hr>
                 <div class="menu">
                     <ul>
-                        <li class="circle" onclick="showtable1()">One</li>
-                        <li class="circle">Two</li>
-                        <li class="circle">Three</li>
-                        <li class="circle">Four</li>
+                    <div id="balconyDiv">
+                      <li onclick="showBalcony()">
+                          <div class="circle-container">
+                              @for ($i = 1; $i <= $bal; $i++)
+                                  <div class="circle" id="bal-{{ $i }}" onclick="showCircleDetails(this)">
+                                      <span class="circle-number">{{ $i }}</span>
+                                  </div>
+                              @endfor
+                          </div>
+                      </li>
+                    </div>
+
+                      <div id="tableDiv" style="display: none;">
+                          <li onclick="showTable()">
+                              <div class="circle-container">
+                                  @for ($i = 1; $i <= $table; $i++)
+                                      <div class="circle" id="table-{{ $i }}" onclick="showCircleDetails(this)">
+                                          <span class="circle-number">{{ $i }}</span>
+                                      </div>
+                                  @endfor
+                              </div>
+                          </li>
+                      </div>
                     </ul>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-sm-4">
-            <div id = "table1" class="card" style="display: none">
+            <div id="circleDetailDiv" class="card" style="display: none">
               <div class="card-body">
-                <h4 class="card-title">Balcony Section / Table 1</h4>
+                <h4 class="card-title">Table - <span id="circleNumberSpan"></span></h4>
+                
                 <center><p class="card-text">How many people are at the table ?</p></center>
                 <br>
 
@@ -202,5 +247,87 @@
             count++;
             counterValue.textContent = count;
         });
+
+
+
+// Get references to the dropdown and div elements
+var dropdown = document.getElementById("dropdown");
+var balconyDiv = document.getElementById("balconyDiv");
+var tableDiv = document.getElementById("tableDiv");
+
+// Function to show the Balcony div
+function showBalcony() {
+    balconyDiv.style.display = "block";
+    tableDiv.style.display = "none";
+}
+
+// Function to show the Table div
+function showTable() {
+    balconyDiv.style.display = "none";
+    tableDiv.style.display = "block";
+}
+
+// Add an event listener to the dropdown to detect changes
+dropdown.addEventListener("change", function() {
+    var selectedValue = dropdown.value;
+    if (selectedValue === "balcony") {
+        showBalcony();
+    } else if (selectedValue === "table") {
+        showTable();
+    }
+});
+
+function showCircleDetails(circle) {
+    // Display the circle details div
+    var circleDetailDiv = document.getElementById("circleDetailDiv");
+    circleDetailDiv.style.display = "block";
+
+    // Display the circle's number
+    var circleNumberSpan = document.getElementById("circleNumberSpan");
+    circleNumberSpan.textContent = circle.querySelector('.circle-number').textContent;
+    var allCircles = document.querySelectorAll('.circle');
+    allCircles.forEach(function (circle) {
+        circle.classList.remove('clicked-circle');
+    });
+
+    // Add the "clicked-circle" class to the clicked circle
+    circle.classList.add('clicked-circle');
+}
+
+
+// Add an event listener to the dropdown to detect changes
+dropdown.addEventListener("change", function() {
+    var selectedValue = dropdown.value;
+    if (selectedValue === "balcony") {
+        showBalcony();
+    } else if (selectedValue === "table") {
+        showTable();
+    }
+});
+
+
+// Get references to the dropdown and span elements
+var dropdown = document.getElementById("dropdown");
+var circleNumberSpan = document.getElementById("circleNumberSpan");
+
+// Function to update the selected value in the span element
+// function updateSelectedValue() {
+//     var selectedOption = dropdown.options[dropdown.selectedIndex];
+//     circleNumberSpan.textContent = selectedOption.text;
+// }
+
+// Add an event listener to the dropdown to detect changes
+// dropdown.addEventListener("change", updateSelectedValue);
+
+// Initial update when the page loads
+// updateSelectedValue();
+
+
+
+
+
+
+
     </script>
+
 @endsection

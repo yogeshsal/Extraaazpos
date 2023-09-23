@@ -102,6 +102,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/location">Add Location</a>
       </li>     
+      <li class="nav-item">
+        <a class="nav-link" href="/add_floor">Floor Setting</a>
+      </li> 
     </ul>   
   </nav>
 
