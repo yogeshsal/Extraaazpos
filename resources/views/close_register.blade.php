@@ -20,7 +20,7 @@
 
 <div class="row">
 <div class="col-sm-8">
-<div class="card mt-5">
+<div class="card shadow mt-5">
   <!-- <div class="card-header">
     Featured
   </div> -->
@@ -33,7 +33,7 @@
     </div>
     <div class="flex-column">  
     <h6><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp; Calculated a few Seconds ago &nbsp; 
-    <a href="/closeregister"><button class="btn btn-primary">Close Register</button></a>
+    <a href="/closeregister"><button class="btn btn-orange">Close Register</button></a>
     </div>
   </div>
     
@@ -82,7 +82,7 @@
 </div>
 </div>
 <div class="col-sm-4">
-    <div class="card mt-5">
+    <div class="card shadow mt-5">
       <div class="card-body">
         <div class="alert alert-primary" role="alert">
           <p>Register is open</p>
@@ -115,7 +115,7 @@
   </div>
 </div>
 
-<div class="card mt-5">
+<div class="card shadow mt-5">
   <!-- <div class="card-header">
     Featured
   </div> -->

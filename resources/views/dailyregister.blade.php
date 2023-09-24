@@ -20,7 +20,7 @@
     <div class="centered-card">
       <h5 class="card-title">No Register Selected</h5>
       <p class="card-text">Choose a register to open to start making sales.</p>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class="btn btn-orange" data-toggle="modal" data-target="#exampleModal">
       Choose Register
       </button>
     </div>
@@ -60,7 +60,7 @@
                 <input type="text" name ="location_name" hidden id="displayedValue">
                 </div> 
                 <div class="text-center">       
-                <button type="submit" class="btn btn-success m-3" >Select Register</button>
+                <button type="submit" class="btn btn-orange m-3" >Select Register</button>
                 </div>
               </form>
 

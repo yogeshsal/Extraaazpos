@@ -26,7 +26,7 @@
 
 <div class="row">
 <div class="col-sm-8">
-<div class="card mt-5">  
+<div class="card shadow mt-5">  
   <div class="card-body">
   <div class="flex-container">
     <div class="flex-column">
@@ -35,7 +35,7 @@
     </div>
     <div class="flex-column">
     <h6><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp; Calculated a few Seconds ago &nbsp;
-    <a href="/dailyregister"><button id="showmessage" class="btn btn-primary">Reset Closing</button></a></h6>
+    <a href="/dailyregister"><button id="showmessage" class="btn btn-orange">Reset Closing...</button></a></h6>
     
     </div>
   </div>
@@ -93,7 +93,7 @@
             <input type="text" id="closingcredit1" hidden name="closingcredit1">
             <input type="text" id="closingupi1" hidden name="closingupi1">
             
-            <button type="submit" class="btn btn-primary">Close Register</button>     
+            <button type="submit" class="btn btn-orange">Close Register</button>     
           </form>
                
         </tr>
@@ -105,7 +105,7 @@
 </div>
 </div>
   <div class="col-sm-4">
-    <div class="card mt-5">
+    <div class="card shadow mt-5">
       <div class="card-body">
         <div class="alert alert-primary" role="alert">
           <p>Register is open</p>
@@ -133,7 +133,7 @@
   </div>
 </div>
 
-<div class="card mt-5">
+<div class="card shadow mt-5">
   <!-- <div class="card-header">
     Featured
   </div> -->

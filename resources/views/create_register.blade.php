@@ -6,8 +6,8 @@
 <!-- <p>Welcome, {{ auth()->user()->name }}</p> -->
 <br>
 <div class="row">
-    <h2>Opening register for {{ auth()->user()->name }} at  </h2>
-    <div class="card" style="width: 100%;">
+    <h2>Opening register for {{ auth()->user()->name }} at  {{isset($locationname)? $locationname : ''}}</h2>
+    <div class="card shadow" style="width: 100%;">
         <div class="row">
         <form action="{{ route('storeRegister') }}" method="post">
           @csrf
@@ -31,8 +31,8 @@
                 </div>
               <div class="p-4">
 
-              <button type="submit" class="btn btn-primary">View Register</button>
-              <button type="button" class="btn btn-outline-primary m-2">Choose Another Register</button>
+              <button type="submit" class="btn btn-orange">View Register</button>
+              <button type="button" class="btn btn-outline-primary ml-2">Choose Another Register</button>
               <!-- <button class="btn btn-info m-3">Choose Another Register</button> -->
               </div>
          </form>

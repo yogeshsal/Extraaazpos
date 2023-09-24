@@ -28,6 +28,18 @@
         /* .nav-item:hover #pointofsale {
             display: block;
         } */
+        .btn-orange {
+            background-color: orange; /* Change the background color to orange */
+            border-color: orange; /* Change the border color to orange (optional) */
+            color: black; /* Change the text color to white (optional) */
+        }
+
+        /* Hover effect (optional) */
+        .btn-orange:hover {
+            background-color: darkorange; /* Change the background color on hover */
+            border-color: darkorange; /* Change the border color on hover (optional) */
+            color: white;
+        }
 </style>
 
 
@@ -106,11 +118,6 @@
   </nav>
 
   <script>
-        // Prevent the submenu from opening automatically on page load
-       // document.getElementById("onlinorder").style.display = "none";
-       // document.getElementById("pointofsale").style.display = "none";
-    </script>
-    <script>
         function togglepointofsale() {
             var submenu = document.getElementById("pointofsale");
             if (submenu.style.display === "none" || submenu.style.display === "") {
@@ -150,7 +157,7 @@
 
   <!-- Page Content Holder -->
     <div id="content">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                    <button type="button" id="sidebarCollapse" class="btn btn-orange navbar-btn">
                     <i class="fa fa-bars" aria-hidden="true"></i>                                
                     </button>
 
