@@ -7,7 +7,7 @@
     margin-top: 150px; 
 }
 </style>
-<br><br><br><br>
+
 <div class="container">
 <div class="centered-div">
     <div class="row justify-content-center">
