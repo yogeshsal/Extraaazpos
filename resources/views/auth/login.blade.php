@@ -1,7 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+.centered-div {
+    /* Add styling for the centered div */
+    margin-top: 150px; 
+}
+</style>
+<br><br><br><br>
 <div class="container">
+<div class="centered-div">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,5 +77,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
