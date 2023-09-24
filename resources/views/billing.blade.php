@@ -104,7 +104,7 @@
     <div class="tab-content">
       <div class="tab-pane active" role="tabpanel" id="delivery">
         <h3> delivery </h3>
-        <p> Lorem ipsum sit amet </p>
+        <p> Work in progress... </p>
       </div>
       <div class="tab-pane" role="tabpanel" id="dinein">
         <br>

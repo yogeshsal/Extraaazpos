@@ -48,8 +48,22 @@ class FloorSettingController extends Controller
     {
         $data = Add_floor::where('user_id',Auth::user()->id)->first();
 
-        $bal = $data['balcony'];
-        $table = $data['table'];
+        if (isset($data['balcony'])) {
+            $bal = $data['balcony'];
+            // Now you can safely use $bal
+        } else {
+            // Handle the case where 'balcony' key is not set
+            $bal = null; // or provide a default value
+        }
+        
+        if (isset($data['table'])) {
+            $table = $data['table'];
+            // Now you can safely use $bal
+        } else {
+            // Handle the case where 'balcony' key is not set
+            $table = null; // or provide a default value
+        }
+        
         //dd($bal);
         return view('billing',compact('bal','table'));
 

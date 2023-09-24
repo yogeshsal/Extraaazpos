@@ -44,7 +44,7 @@
     
             </table>
         </div>
-        <button type="submit" class=" add btn btn-secondary col-lg-2 mb-4">Add </button>
+        <button type="submit" class=" add btn btn-orange col-lg-2 mb-4">Add </button>
        </form>
     </div>
 </div>
