@@ -39,7 +39,7 @@ Route::get('closeregister', [App\Http\Controllers\DailyRegisterController::class
 //Route::post('/closed_register', [App\Http\Controllers\DailyRegisterController::class, 'closeregister'])->name('closedregister');
 //billing
 
-Route::view('billing', 'billing');
+// Route::view('billing', 'billing');
 
 // Route::get('/dailyregister', function () {
 //     return view('dailyregister');
@@ -60,3 +60,9 @@ Route::post('/closeregister', [App\Http\Controllers\DailyRegisterController::cla
 //register Session
 Route::get('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('owner');
 
+
+//floor setting
+Route::get('add_floor', [App\Http\Controllers\FloorSettingController::class, 'index'])->middleware('owner');
+Route::post('add_floor', [App\Http\Controllers\FloorSettingController::class, 'add_floor'])->middleware('owner');
+
+Route::get('billing', [App\Http\Controllers\FloorSettingController::class, 'show_table'])->middleware('owner');
