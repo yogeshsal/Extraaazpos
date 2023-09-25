@@ -86,7 +86,7 @@
         <a class="nav-link" href="/owner"><i class="fa-solid fa-tv"></i>&nbsp;KDS</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/owner"><i class="fa-solid fa-users"></i>&nbsp;Customers</a>
+        <a class="nav-link" href="/customers"><i class="fa-solid fa-users"></i>&nbsp;Customers</a>
       </li>
 
 

@@ -25,7 +25,7 @@
 
 
 <br>
-<div class="row card p-3">
+<div class="row card shadow p-3">
 <h3>Register Sessions</h3>
 <div class="row">
     <div class="col-lg-8">
