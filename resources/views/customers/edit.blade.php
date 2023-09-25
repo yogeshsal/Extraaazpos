@@ -1,11 +1,15 @@
 @extends('layouts.ownerlayout')
 @extends('layouts.app')
 @section('ownercontent')
-
+<style>
+     .text-danger {
+        color: red;
+    }
+</style>
 <br>
 <div class="container">
 <div class="card card shadow p-3">
-    <h1>Edit Customer</h1>
+    <h3>Edit Customer</h3>
     <form action="{{ route('customers.update', $customer->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -13,13 +17,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Name <span class="text-danger">*</span></label>
                     <input type="text" id="name" name="name" class="form-control" value="{{ $customer->name }}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="mobile">Mobile</label>
+                    <label for="mobile">Mobile<span class="text-danger">*</span></label>
                     <input type="text" id="mobile" name="mobile" class="form-control" value="{{ $customer->mobile }}">
                 </div>
             </div>
@@ -68,6 +72,7 @@
         <!-- Add more form fields for editing other customer data -->
 
         <div class="form-group">
+        <a href="/customers" class="btn btn-secondary m-2">Back</a>
             <button type="submit" class="btn btn-orange m-2">Update</button>
         </div>
     </form>

@@ -52,7 +52,7 @@
       <img src="images/logo1.png" class="img-fluid" alt="...">
     </div>
 
-    <ul>  
+    <ul class="menu">
       <li class="nav-item">
         <a href="/owner"><i class="fa fa-fw fa-home"></i>&nbsp;Home</a>        
       </li>
@@ -61,11 +61,11 @@
             <i class="fa-solid fa-store"></i>&nbsp;Point of sale&nbsp;
             <!-- <i class="fa-solid fa-caret-down"></i> -->
           </a>
-          <ul id="pointofsale">
-          <li><a href="/dailyregister">Register</a></li>
-          <li><a href="/billing">Billing</a></li>
-          <li><a href="/session">Register Sessions</a></li>
-          <li><a href="#">Bill History</a></li>
+          <ul id="pointofsale" class="submenu">
+          <li class="sub"><a href="/dailyregister">Register</a></li>
+          <li class="sub"><a href="/billing">Billing</a></li>
+          <li class="sub"><a href="/session">Register Sessions</a></li>
+          <li class="sub"><a href="#">Bill History</a></li>
           </ul>
       </li>
 
@@ -74,12 +74,12 @@
         <i class="fa-solid fa-cart-shopping"></i>&nbsp;Online Orders
         <!-- &nbsp; <i class="fa-solid fa-caret-down"></i> -->
         </a>
-        <ul id="onlineorder">
-            <li><a href="/owner">Order Tracker</a></li>
-            <li><a href="/owner">Pickup Display</a></li>
-            <li><a href="/owner">Order History</a></li>
-            <li><a href="/owner">Day Summary</a></li>
-            <li><a href="/owner">Logs</a></li>
+        <ul id="onlineorder" class="submenu">
+            <li class="sub"><a href="/owner">Order Tracker</a></li>
+            <li class="sub"><a href="/owner">Pickup Display</a></li>
+            <li class="sub"><a href="/owner">Order History</a></li>
+            <li class="sub"><a href="/owner">Day Summary</a></li>
+            <li class="sub"><a href="/owner">Logs</a></li>
         </ul>
       </li>
       <li class="nav-item">
@@ -95,15 +95,15 @@
         <i class="fa-solid fa-utensils"></i>&nbsp;Catalogue &nbsp;
         <!-- <i class="fa-solid fa-caret-down"></i> -->
         </a>
-        <ul id="catalogue">
-            <li><a href="/owner">Items</a></li>
-            <li><a href="/owner">Categories</a></li>
-            <li><a href="/owner">Category Timings</a></li>
-            <li><a href="/owner">Modifier Groups</a></li>
-            <li><a href="/owner">Taxes</a></li>
-            <li><a href="/owner">Charges</a></li>
-            <li><a href="/owner">Discounts</a></li>
-            <li><a href="/owner">Billing Entities</a></li>
+        <ul id="catalogue" class="submenu">
+            <li class="sub"><a href="/owner">Items</a></li>
+            <li class="sub"><a href="/owner">Categories</a></li>
+            <li class="sub"><a href="/owner">Category Timings</a></li>
+            <li class="sub"><a href="/owner">Modifier Groups</a></li>
+            <li class="sub"><a href="/owner">Taxes</a></li>
+            <li class="sub"><a href="/owner">Charges</a></li>
+            <li class="sub"><a href="/owner">Discounts</a></li>
+            <li class="sub"><a href="/owner">Billing Entities</a></li>
         </ul>
       </li>  
 
@@ -115,12 +115,12 @@
         <i class="fa-solid fa-basket-shopping"></i>&nbsp;Raw Materials &nbsp;
         <!-- <i class="fa-solid fa-caret-down"></i> -->
         </a>
-        <ul id="rawmaterial">
-            <li><a href="/owner">Materials</a></li>
-            <li><a href="/owner">Intermediates</a></li>
-            <li><a href="/owner">Categories</a></li>
-            <li><a href="/owner">Modifier Groups</a></li>
-            <li><a href="/owner">Taxes</a></li>            
+        <ul id="rawmaterial" class="submenu">
+            <li class="sub"><a href="/owner">Materials</a></li>
+            <li class="sub"><a href="/owner">Intermediates</a></li>
+            <li class="sub"><a href="/owner">Categories</a></li>
+            <li class="sub"><a href="/owner">Modifier Groups</a></li>
+            <li class="sub"><a href="/owner">Taxes</a></li>            
         </ul>
       </li>  
 
@@ -138,9 +138,9 @@
         <a class="nav-link"  onclick="togglepossetting()" href="#rawmaterial" data-toggle="collapse" >
         <i class="fa-solid fa-gear"></i>&nbsp;POS Setting
         </a>
-        <ul id="possetting">
-            <li><a class="nav-link" href="/location">Add Location</a></li>
-            <li><a href="/add_floor">Floor Plan</a></li>                        
+        <ul id="possetting" class="submenu">
+            <li class="sub"><a class="nav-link" href="/location">Add Location</a></li>
+            <li class="sub"><a href="/add_floor">Floor Plan</a></li>                        
         </ul>
       </li> 
     </ul>   
@@ -192,6 +192,18 @@
             }
         }
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('.nav-link').click(function () {
+            // Close all submenus except the one clicked
+            $('.submenu').not($(this).next('.submenu')).slideUp();
+
+            // Toggle the submenu of the clicked menu item
+            $(this).next('.submenu').slideToggle();
+        });
+    });
+</script>
 
   <!-- Page Content Holder -->
     <div id="content">

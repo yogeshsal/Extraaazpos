@@ -62,11 +62,20 @@ body {
   min-width: 250px;
   max-width: 250px;
   /* background: #2b2b2b; */
-  background: #FFFFFF;
+  background: #1D2632;
   color: #fff;
   transition: all 0.3s;
   margin-top: 50px;
 }
+
+li.sub:hover {
+    background-color: #4A515B; /* Change to the desired background color */
+    color: #ffffff !important;
+}
+/* ul.submenu li.sub:hover {
+    background-color: #4A515B; /* Change to your desired background color */
+    color: #ffffff; /* Change text color as needed */
+} */
 
 #navbar {
     background:#ADD8E6;
@@ -78,7 +87,7 @@ body {
 
 #sidebar .sidebar-header {
   padding: 20px; 
-  background: #FFFFFF;
+  background: #1D2632;
 }
 
 #sidebar ul.components {
@@ -96,13 +105,14 @@ body {
   padding: 10px;
   font-size: 1.1em;
   display: block;
-  color: #000000;
+  color: #f89803;
 }
 
 
 #sidebar ul li.active > a,
 a[aria-expanded="true"] {
-  color: #000000;  
+  /* color: #000000;   */
+  color: #f89803;
 }
 
 a[data-toggle="collapse"] {
@@ -189,7 +199,21 @@ $(document).ready(function() {
 });
 </script>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#sidebar .menu li a').click(function () {
+            var submenu = $(this).closest('li').find('.submenu');
+            if (submenu.length > 0) {
+                // Close other open submenus
+                $('#sidebar .menu li .submenu').not(submenu).slideUp();
+                // Toggle the clicked submenu
+                submenu.slideToggle();
+                return false;
+            }
+        });
+    });
+</script>
 </head>
 <body>
     <div id="app">

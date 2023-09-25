@@ -46,6 +46,12 @@ class CustomerController extends Controller
 
     public function update(Request $request, $id)
     {
+       
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'mobile' => 'required|numeric|digits:10', // Assuming a 10-digit mobile number
+            // Add more validation rules as needed for other fields
+        ]);
         $customer = Customer::find($id);
 
         if (!$customer) {
