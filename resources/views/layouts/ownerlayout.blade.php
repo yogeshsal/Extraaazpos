@@ -31,16 +31,16 @@
             display: block;
         } */
         .btn-orange {
-            background-color: orange; /* Change the background color to orange */
-            border-color: orange; /* Change the border color to orange (optional) */
-            color: black; /* Change the text color to white (optional) */
+            background-color: darkorange; /* Change the background color to orange */
+            border-color: darkorange; /* Change the border color to orange (optional) */
+            color: white; /* Change the text color to white (optional) */
         }
 
         /* Hover effect (optional) */
         .btn-orange:hover {
-            background-color: darkorange; /* Change the background color on hover */
-            border-color: darkorange; /* Change the border color on hover (optional) */
-            color: white;
+            background-color: orange; /* Change the background color on hover */
+            border-color: orange; /* Change the border color on hover (optional) */
+            color: black;
         }
 </style>
 
@@ -58,7 +58,8 @@
       </li>
       <li class="nav-item">
           <a class="nav-link" onclick="togglepointofsale()" href="#pointofsale" data-toggle="collapse" aria-expanded="false">
-            <i class="fa-solid fa-store"></i>&nbsp;Point of sale
+            <i class="fa-solid fa-store"></i>&nbsp;Point of sale&nbsp;
+            <!-- <i class="fa-solid fa-caret-down"></i> -->
           </a>
           <ul id="pointofsale">
           <li><a href="/dailyregister">Register</a></li>
@@ -71,7 +72,7 @@
       <li class="nav-item">
         <a class="nav-link"  onclick="toggleonlineorder()" href="#onlineorder" data-toggle="collapse" >
         <i class="fa-solid fa-cart-shopping"></i>&nbsp;Online Orders
-        &nbsp; <i class="fa-solid fa-caret-down"></i>
+        <!-- &nbsp; <i class="fa-solid fa-caret-down"></i> -->
         </a>
         <ul id="onlineorder">
             <li><a href="/owner">Order Tracker</a></li>
@@ -87,10 +88,12 @@
       <li class="nav-item">
         <a class="nav-link" href="/owner"><i class="fa-solid fa-users"></i>&nbsp;Customers</a>
       </li>
+
+
       <li class="nav-item">
         <a class="nav-link"  onclick="togglecatalogue()" href="#catalogue" data-toggle="collapse" >
         <i class="fa-solid fa-utensils"></i>&nbsp;Catalogue &nbsp;
-        <i class="fa-solid fa-caret-down"></i>
+        <!-- <i class="fa-solid fa-caret-down"></i> -->
         </a>
         <ul id="catalogue">
             <li><a href="/owner">Items</a></li>
@@ -103,12 +106,14 @@
             <li><a href="/owner">Billing Entities</a></li>
         </ul>
       </li>  
+
+
+
+
       <li class="nav-item">
-        <a class="nav-link" href="#rawmaterial" data-toggle="collapse" onclick="togglerawmaterial()">
-          <div class="d-flex justify-content-between align-items-center">
-              <span>Raw Materials</span> <!-- Menu text on the left -->
-              <i class="fa-solid fa-caret-down"></i> <!-- Right-pointing caret icon on the right -->
-          </div>
+        <a class="nav-link"  onclick="togglerawmaterial()" href="#catalogue" data-toggle="collapse" >
+        <i class="fa-solid fa-basket-shopping"></i>&nbsp;Raw Materials &nbsp;
+        <!-- <i class="fa-solid fa-caret-down"></i> -->
         </a>
         <ul id="rawmaterial">
             <li><a href="/owner">Materials</a></li>
@@ -117,7 +122,10 @@
             <li><a href="/owner">Modifier Groups</a></li>
             <li><a href="/owner">Taxes</a></li>            
         </ul>
-      </li>
+      </li>  
+
+
+      
       <!-- <li class="nav-item">
         
       </li>      -->
