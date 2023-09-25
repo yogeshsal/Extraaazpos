@@ -10,7 +10,7 @@
         {{ session('status') }}
     </div>
   @endif
-  <div class="card">
+  <div class="card shadow">
     <div class="card-header text-center font-weight-bold">
       Add Location
     </div>

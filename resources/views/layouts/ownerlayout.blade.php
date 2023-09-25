@@ -8,7 +8,8 @@
         #pointofsale,
         #onlineorder,
         #catalogue,
-        #rawmaterial {
+        #rawmaterial,
+        #possetting {
             list-style-type: none;
             padding-left: 0;
             display: none;
@@ -18,7 +19,8 @@
         #pointofsale li,
         #onlineorder li,
         #catalogue li,
-        #rawmaterial li
+        #rawmaterial li,
+        #possetting li
         {
             margin-left: 10px;
         }
@@ -69,6 +71,7 @@
       <li class="nav-item">
         <a class="nav-link"  onclick="toggleonlineorder()" href="#onlineorder" data-toggle="collapse" >
         <i class="fa-solid fa-cart-shopping"></i>&nbsp;Online Orders
+        &nbsp; <i class="fa-solid fa-caret-down"></i>
         </a>
         <ul id="onlineorder">
             <li><a href="/owner">Order Tracker</a></li>
@@ -86,7 +89,8 @@
       </li>
       <li class="nav-item">
         <a class="nav-link"  onclick="togglecatalogue()" href="#catalogue" data-toggle="collapse" >
-        <i class="fa-solid fa-utensils"></i>&nbsp;Catalogue
+        <i class="fa-solid fa-utensils"></i>&nbsp;Catalogue &nbsp;
+        <i class="fa-solid fa-caret-down"></i>
         </a>
         <ul id="catalogue">
             <li><a href="/owner">Items</a></li>
@@ -99,9 +103,12 @@
             <li><a href="/owner">Billing Entities</a></li>
         </ul>
       </li>  
-      <li class="nav-item" >
-        <a class="nav-link"  onclick="togglerawmaterial()" href="#rawmaterial" data-toggle="collapse" >
-        <i class="fa-solid fa-basket-shopping"></i>&nbsp;Raw Materials
+      <li class="nav-item">
+        <a class="nav-link" href="#rawmaterial" data-toggle="collapse" onclick="togglerawmaterial()">
+          <div class="d-flex justify-content-between align-items-center">
+              <span>Raw Materials</span> <!-- Menu text on the left -->
+              <i class="fa-solid fa-caret-down"></i> <!-- Right-pointing caret icon on the right -->
+          </div>
         </a>
         <ul id="rawmaterial">
             <li><a href="/owner">Materials</a></li>
@@ -110,12 +117,23 @@
             <li><a href="/owner">Modifier Groups</a></li>
             <li><a href="/owner">Taxes</a></li>            
         </ul>
-      </li>  
-      <li class="nav-item">
-        <a class="nav-link" href="/location">Add Location</a>
-      </li>     
-      <li class="nav-item">
+      </li>
+      <!-- <li class="nav-item">
+        
+      </li>      -->
+      <!-- <li class="nav-item">
         <a class="nav-link" href="/add_floor">Floor Setting</a>
+      </li> -->
+      
+      <!-- setting -->
+      <li class="nav-item" >
+        <a class="nav-link"  onclick="togglepossetting()" href="#rawmaterial" data-toggle="collapse" >
+        <i class="fa-solid fa-gear"></i>&nbsp;POS Setting
+        </a>
+        <ul id="possetting">
+            <li><a class="nav-link" href="/location">Add Location</a></li>
+            <li><a href="/add_floor">Floor Plan</a></li>                        
+        </ul>
       </li> 
     </ul>   
   </nav>
@@ -150,6 +168,15 @@
         
         function togglerawmaterial() {
             var submenu = document.getElementById("rawmaterial");
+            if (submenu.style.display === "none" || submenu.style.display === "") {
+                submenu.style.display = "block";
+            } else {
+                submenu.style.display = "none";
+            }
+        }
+
+        function togglepossetting() {
+            var submenu = document.getElementById("possetting");
             if (submenu.style.display === "none" || submenu.style.display === "") {
                 submenu.style.display = "block";
             } else {

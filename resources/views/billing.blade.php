@@ -96,10 +96,10 @@
         <a href="#advanceorder" role="tab" data-toggle="tab"
            class="nav-link"> Advance Orders </a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a href="#plus" role="tab" data-toggle="tab"
            class="nav-link"> + </a>
-      </li>
+      </li> -->
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" role="tabpanel" id="delivery">
@@ -178,7 +178,7 @@
                 <center><p class="card-text">Add Server</p></center>
                 
                 <center><button type="button" class="btn btn-outline-secondary">Server : Select Server</button><center>
-                <button type="button" class="btn btn-primary mt-2">New Bill</button>
+                <button type="button" class="btn btn-orange mt-2">New Bill</button>
               </div>
             </div>
           </div>
