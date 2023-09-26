@@ -32,7 +32,7 @@ Route::get('/kitchen', [App\Http\Controllers\KitchenController::class, 'index'])
 //register
 Route::view('create_register', 'create_register');
 Route::view('close_register', 'close_register');
-// Route::view('closeregister', 'closeregister');
+
 
 Route::get('dailyregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegisterOpen'])->middleware('owner');
 Route::get('closeregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegister'])->middleware('owner');
@@ -90,3 +90,9 @@ Route::post('categories', [App\Http\Controllers\CategoryController::class, 'add_
 //ORDER
 Route::view('orders', 'orders.index');
 //Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index']);
+
+
+//ITEM
+Route::view('items', 'items.index');
+Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
+Route::post('/create-item', [App\Http\Controllers\ItemController::class, 'store'])->name('items.store');
