@@ -74,17 +74,19 @@ Route::get('billing', [App\Http\Controllers\FloorSettingController::class, 'show
 Route::get('/customers', [App\Http\Controllers\CustomerController::class, 'index']);
 // Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
 Route::post('/create-customer', [App\Http\Controllers\CustomerController::class, 'store'])->name('customers.store');
-
 Route::get('/customers/{id}/edit', [App\Http\Controllers\CustomerController::class,'edit'])->name('customers.edit');
 Route::put('/customers/{id}', [App\Http\Controllers\CustomerController::class,'update'])->name('customers.update');
-
 // Route::put('/customers/{id}', [App\Http\Controllers\CustomerController::class, 'update'])->name('customers.update');
 // Route::get('/customers/{id}', [App\Http\Controllers\CustomerController::class, 'show'])->name('customers.show');
 Route::put('/update', [App\Http\Controllers\CustomerController::class,'update'])->name('update');
-
 // Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 //billing
 Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->middleware('owner');
 Route::post('categories', [App\Http\Controllers\CategoryController::class, 'add_category'])->middleware('owner');
 
 // Route::get('categories/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->middleware('owner');
+
+
+//ORDER
+Route::view('orders', 'orders.index');
+//Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index']);
