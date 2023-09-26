@@ -83,3 +83,8 @@ Route::put('/customers/{id}', [App\Http\Controllers\CustomerController::class,'u
 Route::put('/update', [App\Http\Controllers\CustomerController::class,'update'])->name('update');
 
 // Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+//billing
+Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->middleware('owner');
+Route::post('categories', [App\Http\Controllers\CategoryController::class, 'add_category'])->middleware('owner');
+
+// Route::get('categories/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->middleware('owner');
