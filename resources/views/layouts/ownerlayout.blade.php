@@ -94,7 +94,7 @@
         </a>
         <ul id="catalogue">
             <li><a href="/owner">Items</a></li>
-            <li><a href="/owner">Categories</a></li>
+            <li><a href="/categories">Categories</a></li>
             <li><a href="/owner">Category Timings</a></li>
             <li><a href="/owner">Modifier Groups</a></li>
             <li><a href="/owner">Taxes</a></li>

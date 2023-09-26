@@ -66,3 +66,9 @@ Route::get('add_floor', [App\Http\Controllers\FloorSettingController::class, 'in
 Route::post('add_floor', [App\Http\Controllers\FloorSettingController::class, 'add_floor'])->middleware('owner');
 
 Route::get('billing', [App\Http\Controllers\FloorSettingController::class, 'show_table'])->middleware('owner');
+
+//billing
+Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->middleware('owner');
+Route::post('categories', [App\Http\Controllers\CategoryController::class, 'add_category'])->middleware('owner');
+
+// Route::get('categories/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->middleware('owner');
