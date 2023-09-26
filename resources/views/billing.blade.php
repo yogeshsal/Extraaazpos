@@ -178,7 +178,7 @@
                 <center><p class="card-text">Add Server</p></center>
                 
                 <center><button type="button" class="btn btn-outline-secondary">Server : Select Server</button><center>
-                <button type="button" class="btn btn-orange mt-2">New Bill</button>
+                <a href= "orders"><button type="button" class="btn btn-orange mt-2">New Bill</button></a>
               </div>
             </div>
           </div>
