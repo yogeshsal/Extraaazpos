@@ -97,7 +97,7 @@
         </a>
         <ul id="catalogue" class="submenu">
             <li class="sub"><a href="/owner">Items</a></li>
-            <li class="sub"><a href="/owner">Categories</a></li>
+            <li class="sub"><a href="/categories">Categories</a></li>
             <li class="sub"><a href="/owner">Category Timings</a></li>
             <li class="sub"><a href="/owner">Modifier Groups</a></li>
             <li class="sub"><a href="/owner">Taxes</a></li>

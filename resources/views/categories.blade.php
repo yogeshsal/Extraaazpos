@@ -22,7 +22,7 @@
         <input type="text" class="form-control m-1" />
         </div>
         <div class="col-lg-3">
-            <button class="btn btn-secondary m-1" data-toggle="modal" data-target="#add_category">Add Category</button>
+            <button class="btn btn-orange m-1" data-toggle="modal" data-target="#add_category">Add Category</button>
         </div>
     </div>
     @foreach($category as $cat)
@@ -106,7 +106,7 @@
 
                 
                 <button type="button" class="btn btn-secondary mt-3" data-dismiss="modal">Cancle</button>
-                <button type="submit" class="btn btn-primary mt-3">Save</button>
+                <button type="submit" class="btn btn-orange mt-3">Save</button>
             </form>
         </div>
     </div>
