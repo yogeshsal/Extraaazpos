@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\models\Item;
 use App\models\Category;
 use App\models\Location;
+use Auth;
 
 class ItemController extends Controller
 {
     
     public function index()
     {
+        $currentUserId = Auth::user()->id;
         $data = Item::all(); // Fetch all posts 
         $category_id = $data[0]['category'];
         $category_name = Category::where('id', $category_id)->first();   
@@ -21,7 +23,12 @@ class ItemController extends Controller
         
         $category_name= $category_name['name'];
         $location_name = $loc_name['name'];
-        return view('items.index', compact('data', 'category_name', 'location_name'));       
+
+        $categories = Category::pluck('name', 'id'); // Assuming 'name' is the column for category names and 'id' is the column for category IDs
+        $locations = Location::where('user_id', $currentUserId)
+        ->pluck('name', 'id'); // Assuming 'name' is the column for location names and 'id' is the column for location IDs
+           
+        return view('items.index', compact('data', 'category_name', 'location_name', 'categories', 'locations'));       
         
     }
     

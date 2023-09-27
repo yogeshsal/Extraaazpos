@@ -2,6 +2,14 @@
 @extends('layouts.app')
 
 @section('ownercontent')
+<!-- Include Bootstrap CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+
+<!-- Include jQuery (required for Bootstrap Switch) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Bootstrap Switch JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
 <style>
     .grey-background {
         background-color: grey;
@@ -38,6 +46,9 @@
         background-color: transparent;
         color:orange;
     }
+    .form-row {
+        margin-bottom: 20px; /* Add space below each row */
+    }
 </style>
 <br>
 <div class="card">
@@ -45,7 +56,7 @@
         <h3>Items</h3>
         <div>
             <button type="button" class="btn btn-outline-secondary">Filters</button>
-            <a href="" class="btn btn-orange" data-toggle="modal" data-target="#exampleModal">+ Add Item</a>            
+            <a href="" class="btn btn-orange" data-toggle="modal" data-target="#add_item_modal">+ Add Item</a>            
         </div>
     </div>
     
@@ -91,7 +102,7 @@
                 <form action="{{ route('items.store') }}" method="POST">
                     @csrf
 
-                    <div class="row">
+                    <div class="row form-row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Title:</label>
@@ -107,7 +118,7 @@
                     </div>
 
 
-                    <div class="row">
+                    <div class="row form-row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Handle:</label>
@@ -116,40 +127,45 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="category">Category</label>
+                                <label for="category">Category</label>
                                 <select name="category" id="category" class="form-control">
-                                    <option value="category1">Category 1</option>
-                                    <option value="category2">Category 2</option>
-                                    <option value="category3">Category 3</option>
-                                    <!-- Add more options as needed -->
+                                <option value="" disabled selected>Select Category</option>
+                                    @foreach ($categories as $categoryId => $categoryName)
+                                        <option value="{{ $categoryId }}">{{ $categoryName }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
 
                     
-                    <div class="row">
+                    <div class="row form-row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">POS Code:</label>
-                                <input type="text" name="pos_code" class="form-control">
+                                <label for="location">POS Code</label>
+                                <select name="pos_code" id="pos_code" class="form-control">
+                                    <option value="">Select POS</option>
+                                    @foreach ($locations as $locationId => $locationName)
+                                        <option value="{{ $locationId }}">{{ $locationName }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                             <label for="food_type">Food Type</label>
                                 <select name="food_type" id="food_type" class="form-control">
-                                    <option value="food_type1">Food Type 1</option>
-                                    <option value="food_type2">Food Type 2</option>
-                                    <option value="food_type3">Food Type 3</option>
-                                    <!-- Add more options as needed -->
+                                    <option value="" disabled selected>Select Food Type</option>
+                                    <option value="vegetarian">Vegetarian</option>
+                                    <option value="non_vegetarian">Non Vegetarian</option>
+                                    <option value="eggetarian">Eggetarian</option>                                    
                                 </select>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="row">
+                    <div class="row form-row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Sort Order:</label>
@@ -158,37 +174,28 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="is_recommended">Is Recommended</label>
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="is_recommended" name="is_recommended">
-                                    <label class="custom-control-label" for="is_recommended"></label>
-                                </div>
+                                <label for="is_recommended">Is Recommended</label><br>
+                                <input type="checkbox" id="is_recommended" name="is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No">
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row form-row">
                     <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="is_recommended">Is Package Good</label>
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="is_package_good" name="is_package_good">
-                                    <label class="custom-control-label" for="is_package_good"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="is_recommended">Sell by Weight</label>
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="sell_by_weight" name="sell_by_weight">
-                                    <label class="custom-control-label" for="sell_by_weight"></label>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="is_recommended">Is Package Good</label><br>
+                            <input type="checkbox" id="is_package_good" name="is_package_good" data-toggle="switch" data-on-text="Yes" data-off-text="No">
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="is_recommended">Sell by Weight</label><br>
+                            <input type="checkbox" id="sell_by_weight" name="sell_by_weight" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                        </div>
+                    </div>
+                    </div>
 
-                    <div class="row">
+                    <div class="row form-row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Default Sales Price:</label>
@@ -215,4 +222,12 @@
         </div>        
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#is_recommended').bootstrapSwitch();
+        $('#is_package_good').bootstrapSwitch();
+        $('#sell_by_weight').bootstrapSwitch();
+    });
+</script>
 @endsection
