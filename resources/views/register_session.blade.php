@@ -32,26 +32,28 @@
         <h6>Register sessions for outlet</h6>
     </div>
     <div class="col-lg-1 float-right">
-        <button class="btn btn-secondary">Help</button>
+        <button class="btn btn-orange">Help</button>
     </div>
+    
     <div class="col-lg-3">
-    <form >
-	        
-	        <select class="form-control select2">
-	           <option>Select</option> 
-	           <option>location 1</option> 
-	           <option>location 2</option> 
-	           <option>Sclocation 3</option> 
-	           <option>location 4</option> 
-	           <option>Holocation 5</option> 
-	        </select>
-	    </form>
-    </div>
-</div>
+    <form method="post" action="/index">
+    @csrf
+    <select class="form-control select2" id="locationSelect">
+    <option value="">Select</option>
+    @foreach($location as $l)
+        <option value="{{ $l->id }}">{{ $l->name }}</option>
+    @endforeach
+</select>
+</form>
 
-    <div class="card">
+    </div>
+ 
+
+
+    <div class="card mt-3" >
         <div class="row">
-        <table class="table table-responsive table-hover">
+            
+        <table class="table table-responsive table-hover" id="sessionData">
   <thead>
     <tr>
       <th scope="col">NO</th>
@@ -62,11 +64,17 @@
     </tr>
   </thead>
   <tbody>
-    @foreach($session as $s)
+  @if($sessions->isEmpty())
+    <tr>
+      <td class="text-center" colspan="5">Data not found</td>
+    </tr>
+    @else
+    @foreach($sessions as $s)
     <tr>
       
       <td>{{$s->session_id}}</td>
-      <td>location Name</td>
+      <td>Restorant Name<br>
+       at {{$s->location}}</td>
       <td>{{$s->created_at}}
         <br>
         by {{$s->name}}
@@ -101,11 +109,12 @@
       </td>
     </tr>
    @endforeach
+   @endif
   </tbody>
  
 </table>
 <div class="d-flex justify-content-end">
-    {!! $session->links() !!}
+    {!! $sessions->links() !!}
 </div>
         </div>
     </div>
@@ -113,7 +122,25 @@
 
 
 @endsection
-
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $('.select2').select2();
-</script>
+$(document).ready(function () {
+        $('#locationSelect').on('change', function () {
+            var locationId = $(this).val();
+
+            $.ajax({
+                type: 'GET', // Use GET request to fetch data
+                url: '/session', // Replace with the actual route to fetch data
+                data: {
+                    loc_id: locationId
+                },
+                
+                success: function (data) {
+                    console.log(data);
+                    $('#sessionData').html(data);
+                }
+                
+            });
+        });
+    });
+</script> -->
