@@ -66,7 +66,7 @@
   <tbody>
   @if($sessions->isEmpty())
     <tr>
-      <td class="text-center" colspan="5">Data not found</td>
+      <td class="text-center" colspan="5">Data Not Found</td>
     </tr>
     @else
     @foreach($sessions as $s)
