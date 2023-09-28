@@ -35,8 +35,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input class="form-control col-lg-4" type="number" name="balcony"  ></td>
-                        <td><input class="form-control col-lg-4" type="number" name="table"  ></td>
+                        <td><input class="form-control col-lg-4" type="number" name="balcony" required ></td>
+                        <td><input class="form-control col-lg-4" type="number" name="table" required ></td>
                         <td><input type="hidden" class="form-control col-lg-6" type="number" name="loc_id" value="{{$loc_id}}"  ></td>
                     </tr>
     
