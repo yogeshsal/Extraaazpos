@@ -4,7 +4,7 @@
 @section('ownercontent')
 <br>
 <div class="row card shadow p-3">
-<h3>Register Sessions</h3>
+<h3>Category Timings</h3>
 <div class="row">
     <div class="col-lg-6">
         <h6>Central repository for all your category timings</h6>
