@@ -23,7 +23,7 @@
 <div class="modal fade" id="category_timing" tabindex="-1" role="dialog" aria-labelledby="addCategoryModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-left modal-lg large-modal" role="document">
         <div class="modal-content p-3">
-            <h5>New Category</h5>
+            <h5>New Timing Group</h5>
             <form method="POST">
                 @csrf
                 <div class="row mt-2">
