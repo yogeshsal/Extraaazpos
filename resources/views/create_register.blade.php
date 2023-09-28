@@ -13,18 +13,22 @@
           @csrf
               <div class="row p-4">
                 <div class="col">
-                  <input name="opening_cash" type="text" class="form-control" placeholder="Opening Cash Amount">
+                <span>Opening Cash Amount</span>
+                  <input name="opening_cash" type="text" class="form-control" placeholder="Opening Cash Amount" value="0">
                 </div>
                 <div class="col">
-                  <input name="opening_card" type="text" class="form-control" placeholder="Opening Card Amount">
+                <span>Opening Card Amount</span>
+                  <input name="opening_card" type="text" class="form-control" placeholder="Opening Card Amount" value="0">
                 </div>
               </div>
               <div class="row p-4">
                 <div class="col">
-                  <input name="opening_credit" type="text" class="form-control" placeholder="Opening Credit Amount">
+                <span>Opening Credit Amount</span>
+                  <input name="opening_credit" type="text" class="form-control" placeholder="Opening Credit Amount" value="0">
                 </div>
                 <div class="col">
-                  <input name="opening_upi" type="text" class="form-control" placeholder="Opening UPI Amount">
+                <span>Opening UPI Amount</span>
+                  <input name="opening_upi" type="text" class="form-control" placeholder="Opening UPI Amount" value="0">
                 </div> 
                 <input name="loc_id" type="text" class="form-control" hidden  value ="{{ isset($loc_id) ? $loc_id : '' }}">
                 <input name="locationname" type="text" class="form-control" hidden  value="{{isset($locationname)? $locationname : ''}}">
@@ -39,6 +43,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection
