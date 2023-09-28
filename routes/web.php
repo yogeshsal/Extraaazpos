@@ -100,3 +100,14 @@ Route::post('/create-item', [App\Http\Controllers\ItemController::class, 'store'
 //category-timing
 Route::get('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'index'])->middleware('owner');
 Route::post('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'addCategoryTiming'])->middleware('owner');
+
+
+Route::get('/items/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit'])->name('items.edit');
+Route::put('/items/{id}', [App\Http\Controllers\ItemController::class,'update'])->name('items.update');
+
+
+
+
+
+// Route::get('/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit'])->name('edit');
+// Route::post('/items/{id}/update', 'YourController@update')->name('items.update');

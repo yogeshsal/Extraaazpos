@@ -50,6 +50,13 @@ class CustomerController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'mobile' => 'required|numeric|digits:10', // Assuming a 10-digit mobile number
+            'email' => 'required|email',
+            'date_of_birth' => 'required|date|before_or_equal:today|after_or_equal:1900-01-01',
+            'address' => 'required|string|max:255',
+            'tax_number' => ['required','string','regex:/^[A-Z0-9]{10}$/i',], // Adjust the regex pattern to match your tax number format.
+            'credit_limit' => 'required|numeric|min:0|max:1000000',
+            'note' => 'nullable|string|max:500', // Adjust the max value as needed
+
             // Add more validation rules as needed for other fields
         ]);
         $customer = Customer::find($id);
@@ -62,6 +69,14 @@ class CustomerController extends Controller
         // Validate the form data (customize validation rules as needed)
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'mobile' => 'required|numeric|digits:10', 
+            'email' => 'required|email',
+            'date_of_birth' => 'required|date|before_or_equal:today|after_or_equal:1900-01-01',
+            'address' => 'required|string|max:255',
+            'tax_number' => ['required','string','regex:/^[A-Z0-9]{10}$/i',],
+            'credit_limit' => 'required|numeric|min:0|max:1000000',
+            'note' => 'nullable|string|max:500', // Adjust the max value as needed
+
             // Add validation rules for other fields here
         ]);
 

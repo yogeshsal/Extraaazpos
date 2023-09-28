@@ -18,7 +18,7 @@ class ItemController extends Controller
         $category_id = $data[0]['category'];
         $category_name = Category::where('id', $category_id)->first();   
         
-        $locid = $category_name['loc_id'];
+        $locid = $category_name['loc_id'];        
         $loc_name = Location::where('id', $locid)->first(); 
         
         $category_name= $category_name['name'];
@@ -28,7 +28,7 @@ class ItemController extends Controller
         $locations = Location::where('user_id', $currentUserId)
         ->pluck('name', 'id'); // Assuming 'name' is the column for location names and 'id' is the column for location IDs
            
-        return view('items.index', compact('data', 'category_name', 'location_name', 'categories', 'locations'));       
+        return view('items.index', compact('data', 'category_name', 'locid','location_name', 'categories', 'locations'));       
         
     }
     
@@ -55,10 +55,52 @@ class ItemController extends Controller
             $data->description = $request->description; 
             $data->save();            
             return redirect('items')
-            ->with('success', 'Item added successfully.');  
-            
-            
-        
+            ->with('success', 'Item added successfully.');        
+    }
+
+    public function edit($id)
+    {        
+        $currentUserId = Auth::user()->id;
+        $item = Item::find($id);
+        $categories = Category::pluck('name', 'id');
+        $locations = Location::where('user_id', $currentUserId)->pluck('name', 'id'); 
+        return view('items.edit', compact('item','categories','locations'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+       
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'short_name'=> 'required|string|max:255',
+            // Assuming a 10-digit mobile number
+            // Add more validation rules as needed for other fields
+        ]);
+        $item = Item::find($id);
+
+        if (!$item) {
+            // Handle the case when the customer with the given ID is not found
+            abort(404);
+        }
+
+        // Validate the form data (customize validation rules as needed)
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'short_name' => 'required|string|max:255',
+            'handle' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'pos_code' => 'required|string|max:255',
+            'food_type' => 'required|string|max:255',
+
+            // Add validation rules for other fields here
+        ]);
+
+        // Update the customer's data
+        $item->update($validatedData);
+
+        // Redirect to a success page or back to the edit form with a success message
+        return redirect('items')->with('success', 'Item updated successfully');
     }
 }
 
