@@ -172,9 +172,42 @@
                 <br>
                 <center><p class="card-text">Add Customer</p></center>
                 
-                <center><button type="button" class="btn btn-outline-secondary">Customer : Select Customer</button><center>
-                
-                <br>
+                <center>
+    <button data-toggle="modal" data-target="#customer" type="button" class="btn btn-outline-secondary" id="selectCustomerButton">
+        Customer: Select Customer
+    </button>
+</center>
+
+                 <!-- Modal -->
+<div class="modal fade" id="customer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Select Customer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <select class="form-select" aria-label="Default select example" id="customerSelect">
+                        <option selected>Select Customer</option>
+                        @foreach($customer as $c)
+                            <option value="{{$c->id}}">{{$c->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+              
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveCustomerButton" data-dismiss="modal">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
                 <center><p class="card-text">Add Server</p></center>
                 
                 <center><button type="button" class="btn btn-outline-secondary">Server : Select Server</button><center>
@@ -321,13 +354,23 @@ var circleNumberSpan = document.getElementById("circleNumberSpan");
 
 // Initial update when the page loads
 // updateSelectedValue();
+</script>
 
+<script>
+    // Get references to the button and select element
+    const selectCustomerButton = document.getElementById('selectCustomerButton');
+    const customerSelect = document.getElementById('customerSelect');
 
-
-
-
-
-
-    </script>
-
+    // Add an event listener to the "Save changes" button in the modal
+    document.getElementById('saveCustomerButton').addEventListener('click', function() {
+        // Get the selected customer's name
+        const selectedCustomerName = customerSelect.options[customerSelect.selectedIndex].text;
+        
+        // Update the button text with the selected customer's name
+        selectCustomerButton.innerText = `Customer: ${selectedCustomerName}`;
+        
+        // Close the modal
+        $('#customer').modal('hide');
+    });
+</script>
 @endsection
