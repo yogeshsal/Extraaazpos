@@ -8,11 +8,11 @@
   .menu ul {
       list-style-type: none;
   }
-  .menu li {
+  /* .menu li {
       display: inline-block;
       vertical-align: middle;
       text-align: center;
-  }
+  } */
   .circle {
       border-radius: 100px;
       width: 100px;
