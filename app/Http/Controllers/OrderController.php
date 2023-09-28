@@ -35,9 +35,9 @@ class OrderController extends Controller
         // dd($items);
         // return view('orders.index', compact('items'));
         $items = Item::where('category', $categoryId)->get()->toarray();
-        $a =$items[0]['title'];
-        dd($a);
-return view('orders.index', ['a' => $a]);
+        
+        return response()->json(['items' => $items]);
+//return view('orders.index', ['a' => $a]);
 
     }
 }

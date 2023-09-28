@@ -56,7 +56,10 @@
                 </div>
             </div>
             <div class="card-body">
-            <p>Title: {{ $a }}</p>
+            <div id="result">
+            <h1>Items List</h1>
+    
+            </div>
 
             </div>
         </div>
@@ -90,6 +93,39 @@
 
 <script>
 
+// document.addEventListener('DOMContentLoaded', function () {
+//     var listItems = document.querySelectorAll('.list-group-item');
+
+//     listItems.forEach(function (item) {
+//         item.addEventListener('click', function () {
+//             var categoryId = this.getAttribute('data-id');
+//             console.log(categoryId);
+//             // Make an AJAX request to the controller with the categoryId
+//             // Replace 'your_controller_route' with the actual route to your controller method
+//             fetch('/get-categoryid/' + categoryId, {
+//                 method: 'GET',
+//                 headers: {
+//                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
+//                     'Content-Type': 'application/json',
+//                 },
+//             })
+//             .then(response => response.json())
+//             .then(data => {
+//                 // Handle the response data if needed
+//                 console.log(data);
+
+//                 var resultDiv = document.getElementById('result');
+//                     resultDiv.textContent = data;
+//             })
+//             .catch(error => {
+//                 // Handle any errors that occur during the request
+//                 console.error('Error:', error);
+//             });
+//         });
+//     });
+// });
+
+
 document.addEventListener('DOMContentLoaded', function () {
     var listItems = document.querySelectorAll('.list-group-item');
 
@@ -97,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
         item.addEventListener('click', function () {
             var categoryId = this.getAttribute('data-id');
             console.log(categoryId);
+
             // Make an AJAX request to the controller with the categoryId
             // Replace 'your_controller_route' with the actual route to your controller method
             fetch('/get-categoryid/' + categoryId, {
@@ -110,6 +147,15 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 // Handle the response data if needed
                 console.log(data);
+
+                // Display the data in the 'result' div
+                var resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = ''; // Clear the div content
+                data.items.forEach(function (item) {
+                    var itemDiv = document.createElement('div');
+                    itemDiv.textContent = item.title; // Display the 'title' property
+                    resultDiv.appendChild(itemDiv);
+                });
             })
             .catch(error => {
                 // Handle any errors that occur during the request
@@ -118,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
 </script>
 
 

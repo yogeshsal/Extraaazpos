@@ -115,5 +115,4 @@ Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController
 
 
 
-// Route::get('/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit'])->name('edit');
-// Route::post('/items/{id}/update', 'YourController@update')->name('items.update');
+
