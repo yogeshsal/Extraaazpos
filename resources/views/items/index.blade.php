@@ -84,7 +84,7 @@
                 <td>{{$locid}}</td>
                 <td>{{$category_name}}</td>
                 <td>{{ $data->default_sales_price }}</td>                              
-                <td>{{ $data->updated_at }}</td>
+                <td>{{ $data->updated_at ->format('d M, Y - h:i A') }}</td>
             </tr>
         @endforeach
     </tbody>

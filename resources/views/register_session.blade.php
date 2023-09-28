@@ -35,13 +35,14 @@
         <button class="btn btn-orange">Help</button>
     </div>
     
+    <input type="text" hidden id="selectedValueTextbox" readonly>
     <div class="col-lg-3">
     <form method="post" action="/index">
     @csrf
-    <select class="form-control select2" id="locationSelect">
-    <option value="">Select</option>
+    <select class="form-control" id="registerDropdown">
+    <option value="" disabled selected>Select Location</option>    
     @foreach($location as $l)
-        <option value="{{ $l->id }}">{{ $l->name }}</option>
+        <option value="{{ $l->name }}">{{ $l->name }}</option>
     @endforeach
 </select>
 </form>
@@ -53,7 +54,8 @@
     <div class="card mt-3" >
         <div class="row">
             
-        <table class="table table-responsive table-hover" id="sessionData">
+        <table class="table table-responsive table-hover" id="recordsTable" >
+        <!-- id="sessionData" -->
   <thead>
     <tr>
       <th scope="col">NO</th>
@@ -121,26 +123,57 @@
 </div>
 
 
-@endsection
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function () {
-        $('#locationSelect').on('change', function () {
-            var locationId = $(this).val();
 
-            $.ajax({
-                type: 'GET', // Use GET request to fetch data
-                url: '/session', // Replace with the actual route to fetch data
-                data: {
-                    loc_id: locationId
-                },
-                
-                success: function (data) {
-                    console.log(data);
-                    $('#sessionData').html(data);
-                }
-                
-            });
+
+
+
+
+<script>
+// Get references to the dropdown, textbox, and table
+var registerDropdown = document.getElementById('registerDropdown');
+var selectedValueTextbox = document.getElementById('selectedValueTextbox');
+var recordsTable = document.getElementById('recordsTable');
+
+// Add an event listener to the dropdown for change events
+registerDropdown.addEventListener('change', function () {
+    var selectedValue = this.value;
+
+    // Update the textbox value with the selected value
+    selectedValueTextbox.value = selectedValue;
+
+    // Filter table records based on the selected value
+    filterTable(selectedValue);
+});
+
+// Function to filter table records based on the selected value
+function filterTable(selectedValue) {
+    var tableRows = recordsTable.querySelectorAll('tbody tr');
+
+    tableRows.forEach(function (row) {
+        var cells = row.querySelectorAll('td'); // Select all cells in the row
+        var rowContainsValue = false;
+
+        cells.forEach(function (cell) {
+            var cellValue = cell.textContent.trim();
+            if (cellValue.includes(selectedValue) || selectedValue === 'all') {
+                rowContainsValue = true;
+            }
         });
+
+        if (rowContainsValue) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
     });
-</script> -->
+}
+
+</script>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@endsection
+

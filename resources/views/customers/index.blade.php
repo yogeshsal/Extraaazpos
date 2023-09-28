@@ -55,16 +55,7 @@
     </div>
 </div>
 
-    <!-- <div class="card-body d-flex justify-content-between align-items-center">
-        <h3>Customers</h3>
-        <div>
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-primary">search</button>
-                    <button type="button" class="btn btn-outline-secondary">Filters</button>
-                    <a href="" class="btn btn-orange" data-toggle="modal" data-target="#exampleModal">+ Add Customer</a>            
-        </div>
-    </div> -->
-    
+   
     <table id="dataTable">
     <thead>
         <tr >
