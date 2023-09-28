@@ -62,6 +62,7 @@ class CustomerController extends Controller
         // Validate the form data (customize validation rules as needed)
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            
             // Add validation rules for other fields here
         ]);
 

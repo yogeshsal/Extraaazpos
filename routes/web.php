@@ -96,3 +96,12 @@ Route::view('orders', 'orders.index');
 Route::view('items', 'items.index');
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
 Route::post('/create-item', [App\Http\Controllers\ItemController::class, 'store'])->name('items.store');
+Route::get('/items/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit'])->name('items.edit');
+Route::put('/items/{id}', [App\Http\Controllers\ItemController::class,'update'])->name('items.update');
+
+
+
+
+
+// Route::get('/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit'])->name('edit');
+// Route::post('/items/{id}/update', 'YourController@update')->name('items.update');

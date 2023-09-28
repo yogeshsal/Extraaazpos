@@ -1,6 +1,5 @@
 @extends('layouts.ownerlayout')
 @extends('layouts.app')
-
 @section('ownercontent')
 <!-- Include Bootstrap CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
@@ -11,130 +10,27 @@
 <!-- Include Bootstrap Switch JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
 <style>
-    .grey-background {
-        background-color: grey;
-    }
-    .circle {
-        width: 30px;
-        height: 30px;
-        background-color: grey;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-    }
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    th, td {
-        padding: 8px;
-        text-align: left;
-    }
-
-    tr {
-        border-bottom: 2px solid #F5F5F5; /* Light grey border between rows */
-    }
-    table tr:hover {
-    background-color: #b8b8b8; 
-}
-    .btn.btn-outline-secondary {
-        border-color: #6c757d; /* Set the default border color */
-    }
-
-    .btn.btn-outline-secondary:hover {
-        border-color: orange; /* Change the border color to orange on hover */
-        background-color: transparent;
-        color:orange;
-    }
     .form-row {
         margin-bottom: 20px; /* Add space below each row */
     }
 </style>
 <br>
-<div class="card shadow">
-    <div class="card-body d-flex justify-content-between align-items-center">
-        <h3>Items</h3>
-        <div>
-            <button type="button" class="btn btn-outline-secondary">Filters</button>
-            <a href="" class="btn btn-orange" data-toggle="modal" data-target="#add_item_modal">+ Add Item</a>            
-        </div>
-    </div>
-    
-    <table id="data-table">
-    <thead>
-        <tr >            
-            <th class="grey-background">#</th>
-            <th class="grey-background">NAME</th>
-            <th class="grey-background">ASSOCIATED LOCATIONS</th>
-            <th class="grey-background">CATEGORY</th>
-            <th class="grey-background">SALES PRICE (LKR)</th>
-            <th class="grey-background">UPDATED</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($data as $data)
-            <tr>
-                <td>{{ $data->id }}</td>
-                <td>
-                <a href="{{ route('items.edit', ['id' => $data->id]) }}">{{ $data->title }}</a>
-                </td>
-                <td>{{$locid}}</td>
-                <td>{{$category_name}}</td>
-                <td>{{ $data->default_sales_price }}</td>                              
-                <td>{{ $data->updated_at }}</td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-</div>
-
-
-
-
-
-
-<script>
-    $(document).ready(function () {
-        $('tr[data-toggle="modal"]').click(function () {
-            var name = $(this).data('name');
-            $('#modalTitle').text(name); // Update the modal title
-        });
-    });
-</script>
-
-
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade modal-lg" id="add_item_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Create New Item</h4>                
-                </button>
-            </div>
-        <div class="modal-body"> 
-            <div class="container">                
-                <form action="{{ route('items.store') }}" method="POST">
+<div class="container">
+<div class="card shadow p-3">       
+        <form action="{{ route('items.update', $item->id) }}" method="POST">
                     @csrf
-
+                    @method('PUT')
                     <div class="row form-row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Title:</label>
-                                <input type="text" name="title" class="form-control" required>
+                                <input type="text" name="title" class="form-control" value="{{ $item->title }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="mobile">Short Name:</label>
-                                <input type="text" name="short_name" class="form-control" required>
+                                <input type="text" name="short_name" class="form-control" value="{{ $item->short_name }}">
                             </div>
                         </div>
                     </div>
@@ -144,7 +40,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Handle:</label>
-                                <input type="text" name="handle" class="form-control">
+                                <input type="text" name="handle" class="form-control" value="{{ $item->handle }}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -166,7 +62,7 @@
                             <div class="form-group">
                                 <label for="location">POS Code</label>
                                 <select name="pos_code" id="pos_code" class="form-control">
-                                    <option value="">Select POS</option>
+                                    <option value="" disabled selected>Select POS</option>
                                     @foreach ($locations as $locationId => $locationName)
                                         <option value="{{ $locationId }}">{{ $locationName }}</option>
                                     @endforeach
@@ -191,7 +87,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Sort Order:</label>
-                                <input type="text" name="sort_order" class="form-control">
+                                <input type="text" name="sort_order" class="form-control" value="{{ $item->sort_order }}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -221,35 +117,28 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Default Sales Price:</label>
-                                <input type="text" name="default_sales_price" class="form-control">
+                                <input type="text" name="default_sales_price" class="form-control" value="{{$item->default_sales_price}}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                             <div class="form-group">
                                 <label for="name">Markup Price (Optional):</label>
-                                <input type="text" name="markup_price" class="form-control">
+                                <input type="text" name="markup_price" class="form-control" value="{{$item->markup_price}}">
                             </div>
                             </div>
                         </div>
                     </div> 
 
                     <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-orange">Create</button>
+                    <div class="modal-footer form-row">
+                        <button type="button" class="btn btn-secondary m-2" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-orange ">Save</button>
                     </div>
                 </form>
-            </div>
-        </div>        
     </div>
 </div>
 
-
-<!-- edit modal -->
-
-
-<!-- edit modal -->
 
 <script>
     $(document).ready(function () {
@@ -258,42 +147,4 @@
         $('#sell_by_weight').bootstrapSwitch();
     });
 </script>
-
-
-
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#data-table tbody').on('click', 'tr', function() {
-            // Get the ID from the clicked row's data attribute
-            var id = $(this).data('id');
-            console.log(id);
-            // Send the ID to the controller using AJAX
-            $.ajax({
-                type: 'GET',
-                url: '/edit/' + id, // Replace with your controller route
-                success: function(response) {
-                    // Handle the response from the controller (e.g., display a modal)
-                    console.log('Row ID ' + id + ' sent to the controller.');
-                    var item = response.item;
-                    $('#title').val(item.title);
-
-
-                    // Show the modal
-                    $('#editModal').modal('show');
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error sending ID to the controller: ' + error);
-                }
-            });
-        }); -->
-
-
-
-
-        
-
-    });
-</script>
-
 @endsection
