@@ -59,7 +59,12 @@ Route::post('/closeregister', [App\Http\Controllers\DailyRegisterController::cla
 
 
 //register Session
-Route::get('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('owner');
+ Route::get('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('owner');
+//  Route::get('index', [App\Http\Controllers\RegisterSessionController::class, 'fetchSessions'])->middleware('owner');
+
+// Route::post('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('owner');
+// Route::get('/fetch-sessions', [App\Http\Controllers\RegisterSessionController::class, 'fetchSessions'])->middleware('owner');
+
 
 
 //floor setting
