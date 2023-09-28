@@ -73,6 +73,7 @@ class ItemController extends Controller
        
         $request->validate([
             'title' => 'required|string|max:255',
+            'short_name'=> 'required|string|max:255',
             // Assuming a 10-digit mobile number
             // Add more validation rules as needed for other fields
         ]);
@@ -89,6 +90,8 @@ class ItemController extends Controller
             'short_name' => 'required|string|max:255',
             'handle' => 'required|string|max:255',
             'category' => 'required|string|max:255',
+            'pos_code' => 'required|string|max:255',
+            'food_type' => 'required|string|max:255',
 
             // Add validation rules for other fields here
         ]);
