@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Daily_register;
 use App\Models\Location;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Auth;
 use DB;
+
 
 class DailyRegisterController extends Controller
 {
@@ -207,11 +209,28 @@ class DailyRegisterController extends Controller
         //dd($closing_cash);        
         
         $currentUserId = Auth::user()->id; 
+        $currentTimestamp = Carbon::now();
+
         DB::table('daily_registers')
-                ->where('user_id', $currentUserId)
-             ->where('status', 1)
-            ->update(['status' => '0','closing_cash' => $closing_cash, 'closing_card' => $closing_card, 'closing_credit' => $closing_credit, 'closing_upi' => $closing_upi,]);        
-        return redirect('dailyregister');       
+        ->where('user_id', $currentUserId)
+        ->where('status', 1)
+        ->update([
+            'status' => '0',
+            'closing_cash' => $closing_cash,
+            'closing_card' => $closing_card,
+            'closing_credit' => $closing_credit,
+            'closing_upi' => $closing_upi,
+            'updated_at' => $currentTimestamp,
+        ]);
+
+        return redirect('dailyregister');
+
+        // DB::table('daily_registers')
+        // ->where('user_id', $currentUserId)                    
+        //      ->where('status', 1)
+        //     ->update(['status' => '0','closing_cash' => $closing_cash, 'closing_card' => $closing_card, 'closing_credit' => $closing_credit, 'closing_upi' => $closing_upi,])       
+        //     ->update(['updated_at' => $currentTimestamp])  ;  
+        //     return redirect('dailyregister');       
     }  
     
     
