@@ -96,3 +96,7 @@ Route::view('orders', 'orders.index');
 Route::view('items', 'items.index');
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
 Route::post('/create-item', [App\Http\Controllers\ItemController::class, 'store'])->name('items.store');
+
+//category-timing
+Route::get('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'index'])->middleware('owner');
+Route::post('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'addCategoryTiming'])->middleware('owner');
