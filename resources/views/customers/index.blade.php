@@ -41,7 +41,7 @@
 </style>
 
 <br>
-<div class="card">
+<div class="card shadow">
 <div class="card-body d-flex justify-content-between align-items-center">
     <h3>Customers</h3>
     <div class="d-flex align-items-center">

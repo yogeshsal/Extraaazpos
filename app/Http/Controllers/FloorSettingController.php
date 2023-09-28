@@ -32,17 +32,45 @@ class FloorSettingController extends Controller
 
     }
 
+    // public function add_floor(Request $request)
+    // {
+    //     $data = new Add_floor;
+    //     $data->user_id =  Auth::user()->id;
+    //     $data->loc_id = $request->loc_id;
+    //     $data->balcony = $request->balcony;
+    //     $data->table = $request->table;
+    //     $data->save();
+    //     return redirect('billing');
+
+    // }
+
     public function add_floor(Request $request)
-    {
+{
+    // Check if an existing record exists
+    $existingRecord = Add_floor::where('user_id', Auth::user()->id)
+        ->where('loc_id', $request->loc_id)
+        ->first();
+
+    if ($existingRecord) {
+        // Update the existing record
+        $existingRecord->update([
+            'balcony' => $request->balcony,
+            'table' => $request->table,
+            // Add more fields to update as needed
+        ]);
+    } else {
+        // Create a new record
         $data = new Add_floor;
-        $data->user_id =  Auth::user()->id;
+        $data->user_id = Auth::user()->id;
         $data->loc_id = $request->loc_id;
         $data->balcony = $request->balcony;
         $data->table = $request->table;
         $data->save();
-        return redirect('billing');
-
     }
+
+    return redirect('billing');
+}
+
 
     public function show_table()
     {
