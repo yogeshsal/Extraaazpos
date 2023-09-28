@@ -34,8 +34,10 @@
             </div>
             <!-- <div class="card-body"> -->
             <ul class="list-group">
-            @foreach($categoryCounts as $categoryName => $itemCount)
-                <li class="list-group-item">{{ $categoryName }}({{ $itemCount }})</li>
+            @foreach($categoryCounts as $categoryId => $itemCount)
+            <li class="list-group-item" data-id="{{ $categoryId }}">
+                {{ $categoryId }} ({{ $itemCount }})
+            </li>
                 @endforeach
             </ul>
             <!-- </div> -->
@@ -54,9 +56,8 @@
                 </div>
             </div>
             <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+            <p>Title: {{ $a }}</p>
+
             </div>
         </div>
     </div>
@@ -82,4 +83,42 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    var listItems = document.querySelectorAll('.list-group-item');
+
+    listItems.forEach(function (item) {
+        item.addEventListener('click', function () {
+            var categoryId = this.getAttribute('data-id');
+            console.log(categoryId);
+            // Make an AJAX request to the controller with the categoryId
+            // Replace 'your_controller_route' with the actual route to your controller method
+            fetch('/get-categoryid/' + categoryId, {
+                method: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response data if needed
+                console.log(data);
+            })
+            .catch(error => {
+                // Handle any errors that occur during the request
+                console.error('Error:', error);
+            });
+        });
+    });
+});
+</script>
+
+
 @endsection

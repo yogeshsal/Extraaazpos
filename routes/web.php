@@ -94,7 +94,7 @@ Route::post('categories', [App\Http\Controllers\CategoryController::class, 'add_
 
 //ORDER
 // Route::view('orders', 'orders.index');
-Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index']);
+Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index1']);
 
 
 //ITEM
@@ -111,6 +111,7 @@ Route::get('/items/edit/{id}', [App\Http\Controllers\ItemController::class, 'edi
 Route::put('/items/{id}', [App\Http\Controllers\ItemController::class,'update'])->name('items.update');
 
 
+Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController::class, 'getitems']);
 
 
 
