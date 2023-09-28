@@ -75,11 +75,11 @@
       <td>{{$s->session_id}}</td>
       <td>Restorant Name<br>
        at {{$s->location}}</td>
-      <td>{{$s->created_at}}
+      <td>{{$s->created_at-> format('d M, Y - h:i A')}}
         <br>
         by {{$s->name}}
       </td>
-      <td>{{$s->updated_at}}
+      <td>{{$s->updated_at ->format('d M, Y - h:i A')}}
       <br>
         by {{$s->name}}
       </td>
