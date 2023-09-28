@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Daily_register;
 use App\Models\Add_floor;
+use App\Models\Customer;
 use Auth;
 use DB;
 
@@ -93,7 +94,10 @@ class FloorSettingController extends Controller
         }
         
         //dd($bal);
-        return view('billing',compact('bal','table'));
+
+        $customer = Customer::all();
+
+        return view('billing',compact('bal','table'),['customer'=>$customer]);
 
     }
 

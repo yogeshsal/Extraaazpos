@@ -34,11 +34,9 @@
             </div>
             <!-- <div class="card-body"> -->
             <ul class="list-group">
-                <li class="list-group-item">Bestsellers (6)</li>
-                <li class="list-group-item">Fresh Juice (1)</li>
-                <li class="list-group-item">Parathas (2)</li>
-                <li class="list-group-item">Buffet (239)</li>
-                <li class="list-group-item">Bread (2)</li>
+            @foreach($categoryCounts as $categoryName => $itemCount)
+                <li class="list-group-item">{{ $categoryName }}({{ $itemCount }})</li>
+                @endforeach
             </ul>
             <!-- </div> -->
         </div>

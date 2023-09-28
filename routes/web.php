@@ -93,8 +93,8 @@ Route::post('categories', [App\Http\Controllers\CategoryController::class, 'add_
 
 
 //ORDER
-Route::view('orders', 'orders.index');
-//Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index']);
+// Route::view('orders', 'orders.index');
+Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index']);
 
 
 //ITEM
