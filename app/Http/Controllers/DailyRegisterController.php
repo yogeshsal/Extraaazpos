@@ -225,12 +225,7 @@ class DailyRegisterController extends Controller
 
         return redirect('dailyregister');
 
-        // DB::table('daily_registers')
-        // ->where('user_id', $currentUserId)                    
-        //      ->where('status', 1)
-        //     ->update(['status' => '0','closing_cash' => $closing_cash, 'closing_card' => $closing_card, 'closing_credit' => $closing_credit, 'closing_upi' => $closing_upi,])       
-        //     ->update(['updated_at' => $currentTimestamp])  ;  
-        //     return redirect('dailyregister');       
+        
     }  
     
     
