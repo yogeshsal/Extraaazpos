@@ -57,7 +57,7 @@
             </div>
             <div class="card-body">
             <div id="result">
-            <h1>Items List</h1>
+            <!-- <h1>Items List</h1> -->
     
             </div>
 

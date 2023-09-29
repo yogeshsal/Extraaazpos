@@ -114,5 +114,7 @@ Route::put('/items/{id}', [App\Http\Controllers\ItemController::class,'update'])
 Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController::class, 'getitems']);
 
 
-
-
+//catalogue
+// Route::view('taxes', 'catalogue.taxes.index');
+Route::get('/taxes', [App\Http\Controllers\TaxController::class, 'index']);
+Route::post('/create-taxes', [App\Http\Controllers\TaxController::class, 'store'])->name('taxes.store');
