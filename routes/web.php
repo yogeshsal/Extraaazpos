@@ -114,5 +114,11 @@ Route::put('/items/{id}', [App\Http\Controllers\ItemController::class,'update'])
 Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController::class, 'getitems']);
 
 
+//charges
+Route::get('/charges', [App\Http\Controllers\ChargeController::class, 'index']);
+Route::post('/create-charge', [App\Http\Controllers\ChargeController::class, 'store'])->name('catalogue.store');
+Route::get('/charges/{id}/edit', [App\Http\Controllers\ChargeController::class,'edit'])->name('catalogue.edit');
+
+
 
 
