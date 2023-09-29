@@ -10,7 +10,7 @@ class ChargeController extends Controller
     public function index()
     {
         $data = Charge::all(); 
-        return view('catalogue.index',compact('data'));
+        return view('catalogue.charges.index',compact('data'));
     }
 
     public function store(Request $request)
@@ -36,7 +36,7 @@ class ChargeController extends Controller
             // Handle the case when the customer with the given ID is not found
             abort(404); // You can customize the error response as needed
         }
-        return view('catalogue.edit', compact('Charge'));
+        return view('catalogue.charges.edit', compact('Charge'));
     }
 
 

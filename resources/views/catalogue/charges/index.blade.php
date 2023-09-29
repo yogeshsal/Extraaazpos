@@ -65,7 +65,7 @@
             <th class="grey-background">LOCATIONS</th>
             <th class="grey-background">UPDATED</th>
           
-            <th class="grey-background">Action</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -78,10 +78,7 @@
        <td>items</td>
        <td>location</td>
        <td>{{ $c->updated_at }}</td>
-       <td><a href="/catalogue/{{ $c->id }}/edit"><button type="button" class="btn btn-outline-secondary">Edit Charge</button></a>
-       
-
-       </tr>
+     </tr>
           @endforeach
     </tbody>
 </table>
