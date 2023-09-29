@@ -100,7 +100,7 @@
             <li class="sub"><a href="/categories">Categories</a></li>
             <li class="sub"><a href="/category-timing">Category Timings</a></li>
             <li class="sub"><a href="/owner">Modifier Groups</a></li>
-            <li class="sub"><a href="/owner">Taxes</a></li>
+            <li class="sub"><a href="/taxes">Taxes</a></li>
             <li class="sub"><a href="/charges">Charges</a></li>
             <li class="sub"><a href="/owner">Discounts</a></li>
             <li class="sub"><a href="/owner">Billing Entities</a></li>
