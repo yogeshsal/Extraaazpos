@@ -75,10 +75,17 @@
     <tbody>
     @foreach ($data as $data)
             <tr>                
-                <td>{{ $data->name }}</td>
+                <td><a href="{{ route('taxes.edit', ['id' => $data->id]) }}">{{ $data->name }}</a>
+                <br>
+                {{$data->tax_percentage}} % on {{ $data->applicable_on }}
+                </td>
                 <td></td>
                 <td></td>
-                <td>{{ $data->updated_at ->format('d M, Y - h:i A') }}</td>
+                <td>{{ $data->updated_at ->format('d M, Y - h:i A') }}
+                <br>
+                By {{$data->user_name}}
+
+                </td>
             </tr>
         @endforeach
     </tbody>

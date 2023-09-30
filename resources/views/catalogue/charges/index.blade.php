@@ -77,7 +77,7 @@
        </td>
        <td>items</td>
        <td>location</td>
-       <td>{{ $c->updated_at }}</td>
+       <td>{{ $c->updated_at ->format('d M, Y - h:i A') }}</td>
      </tr>
           @endforeach
     </tbody>

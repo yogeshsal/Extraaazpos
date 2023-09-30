@@ -14,13 +14,17 @@ class TaxController extends Controller
     public function index()
     {
         $currentUserId = Auth::user()->id;
-        $data = Tax::all(); // Fetch all posts           
-        return view('catalogue.taxes.index', compact('data'));       
+        // $data = Tax::all(); // Fetch all posts           
+        $data = Tax::select('taxes.*', 'users.name as user_name')
+        ->join('users', 'taxes.user_id', '=', 'users.id')
+        ->get();       
+        return view('catalogue.taxes.index', compact('data',));       
         
     }
     
     public function store(Request $request)
     {       
+             
             $data = new Tax;        
             $data->tax_type = $request->tax_type;
             $data->tax_code = $request->tax_code;
@@ -28,7 +32,8 @@ class TaxController extends Controller
             $data->description = $request->description;
             $data->applicable_on = $request->applicable_on;
             $data->tax_percentage = $request->tax_percentage;
-            $data->applicable_modes = $request->applicable_modes;            
+            $data->applicable_modes = $request->applicable_modes;  
+            $data->user_id = Auth::user()->id;           
             $data->save();            
             return redirect('taxes')
             ->with('success', 'Taxes added successfully.');        
@@ -36,11 +41,11 @@ class TaxController extends Controller
 
     public function edit($id)
     {        
-        // $currentUserId = Auth::user()->id;
-        // $item = Item::find($id);
+        $currentUserId = Auth::user()->id;
+        $tax = Tax::find($id);
         // $categories = Category::pluck('name', 'id');
         // $locations = Location::where('user_id', $currentUserId)->pluck('name', 'id'); 
-        // return view('items.edit', compact('item','categories','locations'));
+        return view('catalogue.taxes.edit', compact('tax'));
     }
 
 

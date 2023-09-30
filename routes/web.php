@@ -114,10 +114,13 @@ Route::put('/items/{id}', [App\Http\Controllers\ItemController::class,'update'])
 Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController::class, 'getitems']);
 
 
-//catalogue
+//Taxes
 // Route::view('taxes', 'catalogue.taxes.index');
 Route::get('/taxes', [App\Http\Controllers\TaxController::class, 'index']);
 Route::post('/create-taxes', [App\Http\Controllers\TaxController::class, 'store'])->name('taxes.store');
+Route::get('/taxes/edit/{id}', [App\Http\Controllers\TaxController::class, 'edit'])->name('taxes.edit');
+Route::put('/taxes/{id}', [App\Http\Controllers\TaxController::class,'update'])->name('taxes.update');
+
 //charges
 Route::get('/charges', [App\Http\Controllers\ChargeController::class, 'index']);
 Route::post('/create-charge', [App\Http\Controllers\ChargeController::class, 'store'])->name('catalogue.store');
