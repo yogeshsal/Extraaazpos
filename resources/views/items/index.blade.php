@@ -60,6 +60,11 @@
     }
 </style>
 <br>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="card shadow">
     <div class="card-body d-flex justify-content-between align-items-center">
         <h3>Items</h3>

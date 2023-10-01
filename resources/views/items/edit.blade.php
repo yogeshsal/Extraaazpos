@@ -26,9 +26,9 @@
   background:#222;
 } */
 
-/* #content1 {
-  max-width: 40vw;
-} */
+#content1 {
+  max-width: 100vw;
+}
 /* .tabContainer {
   background: #333;
   border: .45px solid #555;
@@ -80,10 +80,14 @@
   background: #fff;
   color: orange;
 }
-
 </style>
 
 <br>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 <div id="content1">
   <div class="tabContainer">
@@ -95,8 +99,10 @@
       <li><a src="tab5" href="javascript:void(0);">Modifier Groups</a></li>
     </ul>
     <div class="tabContent">
-        <div id="tab1">      
-            <div class="card shadow p-3">       
+        <div id="tab1">   
+            <div class="container shadow p-4">
+            <!-- <div class="card shadow p-3">        -->
+            <div>
                 <form action="{{ route('items.update', $item->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -155,7 +161,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="is_recommended">Is Recommended</label><br>
-                                <input type="checkbox" id="item_is_recommended" name="item_is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No" {{ $item->item_is_recommended ? 'checked' : '' }}>
+                                <input type="checkbox"  id="item_is_recommended" name="item_is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No" {{ $item->item_is_recommended ? 'checked' : '' }}>
                             </div>
                         </div>
                     </div>
@@ -197,17 +203,18 @@
                     </div>
                 </form> 
             </div>
+            </div>  
         </div>
         <div id="tab2">
             <div class="card shadow p-3">     
                 <form method="POST" action="{{ route('items.updateImage', $item->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="form-group">
+                <div class="form-group form-row">
                     <label for="item_image">Upload New Image:</label>
                     <input type="file" name="item_image" id="item_image" class="form-control">
                 </div>
-                    <button type="submit" class="btn btn-primary">Upload Image</button>
+                    <button type="submit" class="btn btn-orange">Upload Image</button>
                 </form>
             </div>
         </div>
