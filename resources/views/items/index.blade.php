@@ -53,6 +53,12 @@
         margin-bottom: 20px; /* Add space below each row */
     }
 </style>
+<style>
+    .table-image {
+        width: 100px; /* Set the desired width */
+        height: auto; /* Auto-adjust the height to maintain the aspect ratio */
+    }
+</style>
 <br>
 <div class="card shadow">
     <div class="card-body d-flex justify-content-between align-items-center">
@@ -65,8 +71,7 @@
     
     <table id="data-table">
     <thead>
-        <tr >            
-            <th class="grey-background">#</th>
+        <tr > 
             <th class="grey-background">NAME</th>
             <th class="grey-background">ASSOCIATED LOCATIONS</th>
             <th class="grey-background">CATEGORY</th>
@@ -75,16 +80,21 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($data as $data)
-            <tr>
-                <td>{{ $data->id }}</td>
+    @foreach($data as $data)
+            <tr>           
                 <td>
-                <a href="{{ route('items.edit', ['id' => $data->id]) }}">{{ $data->title }}</a>
+                @if ($data->item_image)
+                    <!-- <img src="{{ asset('storage/' . $data->item_image) }}" alt="Image"> -->
+                    <img src="{{ asset('storage/'.  $data->item_image) }}" alt="Image" class="table-image">
+                    @else
+                        No Image
+                    @endif
+                <a href="{{ route('items.edit', ['id' => $data->id]) }}">{{ $data->item_name }}</a>
                 </td>
-                <td>{{$locid}}</td>
-                <td>{{$category_name}}</td>
-                <td>{{ $data->default_sales_price }}</td>                              
-                <td>{{ $data->updated_at ->format('d M, Y - h:i A') }}</td>
+               <td>{{$data->item_pos_code}}</td>                   
+               <td>{{$category_name}}</td>     
+               <td>{{$data->item_default_sell_price}} <br> <del>{{$data->item_markup_price}}</del></td>
+                <td>{{ $data->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
             </tr>
         @endforeach
     </tbody>
@@ -127,33 +137,38 @@
                     <div class="row form-row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">Title:</label>
-                                <input type="text" name="title" class="form-control" required>
+                                <label for="name">Name:</label>
+                                <input type="text" name="item_name" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="mobile">Short Name:</label>
-                                <input type="text" name="short_name" class="form-control" required>
+                                <input type="text" name="item_short_name" class="form-control" required>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="row form-row">
+                    <div class="row form-row">                        
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">Handle:</label>
-                                <input type="text" name="handle" class="form-control">
+                                <label for="category">Category</label>
+                                <select name="item_category_id" id="category" class="form-control">
+                                <option value="" disabled selected>Select Category</option>
+                                @foreach ($categories as $categoryId => $categoryName)
+                                        <option value="{{ $categoryId }}">{{ $categoryName }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="category">Category</label>
-                                <select name="category" id="category" class="form-control">
-                                <option value="" disabled selected>Select Category</option>
-                                    @foreach ($categories as $categoryId => $categoryName)
-                                        <option value="{{ $categoryId }}">{{ $categoryName }}</option>
+                                <label for="location">POS Code</label>
+                                <select name="item_pos_code" id="pos_code" class="form-control">
+                                    <option value="" disabled selected>Select POS</option>
+                                    @foreach ($locations as $locationId => $locationName)
+                                        <option value="{{ $locationId }}">{{ $locationName }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -161,22 +176,11 @@
                     </div>
 
                     
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="location">POS Code</label>
-                                <select name="pos_code" id="pos_code" class="form-control">
-                                    <option value="">Select POS</option>
-                                    @foreach ($locations as $locationId => $locationName)
-                                        <option value="{{ $locationId }}">{{ $locationName }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+                    <div class="row form-row">                        
                         <div class="col-md-6">
                             <div class="form-group">
                             <label for="food_type">Food Type</label>
-                                <select name="food_type" id="food_type" class="form-control">
+                                <select name="item_food_type" id="food_type" class="form-control">
                                     <option value="" disabled selected>Select Food Type</option>
                                     <option value="vegetarian">Vegetarian</option>
                                     <option value="non_vegetarian">Non Vegetarian</option>
@@ -184,35 +188,25 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-
-
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name">Sort Order:</label>
-                                <input type="text" name="sort_order" class="form-control">
-                            </div>
-                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="is_recommended">Is Recommended</label><br>
-                                <input type="checkbox" id="is_recommended" name="is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                                <input type="checkbox" id="item_is_recommended" name="item_is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No">
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="row form-row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="is_recommended">Is Package Good</label><br>
-                            <input type="checkbox" id="is_package_good" name="is_package_good" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                            <label for="is_package_good">Is Package Good</label><br>
+                            <input type="checkbox" id="item_is_package_good" name="item_is_package_good" data-toggle="switch" data-on-text="Yes" data-off-text="No">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="is_recommended">Sell by Weight</label><br>
-                            <input type="checkbox" id="sell_by_weight" name="sell_by_weight" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                            <input type="checkbox" id="item_sell_by_weight" name="item_sell_by_weight" data-toggle="switch" data-on-text="Yes" data-off-text="No">
                         </div>
                     </div>
                     </div>
@@ -221,20 +215,19 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Default Sales Price:</label>
-                                <input type="text" name="default_sales_price" class="form-control">
+                                <input type="text" name="item_default_sell_price" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                             <div class="form-group">
                                 <label for="name">Markup Price (Optional):</label>
-                                <input type="text" name="markup_price" class="form-control">
+                                <input type="text" name="item_markup_price" class="form-control">
                             </div>
                             </div>
                         </div>
                     </div> 
-
-                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-orange">Create</button>
@@ -253,9 +246,9 @@
 
 <script>
     $(document).ready(function () {
-        $('#is_recommended').bootstrapSwitch();
-        $('#is_package_good').bootstrapSwitch();
-        $('#sell_by_weight').bootstrapSwitch();
+        $('#item_is_recommended').bootstrapSwitch();
+        $('#item_is_package_good').bootstrapSwitch();
+        $('#item_sell_by_weight').bootstrapSwitch();
     });
 </script>
 

@@ -101,6 +101,7 @@ Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index1']);
 Route::view('items', 'items.index');
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
 Route::post('/create-item', [App\Http\Controllers\ItemController::class, 'store'])->name('items.store');
+Route::put('/items/{id}/update-image', [App\Http\Controllers\ItemController::class,'updateImage'])->name('items.updateImage');
 
 //category-timing
 Route::get('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'index'])->middleware('owner');

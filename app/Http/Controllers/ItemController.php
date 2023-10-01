@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\models\Item;
 use App\models\Category;
 use App\models\Location;
+use App\models\User;
 use Auth;
 
 class ItemController extends Controller
@@ -14,45 +15,56 @@ class ItemController extends Controller
     public function index()
     {
         $currentUserId = Auth::user()->id;
-        $data = Item::all(); // Fetch all posts 
-        $category_id = $data[0]['category'];
+        //dd($currentUserId);
+        $data = Item::where('user_id', $currentUserId)->get(); // Fetch all posts 
+        
+        //dd($data);
+        if (!empty($data) && isset($data[0]['item_category_id'])) {
+            $category_id = $data[0]['item_category_id'];
+        } else {            
+            $category_id = '1';
+        }
+
+
+        $userid = $data[0]['user_id'];
+        $user_name = User::where('id', $userid)->first();   
+        $user_name = $user_name['name'];
+
         $category_name = Category::where('id', $category_id)->first();   
+        $category_name = $category_name['name'];
+        // $locid = $category_name['loc_id'];        
+        // $loc_name = Location::where('id', $locid)->first(); 
         
-        $locid = $category_name['loc_id'];        
-        $loc_name = Location::where('id', $locid)->first(); 
-        
-        $category_name= $category_name['name'];
-        $location_name = $loc_name['name'];
+        // $category_name= $category_name['name'];
+        // $location_name = $loc_name['name'];
 
         $categories = Category::pluck('name', 'id'); // Assuming 'name' is the column for category names and 'id' is the column for category IDs
         $locations = Location::where('user_id', $currentUserId)
         ->pluck('name', 'id'); // Assuming 'name' is the column for location names and 'id' is the column for location IDs
-           
-        return view('items.index', compact('data', 'category_name', 'locid','location_name', 'categories', 'locations'));       
         
+        return view('items.index', compact('data', 'category_name', 'categories', 'locations', 'user_name'));       
+        //return view('items.index', compact('categories','locations'));
     }
     
     public function store(Request $request)
     {
-        
-            $data = new Item;        
-            $data->title = $request->title;
-            $data->short_name = $request->short_name;
-            $data->handle = $request->handle;
-            $data->category = $request->category;
-            $data->pos_code = $request->pos_code;
-            $data->food_type = $request->food_type;
-            $data->sort_order = $request->sort_order;
-            $data->is_recommended = $request->is_recommended;   
+            $currentUserId = Auth::user()->id;
+            $data = new Item;
+            $data->user_id = $currentUserId;        
+            $data->item_name = $request->item_name;  
+            $data->item_description = $request->item_description; 
+            $data->item_category_id = $request->item_category_id;
+            $data->item_short_name = $request->item_short_name;
+            $data->item_pos_code = $request->item_pos_code;
+            $data->item_food_type = $request->item_food_type;
+            $data->item_is_recommended = $request->item_is_recommended;
+            $data->item_is_package_good = $request->item_is_package_good;   
+            $data->item_sell_by_weight = $request->item_sell_by_weight;   
+            $data->item_default_sell_price = $request->item_default_sell_price;   
+            $data->item_markup_price = $request->item_markup_price;
+            $data->item_aggregator_price = $request->item_aggregator_price; 
+            $data->item_external_id = $request->item_external_id; 
             
-            $data->is_packaged_good = $request->is_packaged_good;   
-            $data->sell_by_weight = $request->sell_by_weight;   
-            $data->default_sales_price = $request->default_sales_price;   
-            $data->markup_price = $request->markup_price; 
-            
-            $data->aggregator_price = $request->aggregator_price; 
-            $data->external_id = $request->external_id; 
-            $data->description = $request->description; 
             $data->save();            
             return redirect('items')
             ->with('success', 'Item added successfully.');        
@@ -61,7 +73,7 @@ class ItemController extends Controller
     public function edit($id)
     {        
         $currentUserId = Auth::user()->id;
-        $item = Item::find($id);
+        $item = Item::find($id);        
         $categories = Category::pluck('name', 'id');
         $locations = Location::where('user_id', $currentUserId)->pluck('name', 'id'); 
         return view('items.edit', compact('item','categories','locations'));
@@ -70,12 +82,15 @@ class ItemController extends Controller
 
     public function update(Request $request, $id)
     {
-       
         $request->validate([
-            'title' => 'required|string|max:255',
-            'short_name'=> 'required|string|max:255',
-            // Assuming a 10-digit mobile number
-            // Add more validation rules as needed for other fields
+            'item_name' => 'required|string|max:255',
+            'item_short_name' => 'required|string|max:255',            
+            'item_category_id' => 'required|string|max:255',
+            'item_pos_code' => 'required|string|max:255',
+            'item_food_type' => 'required|string|max:255',           
+            'item_sell_by_weight' => 'string|max:255',
+            'item_default_sell_price' => 'required|string|max:255',
+            'item_markup_price' => 'required|string|max:255',
         ]);
         $item = Item::find($id);
 
@@ -84,24 +99,61 @@ class ItemController extends Controller
             abort(404);
         }
 
+           
+            
+                    
+        $item->item_is_recommended = $request->has('item_is_recommended') ? 1 : 0;
+        $item->item_is_package_good = $request->has('item_is_package_good') ? 1 : 0;
+        $item->item_sell_by_weight = $request->has('item_sell_by_weight') ? 1 : 0;
+        
+        
         // Validate the form data (customize validation rules as needed)
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'short_name' => 'required|string|max:255',
-            'handle' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'pos_code' => 'required|string|max:255',
-            'food_type' => 'required|string|max:255',
+            'item_name' => 'required|string|max:255',
+            'item_short_name' => 'required|string|max:255',            
+            'item_category_id' => 'required|string|max:255',
+            'item_pos_code' => 'required|string|max:255',
+            'item_food_type' => 'required|string|max:255',           
+            'item_default_sell_price' => 'required|string|max:255',
+            'item_markup_price' => 'required|string|max:255',
 
-            // Add validation rules for other fields here
+           
         ]);
-
+            
         // Update the customer's data
         $item->update($validatedData);
 
         // Redirect to a success page or back to the edit form with a success message
         return redirect('items')->with('success', 'Item updated successfully');
     }
+
+
+
+
+    public function updateImage(Request $request, $id)
+{
+    $request->validate([
+        'item_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Define validation rules for the image file.
+    ]);
+
+    $item = Item::find($id);
+
+    if (!$item) {
+        abort(404); // Handle the case when the item with the given ID is not found.
+    }
+
+    // Handle image upload and update
+    if ($request->hasFile('item_image')) {
+        $image = $request->file('item_image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->storeAs('public/item_images', $imageName); // Store the image in a directory, e.g., 'public/storage/item_images'
+
+        // Update the item's image field in the database with the new image path
+        $item->update(['item_image' => 'item_images/' . $imageName]);
+    }
+
+    return redirect()->route('items.edit', $id)->with('success', 'Image updated successfully');
+}
 }
 
 
