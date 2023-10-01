@@ -86,8 +86,7 @@ Route::put('/customers/{id}', [App\Http\Controllers\CustomerController::class,'u
 Route::put('/update', [App\Http\Controllers\CustomerController::class,'update'])->name('update');
 // Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 //billing
-Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->middleware('owner');
-Route::post('categories', [App\Http\Controllers\CategoryController::class, 'add_category'])->middleware('owner');
+
 
 // Route::get('categories/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->middleware('owner');
 
@@ -98,18 +97,30 @@ Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index1']);
 
 
 //ITEM
-Route::view('items', 'items.index');
+// Route::view('items', 'items.index');
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
 Route::post('/create-item', [App\Http\Controllers\ItemController::class, 'store'])->name('items.store');
+Route::get('/items/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit'])->name('items.edit');
+Route::put('/items/{id}', [App\Http\Controllers\ItemController::class,'update'])->name('items.update');
 Route::put('/items/{id}/update-image', [App\Http\Controllers\ItemController::class,'updateImage'])->name('items.updateImage');
+
+
+//CATEGORY
+// Route::view('items', 'items.index');
+Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->middleware('owner');
+Route::post('/create-category', [App\Http\Controllers\CategoryController::class, 'store'])->name('categories.store');
+Route::get('/categories/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('/categories/{id}', [App\Http\Controllers\CategoryController::class,'update'])->name('categories.update');
+Route::put('/categories/{id}/update-image', [App\Http\Controllers\CategoryController::class,'updateImage'])->name('categories.updateImage');
+
 
 //category-timing
 Route::get('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'index'])->middleware('owner');
 Route::post('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'addCategoryTiming'])->middleware('owner');
 
 
-Route::get('/items/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit'])->name('items.edit');
-Route::put('/items/{id}', [App\Http\Controllers\ItemController::class,'update'])->name('items.update');
+
+
 
 
 Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController::class, 'getitems']);

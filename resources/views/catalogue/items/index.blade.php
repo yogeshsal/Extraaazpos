@@ -89,15 +89,14 @@
             <tr>           
                 <td>
                 @if ($data->item_image)
-                    <!-- <img src="{{ asset('storage/' . $data->item_image) }}" alt="Image"> -->
-                    <img src="{{ asset('storage/'.  $data->item_image) }}" alt="Image" class="table-image">
-                    @else
-                        No Image
-                    @endif
+                    <img src="{{ asset('storage/' . $data->item_image) }}" alt="Image" class="table-image">
+                @else
+                    <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
+                @endif
                 <a href="{{ route('items.edit', ['id' => $data->id]) }}">{{ $data->item_name }}</a>
                 </td>
                <td>{{$data->item_pos_code}}</td>                   
-               <td>{{$category_name}}</td>     
+               <td>{{$category_name->cat_name}}</td>     
                <td>{{$data->item_default_sell_price}} <br> <del>{{$data->item_markup_price}}</del></td>
                 <td>{{ $data->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
             </tr>
@@ -232,6 +231,13 @@
                             </div>
                         </div>
                     </div> 
+
+                    <div class="row form-row">
+                        <div class="form-group">
+                            <label for="item_description">Description</label>
+                            <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
+                        </div>
+                    </div>
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

@@ -22,27 +22,41 @@ class ItemController extends Controller
         if (!empty($data) && isset($data[0]['item_category_id'])) {
             $category_id = $data[0]['item_category_id'];
         } else {            
-            $category_id = '1';
+            $category_id = '0';
         }
 
-
-        $userid = $data[0]['user_id'];
-        $user_name = User::where('id', $userid)->first();   
-        $user_name = $user_name['name'];
+        if (count($data) > 0) {
+            $userid = $data[0]['user_id'];
+            $user_name = User::where('id', $userid)->first();   
+            $user_name = $user_name['name'];
+            // Now you can safely access $userid
+        } else {
+            $user_name = '';
+        }
+        
+        
 
         $category_name = Category::where('id', $category_id)->first();   
-        $category_name = $category_name['name'];
+        
+        if ($category_name !== null && is_array($category_name) && isset($category_name['cat_name'])) {
+            $category_name = $category_name['cat_name'];
+        } else {
+            // Handle the case where $category_name is null or not an array
+        }
+        
+        
+       
         // $locid = $category_name['loc_id'];        
         // $loc_name = Location::where('id', $locid)->first(); 
         
         // $category_name= $category_name['name'];
         // $location_name = $loc_name['name'];
 
-        $categories = Category::pluck('name', 'id'); // Assuming 'name' is the column for category names and 'id' is the column for category IDs
+        $categories = Category::pluck('cat_name', 'id'); // Assuming 'name' is the column for category names and 'id' is the column for category IDs
         $locations = Location::where('user_id', $currentUserId)
         ->pluck('name', 'id'); // Assuming 'name' is the column for location names and 'id' is the column for location IDs
         
-        return view('items.index', compact('data', 'category_name', 'categories', 'locations', 'user_name'));       
+        return view('catalogue.items.index', compact('data', 'category_name', 'categories', 'locations', 'user_name'));       
         //return view('items.index', compact('categories','locations'));
     }
     
@@ -52,7 +66,7 @@ class ItemController extends Controller
             $data = new Item;
             $data->user_id = $currentUserId;        
             $data->item_name = $request->item_name;  
-            $data->item_description = $request->item_description; 
+            $data->description = $request->item_description; 
             $data->item_category_id = $request->item_category_id;
             $data->item_short_name = $request->item_short_name;
             $data->item_pos_code = $request->item_pos_code;
@@ -74,9 +88,9 @@ class ItemController extends Controller
     {        
         $currentUserId = Auth::user()->id;
         $item = Item::find($id);        
-        $categories = Category::pluck('name', 'id');
+        $categories = Category::pluck('cat_name', 'id');        
         $locations = Location::where('user_id', $currentUserId)->pluck('name', 'id'); 
-        return view('items.edit', compact('item','categories','locations'));
+        return view('catalogue.items.edit', compact('item','categories','locations'));
     }
 
 
@@ -132,6 +146,7 @@ class ItemController extends Controller
 
     public function updateImage(Request $request, $id)
 {
+    
     $request->validate([
         'item_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Define validation rules for the image file.
     ]);

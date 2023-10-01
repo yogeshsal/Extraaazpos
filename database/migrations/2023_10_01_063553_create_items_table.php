@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->string('user_id');            
             $table->string('item_name');
+            $table->string('description');
             $table->unsignedBigInteger('item_associated_location')->nullable();
             $table->text('item_description')->nullable();
             $table->unsignedBigInteger('item_category_id');
@@ -37,7 +38,6 @@ return new class extends Migration
             $table->unsignedBigInteger('item_modifier_id')->nullable();
             $table->boolean('item_advance_order')->nullable();
             $table->timestamps();
-
         });
     }
 
