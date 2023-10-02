@@ -113,6 +113,11 @@ Route::put('/items/{id}', [App\Http\Controllers\ItemController::class,'update'])
 
 Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController::class, 'getitems']);
 
+//discount
+Route::get('/discounts', [App\Http\Controllers\DiscountController::class, 'index']);
+Route::post('/discounts', [App\Http\Controllers\DiscountController::class, 'add_discount']);
+
+
 
 
 
