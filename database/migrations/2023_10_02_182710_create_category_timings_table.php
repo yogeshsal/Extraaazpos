@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('category_timings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('short_name');
             $table->string('handle');
-            $table->integer('sort_order');
-            $table->string('external_id');
-            $table->integer('timing_group_id');
             $table->string('description');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->json('days');
             $table->integer('user_id');
-            $table->string('loc_id');
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('category_timings');
     }
 };

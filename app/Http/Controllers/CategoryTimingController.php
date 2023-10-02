@@ -20,14 +20,30 @@ class CategoryTimingController extends Controller
 
     function addCategoryTiming(Request $request)
     {
-        $data = new CategoryTiming;
-        $data->name = $request->name;
-        $data->handle = $request->handle;
-        $data->description = $request->description;
-        $data->start_time = $request->start_time;
-        $data->end_time = $request->end_time;
-        $data->user_id = Auth::user()->id;
-        $data->save();
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'handle' => 'string',
+            'description' => 'required|string',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'days' => 'required|array', // Validate 'days' as an array
+        ]);
+
+        // Get the currently authenticated user's ID
+        $userId = Auth::id();
+        $daysJson = json_encode($validatedData['days']);
+
+        // Create a new CategoryTiming instance and save it
+        $categoryTiming = CategoryTiming::create([
+            'name' => $validatedData['name'],
+            'handle' => $validatedData['handle'],
+            'description' => $validatedData['description'],
+            'start_time' => $validatedData['start_time'],
+            'end_time' => $validatedData['end_time'],
+            'days' => $daysJson,
+            'user_id' => $userId,
+        ]);
+
         return redirect('category-timing');
     }
 
