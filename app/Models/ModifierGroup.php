@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ModifierGroup extends Model
 {
     use HasFactory;
+    protected $table = 'modifiergroups';
     protected $fillable = [
         'modifier_group_name',
         'modifier_group_type',

@@ -78,14 +78,22 @@
     <thead>
         <tr > 
             <th class="grey-background">NAME</th>
-            <th class="grey-background">ASSOCIATED LOCATIONS</th>
-            <th class="grey-background">CATEGORY</th>
-            <th class="grey-background">SALES PRICE (LKR)</th>
+            <th class="grey-background">TYPE</th>
+            <th class="grey-background">ASSOCIATED ITEMS</th>
+            <th class="grey-background">MODIFIERS</th>
             <th class="grey-background">UPDATED</th>
         </tr>
     </thead>
     <tbody>
-    
+    @foreach($data as $data)
+            <tr>           
+                <td><a href="{{ route('modifiergroups.edit', ['id' => $data->id]) }}">{{$data->modifier_group_name}}</a><br>Handle : {{$data->modifier_group_handle}}</td>
+                <td>{{$data->modifier_group_type}}</td>                   
+               <td></td>     
+               <td> </td>
+                <td>{{ $data->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
+            </tr>
+        @endforeach
     </tbody>
 </table>
 </div>
@@ -124,7 +132,7 @@
                     @csrf
 
                     <div class="row form-row"> 
-                    <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                               <p>Select modifier group type</p>  
                               <p><b>Add-On:</b> More than one modifiers can be selected with the item (Eg: Pizza Toppings)</p>
@@ -141,27 +149,26 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="form-group">
                                 
                             </div>
                         </div>
                         <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Min Selectable <span class="text-danger">*</span></label>
-                                    <input type="text" name="item_default_sell_price" class="form-control">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Min Selectable <span class="text-danger">*</span></label>
+                                        <input type="text" name="item_default_sell_price" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Max Selectable <span class="text-danger">*</span></label>
+                                        <input type="text" name="item_default_sell_price" class="form-control">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Max Selectable <span class="text-danger">*</span></label>
-                                    <input type="text" name="item_default_sell_price" class="form-control">
-                                </div>
-                            </div>
-                        </div>
                         </div>
                     </div>
                     <hr>

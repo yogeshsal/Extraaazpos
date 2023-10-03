@@ -117,6 +117,10 @@ Route::put('/categories/{id}/update-image', [App\Http\Controllers\CategoryContro
 //Route::view('modifier-groups', 'modifier-group.index');
 Route::get('/modifiergroups', [App\Http\Controllers\ModifierGroupsController::class, 'index']);
 Route::post('/create-modifier-group', [App\Http\Controllers\ModifierGroupsController::class, 'store'])->name('modifiergroups.store');
+Route::get('/modifiergroups/edit/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'edit'])->name('modifiergroups.edit');
+Route::put('/modifiergroups/{id}', [App\Http\Controllers\ModifierGroupsController::class,'update'])->name('modifiergroups.update');
+
+
 
 //category-timing
 Route::get('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'index'])->middleware('owner');
