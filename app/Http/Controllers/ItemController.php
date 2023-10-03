@@ -96,6 +96,7 @@ class ItemController extends Controller
 
     public function update(Request $request, $id)
     {
+        
         $request->validate([
             'item_name' => 'required|string|max:255',
             'item_short_name' => 'required|string|max:255',            

@@ -110,7 +110,7 @@ Route::put('/items/{id}/update-image', [App\Http\Controllers\ItemController::cla
 Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->middleware('owner');
 Route::post('/create-category', [App\Http\Controllers\CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categories/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('categories.edit');
-Route::put('/categories/{id}', [App\Http\Controllers\CategoryController::class,'update'])->name('categories.update');
+Route::put('/categories/{id}', [App\Http\Controllers\CategoryController::class,'catupdate'])->name('categories.update');
 Route::put('/categories/{id}/update-image', [App\Http\Controllers\CategoryController::class,'updateImage'])->name('categories.updateImage');
 
 

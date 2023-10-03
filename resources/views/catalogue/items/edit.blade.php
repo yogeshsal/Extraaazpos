@@ -199,7 +199,7 @@
                     </div>                    
                     <div class="modal-footer form-row">
                         <a href="\items"><button type="button" class="btn btn-secondary m-2" data-dismiss="modal">Cancel</button></a>
-                        <button type="submit" class="btn btn-orange ">Update</button>
+                        <button type="submit" class="btn btn-orange">Update</button>
                     </div>
                 </form> 
             </div>
@@ -207,7 +207,7 @@
         </div>
         <div id="tab2">
             <div class="card shadow p-3">     
-                <form method="POST" action="{{ route('items.updateImage', $item->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('items.updateImage', $item->id)}}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group form-row">

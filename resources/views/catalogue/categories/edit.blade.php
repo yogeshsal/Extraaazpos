@@ -135,16 +135,16 @@
                         </div>
                     </div>
 
-                    
+                   
                     <div class="row form-row">                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="cat_parent_category">Parent Category</label>
                                 <select name="cat_parent_category" id="cat_parent_category" class="form-control">
                                     <option value="" disabled selected>Select Parent Category</option>
-                                    
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
+                                   
+                                    @foreach ($categories as $category1)
+                                        <option value="{{ $category1->id }}">{{ $category1->cat_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -160,7 +160,7 @@
                             </div>
                         </div>                        
                     </div>
-
+                    
                     <div class="row form-row">
                         <div class="form-group">
                             <label for="cat_desc">Description</label>
@@ -169,7 +169,7 @@
                     </div>
 
 
-
+                    
                                         
                     <div class="modal-footer form-row">
                         <a href="\items"><button type="button" class="btn btn-secondary m-2" data-dismiss="modal">Cancel</button></a>
@@ -180,11 +180,11 @@
             </div>  
         </div>
         <div id="tab2">
-            <div class="card shadow p-3">     
+            <div class="card shadow p-3">
                 <form method="POST" action="{{ route('categories.updateImage', $category->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="form-group form-row">
+                <div class="form-group form-row">                
                     <label for="cat_image">Upload New Image:</label>
                     <input type="file" name="cat_image" id="cat_image" class="form-control">
                 </div>
@@ -193,7 +193,8 @@
             </div>
         </div>
         <div id="tab3">
-            <span>Inside Tab 3, how <b>interesting</b>.</span>
+            <span>Inside Tab 3, how <b>interesting</b>.</span>             
+
         </div>        
     </div>
     <!-- /tabContent -->
