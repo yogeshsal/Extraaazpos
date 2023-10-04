@@ -59,8 +59,29 @@ class CategoryTimingController extends Controller
        // dd($timing);      
         $locations = Location::where('user_id', $currentUserId)->pluck('name', 'id'); 
 
-        $categories = Category::where('cat_timing_group', $id)->get();    
-       // dd($categories); 
+        $categories = Category::where('cat_timing_group', $id)->get();
+        
+        
+        $categories1 = Category::where('id', $id)->get()->toArray();
+        $cat_parent_cat = $categories1[0]['cat_parent_category'];
+        
+        // Initialize an array to store category names
+        $categoryNames = [];
+        
+        if (!empty($cat_parent_cat)) {
+            $categories2 = Category::where('id', $cat_parent_cat)->get()->toArray();
+            if (!empty($categories2)) {
+                // Loop through the result and collect category names
+                foreach ($categories2 as $category) {
+                    $categoryNames[] = $category['cat_name'];
+                }
+            }
+        }
+        
+        // Now, $categoryNames contains the names of rows
+        
+
+        //dd($categoryNames); 
         $itemCounts = [];
         
         foreach ($categories as $category) {
@@ -74,7 +95,7 @@ class CategoryTimingController extends Controller
 
 
 
-        return view('catalogue.categoryTiming.edit', compact('timing','categories','locations','itemCounts'));
+        return view('catalogue.categoryTiming.edit', compact('timing','categories','locations','itemCounts'),['categoryNames' => $categoryNames]);
     }
 
     public function update(Request $request, $id)
@@ -121,8 +142,12 @@ class CategoryTimingController extends Controller
     {
         
         $categories = Category::leftjoin('category_timings','category_timings.id','=','categories.cat_timing_group')
+        ->select('categories.*','category_timings.name')
         ->where('categories.user_id', Auth::user()->id)
         ->get();
+
+        // $categories = Category::where('categories.user_id', Auth::user()->id)
+        // ->get();
 
         $itemCounts = [];
         
@@ -134,6 +159,7 @@ class CategoryTimingController extends Controller
        
             $itemCounts[$cat_id] = $item_count;
         }
+        //dd($itemCounts);
         
        return view('catalogue.categoryTiming.select_category', compact('categories', 'itemCounts'));
     }

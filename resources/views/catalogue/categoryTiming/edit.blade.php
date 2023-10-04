@@ -244,9 +244,14 @@
                     @foreach($categories as $c)
                     <tr>
                     <td>{{$c->cat_name}}</td>
-                    <td>{{$itemCounts[$c->id] }}</td>
-                    <td>-</td>
-                    
+                    <td>{{ $itemCounts[$c->id] }}</td>
+                    @foreach ($categoryNames as $categoryName)
+                        <td>{{ $categoryName }}</td>
+                    @endforeach
+                    @if (empty($categoryNames))
+                        <td>-</td>
+                    @endif
+
                     </tr>
                    @endforeach
                 </tbody>
