@@ -44,7 +44,7 @@
 <br>
 <div class="card shadow">
 <div class="card-body d-flex justify-content-between align-items-center">
-    <h3>Customers</h3>
+    <h3>Discounts</h3>
     <div class="d-flex align-items-center">
         <div class="input-group mr-2">
             <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
