@@ -55,7 +55,7 @@
 
                 <div id="dvPassport">
     <div class="weekDays-selector">
-        <input type="checkbox" id="chkEveryday" name="days[]" value = "0" class="form-check-input" checked>
+        <input type="checkbox" id="chkEveryday" name="days[]" value = "0" class="form-check-input" >
         <label for="chkEveryday" class="form-check-label">Everyday</label>
         <br>
         <div id="week">
@@ -113,7 +113,10 @@
   <tbody>
         @foreach($time as $t)
         <tr>
-            <td>{{$t->name}}
+            <td>
+            <a href="{{ route('category-timing.edit', ['id' => $t->id]) }}">
+             {{ $t->name }}
+            </a>
                 <br>
                 handle :{{$t->handle}}
             </td>

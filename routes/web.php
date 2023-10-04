@@ -117,6 +117,10 @@ Route::put('/categories/{id}/update-image', [App\Http\Controllers\CategoryContro
 //category-timing
 Route::get('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'index'])->middleware('owner');
 Route::post('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'addCategoryTiming'])->middleware('owner');
+Route::get('/category-timing/edit/{id}', [App\Http\Controllers\CategoryTimingController::class, 'edit'])->name('category-timing.edit');
+Route::put('/category-timing/{id}', [App\Http\Controllers\CategoryTimingController::class,'update'])->name('category-timing.update');
+Route::get('/category-timing/select_category/{id}', [App\Http\Controllers\CategoryTimingController::class, 'select_category'])->name('category-timing.select_category');
+Route::post('/associate-categories/{id}', [App\Http\Controllers\CategoryTimingController::class,'associateCategories'])->name('associate.categories');
 
 
 

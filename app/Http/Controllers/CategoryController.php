@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Location;
+use App\Models\CategoryTiming;
 use Auth;
 
 class CategoryController extends Controller
@@ -14,8 +15,10 @@ class CategoryController extends Controller
         $data = Category ::where('user_id',Auth::user()->id)->get();
 
         $location =Location::where('user_id',Auth::user()->id)->get();
+
+        $timing = CategoryTiming::where('user_id',Auth::user()->id)->get();
         
-        return view('catalogue.categories.index',['category'=>$data,'location'=>$location]);
+        return view('catalogue.categories.index',['category'=>$data,'location'=>$location,'timing'=>$timing]);
     }
 
     public function store(Request $request)
@@ -43,10 +46,11 @@ class CategoryController extends Controller
         $currentUserId = Auth::user()->id;
         $category = Category::find($id);
         $categories = Category::all();
+        $timing = CategoryTiming::where('user_id',Auth::user()->id)->get();;
         $category_desc = $category['cat_desc'];
         // $categories = Category::pluck('item_name', 'id');
         // $locations = Location::where('user_id', $currentUserId)->pluck('item_name', 'id'); 
-        return view('catalogue.categories.edit', compact('category','categories', 'category_desc'));
+        return view('catalogue.categories.edit', compact('category','categories', 'category_desc','timing'));
     }
 
     public function update(Request $request, $id)
@@ -67,12 +71,6 @@ class CategoryController extends Controller
             // Handle the case when the customer with the given ID is not found
             abort(404);
         }
-
-           
-            
-                    
-       
-        
         
         // Validate the form data (customize validation rules as needed)
         $validatedData = $request->validate([
