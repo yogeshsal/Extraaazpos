@@ -151,10 +151,12 @@
                             <div class="form-group">
                             <label for="item_food_type">Food Type <span class="text-danger">*</span></label>
                                 <select name="item_food_type" id="item_food_type" class="form-control" required>
-                                    <option value="" disabled selected>Select Food Type</option>
-                                    <option value="vegetarian">Vegetarian</option>
-                                    <option value="non_vegetarian">Non Vegetarian</option>
-                                    <option value="eggetarian">Eggetarian</option>                                    
+                                    <option value="" disabled>Select Food Type</option>
+                                    @foreach ($foodtype as $foodtypeId => $foodtypeName)
+                                    <option value="{{ $foodtypeName}}" {{ old('item_food_type', $item->item_food_type) == $foodtypeName ? 'selected' : '' }}>
+                                        {{ $foodtypeName }}
+                                    </option>
+                                @endforeach
                                 </select>
                             </div>
                         </div>

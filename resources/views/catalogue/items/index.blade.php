@@ -186,9 +186,9 @@
                             <label for="food_type">Food Type</label>
                                 <select name="item_food_type" id="food_type" class="form-control">
                                     <option value="" disabled selected>Select Food Type</option>
-                                    <option value="vegetarian">Vegetarian</option>
-                                    <option value="non_vegetarian">Non Vegetarian</option>
-                                    <option value="eggetarian">Eggetarian</option>                                    
+                                    @foreach ($foodtype as $foodtypeId => $foodtypeName)
+                                        <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
+                                    @endforeach                   
                                 </select>
                             </div>
                         </div>

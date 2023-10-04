@@ -7,6 +7,7 @@ use App\models\Item;
 use App\models\Category;
 use App\models\Location;
 use App\models\User;
+use App\models\Foodtype;
 use Auth;
 
 class ItemController extends Controller
@@ -29,8 +30,10 @@ class ItemController extends Controller
         $categories = Category::pluck('cat_name', 'id'); 
         $locations = Location::where('user_id', $currentUserId)
         ->pluck('name', 'id'); 
+
+        $foodtype = Foodtype::pluck('name', 'id');       
         
-        return view('catalogue.items.index', compact('data', 'categories', 'locations', 'user_name'));       
+        return view('catalogue.items.index', compact('data', 'categories', 'locations', 'foodtype', 'user_name'));       
        
     }
     
@@ -62,9 +65,10 @@ class ItemController extends Controller
     {        
         $currentUserId = Auth::user()->id;
         $item = Item::find($id);        
-        $categories = Category::pluck('cat_name', 'id');        
+        $categories = Category::pluck('cat_name', 'id');   
+        $foodtype = Foodtype::pluck('name', 'id');       
         $locations = Location::where('user_id', $currentUserId)->pluck('name', 'id'); 
-        return view('catalogue.items.edit', compact('item','categories','locations'));
+        return view('catalogue.items.edit', compact('item','categories','locations','foodtype'));
     }
 
 
