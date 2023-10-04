@@ -67,10 +67,10 @@
 @endif
 <div class="card shadow">
     <div class="card-body d-flex justify-content-between align-items-center">
-        <h3>Items</h3>
+        <h3>Modifier Groups</h3>
         <div>
             <button type="button" class="btn btn-outline-secondary">Filters</button>
-            <a href="" class="btn btn-orange" data-toggle="modal" data-target="#add_item_modal">+ Add Item</a>            
+            <a href="" class="btn btn-orange" data-toggle="modal" data-target="#add_modifier_group_modal">+ New Modifier Group</a>            
         </div>
     </div>
     
@@ -78,26 +78,19 @@
     <thead>
         <tr > 
             <th class="grey-background">NAME</th>
-            <th class="grey-background">ASSOCIATED LOCATIONS</th>
-            <th class="grey-background">CATEGORY</th>
-            <th class="grey-background">SALES PRICE (INR)</th>
+            <th class="grey-background">TYPE</th>
+            <th class="grey-background">ASSOCIATED ITEMS</th>
+            <th class="grey-background">MODIFIERS</th>
             <th class="grey-background">UPDATED</th>
         </tr>
     </thead>
     <tbody>
     @foreach($data as $data)
             <tr>           
-                <td>
-                @if ($data->item_image)
-                    <img src="{{ asset('storage/' . $data->item_image) }}" alt="Image" class="table-image">
-                @else
-                    <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
-                @endif
-                <a href="{{ route('items.edit', ['id' => $data->id]) }}">{{ $data->item_name }}</a>
-                </td>
-               <td>{{$data->item_pos_code}}</td>                   
-               <td>{{ $data->category->cat_name }}</td>     
-               <td>{{$data->item_default_sell_price}} <br> <del>{{$data->item_markup_price}}</del></td>
+                <td><a href="{{ route('modifiergroups.edit', ['id' => $data->id]) }}">{{$data->modifier_group_name}}</a><br>Handle : {{$data->modifier_group_handle}}</td>
+                <td>{{$data->modifier_group_type}}</td>                   
+               <td></td>     
+               <td> </td>
                 <td>{{ $data->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
             </tr>
         @endforeach
@@ -126,122 +119,100 @@
 
 
 <!-- Modal -->
-<div class="modal fade modal-lg" id="add_item_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-lg" id="add_modifier_group_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Create New Item</h4>                
+                <h4 class="modal-title" id="exampleModalLabel">Create New Modifier Group</h4>                
                 </button>
             </div>
         <div class="modal-body"> 
             <div class="container">                
-                <form action="{{ route('items.store') }}" method="POST">
+                <form action="{{ route('modifiergroups.store') }}" method="POST">
                     @csrf
 
-                    <div class="row form-row">
+                    <div class="row form-row"> 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">Name:</label>
-                                <input type="text" name="item_name" class="form-control" required>
+                              <p>Select modifier group type</p>  
+                              <p><b>Add-On:</b> More than one modifiers can be selected with the item (Eg: Pizza Toppings)</p>
+                              <p><b>Variant:</b> Only one modifier can be selected with the item (Eg: Size of Pizza)</p>
+                            </div>
+                        </div>                       
+                        <div class="col-md-6 mt-4">
+                            <div class="form-group">
+                            <label for="modifier_group_type">Modifier Group Type</label>
+                                <select name="modifier_group_type" id="modifier_group_type" class="form-control">
+                                    <option value="" disabled selected>Select Type</option>
+                                    <option value="add_on">Add On</option>
+                                    <option value="variant">Variant</option>                                                                        
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="mobile">Short Name:</label>
-                                <input type="text" name="item_short_name" class="form-control" required>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Min Selectable <span class="text-danger">*</span></label>
+                                        <input type="text" name="item_default_sell_price" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Max Selectable <span class="text-danger">*</span></label>
+                                        <input type="text" name="item_default_sell_price" class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <hr>
 
 
                     <div class="row form-row">                        
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="category">Category</label>
-                                <select name="item_category_id" id="category" class="form-control">
-                                <option value="" disabled selected>Select Category</option>
-                                @foreach ($categories as $categoryId => $categoryName)
-                                        <option value="{{ $categoryId }}">{{ $categoryName }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="name">Title<span class="text-danger">*</span></label>
+                                <input type="text" name="modifier_group_name" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="location">POS Code</label>
-                                <select name="item_pos_code" id="pos_code" class="form-control">
-                                    <option value="" disabled selected>Select POS</option>
-                                    @foreach ($locations as $locationId => $locationName)
-                                        <option value="{{ $locationId }}">{{ $locationName }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="">Short Name</label>                                
+                                <input type="text" name="modifier_group_short_name" class="form-control">
                             </div>
                         </div>
                     </div>
 
-                    
                     <div class="row form-row">                        
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="food_type">Food Type</label>
-                                <select name="item_food_type" id="food_type" class="form-control">
-                                    <option value="" disabled selected>Select Food Type</option>
-                                    @foreach ($foodtype as $foodtypeId => $foodtypeName)
-                                        <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
-                                    @endforeach                   
-                                </select>
+                                <label for="name">Handle</label>
+                                <input type="text" name="modifier_group_handle" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="is_recommended">Is Recommended</label><br>
-                                <input type="checkbox" id="item_is_recommended" name="item_is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                               
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="row form-row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="is_package_good">Is Package Good</label><br>
-                            <input type="checkbox" id="item_is_package_good" name="item_is_package_good" data-toggle="switch" data-on-text="Yes" data-off-text="No">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="is_recommended">Sell by Weight</label><br>
-                            <input type="checkbox" id="item_sell_by_weight" name="item_sell_by_weight" data-toggle="switch" data-on-text="Yes" data-off-text="No">
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name">Default Sales Price:</label>
-                                <input type="text" name="item_default_sell_price" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <div class="form-group">
-                                <label for="name">Markup Price (Optional):</label>
-                                <input type="text" name="item_markup_price" class="form-control">
-                            </div>
-                            </div>
-                        </div>
-                    </div> 
+                    </div>                   
 
                     <div class="row form-row">
                         <div class="form-group">
-                            <label for="item_description">Description</label>
-                            <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
+                            <label for="modifier_group_handle">Description</label>
+                            <textarea name="modifier_group_desc" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
                         </div>
                     </div>
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-orange">Create</button>
+                        <button type="submit" class="btn btn-orange">Save</button>
                     </div>
                 </form>
             </div>
@@ -250,10 +221,6 @@
 </div>
 
 
-<!-- edit modal -->
-
-
-<!-- edit modal -->
 
 <script>
     $(document).ready(function () {

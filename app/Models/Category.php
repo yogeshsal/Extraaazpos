@@ -18,5 +18,9 @@ class Category extends Model
         'cat_kot_type',
         'cat_image',
         // Add other fields that you want to allow for mass assignment here
+        
     ];
+
+    
+    
 }

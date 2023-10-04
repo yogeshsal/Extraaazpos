@@ -110,8 +110,16 @@ Route::put('/items/{id}/update-image', [App\Http\Controllers\ItemController::cla
 Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->middleware('owner');
 Route::post('/create-category', [App\Http\Controllers\CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categories/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('categories.edit');
-Route::put('/categories/{id}', [App\Http\Controllers\CategoryController::class,'update'])->name('categories.update');
+Route::put('/categories/{id}', [App\Http\Controllers\CategoryController::class,'catupdate'])->name('categories.update');
 Route::put('/categories/{id}/update-image', [App\Http\Controllers\CategoryController::class,'updateImage'])->name('categories.updateImage');
+
+//MODIFIER-GROUP
+//Route::view('modifier-groups', 'modifier-group.index');
+Route::get('/modifiergroups', [App\Http\Controllers\ModifierGroupsController::class, 'index']);
+Route::post('/create-modifier-group', [App\Http\Controllers\ModifierGroupsController::class, 'store'])->name('modifiergroups.store');
+Route::get('/modifiergroups/edit/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'edit'])->name('modifiergroups.edit');
+Route::put('/modifiergroups/{id}', [App\Http\Controllers\ModifierGroupsController::class,'update'])->name('modifiergroups.update');
+
 
 
 //category-timing
@@ -128,6 +136,11 @@ Route::post('/associate-categories/{id}', [App\Http\Controllers\CategoryTimingCo
 
 
 Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController::class, 'getitems']);
+
+//discount
+Route::get('/discounts', [App\Http\Controllers\DiscountController::class, 'index']);
+Route::post('/discounts', [App\Http\Controllers\DiscountController::class, 'add_discount']);
+
 
 
 //Taxes

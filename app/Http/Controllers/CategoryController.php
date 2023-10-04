@@ -13,6 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $data = Category ::where('user_id',Auth::user()->id)->get();
+        
 
         $location =Location::where('user_id',Auth::user()->id)->get();
 
@@ -41,8 +42,8 @@ class CategoryController extends Controller
         return redirect('categories');
     }
 
-    public function edit($id)
-    {        
+    public function edit($id)    {    
+        
         $currentUserId = Auth::user()->id;
         $category = Category::find($id);
         $categories = Category::all();
@@ -53,8 +54,8 @@ class CategoryController extends Controller
         return view('catalogue.categories.edit', compact('category','categories', 'category_desc','timing'));
     }
 
-    public function update(Request $request, $id)
-    {
+    public function catupdate(Request $request, $id)
+    {        
         
         $request->validate([
             'cat_name' => 'required|string|max:255',
@@ -92,8 +93,7 @@ class CategoryController extends Controller
 
 
     public function updateImage(Request $request, $id)
-{
-    
+{       
     $request->validate([
         'cat_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Define validation rules for the image file.
     ]);

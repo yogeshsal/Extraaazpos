@@ -90,145 +90,129 @@
 @endif
 
 <div id="content1">
-    <div class="tabContainer">
+  <div class="tabContainer">
     <ul class="tabs">
       <li><a src="tab1" href="javascript:void(0);" class="active">Basic Information</a></li>
-      <li><a src="tab2" href="javascript:void(0);">images</a></li>
-      <li><a src="tab3" href="javascript:void(0);">Items</a></li>      
+      <li><a src="tab2" href="javascript:void(0);">items</a></li>
+      <li><a src="tab3" href="javascript:void(0);">Modifiers</a></li>      
     </ul>
     <div class="tabContent">
         <div id="tab1">   
             <div class="container shadow p-4">
             <!-- <div class="card shadow p-3">        -->
             <div>
-                <form action="{{ route('categories.update', $category->id) }}" method="POST">
+                <form action="{{ route('modifiergroups.update', $modifiergroup->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <div class="row form-row">
+                    <div class="row form-row"> 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="item_name">Name:<span class="text-danger">*</span></label>
-                                <input type="text" name="cat_name" class="form-control" value="{{ $category->cat_name }}">
+                              <p>Select modifier group type</p>  
+                              <p><b>Add-On:</b> More than one modifiers can be selected with the item (Eg: Pizza Toppings)</p>
+                              <p><b>Variant:</b> Only one modifier can be selected with the item (Eg: Size of Pizza)</p>
                             </div>
-                        </div>
-                        <div class="col-md-6">
+                        </div>                       
+                        <div class="col-md-6 mt-4">
                             <div class="form-group">
-                                <label for="cat_short_name">Short Name:</label>
-                                <input type="text" name="cat_short_name" class="form-control" value="{{ $category->cat_short_name }}">
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="cat_handle">Handle</label>
-                                <input type="text" name="cat_handle" class="form-control" value="{{ $category->cat_handle }}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="cat_timing_group">Timing Group</label>
-                                <select name="cat_timing_group" class="form-select" aria-label="Default select example">
-                                <option selected>------</option>
-                                @foreach($timing as $t)
-                                <option value="{{$t->id}}">{{$t->name}}</option>
-                                @endforeach
+                            <label for="modifier_group_type">Modifier Group Type <span class="text-danger">*</span></label>
                                 
-                            </select>
-
-
+                            <select name="modifier_group_type" id="modifier_group_type" class="form-control">
+                                    <option value="" disabled selected>Select Type</option>
+                                    <option value="add_on">Add On</option>
+                                    <option value="variant">Variant</option>                                                                        
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Min Selectable <span class="text-danger">*</span></label>
+                                        <input type="text" name="item_default_sell_price" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Max Selectable <span class="text-danger">*</span></label>
+                                        <input type="text" name="item_default_sell_price" class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                   
+
                     <div class="row form-row">                        
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="cat_parent_category">Parent Category</label>
-                                <select name="cat_parent_category" id="cat_parent_category" class="form-control">
-                                    <option value="" disabled selected>Select Parent Category</option>
-                                   
-                                    @foreach ($categories as $category1)
-                                        <option value="{{ $category1->id }}">{{ $category1->cat_name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="name">Title<span class="text-danger">*</span></label>
+                                <input type="text" name="modifier_group_name" class="form-control" value={{$modifiergroup->modifier_group_name}}>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="cat_kot_type">KOT</label>
-                                <select name="cat_kot_type" id="cat_kot_type" class="form-control" >
-                                    <option value="" disabled selected>Select KOT Type</option>
-                                    <option value="kot">KOT</option>
-                                                                     
-                                </select>
+                                <label for="">Short Name</label>                                
+                                <input type="text" name="modifier_group_short_name" class="form-control" value={{$modifiergroup->modifier_group_short_name}}>
                             </div>
-                        </div>                        
-                    </div>
-                    
-                    <div class="row form-row">
-                        <div class="form-group">
-                            <label for="cat_desc">Description</label>
-                            <textarea name="cat_desc" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4">{{ $category_desc }}</textarea>
                         </div>
                     </div>
 
+                    <div class="row form-row">                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="modifier_group_handle">Handle</label>
+                                <input type="text" name="modifier_group_handle" class="form-control" value={{$modifiergroup->modifier_group_handle}}>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="form-group">
+                            <label for="modifier_group_desc">Description</label>
+                            <!-- <textarea name="modifier_group_desc" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4" value={{$modifiergroup->modifier_group_desc}}></textarea> -->
+                            <textarea name="modifier_group_desc" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4">{{$modifiergroup->modifier_group_desc}}</textarea>
 
-                    
-                                        
+                        </div>
+                    </div>       
                     <div class="modal-footer form-row">
                         <a href="\items"><button type="button" class="btn btn-secondary m-2" data-dismiss="modal">Cancel</button></a>
-                        <button type="submit" class="btn btn-orange ">Update</button>
+                        <button type="submit" class="btn btn-orange">Update</button>
                     </div>
                 </form> 
             </div>
             </div>  
         </div>
         <div id="tab2">
-            <div class="card shadow p-3">
-                <form method="POST" action="{{ route('categories.updateImage', $category->id) }}" enctype="multipart/form-data">
+            <div class="card shadow p-3">     
+                <form method="POST" action="" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="form-group form-row">                
-                    <label for="cat_image">Upload New Image:</label>
-                    <input type="file" name="cat_image" id="cat_image" class="form-control">
+                <div class="form-group form-row">
+                    <label for="item_image">Upload New Image:</label>
+                    <input type="file" name="item_image" id="item_image" class="form-control">
                 </div>
                     <button type="submit" class="btn btn-orange">Upload Image</button>
                 </form>
             </div>
         </div>
         <div id="tab3">
-            <div class="card shadow p-3">
-                <div class="row">
-                    <div class="col">
-                        <h4>Associated Items</h4>
-                    </div>
-                    <div class="col-auto">
-                        <a type="button" class="btn btn-orange" href="">Update Items</a>  
-                    </div>
-                </div>
-            </div>
-            <div class="card shadow p-3 mt-3">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">NAME</th>                            
-                            <th scope="col">CATEGORY</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <tr>                        
-                        <td>Mark</td>
-                        <td>Otto</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <span>Inside Tab 3, how <b>interesting</b>.</span>
         </div>
-    </div>        
+        <div id="tab4">
+            <span>Inside Tab 4, how <b>interesting</b>.</span>
+        </div>
+        <div id="tab5">
+            <span>Inside Tab 5, how <b>interesting</b>.</span>
+        </div>
     </div>
     <!-- /tabContent -->
   </div>
