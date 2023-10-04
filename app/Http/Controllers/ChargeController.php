@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Charge;
+use App\Models\Item;
+
 use Auth;
 class ChargeController extends Controller
 {
@@ -31,18 +33,80 @@ class ChargeController extends Controller
 
     public function edit($id)
     {
-        $Charge = Charge::find($id);        
-        if (!$Charge) {
-            // Handle the case when the customer with the given ID is not found
-            abort(404); // You can customize the error response as needed
-        }
-        return view('catalogue.charges.edit', compact('Charge'));
+        $Charge = Charge::find($id); 
+        
+        $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
+        ->select('items.*','categories.cat_name')
+        ->where('items.status',$id)
+        ->get();
+        
+        return view('catalogue.charges.edit', compact('Charge','items'));
     }
 
+    public function update(Request $request, $id)
+    {
+        
+        $request->validate([
+            'name' => 'required',
+            'applicable_on' =>'required',
+             'amount_per_quantity' => 'required',
+             'applicable_modes'=>'required',
+            
+             
+           
+        ]);
+      
+        $charge = Charge::find($id);
+      
+        if (!$timing) {
+            // Handle the case when the customer with the given ID is not found
+            abort(404);
+        }
+        
+        // Validate the form data (customize validation rules as needed)
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'applicable_on' =>'required',
+             'amount_per_quantity' => 'required',
+             'applicable_modes'=>'required',
+            
+           
+            
+        ]);
+        // dd($validatedData) ;
+        // Update the customer's data
+        $timing->update($validatedData);
 
+        // Redirect to a success page or back to the edit form with a success message
+        return redirect('charges')->with('success', 'Charges updated successfully');
+    }
 
+    public function select_items($id)
+    {
+        
+        $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
+        ->select('items.*','categories.cat_name')
+        ->where('items.user_id', Auth::user()->id)
+        ->get();
 
+        
+       return view('catalogue.charges.select_items',compact('items'));
+    }
 
+    public function restrictItems(Request $request,$id)
+    {
+       
+        $selectedItemsIds = $request->input('selected_items');
+    //dd($id);
+        if (!empty($selectedItemsIds)) {
+            Item::whereIn('id', $selectedItemsIds)
+                ->update(['status' => $id]); 
+        }
+
+        // Redirect back or return a response as needed
+        
+        return redirect('charges');
+    }
 
 
 

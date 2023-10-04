@@ -71,7 +71,9 @@
     <tbody>
         @foreach($data as $c)
        <tr>
-       <td>{{ $c->name }}
+       <td> <a href="{{ route('charge.edit', ['id' => $c->id]) }}">
+             {{ $c->name }}
+            </a>
         <br>
         LKR {{$c->amount_per_quantity}} on {{$c->applicable_on}}
        </td>

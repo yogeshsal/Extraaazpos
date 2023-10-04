@@ -130,11 +130,6 @@ Route::put('/category-timing/{id}', [App\Http\Controllers\CategoryTimingControll
 Route::get('/category-timing/select_category/{id}', [App\Http\Controllers\CategoryTimingController::class, 'select_category'])->name('category-timing.select_category');
 Route::post('/associate-categories/{id}', [App\Http\Controllers\CategoryTimingController::class,'associateCategories'])->name('associate.categories');
 
-
-
-
-
-
 Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController::class, 'getitems']);
 
 //discount
@@ -153,7 +148,10 @@ Route::put('/taxes/{id}', [App\Http\Controllers\TaxController::class,'update'])-
 //charges
 Route::get('/charges', [App\Http\Controllers\ChargeController::class, 'index']);
 Route::post('/create-charge', [App\Http\Controllers\ChargeController::class, 'store'])->name('catalogue.store');
-Route::get('/charges/{id}/edit', [App\Http\Controllers\ChargeController::class,'edit'])->name('catalogue.edit');
+Route::get('/charges/edit/{id}', [App\Http\Controllers\ChargeController::class,'edit'])->name('charge.edit');
+Route::put('/charges/{id}', [App\Http\Controllers\ChargeController::class,'update'])->name('charge.update');
+Route::get('/charges/select_items/{id}', [App\Http\Controllers\ChargeController::class, 'select_items'])->name('charge.select_items');
+Route::post('/restrict-items/{id}', [App\Http\Controllers\ChargeController::class,'restrictItems'])->name('restrict.items');
 
 
 
