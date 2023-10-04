@@ -14,50 +14,24 @@ class ItemController extends Controller
     
     public function index()
     {
-        $currentUserId = Auth::user()->id;
-        //dd($currentUserId);
-        $data = Item::where('user_id', $currentUserId)->get(); // Fetch all posts 
-        
-        //dd($data);
-        if (!empty($data) && isset($data[0]['item_category_id'])) {
-            $category_id = $data[0]['item_category_id'];
-        } else {            
-            $category_id = '0';
-        }
+        $currentUserId = Auth::user()->id;        
+        $data = Item::where('user_id', $currentUserId)->with('category')->get(); 
+        $resultArray = $data->toArray(); 
 
         if (count($data) > 0) {
             $userid = $data[0]['user_id'];
             $user_name = User::where('id', $userid)->first();   
-            $user_name = $user_name['name'];
-            // Now you can safely access $userid
+            $user_name = $user_name['name'];            
         } else {
             $user_name = '';
         }
         
-        
-
-        $category_name = Category::where('id', $category_id)->first();   
-        
-        if ($category_name !== null && is_array($category_name) && isset($category_name['cat_name'])) {
-            $category_name = $category_name['cat_name'];
-        } else {
-            // Handle the case where $category_name is null or not an array
-        }
-        
-        
-       
-        // $locid = $category_name['loc_id'];        
-        // $loc_name = Location::where('id', $locid)->first(); 
-        
-        // $category_name= $category_name['name'];
-        // $location_name = $loc_name['name'];
-
-        $categories = Category::pluck('cat_name', 'id'); // Assuming 'name' is the column for category names and 'id' is the column for category IDs
+        $categories = Category::pluck('cat_name', 'id'); 
         $locations = Location::where('user_id', $currentUserId)
-        ->pluck('name', 'id'); // Assuming 'name' is the column for location names and 'id' is the column for location IDs
+        ->pluck('name', 'id'); 
         
-        return view('catalogue.items.index', compact('data', 'category_name', 'categories', 'locations', 'user_name'));       
-        //return view('items.index', compact('categories','locations'));
+        return view('catalogue.items.index', compact('data', 'categories', 'locations', 'user_name'));       
+       
     }
     
     public function store(Request $request)

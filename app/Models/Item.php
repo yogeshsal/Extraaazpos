@@ -30,4 +30,9 @@ class Item extends Model
             'item_modifier_id',
             'item_advance_order',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'id');
+    }
 }

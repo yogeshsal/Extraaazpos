@@ -90,7 +90,7 @@
 @endif
 
 <div id="content1">
-  <div class="tabContainer">
+    <div class="tabContainer">
     <ul class="tabs">
       <li><a src="tab1" href="javascript:void(0);" class="active">Basic Information</a></li>
       <li><a src="tab2" href="javascript:void(0);">images</a></li>
@@ -193,9 +193,34 @@
             </div>
         </div>
         <div id="tab3">
-            <span>Inside Tab 3, how <b>interesting</b>.</span>             
-
-        </div>        
+            <div class="card shadow p-3">
+                <div class="row">
+                    <div class="col">
+                        <h4>Associated Items</h4>
+                    </div>
+                    <div class="col-auto">
+                        <a type="button" class="btn btn-orange" href="">Update Items</a>  
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow p-3 mt-3">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">NAME</th>                            
+                            <th scope="col">CATEGORY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>                        
+                        <td>Mark</td>
+                        <td>Otto</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>        
     </div>
     <!-- /tabContent -->
   </div>

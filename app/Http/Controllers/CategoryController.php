@@ -12,6 +12,7 @@ class CategoryController extends Controller
     public function index()
     {
         $data = Category ::where('user_id',Auth::user()->id)->get();
+        
 
         $location =Location::where('user_id',Auth::user()->id)->get();
         

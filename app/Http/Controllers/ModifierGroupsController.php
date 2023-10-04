@@ -70,7 +70,6 @@ class ModifierGroupsController extends Controller
             
         ]);
         $modifiergroup = ModifierGroup::find($id);
-
         if (!$modifiergroup) {
             // Handle the case when the customer with the given ID is not found
             abort(404);

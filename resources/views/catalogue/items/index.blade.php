@@ -80,7 +80,7 @@
             <th class="grey-background">NAME</th>
             <th class="grey-background">ASSOCIATED LOCATIONS</th>
             <th class="grey-background">CATEGORY</th>
-            <th class="grey-background">SALES PRICE (LKR)</th>
+            <th class="grey-background">SALES PRICE (INR)</th>
             <th class="grey-background">UPDATED</th>
         </tr>
     </thead>
@@ -96,7 +96,7 @@
                 <a href="{{ route('items.edit', ['id' => $data->id]) }}">{{ $data->item_name }}</a>
                 </td>
                <td>{{$data->item_pos_code}}</td>                   
-               <td>{{$category_name->cat_name}}</td>     
+               <td>{{ $data->category->cat_name }}</td>     
                <td>{{$data->item_default_sell_price}} <br> <del>{{$data->item_markup_price}}</del></td>
                 <td>{{ $data->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
             </tr>
