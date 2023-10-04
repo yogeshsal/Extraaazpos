@@ -90,7 +90,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="cat_timing_group">Category Timing Group:</label>
-                            <input type="text" name="cat_timing_group" class="form-control" required>
+                            <select name="cat_timing_group" class="form-select" aria-label="Default select example">
+                                <option selected>------</option>
+                                @foreach($timing as $t)
+                                <option value="{{$t->id}}">{{$t->name}}</option>
+                                @endforeach
+                                
+                            </select>
                         </div>
                     </div>
                 </div>

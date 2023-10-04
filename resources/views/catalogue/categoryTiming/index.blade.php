@@ -51,6 +51,47 @@
                     </div>
                 </div>
 
+                <br>
+
+                <div id="dvPassport">
+    <div class="weekDays-selector">
+        <input type="checkbox" id="chkEveryday" name="days[]" value = "0" class="form-check-input" >
+        <label for="chkEveryday" class="form-check-label">Everyday</label>
+        <br>
+        <div id="week">
+            <div class="form-check form-check-inline">
+                <input type="checkbox"  name="days[]" value = "1" id="weekday-mon" class="form-check-input weekday">
+                <label for="weekday-mon" class="form-check-label">MON</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox"  name="days[]" value = "2" id="weekday-tue" class="form-check-input weekday">
+                <label for="weekday-tue" class="form-check-label">TUE</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox"  name="days[]" value = "3" id="weekday-wed" class="form-check-input weekday">
+                <label for="weekday-wed" class="form-check-label">WED</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox"  name="days[]" value = "4" id="weekday-thu" class="form-check-input weekday">
+                <label for="weekday-thu" class="form-check-label">THU</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox"  name="days[]" value = "5" id="weekday-fri" class="form-check-input weekday">
+                <label for="weekday-fri" class="form-check-label">FRI</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" name="days[]" value = "6 id="weekday-sat" class="form-check-input weekday">
+                <label for="weekday-sat" class="form-check-label">SAT</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="checkbox" name="days[]" value = "7" id="weekday-sun" class="form-check-input weekday">
+                <label for="weekday-sun" class="form-check-label">SUN</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+
                 <button type="button" class="btn btn-secondary mt-3" data-dismiss="modal">Cancle</button>
                 <button type="submit" class="btn btn-orange mt-3">Save</button>
             </form>
@@ -72,7 +113,10 @@
   <tbody>
         @foreach($time as $t)
         <tr>
-            <td>{{$t->name}}
+            <td>
+            <a href="{{ route('category-timing.edit', ['id' => $t->id]) }}">
+             {{ $t->name }}
+            </a>
                 <br>
                 handle :{{$t->handle}}
             </td>
@@ -94,5 +138,27 @@
     </div>
 </div>
 
+<script>
+   $(function () {
+        $("#chkEveryday").click(function () {
+           
+            var isChecked = $(this).is(":checked");
+            $(".weekday").prop("checked", isChecked);
 
+            if ($(this).is(":checked")) {
+                $("#week").hide();
+                
+            } else {
+                $("#week").show();
+                
+            }
+         });
+
+        $(".weekday").click(function () {
+            var areAllDaysChecked = $(".weekday:checked").length === 7;
+            $("#chkEveryday").prop("checked", areAllDaysChecked);
+            
+        });
+    });
+</script>
 @endsection

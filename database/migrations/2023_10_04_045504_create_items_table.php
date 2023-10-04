@@ -37,6 +37,8 @@ return new class extends Migration
             $table->string('item_external_id')->nullable();
             $table->unsignedBigInteger('item_modifier_id')->nullable();
             $table->boolean('item_advance_order')->nullable();
+            $table->integer('cat_timing_id')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }
