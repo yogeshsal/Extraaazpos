@@ -102,7 +102,7 @@
             <li class="sub"><a href="/modifiergroups">Modifier Groups</a></li>
             <li class="sub"><a href="/taxes">Taxes</a></li>
             <li class="sub"><a href="/charges">Charges</a></li>
-            <li class="sub"><a href="/owner">Discounts</a></li>
+            <li class="sub"><a href="/discounts">Discounts</a></li>
             <li class="sub"><a href="/owner">Billing Entities</a></li>
         </ul>
       </li>  

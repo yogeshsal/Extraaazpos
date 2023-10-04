@@ -133,6 +133,11 @@ Route::post('/category-timing', [App\Http\Controllers\CategoryTimingController::
 
 Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController::class, 'getitems']);
 
+//discount
+Route::get('/discounts', [App\Http\Controllers\DiscountController::class, 'index']);
+Route::post('/discounts', [App\Http\Controllers\DiscountController::class, 'add_discount']);
+
+
 
 //Taxes
 // Route::view('taxes', 'catalogue.taxes.index');
