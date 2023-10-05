@@ -98,7 +98,7 @@
         <!-- <i class="fa-solid fa-caret-down"></i> -->
         </a>
         <ul id="catalogue" class="submenu">
-            <li class="sub"><a href="/items">testt</a></li>
+            <li class="sub"><a href="/items">items</a></li>
             <li class="sub"><a href="/categories">Categories</a></li>
             <li class="sub"><a href="/category-timing">Category Timings</a></li>
             <li class="sub"><a href="/modifiergroups">Modifier Groups</a></li>
