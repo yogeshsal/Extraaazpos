@@ -23,6 +23,7 @@ class RegisterSessionController extends Controller
         }
         $data = $dataQuery->paginate(20);        
         
+        //this location is for search match
         $location= Location::where('user_id', Auth::user()->id)->get();     
 
         return view('register_session',['sessions' => $data,'location'=>$location]);
