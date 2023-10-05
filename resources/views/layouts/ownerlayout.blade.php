@@ -9,7 +9,8 @@
         #onlineorder,
         #catalogue,
         #rawmaterial,
-        #possetting {
+        #possetting,
+        #companyadmin {
             list-style-type: none;
             padding-left: 0;
             display: none;
@@ -20,7 +21,8 @@
         #onlineorder li,
         #catalogue li,
         #rawmaterial li,
-        #possetting li
+        #possetting li,
+        #companyadmin li
         {
             margin-left: 10px;
         }
@@ -41,10 +43,7 @@
             background-color: orange; /* Change the background color on hover */
             border-color: orange; /* Change the border color on hover (optional) */
             color: black;
-        }
-        ul.submenu li.sub {
-            list-style-type: none;
-        }
+        }       
 </style>
 
 
