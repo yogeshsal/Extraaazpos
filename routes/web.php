@@ -47,7 +47,7 @@ Route::get('closeregister', [App\Http\Controllers\DailyRegisterController::class
 // });
 
 Route::get('/location', function () {
-    return view('location');
+    return view('location.location');
 });
 
 
