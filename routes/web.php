@@ -154,5 +154,12 @@ Route::get('/charges/select_items/{id}', [App\Http\Controllers\ChargeController:
 Route::post('/restrict-items/{id}', [App\Http\Controllers\ChargeController::class,'restrictItems'])->name('restrict.items');
 
 
-
+//company-admin
+Route::view('settings', 'company-admin.settings');
+Route::view('user-roles', 'company-admin.user-roles');
+Route::view('employees', 'company-admin.employees');
+Route::view('locations', 'company-admin.locations');
+Route::view('brands', 'company-admin.brands');
+Route::view('print_templates', 'company-admin.print_templates');
+Route::view('integrations', 'company-admin.integrations');
 
