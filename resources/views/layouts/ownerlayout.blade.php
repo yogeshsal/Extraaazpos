@@ -42,6 +42,9 @@
             border-color: orange; /* Change the border color on hover (optional) */
             color: black;
         }
+        ul.submenu li.sub {
+            list-style-type: none;
+        }
 </style>
 
 
@@ -124,7 +127,23 @@
         </ul>
       </li>  
 
-
+      <!-- Company Admin-->
+      <li class="nav-item" >
+        <a class="nav-link"  onclick="togglecompanyadmin()" href="#companyadmin"  >
+        <i class="fa fa-cogs"></i>&nbsp;Company Admin
+        </a>
+        <ul id="companyadmin" class="submenu">
+            <li class="sub"><a class="nav-link" href="/settings">Settings</a></li>
+            <li class="sub"><a href="/user_role">User Role</a></li>
+            <li class="sub"><a href="/employees">Employees</a></li>
+            <li class="sub"><a href="/location">Location</a></li>
+            <li class="sub"><a href="/brands">Brands</a></li>
+            <li class="sub"><a href="/print_templates">Print Templates</a></li>
+            <li class="sub"><a href="/integration">Integrations</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/owner"><i class="fa-solid fa-tv"></i>&nbsp;Refer & Earn</a>
       
       <!-- <li class="nav-item">
         
@@ -191,7 +210,17 @@
                 submenu.style.display = "none";
             }
         }
+
+        function togglecompanyadmin() {
+            var submenu = document.getElementById("companyadmin");
+            if (submenu.style.display === "none" || submenu.style.display === "") {
+                submenu.style.display = "block";
+            } else {
+                submenu.style.display = "none";
+            }
+        }
     </script>
+
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     
     <script>

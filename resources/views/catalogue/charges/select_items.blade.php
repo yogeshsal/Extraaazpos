@@ -33,8 +33,7 @@
     <td><input value="{{$i->id}}" class="items-checkbox" type="checkbox" name="selected_items[]" id="items-{{$i->id}}"></td>        
     <td>{{$i->item_name}}</td>
     <td>{{$i->cat_name}}</td>
-    <td>{{$i->item_sell_price}}</td>
-     
+    <td>{{$i->item_default_sell_price}}</td>     
     </tr>
     @endforeach
   </tbody>
