@@ -56,9 +56,20 @@ class CategoryController extends Controller
         $categories = Category::all();
         $timing = CategoryTiming::where('user_id',Auth::user()->id)->get();;
         $category_desc = $category['cat_desc'];
+
+
+
+
+        $items = Item::
+        join('categories', 'items.item_category_id', '=', 'categories.id')
+
+        ->select('items.*', 'categories.cat_name')
+        ->where('categories.id', $id)
+        ->get();
+        //dd($items);
         // $categories = Category::pluck('item_name', 'id');
         // $locations = Location::where('user_id', $currentUserId)->pluck('item_name', 'id'); 
-        return view('catalogue.categories.edit', compact('category','categories', 'category_desc','timing'));
+        return view('catalogue.categories.edit', compact('category','categories', 'category_desc','timing','items'));
     }
 
     public function catupdate(Request $request, $id)

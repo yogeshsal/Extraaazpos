@@ -92,11 +92,16 @@
                     <img src="{{ asset('storage/' . $data->item_image) }}" alt="Image" class="table-image">
                 @else
                     <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
-                @endif
+                @endif                
+                @if ($data->item_food_type === 'Vegetarian')
+                    <img src="{{ asset('storage/veg.png') }}" alt="Vegetarian Logo">
+                @elseif ($data->item_food_type === 'Non Vegetarian')
+                    <img src="{{ asset('storage/nonveg.png') }}" alt="Non-Vegetarian Logo">
+                @endif                               
                 <a href="{{ route('items.edit', ['id' => $data->id]) }}">{{ $data->item_name }}</a>
                 </td>
                <td>{{$data->item_pos_code}}</td>                   
-               <td>{{ $data->category->cat_name }}</td>     
+               <td>{{ optional($data->category)->cat_name }}</td>   
                <td>{{$data->item_default_sell_price}} <br> <del>{{$data->item_markup_price}}</del></td>
                 <td>{{ $data->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
             </tr>
