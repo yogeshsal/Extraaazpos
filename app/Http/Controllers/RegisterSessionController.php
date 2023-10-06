@@ -12,45 +12,24 @@ class RegisterSessionController extends Controller
 {
     public function index(Request $request)
     {
-        $locationId = $request->input('loc_id');
-
-        // dd($locationId);
-
-        $dataQuery = Daily_register::leftjoin('users', 'users.id','=','daily_registers.user_id')
-        ->select('daily_registers.id as session_id','users.name','daily_registers.*');
-        // ->where('daily_registers.loc_id',$locationId)
+        $locationId = $request->input('loc_id');        
+        
+        $dataQuery = Daily_register::leftJoin('users', 'users.id', '=', 'daily_registers.user_id')
+    ->leftJoin('locations', 'locations.id', '=', 'daily_registers.loc_id')
+    ->select('daily_registers.id as session_id', 'users.name as username', 'daily_registers.*', 'locations.name as location_name', 'locations.city as locationcity');
+            
         if ($locationId) {
             $dataQuery->where('daily_registers.loc_id', $locationId);
         }
-        $data = $dataQuery->paginate(20);
-
-        $location= Location::where('user_id', Auth::user()->id)->get();
+        $data = $dataQuery->paginate(20);        
         
+        //this location is for search match
+        $location= Location::where('user_id', Auth::user()->id)->get();     
+
         return view('register_session',['sessions' => $data,'location'=>$location]);
     }
 
 
-
-//     public function fetchSessions(Request $request)
-// {
-//     $locationId = $request->input('loc_id');
-
-//     // dd($locationId);
-
-//     $dataQuery = Daily_register::leftjoin('users', 'users.id','=','daily_registers.user_id')
-//     ->select('daily_registers.id as session_id','users.name','daily_registers.*');
-//     // ->where('daily_registers.loc_id',$locationId)
-//     if ($locationId) {
-//         $dataQuery->where('daily_registers.loc_id', $locationId);
-//     }
-//     $data = $dataQuery->paginate(20);
-
-//     $location= Location::where('user_id', Auth::user()->id)->get();
-
-//     return view('register_session', ['sessions' => $data,'location'=>$location])->render();
-// }
-
-   
 
 
 

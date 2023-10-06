@@ -48,6 +48,7 @@
 </form>
 
     </div>
+
  
 
 
@@ -75,15 +76,16 @@
     <tr>
       
       <td>{{$s->session_id}}</td>
-      <td>Restorant Name<br>
-       at {{$s->location}}</td>
-      <td>{{$s->created_at-> format('d M, Y - h:i A')}}
+      <td>{{$s->location_name}}<br>
+       at {{$s->locationcity}}</td>
+      
+      <td>{{$s->created_at ->format('d M, Y - h:i A')}}
         <br>
-        by {{$s->name}}
+        by {{$s->username}}
       </td>
       <td>{{$s->updated_at ->format('d M, Y - h:i A')}}
       <br>
-        by {{$s->name}}
+        by {{$s->username}}
       </td>
       <td><?php 
              $createdAt = $s->created_at;

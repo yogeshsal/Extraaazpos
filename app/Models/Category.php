@@ -21,6 +21,11 @@ class Category extends Model
         
     ];
 
+    public function items()
+{
+    return $this->hasMany(Item::class, 'item_category_id', 'id');
+}
+
     
     
 }

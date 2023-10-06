@@ -5,14 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Location;
+use App\Models\Item;
 use App\Models\CategoryTiming;
 use Auth;
+use DB;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $data = Category ::where('user_id',Auth::user()->id)->get();
+        $data = Category ::where('user_id',Auth::user()->id)
+        ->with('items')
+        ->get();
+        // ->toArray();
+
+        //dd($data);
         
 
         $location =Location::where('user_id',Auth::user()->id)->get();
@@ -121,7 +128,30 @@ class CategoryController extends Controller
 
 
 
+public function showitems($id){  
+    
+    //dd($id);    
+    $items = Item::
+    join('categories', 'items.item_category_id', '=', 'categories.id')
+    ->select('items.*', 'categories.cat_name')
+    ->get();
+    //dd($items);
+    return view('catalogue.categories.select-items', compact('items'));
+}
 
 
+    public function updateItems($id, $categoryid)
+    {
+        //dd($id);
+        //dd($categoryid)
+    
+        DB::table('items')
+        ->where('id', $id)        
+        ->update([
+            'item_category_id' => $categoryid, 
+        ]);   
+
+         return redirect('categories');
+     }
 
 }

@@ -12,7 +12,8 @@ class LocationController extends Controller
 
 
     $data = new Location;
-    $data->name = $request->name;    
+    $data->name = $request->name; 
+    $data->city = $request->city;    
     $data->user_id = Auth::user()->id;    
     $data->save();
     return redirect('/location')->with('status', 'Location has been added');
