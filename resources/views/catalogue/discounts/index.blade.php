@@ -4,6 +4,8 @@
 @section('ownercontent')
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+
 <style>
     .grey-background {
         background-color: grey;
@@ -40,6 +42,18 @@
         background-color: transparent;
         color:orange;
     }
+   
+    .toggle.ios, .toggle-on.ios, .toggle-off.ios {
+        border-radius: 20px;
+        background-color: rgb(255, 149, 0); /* Set the background color to grey */
+    }
+
+    /* Style the toggle handle */
+    .toggle.ios .toggle-handle {
+        border-radius: 20px;
+        background-color: white; /* Set the handle color to white or any desired color */
+    }
+
 </style>
 <br>
 <div class="card shadow">
@@ -123,28 +137,27 @@
 
 
                     <div class="row">
-                        <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="name">Discount Type</label>
-                            <select name="discount_type" class="form-select" aria-label="Default select example">
-                                <option selected></option>
+                            <select id="discount_type" class="form-select" aria-label="Default select example">
+                                <option selected value=""></option>
                                 <option value="Fixed">Fixed</option>
                                 <option value="Percentage">Percentage</option>
-                                
-                                </select>
-                            </div>
+                            </select>
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6 mt-0"> <!-- Add mt-0 class here -->
                         <label for="basic-url">Discount Value</label>
-                            <div class="input-group mb-3">
+                        <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" >₹</span>
+                                <span id="discount_icon" class="input-group-text"></span>
                             </div>
-                            <input name="discount_value"  type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                            </div>
+                            <input name="discount_value" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                         </div>
                     </div>
                     
+                </div>
                     <div class="form-group">
                         <label for="address">Discription:</label>
                         <textarea name="desc" class="form-control" rows="3"></textarea>
@@ -173,7 +186,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mt-3">
-                        <input type="checkbox" checked data-toggle="toggle" id="toggleButton">
+                            <input type="checkbox" checked data-toggle="toggle" id="toggleButton" data-style="ios">
+
                         </div>
                         <div class="col-md-6">
                         <div class="form-group" id="textboxContainer">
@@ -223,21 +237,24 @@
     </div>
 </div>
 <!-- edit modal -->
-<script>
+
+    <script>
         $(document).ready(function () {
-            // Initialize the toggle button
+            const discountTypeSelect = $('#discount_type');
+            const discountIcon = $('#discount_icon');
             $('#toggleButton').bootstrapToggle();
 
-            // Function to handle toggle change event
-            $('#toggleButton').change(function () {
-                var isChecked = $(this).prop('checked');
-                $('#textboxContainer').toggle(isChecked);
-            });
-        });
+// Function to handle toggle change event
+$('#toggleButton').change(function () {
+    var isChecked = $(this).prop('checked');
+    $('#textboxContainer').toggle(isChecked);
+});
+            // Initial state
+            updateDiscountIcon();
 
-
-
-        $(document).ready(function () {
+            // Add an event listener to the select element to detect changes
+            discountTypeSelect.on('change', function () {
+                updateDiscountIcon();
             $("#selectOption").change(function () {
                 var selectedValue = $(this).val();
                 var label = "";
@@ -252,7 +269,19 @@
                 $("#dynamicLabel").text(label);
             });
         });
+ 
+    
+        function updateDiscountIcon() {
+                const selectedValue = discountTypeSelect.val();
+                
+                if (selectedValue === 'Fixed') {
+                    discountIcon.text('₹'); // Rupee icon
+                } else if (selectedValue === 'Percentage') {
+                    discountIcon.text('%'); // Percentage symbol
+                } else {
+                    discountIcon.text('₹');  // Clear the icon if no option is selected
+                }
+            }
+        });
     </script>
-
-
 @endsection

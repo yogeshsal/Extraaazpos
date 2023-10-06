@@ -89,7 +89,7 @@
             <tr>           
                 <td>
                 @if ($data->item_image)
-                    <img src="{{ asset('storage/' . $data->item_image) }}" alt="Image" class="table-image">
+                    <img src="{{ asset('storage/' . $data->item_image) }}" alt="Image" class="table-image" width="20" height="20">
                 @else
                     <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
                 @endif                
