@@ -41,15 +41,17 @@
                     <img src="{{ asset('storage/'.$category->cat_image) }}" alt="Image" class="table-image">
                 @else
                     <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
-                @endif
-                
+                @endif               
                
                 </div>
+                
                 <div style="margin-left: 10px;">
                 <a href="{{ route('categories.edit', ['id' => $category->id]) }}">{{$category->cat_name}}</h6></a>
                     
                     <p>Handle: {{$category->cat_handle}}</p>
+                    <p>{{ $category->items->count() }} items</p>
                 </div>
+                
             </div>
         </div>
     @endforeach
