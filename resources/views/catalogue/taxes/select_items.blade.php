@@ -11,7 +11,8 @@
     </div>
    
     <div class="col-lg-7">
-    <form id="category-form" method="POST" action="{{ route('tax.items', ['id' => Route::current()->parameter('id')]) }}">      @csrf
+    <form  method="POST" action="{{ route('tax.items', ['id' => Route::current()->parameter('id')]) }}">  
+          @csrf
     <!-- Your checkboxes and table here -->
 
     <button class="btn btn-orange m-1" type="submit">Save</button>

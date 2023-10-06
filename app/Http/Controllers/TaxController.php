@@ -44,20 +44,17 @@ class TaxController extends Controller
     {        
         $currentUserId = Auth::user()->id;
         $tax = Tax::find($id);
-        $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
-        ->select('items.*','categories.cat_name')
-        ->where('items.tax_status',$id)
+         $items = Item::leftJoin('categories', 'items.item_category_id', '=', 'categories.id')
+        ->select('items.*', 'categories.cat_name')
+        ->whereJsonContains('items.tax_status', $id)
         ->get();
-
-        return view('catalogue.taxes.edit', compact('tax','items'));
+         return view('catalogue.taxes.edit', compact('tax','items'));
     }
 
 
     public function update(Request $request, $id)
     {
-       
-          
-        $request->validate([
+         $request->validate([
              'name' => 'required',
              'tax_percentage' =>'required',
             ]);
@@ -95,18 +92,29 @@ class TaxController extends Controller
        return view('catalogue.taxes.select_items',compact('items'));
     }
 
-    public function taxItems(Request $request,$id)
+
+
+    public function taxItems(Request $request, $id)
     {
-       
         $selectedItemsIds = $request->input('selected_items');
-    //dd($id);
+
         if (!empty($selectedItemsIds)) {
-            Item::whereIn('id', $selectedItemsIds)
-                ->update(['tax_status' => $id]); 
+            // Retrieve the current tax_status values for the selected items
+            $currentTaxStatus = Item::whereIn('id', $selectedItemsIds)->pluck('tax_status')->toArray();
+
+            // Add null as the first element if it's not already present
+            if (!in_array(null, $currentTaxStatus)) {
+                array_unshift($currentTaxStatus, null);
+            }
+
+            // Merge the new $id into the current values and encode it as JSON
+            $newTaxStatus = json_encode(array_merge($currentTaxStatus, [$id]));
+
+            // Update the tax_status column with the new JSON array value
+            Item::whereIn('id', $selectedItemsIds)->update(['tax_status' => $newTaxStatus]);
         }
 
         // Redirect back or return a response as needed
-        
         return redirect('taxes');
     }
 

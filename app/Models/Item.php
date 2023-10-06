@@ -29,6 +29,11 @@ class Item extends Model
             'item_external_id',
             'item_modifier_id',
             'item_advance_order',
+            'tax_status'
+    ];
+
+    protected $casts = [
+        'tax_status' => 'array',
     ];
 
     public function category()
