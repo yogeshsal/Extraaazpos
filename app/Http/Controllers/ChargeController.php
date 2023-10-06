@@ -37,7 +37,7 @@ class ChargeController extends Controller
         
         $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
         ->select('items.*','categories.cat_name')
-        ->where('items.status',$id)
+        ->whereJsonContains('items.status', $id)
         ->get();
         
         return view('catalogue.charges.edit', compact('Charge','items'));
@@ -97,13 +97,22 @@ class ChargeController extends Controller
     {
        
         $selectedItemsIds = $request->input('selected_items');
-    //dd($id);
-        if (!empty($selectedItemsIds)) {
-            Item::whereIn('id', $selectedItemsIds)
-                ->update(['status' => $id]); 
-        }
 
-        // Redirect back or return a response as needed
+        if (!empty($selectedItemsIds)) {
+            // Retrieve the current tax_status values for the selected items
+            $currentTaxStatus = Item::whereIn('id', $selectedItemsIds)->pluck('status')->toArray();
+
+            // Add null as the first element if it's not already present
+            if (!in_array(null, $currentTaxStatus)) {
+                array_unshift($currentTaxStatus, null);
+            }
+
+            // Merge the new $id into the current values and encode it as JSON
+            $newTaxStatus = json_encode(array_merge($currentTaxStatus, [$id]));
+
+            // Update the tax_status column with the new JSON array value
+            Item::whereIn('id', $selectedItemsIds)->update(['status' => $newTaxStatus]);
+        }
         
         return redirect('charges');
     }
