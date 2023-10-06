@@ -1,7 +1,6 @@
 @extends('layouts.ownerlayout')
 @extends('layouts.app')
 @section('ownercontent')
-
 <!-- Include Bootstrap CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
 
@@ -15,137 +14,290 @@
         margin-bottom: 20px; /* Add space below each row */
     }
 </style>
+
+<style>
+    * {
+  margin: 0 auto;
+  box-sizing:border-box;
+  font-family: Roboto, sans-serif;
+}
+
+/* body{
+  background:#222;
+} */
+
+#content1 {
+  max-width: 100vw;
+}
+/* .tabContainer {
+  background: #333;
+  border: .45px solid #555;
+  margin: 0 auto;
+} */
+.tabContent {
+  padding: 10px;
+  text-align: left;
+  min-height:200px;
+  color:#000000;
+}
+/* Hide all but first tab */
+.tabContent > div:not(:first-child) {
+  display: none;
+}
+
+.tabContainer > .tabs {
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+.tabs li {
+  float: left;
+  display: flex;
+  flex: 1;
+}
+.tabs a {
+  position: relative;
+  background: #fff;
+  border-top: 3px solid rgba(0,0,0,0);
+  padding: 1em .5em;
+  float: left;
+  text-decoration: none;
+  color: #000000;
+  margin: 0 .1em 0 0;
+  font-size: 1em;
+  flex: 1;
+  transition: all .35s ease;
+}
+.tabs a.active {
+  border-top: 3px solid #f39d77;
+  color: #000000;
+  background: inherit;
+}
+.tabs a:hover {
+  background: #fff;
+  color: orange;
+}
+</style>
+
 <br>
-<div class="container">
-<div class="card shadow p-3">       
-        <form action="{{ route('taxes.update', $tax->id) }}" method="POST">
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+<h3>{{$tax->name}}</h3>
+
+    
+@php
+    // Calculate the time difference
+    $currentTime = now();
+    $updatedAt = $tax->updated_at;
+    $diff = $currentTime->diff($updatedAt);
+
+    // Determine the appropriate format based on the time elapsed
+    $formattedTime = '';
+
+    if ($diff->y > 0) {
+        $formattedTime = $diff->y . ' year' . ($diff->y > 1 ? 's' : '') . ' ago';
+    } elseif ($diff->m > 0) {
+        $formattedTime = $diff->m . ' month' . ($diff->m > 1 ? 's' : '') . ' ago';
+    } elseif ($diff->d > 0) {
+        $formattedTime = $diff->d . ' day' . ($diff->d > 1 ? 's' : '') . ' ago';
+    } elseif ($diff->h > 0) {
+        $formattedTime = $diff->h . ' hour' . ($diff->h > 1 ? 's' : '') . ' ago';
+    } elseif ($diff->i > 0) {
+        $formattedTime = $diff->i . ' minute' . ($diff->i > 1 ? 's' : '') . ' ago';
+    } else {
+        $formattedTime = 'just now';
+    }
+@endphp
+<h6>Last updated {{ $formattedTime }}</h6>
+<br>
+<div id="content1">
+  <div class="tabContainer">
+    <ul class="tabs">
+      <li><a src="tab1" href="javascript:void(0);" class="active">Basic Information</a></li>
+      <li><a src="tab2" href="javascript:void(0);">Items</a></li>
+        
+    </ul>
+    <div class="tabContent">
+        <div id="tab1">   
+            <div class="container shadow p-4">
+            <div>
+            <form action="{{ route('taxes.update',$tax->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name">Name:</label>
-                                <input type="text" name="name" class="form-control" value="{{ $tax->name }}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="items">Items:</label>
-                                <input type="text" name="items" class="form-control" value="">
-                            </div>
-                        </div>
-                    </div>
-
 
                     <div class="row form-row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">Handle:</label>
-                                <input type="text" name="handle" class="form-control" value="{{ $item->handle }}">
+                            <label for="tax_type">Type</label>
+                                <select name="tax_type" id="tax_type" class="form-control"  >
+                                    <option value="" disabled selected>Select Tax Type</option>                                         
+                                    <option value="gst">GST</option>
+                                    <option value="custom">Customn</option>
+                                    <option value="purchasereceive">PurchaseReceive</option>                                    
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="category">Category</label>
-                                <select name="category" id="category" class="form-control">
-                                <option value="" disabled selected>Select Category</option>
-                                    @foreach ($categories as $categoryId => $categoryName)
-                                        <option value="{{ $categoryId }}">{{ $categoryName }}</option>
-                                    @endforeach
+                            <label for="tax_code">Tax Code</label>
+                                <select name="tax_code" id="tax_code" class="form-control">  
+                                    <option value="" disabled selected>Select Tax Code</option>                                  
+                                    <option value="igst">IGST</option>
+                                    <option value="sgst">SGST</option>
+                                    <option value="cgst">CGST</option>                                    
                                 </select>
                             </div>
                         </div>
                     </div>
 
+
+                    <div class="row form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" class="form-control" value="{{$tax->name}}">
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="row form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <input style="height: 80px;" type="text" name="description" class="form-control" value="{{$tax->description}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="applicable_on">Applicable On</label>
+                                <select name="applicable_on" id="applicable_on" class="form-control" >
+                                    <option value="" disabled selected>Select Applicable On</option>                                         
+                                    <option value="item_price">Item Price</option>
+                                    <option value="charge">Charge</option>                                                                       
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <div class="form-group">
+                                <label for="tax_percentage">Tax Percentage:</label>
+                                <input type="text" name="tax_percentage" class="form-control"  value="{{$tax->tax_percentage}}">
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="row form-row">
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="location">POS Code</label>
-                                <select name="pos_code" id="pos_code" class="form-control">
-                                    <option value="" disabled selected>Select POS</option>
-                                    @foreach ($locations as $locationId => $locationName)
-                                        <option value="{{ $locationId }}">{{ $locationName }}</option>
-                                    @endforeach
+                        <div class="form-group">
+                            <label for="applicable_modes">Applicable Modes</label>
+                                <select name="applicable_modes" id="applicable_modes" class="form-control" >
+                                    <option value="" disabled selected>Select Applicable Modes</option>                                         
+                                    <option value="online">Online</option>
+                                    <option value="in_store">In Store</option>                                                                       
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="food_type">Food Type</label>
-                                <select name="food_type" id="food_type" class="form-control">
-                                    <option value="" disabled selected>Select Food Type</option>
-                                    <option value="vegetarian">Vegetarian</option>
-                                    <option value="non_vegetarian">Non Vegetarian</option>
-                                    <option value="eggetarian">Eggetarian</option>                                    
-                                </select>
-                            </div>
+                            
                         </div>
                     </div>
-
-
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name">Sort Order:</label>
-                                <input type="text" name="sort_order" class="form-control" value="{{ $item->sort_order }}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="is_recommended">Is Recommended</label><br>
-                                <input type="checkbox" id="is_recommended" name="is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row form-row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="is_recommended">Is Package Good</label><br>
-                            <input type="checkbox" id="is_package_good" name="is_package_good" data-toggle="switch" data-on-text="Yes" data-off-text="No">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="is_recommended">Sell by Weight</label><br>
-                            <input type="checkbox" id="sell_by_weight" name="sell_by_weight" data-toggle="switch" data-on-text="Yes" data-off-text="No">
-                        </div>
-                    </div>
-                    </div>
-
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name">Default Sales Price:</label>
-                                <input type="text" name="default_sales_price" class="form-control" value="{{$item->default_sales_price}}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <div class="form-group">
-                                <label for="name">Markup Price (Optional):</label>
-                                <input type="text" name="markup_price" class="form-control" value="{{$item->markup_price}}">
-                            </div>
-                            </div>
-                        </div>
-                    </div> 
 
                     <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-                    <div class="modal-footer form-row">
-                        <button type="button" class="btn btn-secondary m-2" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-orange ">Save</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-orange">Save</button>
                     </div>
                 </form>
+
+            </div>
+            </div>  
+        </div>
+        <div id="tab2">
+        <div class="card shadow p-3">
+            <div class="row">
+                 <div class="col">
+                     <h4>All Items</h4>
+                </div>
+            <div class="col-auto">
+                <a type="button" class="btn btn-orange" href="{{ route('taxes.select_items', $tax->id ) }}">Restrict items</a>  
+
+
+             </div>
+            </div>
+            </div>
+
+            <div class="card shadow p-3 mt-3">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($items as $i)
+                    <tr>
+                    <td>{{$i->item_name}}</td>
+                    <td>{{ $i->cat_name }}</td>
+                 </tr>
+                   @endforeach
+                </tbody>
+                </table>
+            
+        </div>
+            
+
+        </div>
+              
     </div>
+    <!-- /tabContent -->
+  </div>
+  <!-- /tabContainer -->
+  
 </div>
+<!-- /content -->
+
+
+
+
 
 <script>
     $(document).ready(function () {
-        $('#is_recommended').bootstrapSwitch();
-        $('#is_package_good').bootstrapSwitch();
-        $('#sell_by_weight').bootstrapSwitch();
+        $('#item_is_recommended').bootstrapSwitch();
+        $('#item_is_package_good').bootstrapSwitch();
+        $('#item_sell_by_weight').bootstrapSwitch();
     });
 </script>
 
+<script>
+    $("#content").on("click", ".tabContainer .tabs a", function(e) {
+  e.preventDefault(),
+  $(this)
+    .parents(".tabContainer")
+    .find(".tabContent > div")
+    .each(function() {
+      $(this).hide();
+    });
+  
+  $(this)
+    .parents(".tabs")
+    .find("a")
+    .removeClass("active"),
+    $(this).toggleClass("active"), $("#" + $(this).attr("src")).show();
+});
+
+
+</script>
 @endsection
