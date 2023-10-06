@@ -207,7 +207,7 @@
                         <h4>Associated Items</h4>
                     </div>
                     <div class="col-auto">
-                        <a type="button" class="btn btn-orange" href="">Update Items</a>  
+                    <a href="{{ route('categories.items', ['id' => $category->id]) }}" type="button" class="btn btn-orange">Update Items</a>  
                     </div>
                 </div>
             </div>

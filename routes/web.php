@@ -113,6 +113,14 @@ Route::get('/categories/edit/{id}', [App\Http\Controllers\CategoryController::cl
 Route::put('/categories/{id}', [App\Http\Controllers\CategoryController::class,'catupdate'])->name('categories.update');
 Route::put('/categories/{id}/update-image', [App\Http\Controllers\CategoryController::class,'updateImage'])->name('categories.updateImage');
 
+Route::view('select-item', 'catalogue.categories.select-items');
+Route::get('/show-items/{id}', [App\Http\Controllers\CategoryController::class, 'showitems'])->name('categories.items');
+//Route::post('/update-items/{id}', [App\Http\Controllers\CategoryController::class, 'updateItems'])->name('updateItems');
+//Route::post('/update-items', [App\Http\Controllers\CategoryController::class, 'updateItems'])->name('updateItems');
+
+Route::get('/updateitems/{id}/{catid}', [App\Http\Controllers\CategoryController::class, 'updateItems'])->name('updateItems');
+
+
 //MODIFIER-GROUP
 //Route::view('modifier-groups', 'modifier-group.index');
 Route::get('/modifiergroups', [App\Http\Controllers\ModifierGroupsController::class, 'index']);

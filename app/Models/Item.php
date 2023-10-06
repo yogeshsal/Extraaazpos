@@ -31,6 +31,10 @@ class Item extends Model
             'item_advance_order',
     ];
 
+    // protected $casts = [
+    //     'item_category_id' => 'array',
+    // ];
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'item_category_id');
