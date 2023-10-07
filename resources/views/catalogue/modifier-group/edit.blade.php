@@ -116,11 +116,14 @@
                             <div class="form-group">
                             <label for="modifier_group_type">Modifier Group Type <span class="text-danger">*</span></label>
                                 
-                            <select name="modifier_group_type" id="modifier_group_type" class="form-control">
-                                    <option value="" disabled selected>Select Type</option>
-                                    <option value="add_on">Add On</option>
-                                    <option value="variant">Variant</option>                                                                        
-                                </select>
+                            <select name="modifier_group_type" class="form-control">
+    @foreach ($modifiergrouptype as $modifiergrouptypeId => $modifiergrouptypeName)
+        <option value="{{ $modifiergrouptypeName }}" 
+            {{ old('modifier_group_type', $modifiergroup->modifier_group_type) == $modifiergrouptypeName ? 'selected' : '' }}>
+            {{ $modifiergrouptypeName }}
+        </option>
+    @endforeach
+</select>
                             </div>
                         </div>
                         <div class="col-md-6">

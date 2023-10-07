@@ -129,7 +129,7 @@
                 <div class="card-body">
                 <button type="button" class="btn btn-primary">Note</button>
                 <button type="button" class="btn btn-secondary">Hold</button>
-                <button type="button" class="btn btn-success">Finish Order
+                <button type="button" class="btn btn-danger">Finish Order
             </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\models\ModifierGroup;
+use App\models\Modifier_group_type;
 use App\models\User;
 use Auth;
 
@@ -22,7 +23,9 @@ class ModifierGroupsController extends Controller
         } else {
             $user_name = '';
         }
-        return view('catalogue.modifier-group.index',compact('data', 'user_name'));
+
+        $modifiergrouptype = Modifier_group_type::pluck('type', 'id');  
+        return view('catalogue.modifier-group.index',compact('data', 'user_name','modifiergrouptype'));
     }
 
 
@@ -49,11 +52,12 @@ class ModifierGroupsController extends Controller
         
         $currentUserId = Auth::user()->id;
         $modifiergroup = ModifierGroup::find($id);
+        $modifiergrouptype = Modifier_group_type::pluck('type', 'id');  
         // $categories = Category::all();
         // $category_desc = $category['cat_desc'];
         // $categories = Category::pluck('item_name', 'id');
         // $locations = Location::where('user_id', $currentUserId)->pluck('item_name', 'id'); 
-        return view('catalogue.modifier-group.edit', compact('modifiergroup'));
+        return view('catalogue.modifier-group.edit', compact('modifiergroup','modifiergrouptype'));
     }
 
 

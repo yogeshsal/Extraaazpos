@@ -68,10 +68,20 @@
 <div class="card shadow">
     <div class="card-body d-flex justify-content-between align-items-center">
         <h3>Modifier Groups</h3>
-        <div>
+        <div class="d-flex align-items-center">
+            <div class="input-group mr-2">
+                <button type="button" class="btn btn-outline-secondary m-1">
+                <i class="fa fa-question-circle" aria-hidden="true"></i> Help
+                </button>
+                <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
+                <button type="button" class="btn btn-outline-secondary m-1"><i class="fa fa-filter" aria-hidden="true"></i>&nbsp;Filters</button>           
+                <a href="" class="btn btn-orange m-1" data-toggle="modal" data-target="#add_modifier_group_modal">+  New Modifier Group</a>
+            </div>        
+        </div>    
+        <!-- <div>
             <button type="button" class="btn btn-outline-secondary">Filters</button>
             <a href="" class="btn btn-orange" data-toggle="modal" data-target="#add_modifier_group_modal">+ New Modifier Group</a>            
-        </div>
+        </div> -->
     </div>
     
     <table id="data-table">
@@ -144,8 +154,9 @@
                             <label for="modifier_group_type">Modifier Group Type</label>
                                 <select name="modifier_group_type" id="modifier_group_type" class="form-control">
                                     <option value="" disabled selected>Select Type</option>
-                                    <option value="add_on">Add On</option>
-                                    <option value="variant">Variant</option>                                                                        
+                                    @foreach ($modifiergrouptype as $modifiergroupId => $modifiergrouptypeName)
+                                        <option value="{{ $modifiergroupId }}">{{ $modifiergrouptypeName }}</option>
+                                    @endforeach                                                   -->
                                 </select>
                             </div>
                         </div>
@@ -232,39 +243,30 @@
 
 
 
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#data-table tbody').on('click', 'tr', function() {
-            // Get the ID from the clicked row's data attribute
-            var id = $(this).data('id');
-            console.log(id);
-            // Send the ID to the controller using AJAX
-            $.ajax({
-                type: 'GET',
-                url: '/edit/' + id, // Replace with your controller route
-                success: function(response) {
-                    // Handle the response from the controller (e.g., display a modal)
-                    console.log('Row ID ' + id + ' sent to the controller.');
-                    var item = response.item;
-                    $('#title').val(item.title);
+    // Function to filter the table based on user input
+    function filterTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("data-table");
+        tr = table.getElementsByTagName("tr");
 
-
-                    // Show the modal
-                    $('#editModal').modal('show');
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error sending ID to the controller: ' + error);
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0]; // Change the index to match the column you want to search
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
                 }
-            });
-        }); -->
+            }
+        }
+    }
 
-
-
-
-        
-
-    });
+    // Add an event listener to the search input
+    document.getElementById("searchInput").addEventListener("keyup", filterTable);
 </script>
 
 @endsection
