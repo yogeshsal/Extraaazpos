@@ -166,7 +166,10 @@ class CategoryTimingController extends Controller
 
     public function associateCategories(Request $request,$id)
     {
-       // dd($selectedCategoryIds);
+       
+       //dd($id);
+       
+        // dd($selectedCategoryIds);
         // Get the selected category IDs from the request
         $selectedCategoryIds = $request->input('selected_categories');
    

@@ -11,7 +11,7 @@
     </div>
  
     <div class="col-lg-3">
-    <input type="text" class="form-control">
+        <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
     </div>
     <div class="col-lg-3">
             <button class="btn btn-orange m-1" data-toggle="modal" data-target="#category_timing">New Category Timing</button>
@@ -101,7 +101,7 @@
 </div>
 <div class="card mt-3">
         <div class="row">
-        <table class="table table-responsive table-hover">
+        <table class="table table-responsive table-hover" id="dataTable">
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -160,5 +160,28 @@
             
         });
     });
+    // Function to filter the table based on user input
+    function filterTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dataTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2]; // Change the index to match the column you want to search
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    // Add an event listener to the search input
+    document.getElementById("searchInput").addEventListener("keyup", filterTable);
 </script>
 @endsection

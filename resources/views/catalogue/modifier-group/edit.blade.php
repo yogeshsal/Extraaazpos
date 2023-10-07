@@ -190,29 +190,13 @@
                 </form> 
             </div>
             </div>  
-        </div>
+        </div>        
         <div id="tab2">
-            <div class="card shadow p-3">     
-                <form method="POST" action="" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                <div class="form-group form-row">
-                    <label for="item_image">Upload New Image:</label>
-                    <input type="file" name="item_image" id="item_image" class="form-control">
-                </div>
-                    <button type="submit" class="btn btn-orange">Upload Image</button>
-                </form>
-            </div>
+            <span>Inside Tab 2, how <b>interesting</b>.</span>
         </div>
         <div id="tab3">
             <span>Inside Tab 3, how <b>interesting</b>.</span>
-        </div>
-        <div id="tab4">
-            <span>Inside Tab 4, how <b>interesting</b>.</span>
-        </div>
-        <div id="tab5">
-            <span>Inside Tab 5, how <b>interesting</b>.</span>
-        </div>
+        </div>        
     </div>
     <!-- /tabContent -->
   </div>

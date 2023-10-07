@@ -204,7 +204,7 @@
             <div class="card shadow p-3">
                 <div class="row">
                     <div class="col">
-                        <h4>Associated Items</h4>
+                        <h4>Associated Items 1</h4>
                     </div>
                     <div class="col-auto">
                     <a href="{{ route('categories.items', ['id' => $category->id]) }}" type="button" class="btn btn-orange">Update Items</a>  
@@ -220,12 +220,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <tr>                        
-                        <td>Mark</td>
-                        <td>Otto</td>
+                    @foreach($items as $item)
+                    <tr>           
+                        <td>{{$item->item_name}} </td>
+                        <td>{{$item->cat_name}}</td>
                     </tr>
+                    @endforeach
+                    
                     </tbody>
                 </table>
+                {{ $items->links() }}
             </div>
         </div>
     </div>        

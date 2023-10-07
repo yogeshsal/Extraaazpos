@@ -18,6 +18,7 @@ class ItemController extends Controller
         $currentUserId = Auth::user()->id;        
         $data = Item::where('user_id', $currentUserId)->with('category')->get(); 
         $resultArray = $data->toArray(); 
+        //dd($resultArray);
 
         if (count($data) > 0) {
             $userid = $data[0]['user_id'];
@@ -64,7 +65,7 @@ class ItemController extends Controller
     public function edit($id)
     {        
         $currentUserId = Auth::user()->id;
-        $item = Item::find($id);        
+        $item = Item::find($id);
         $categories = Category::pluck('cat_name', 'id');   
         $foodtype = Foodtype::pluck('name', 'id');       
         $locations = Location::where('user_id', $currentUserId)->pluck('name', 'id'); 
@@ -91,9 +92,6 @@ class ItemController extends Controller
             // Handle the case when the customer with the given ID is not found
             abort(404);
         }
-
-           
-            
                     
         $item->item_is_recommended = $request->has('item_is_recommended') ? 1 : 0;
         $item->item_is_package_good = $request->has('item_is_package_good') ? 1 : 0;
