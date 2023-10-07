@@ -24,25 +24,11 @@ class OrderController extends Controller
         
         return view('orders.index',['categoryCounts' => $categoryCounts]);
     }
-
-
-        //public function getitems(Request $request, $categoryId){
-        
-        
-        // $items = Item::where('category', $categoryId)->get()->toArray();        
-        // return view('orders.index', ['items' => $items]);
-        // $items = Item::where('category', $categoryId)->get()->toArray(); // Remove ->toArray()
-        // dd($items);
-        // return view('orders.index', compact('items'));
-     //   $items = Item::where('item_category_id', $categoryId)->get()->toarray();
-        
-//         return response()->json(['items' => $items]);
-// //return view('orders.index', ['a' => $a]);
-
-//     }
+       
     public function getitems(Request $request, $categoryId) {
     $items = Item::where('item_category_id', $categoryId)->get();
 
     return response()->json(['items' => $items]);
 }
 }
+
