@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Charge;
 use App\Models\Item;
-
+use App\Models\Chargesitem;
 use Auth;
+
 class ChargeController extends Controller
 {
     public function index()
@@ -35,10 +36,15 @@ class ChargeController extends Controller
     {
         $Charge = Charge::find($id); 
         
-        $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
-        ->select('items.*','categories.cat_name')
-        ->whereJsonContains('items.status', $id)
-        ->get();
+        // $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
+        // ->select('items.*','categories.cat_name')
+        // ->whereJsonContains('items.status', $id)
+        // ->get();
+
+        $charge_ids = Chargesitem::where('charge_id', $id)->pluck('item_id')->flatten()->toArray();
+
+        $items = Item::leftJoin('categories', 'items.item_category_id', '=', 'categories.id')
+        ->whereIn('items.id', $charge_ids)->get();
         
         return view('catalogue.charges.edit', compact('Charge','items'));
     }
@@ -89,8 +95,17 @@ class ChargeController extends Controller
         ->where('items.user_id', Auth::user()->id)
         ->get();
 
+        $selectedItemIds = Chargesitem::where('charge_id', $id)->pluck('item_id')->all();
+
+        $ids= [];
         
-       return view('catalogue.charges.select_items',compact('items'));
+        if (!empty($selectedItemIds) && isset($selectedItemIds[0])) {
+            // Access $selectedItemIds[0] here
+            $ids = $selectedItemIds[0];
+        }
+       
+        
+       return view('catalogue.charges.select_items',compact('items','ids'));
     }
 
     public function restrictItems(Request $request,$id)
@@ -98,20 +113,22 @@ class ChargeController extends Controller
        
         $selectedItemsIds = $request->input('selected_items');
 
-        if (!empty($selectedItemsIds)) {
-            // Retrieve the current tax_status values for the selected items
-            $currentTaxStatus = Item::whereIn('id', $selectedItemsIds)->pluck('status')->toArray();
-
-            // Add null as the first element if it's not already present
-            if (!in_array(null, $currentTaxStatus)) {
-                array_unshift($currentTaxStatus, null);
-            }
-
-            // Merge the new $id into the current values and encode it as JSON
-            $newTaxStatus = json_encode(array_merge($currentTaxStatus, [$id]));
-
-            // Update the tax_status column with the new JSON array value
-            Item::whereIn('id', $selectedItemsIds)->update(['status' => $newTaxStatus]);
+        $user_id = Auth::user()->id;
+    
+       $existingTaxitem = Chargesitem::where('charge_id', $id)
+            ->where('user_id', $user_id)
+            ->first();
+    
+        if ($existingTaxitem) {
+            // If a record already exists, update the item_id
+            $existingTaxitem->update(['item_id' => $selectedItemsIds]);
+        } else {
+            // If no record exists, create a new Taxitem record
+            $newTaxitem = new Chargesitem;
+            $newTaxitem->charge_id = $id;
+            $newTaxitem->user_id = $user_id;
+            $newTaxitem->item_id = $selectedItemsIds; // Assuming item_id is an array field
+            $newTaxitem->save();
         }
         
         return redirect('charges');

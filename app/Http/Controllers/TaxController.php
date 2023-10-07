@@ -7,6 +7,9 @@ use App\models\Tax;
 use App\models\Category;
 use App\models\Location;
 use App\models\item;
+use App\models\Taxitem;
+
+
 use Auth;
 
 class TaxController extends Controller
@@ -44,11 +47,13 @@ class TaxController extends Controller
     {        
         $currentUserId = Auth::user()->id;
         $tax = Tax::find($id);
-         $items = Item::leftJoin('categories', 'items.item_category_id', '=', 'categories.id')
-        ->select('items.*', 'categories.cat_name')
-        ->whereJsonContains('items.tax_status', $id)
-        ->get();
-         return view('catalogue.taxes.edit', compact('tax','items'));
+
+        $item_ids = Taxitem::where('tax_id', $id)->pluck('item_id')->flatten()->toArray();
+
+        $items = Item::leftJoin('categories', 'items.item_category_id', '=', 'categories.id')
+        ->whereIn('items.id', $item_ids)->get();
+        
+        return view('catalogue.taxes.edit', compact('tax','items'));
     }
 
 
@@ -82,41 +87,50 @@ class TaxController extends Controller
 
     public function select_items($id)
     {
-        
-        $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
+        $items = Item::leftjoin('categories','items.item_category_id','=','categories.id')
         ->select('items.*','categories.cat_name')
         ->where('items.user_id', Auth::user()->id)
         ->get();
-
         
-       return view('catalogue.taxes.select_items',compact('items'));
+        $ids =[];
+        $selectedItemIds = Taxitem::where('tax_id', $id)->pluck('item_id')->all();
+        if (!empty($selectedItemIds) && isset($selectedItemIds[0])) {
+            // Access $selectedItemIds[0] here
+            $ids = $selectedItemIds[0];
+        }
+        
+        return view('catalogue.taxes.select_items',compact('items','ids'));
     }
-
 
 
     public function taxItems(Request $request, $id)
     {
-        $selectedItemsIds = $request->input('selected_items');
+    
+    $selectedItemsIds = $request->input('selected_items');
 
-        if (!empty($selectedItemsIds)) {
-            // Retrieve the current tax_status values for the selected items
-            $currentTaxStatus = Item::whereIn('id', $selectedItemsIds)->pluck('tax_status')->toArray();
+    $user_id = Auth::user()->id;
 
-            // Add null as the first element if it's not already present
-            if (!in_array(null, $currentTaxStatus)) {
-                array_unshift($currentTaxStatus, null);
-            }
+   $existingTaxitem = Taxitem::where('tax_id', $id)
+        ->where('user_id', $user_id)
+        ->first();
 
-            // Merge the new $id into the current values and encode it as JSON
-            $newTaxStatus = json_encode(array_merge($currentTaxStatus, [$id]));
-
-            // Update the tax_status column with the new JSON array value
-            Item::whereIn('id', $selectedItemsIds)->update(['tax_status' => $newTaxStatus]);
-        }
-
-        // Redirect back or return a response as needed
-        return redirect('taxes');
+    if ($existingTaxitem) {
+        // If a record already exists, update the item_id
+        $existingTaxitem->update(['item_id' => $selectedItemsIds]);
+    } else {
+        // If no record exists, create a new Taxitem record
+        $newTaxitem = new Taxitem;
+        $newTaxitem->tax_id = $id;
+        $newTaxitem->user_id = $user_id;
+        $newTaxitem->item_id = $selectedItemsIds; // Assuming item_id is an array field
+        $newTaxitem->save();
     }
+    
+    return redirect('taxes');
+
+    }
+
+
 
 }
 

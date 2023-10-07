@@ -11,8 +11,7 @@
     </div>
    
     <div class="col-lg-7">
-    <form  method="POST" action="{{ route('tax.items', ['id' => Route::current()->parameter('id')]) }}">  
-          @csrf
+    <form id="category-form" method="POST" action="{{ route('tax.items', ['id' => Route::current()->parameter('id')]) }}">      @csrf
     <!-- Your checkboxes and table here -->
 
     <button class="btn btn-orange m-1" type="submit">Save</button>
@@ -29,9 +28,14 @@
     </tr>
   </thead>
   <tbody>
+    
     @foreach($items as $i)
     <tr>
-    <td><input value="{{$i->id}}" class="items-checkbox" type="checkbox" name="selected_items[]" id="items-{{$i->id}}"></td>        
+    <!-- <td><input value="{{$i->id}}" class="items-checkbox" type="checkbox" name="selected_items[]" id="items-{{$i->id}}"></td>         -->
+    <td>
+            <input value="{{$i->id}}" class="items-checkbox" type="checkbox" name="selected_items[]" id="items-{{$i->id}}"
+            @if(in_array($i->id, $ids)) checked @endif 
+        </td>
     <td>{{$i->item_name}}</td>
     <td>{{$i->cat_name}}</td>
     <td>{{$i->item_default_sell_price}}</td>     

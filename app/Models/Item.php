@@ -50,4 +50,6 @@ class Item extends Model
     {
         return $this->belongsTo(Category::class, 'item_category_id');
     }
+
+
 }

@@ -30,7 +30,7 @@
   <tbody>
     @foreach($items as $i)
     <tr>
-    <td><input value="{{$i->id}}" class="items-checkbox" type="checkbox" name="selected_items[]" id="items-{{$i->id}}"></td>        
+    <td><input value="{{$i->id}}" class="items-checkbox" type="checkbox" name="selected_items[]" id="items-{{$i->id}}" @if(in_array($i->id, $ids)) checked @endif></td>        
     <td>{{$i->item_name}}</td>
     <td>{{$i->cat_name}}</td>
     <td>{{$i->item_default_sell_price}}</td>     
