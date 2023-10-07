@@ -67,16 +67,21 @@
 @endif
 <div class="card shadow">
     <div class="card-body d-flex justify-content-between align-items-center">
-        <h3>Items</h3>
-        <div>
-            <button type="button" class="btn btn-outline-secondary">Filters</button>
-            <a href="" class="btn btn-orange" data-toggle="modal" data-target="#add_item_modal">+ Add Item</a>            
-        </div>
-    </div>
-    
+        <h3>Items</h3>        
+        <div class="d-flex align-items-center">
+            <div class="input-group mr-2">
+                <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
+                <button type="button" class="btn btn-outline-secondary m-1">Filters</button>           
+                <a href="" class="btn btn-orange m-1" data-toggle="modal" data-target="#add_item_modal">+ Add Item</a>
+            </div>        
+        </div>       
+    </div> 
+
     <table id="data-table">
     <thead>
         <tr > 
+            <th class="grey-background"></th>
+            <th class="grey-background"></th>
             <th class="grey-background">NAME</th>
             <th class="grey-background">ASSOCIATED LOCATIONS</th>
             <th class="grey-background">CATEGORY</th>
@@ -92,12 +97,16 @@
                     <img src="{{ asset('storage/' . $data->item_image) }}" alt="Image" class="table-image" width="20" height="20">
                 @else
                     <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
-                @endif                
+                @endif 
+                </td> 
+                <td>              
                 @if ($data->item_food_type === 'Vegetarian')
                     <img src="{{ asset('storage/veg.png') }}" alt="Vegetarian Logo">
                 @elseif ($data->item_food_type === 'Non Vegetarian')
                     <img src="{{ asset('storage/nonveg.png') }}" alt="Non-Vegetarian Logo">
-                @endif                               
+                @endif 
+                </td>
+                <td>                              
                 <a href="{{ route('items.edit', ['id' => $data->id]) }}">{{ $data->item_name }}</a>
                 </td>
                <td>{{$data->item_pos_code}}</td>                   
@@ -269,40 +278,30 @@
 </script>
 
 
-
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#data-table tbody').on('click', 'tr', function() {
-            // Get the ID from the clicked row's data attribute
-            var id = $(this).data('id');
-            console.log(id);
-            // Send the ID to the controller using AJAX
-            $.ajax({
-                type: 'GET',
-                url: '/edit/' + id, // Replace with your controller route
-                success: function(response) {
-                    // Handle the response from the controller (e.g., display a modal)
-                    console.log('Row ID ' + id + ' sent to the controller.');
-                    var item = response.item;
-                    $('#title').val(item.title);
+    // Function to filter the table based on user input
+    function filterTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("data-table");
+        tr = table.getElementsByTagName("tr");
 
-
-                    // Show the modal
-                    $('#editModal').modal('show');
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error sending ID to the controller: ' + error);
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2]; // Change the index to match the column you want to search
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
                 }
-            });
-        }); -->
+            }
+        }
+    }
 
-
-
-
-        
-
-    });
+    // Add an event listener to the search input
+    document.getElementById("searchInput").addEventListener("keyup", filterTable);
 </script>
 
 @endsection
