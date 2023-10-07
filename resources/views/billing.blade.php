@@ -83,11 +83,7 @@
       <li class="nav-item">
         <a href="#dinein" role="tab" data-toggle="tab"
            class="nav-link"> Dinein </a>
-      </li>
-      <li class="nav-item">
-        <a href="#qsr" role="tab" data-toggle="tab"
-           class="nav-link"> QSR </a>
-      </li>
+      </li>      
       <li class="nav-item">
         <a href="#takeaway" role="tab" data-toggle="tab"
            class="nav-link"> Takeaway </a>
@@ -218,10 +214,7 @@
         </div>
       </div>
 
-      <div class="tab-pane" role="tabpanel" id="qsr">
-        <h3> QSR </h3>
-        <p> Lorem ipsum dolorem </p>
-      </div>
+      
       <div class="tab-pane" role="tabpanel" id="takeaway">
         <h3> Take Away </h3>
         <p> Lorem ipsum dolorem </p>

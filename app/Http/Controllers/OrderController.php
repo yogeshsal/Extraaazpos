@@ -26,7 +26,7 @@ class OrderController extends Controller
     }
 
 
-//     public function getitems(Request $request, $categoryId){
+        //public function getitems(Request $request, $categoryId){
         
         
         // $items = Item::where('category', $categoryId)->get()->toArray();        
@@ -34,7 +34,7 @@ class OrderController extends Controller
         // $items = Item::where('category', $categoryId)->get()->toArray(); // Remove ->toArray()
         // dd($items);
         // return view('orders.index', compact('items'));
-        $items = Item::where('item_category_id', $categoryId)->get()->toarray();
+        //$items = Item::where('item_category_id', $categoryId)->get()->toarray();
         
 //         return response()->json(['items' => $items]);
 // //return view('orders.index', ['a' => $a]);

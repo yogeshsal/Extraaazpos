@@ -84,10 +84,53 @@
   <div class="col-sm-4">
     <div class="card shadow" style="background-color: #FFFFFF;">
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
+        
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="input-group mr-2">
+                        <label for="searchInput" class="mr-2">Table</label>
+                        <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
+                    </div>       
+                </div>   
+            </div>
+        </div>
+        <div class="card" style="height: 300px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    </tr> 
+                </tbody>
+            </table>            
+        </div>
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td>Total :</td>
+                            <td>6560.00</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                <button type="button" class="btn btn-primary">Note</button>
+                <button type="button" class="btn btn-secondary">Hold</button>
+                <button type="button" class="btn btn-success">Finish Order
+            </div>
     </div>
   </div>
 </div>
