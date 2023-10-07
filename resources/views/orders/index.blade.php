@@ -33,13 +33,18 @@
                 </div>
             </div>
             <!-- <div class="card-body"> -->
-            <ul class="list-group">
-            @foreach($categoryCounts as $categoryId => $itemCount)
-            <li class="list-group-item" data-id="{{ $categoryId }}">
-                {{ $categoryId }} ({{ $itemCount }})
-            </li>
-                @endforeach
-            </ul>
+                <ul class="list-group">
+                    @foreach($categoryCounts as $categoryId => $itemCount)
+                        @php
+                            $category = App\Models\Category::find($categoryId);
+                        @endphp
+                        <li class="list-group-item" data-id="{{ $categoryId }}">
+                            {{ $category->cat_name }} ({{ $itemCount }})
+                        </li>
+                    @endforeach
+                </ul>
+                
+                
             <!-- </div> -->
         </div>
     </div>
@@ -56,7 +61,7 @@
                 </div>
             </div>
             <div class="card-body">
-            <div id="result">
+                <div id="result">
             <!-- <h1>Items List</h1> -->
     
             </div>
@@ -92,40 +97,6 @@
 
 
 <script>
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     var listItems = document.querySelectorAll('.list-group-item');
-
-//     listItems.forEach(function (item) {
-//         item.addEventListener('click', function () {
-//             var categoryId = this.getAttribute('data-id');
-//             console.log(categoryId);
-//             // Make an AJAX request to the controller with the categoryId
-//             // Replace 'your_controller_route' with the actual route to your controller method
-//             fetch('/get-categoryid/' + categoryId, {
-//                 method: 'GET',
-//                 headers: {
-//                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
-//                     'Content-Type': 'application/json',
-//                 },
-//             })
-//             .then(response => response.json())
-//             .then(data => {
-//                 // Handle the response data if needed
-//                 console.log(data);
-
-//                 var resultDiv = document.getElementById('result');
-//                     resultDiv.textContent = data;
-//             })
-//             .catch(error => {
-//                 // Handle any errors that occur during the request
-//                 console.error('Error:', error);
-//             });
-//         });
-//     });
-// });
-
-
 document.addEventListener('DOMContentLoaded', function () {
     var listItems = document.querySelectorAll('.list-group-item');
 
@@ -135,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(categoryId);
 
             // Make an AJAX request to the controller with the categoryId
-            // Replace 'your_controller_route' with the actual route to your controller method
             fetch('/get-categoryid/' + categoryId, {
                 method: 'GET',
                 headers: {
@@ -145,20 +115,33 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(response => response.json())
             .then(data => {
-                // Handle the response data if needed
-                console.log(data);
-
-                // Display the data in the 'result' div
+                // Handle the response data and display items in cards
+                var items = data.items;
                 var resultDiv = document.getElementById('result');
                 resultDiv.innerHTML = ''; // Clear the div content
-                data.items.forEach(function (item) {
-                    var itemDiv = document.createElement('div');
-                    itemDiv.textContent = item.title; // Display the 'title' property
-                    resultDiv.appendChild(itemDiv);
+
+                var cardRow = document.createElement('div');
+                cardRow.className = 'row'; // Create a Bootstrap row
+
+                items.forEach(function (itemData) {
+                    var cardCol = document.createElement('div');
+                    cardCol.className = 'col-sm-3'; // Create a Bootstrap column
+                    cardCol.innerHTML = `
+                        <div class="card shadow mb-3 m-1">
+                            <img src="http://127.0.0.1:8000/storage/${itemData.item_image}" class="card-img-top" alt="${itemData.item_name}" id="card-img-${itemData.id}">
+                            <div class="card-body" id="card-body-${itemData.id}">
+                                <h6 class="card-title" id="card-title-${itemData.id}">${itemData.item_name}</h6>
+                                <p class="card-text" id="card-text-${itemData.id}">Price: ${itemData.item_default_sell_price}</p>
+                            </div>
+                        </div>
+                    `;
+
+                    cardRow.appendChild(cardCol);
                 });
+
+                resultDiv.appendChild(cardRow);
             })
             .catch(error => {
-                // Handle any errors that occur during the request
                 console.error('Error:', error);
             });
         });
@@ -166,6 +149,5 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 </script>
-
 
 @endsection
