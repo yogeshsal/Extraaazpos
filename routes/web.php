@@ -118,8 +118,8 @@ Route::get('/show-items/{id}', [App\Http\Controllers\CategoryController::class, 
 //Route::post('/update-items/{id}', [App\Http\Controllers\CategoryController::class, 'updateItems'])->name('updateItems');
 //Route::post('/update-items', [App\Http\Controllers\CategoryController::class, 'updateItems'])->name('updateItems');
 
-Route::get('/updateitems/{id}/{catid}', [App\Http\Controllers\CategoryController::class, 'updateItems'])->name('updateItems');
-
+Route::post('/updateitems/{catid}', [App\Http\Controllers\CategoryController::class, 'updateItems'])->name('updateItems');
+//Route::post('/associate-categories/{id}', [App\Http\Controllers\CategoryTimingController::class,'associateCategories'])->name('associate.categories');
 
 //MODIFIER-GROUP
 //Route::view('modifier-groups', 'modifier-group.index');

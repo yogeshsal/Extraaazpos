@@ -151,16 +151,25 @@ public function showitems($id){
 }
 
 
-    public function updateItems($id, $categoryid)
+    public function updateItems(Request $request, $categoryid)
     {
         //dd($id);
-        //dd($categoryid)
-    
-        DB::table('items')
-        ->where('id', $id)        
-        ->update([
-            'item_category_id' => $categoryid, 
-        ]);   
+        //dd($categoryid);
+        $selectedCategoryIds = $request->input('selected_categories');
+        //dd($selectedCategoryIds);
+        
+        
+       
+        if (!empty($selectedCategoryIds)) {
+        Item::whereIn('id', $selectedCategoryIds)
+        ->update(['item_category_id' => $categoryid]);
+        }
+        
+        // DB::table('items')
+        // ->where('id', $id)        
+        // ->update([
+        //     'item_category_id' => $categoryid, 
+        // ]);   
 
          return redirect('categories');
      }
