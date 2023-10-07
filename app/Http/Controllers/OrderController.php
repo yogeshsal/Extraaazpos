@@ -16,7 +16,7 @@ class OrderController extends Controller
         $categoryCounts = [];
         foreach ($categories as $category) {
             $categoryName = $category->id; // Assuming 'name' is the column that stores category names
-            $itemCount = Item::where('category', $category->id)->count();
+            $itemCount = Item::where('item_category_id', $category->id)->count();
             $categoryCounts[$categoryName] = $itemCount;
         }
         
@@ -34,7 +34,7 @@ class OrderController extends Controller
         // $items = Item::where('category', $categoryId)->get()->toArray(); // Remove ->toArray()
         // dd($items);
         // return view('orders.index', compact('items'));
-        $items = Item::where('category', $categoryId)->get()->toarray();
+        $items = Item::where('item_category_id', $categoryId)->get()->toarray();
         
         return response()->json(['items' => $items]);
 //return view('orders.index', ['a' => $a]);
