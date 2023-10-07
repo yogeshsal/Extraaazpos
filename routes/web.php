@@ -152,6 +152,11 @@ Route::get('/taxes', [App\Http\Controllers\TaxController::class, 'index']);
 Route::post('/create-taxes', [App\Http\Controllers\TaxController::class, 'store'])->name('taxes.store');
 Route::get('/taxes/edit/{id}', [App\Http\Controllers\TaxController::class, 'edit'])->name('taxes.edit');
 Route::put('/taxes/{id}', [App\Http\Controllers\TaxController::class,'update'])->name('taxes.update');
+Route::get('/taxes/select_items/{id}', [App\Http\Controllers\TaxController::class, 'select_items'])->name('taxes.select_items');
+Route::post('/tax-items/{id}', [App\Http\Controllers\TaxController::class,'taxItems'])->name('tax.items');
+
+
+
 
 //charges
 Route::get('/charges', [App\Http\Controllers\ChargeController::class, 'index']);

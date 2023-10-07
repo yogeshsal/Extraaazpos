@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\models\Tax;
 use App\models\Category;
 use App\models\Location;
+use App\models\item;
+use App\models\Taxitem;
+
+
 use Auth;
 
 class TaxController extends Controller
@@ -43,46 +47,91 @@ class TaxController extends Controller
     {        
         $currentUserId = Auth::user()->id;
         $tax = Tax::find($id);
-        // $categories = Category::pluck('name', 'id');
-        // $locations = Location::where('user_id', $currentUserId)->pluck('name', 'id'); 
-        return view('catalogue.taxes.edit', compact('tax'));
+
+        $item_ids = Taxitem::where('tax_id', $id)->pluck('item_id')->flatten()->toArray();
+
+        $items = Item::leftJoin('categories', 'items.item_category_id', '=', 'categories.id')
+        ->whereIn('items.id', $item_ids)->get();
+        
+        return view('catalogue.taxes.edit', compact('tax','items'));
     }
 
 
     public function update(Request $request, $id)
     {
-       
-        // $request->validate([
-        //     'title' => 'required|string|max:255',
-        //     'short_name'=> 'required|string|max:255',
-        //     // Assuming a 10-digit mobile number
-        //     // Add more validation rules as needed for other fields
-        // ]);
-        // $item = Item::find($id);
+         $request->validate([
+             'name' => 'required',
+             'tax_percentage' =>'required',
+            ]);
+      
+        $tax = Tax::find($id);
+      
+        if (!$tax) {
+            // Handle the case when the customer with the given ID is not found
+            abort(404);
+        }
+        
+        // Validate the form data (customize validation rules as needed)
+        $validatedData = $request->validate([
+            'name' => 'required',
+             'tax_percentage' =>'required',
+        ]);
+        // dd($validatedData) ;
+        // Update the customer's data
+        $tax->update($validatedData);
 
-        // if (!$item) {
-        //     // Handle the case when the customer with the given ID is not found
-        //     abort(404);
-        // }
-
-        // // Validate the form data (customize validation rules as needed)
-        // $validatedData = $request->validate([
-        //     'title' => 'required|string|max:255',
-        //     'short_name' => 'required|string|max:255',
-        //     'handle' => 'required|string|max:255',
-        //     'category' => 'required|string|max:255',
-        //     'pos_code' => 'required|string|max:255',
-        //     'food_type' => 'required|string|max:255',
-
-        //     // Add validation rules for other fields here
-        // ]);
-
-        // // Update the customer's data
-        // $item->update($validatedData);
-
-        // // Redirect to a success page or back to the edit form with a success message
-        // return redirect('items')->with('success', 'Item updated successfully');
+        // Redirect to a success page or back to the edit form with a success message
+        return redirect('taxes')->with('success', 'tax updated successfully');
     }
+
+
+    public function select_items($id)
+    {
+        $items = Item::leftjoin('categories','items.item_category_id','=','categories.id')
+        ->select('items.*','categories.cat_name')
+        ->where('items.user_id', Auth::user()->id)
+        ->get();
+        
+        $ids =[];
+        $selectedItemIds = Taxitem::where('tax_id', $id)->pluck('item_id')->all();
+        if (!empty($selectedItemIds) && isset($selectedItemIds[0])) {
+            // Access $selectedItemIds[0] here
+            $ids = $selectedItemIds[0];
+        }
+        
+        return view('catalogue.taxes.select_items',compact('items','ids'));
+    }
+
+
+    public function taxItems(Request $request, $id)
+    {
+    
+    $selectedItemsIds = $request->input('selected_items');
+
+    $user_id = Auth::user()->id;
+
+   $existingTaxitem = Taxitem::where('tax_id', $id)
+        ->where('user_id', $user_id)
+        ->first();
+
+    if ($existingTaxitem) {
+        // If a record already exists, update the item_id
+        $existingTaxitem->update(['item_id' => $selectedItemsIds]);
+    } else {
+        // If no record exists, create a new Taxitem record
+        $newTaxitem = new Taxitem;
+        $newTaxitem->tax_id = $id;
+        $newTaxitem->user_id = $user_id;
+        $newTaxitem->item_id = $selectedItemsIds; // Assuming item_id is an array field
+        $newTaxitem->save();
+    }
+    
+    return redirect('taxes');
+
+    }
+
+
+
 }
 
 
