@@ -56,28 +56,30 @@
     <thead></thead>
         <tbody>
         <div class="card">
-        @foreach($category as $category)   
-        <tr>
-            <td class="left-align">
-                @if ($category->cat_image)
-                    <img src="{{ asset('storage/'.$category->cat_image) }}" alt="Image" class="table-image">
-                @else
-                    <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
-                @endif
-                &nbsp;
-            </td>
-            <td class="left-align">
-                <a href="{{ route('categories.edit', ['id' => $category->id]) }}">
-                    {{$category->cat_name}}
-                </a><br>
-                <p>Handle: {{$category->cat_handle}}</p>
-            </td>
-            <td class="right-align">
-                {{ $category->items->count() }} items
-            </td>
-        </tr>
-       
+            @foreach($category as $category)   
+            <tr>
+                <td class="left-align">
+                    <div style="display: flex; align-items: center;"> <!-- Use flexbox to align image and text -->
+                        @if ($category->cat_image)
+                            <img src="{{ asset('storage/'.$category->cat_image) }}" alt="Image" class="table-image">
+                        @else
+                            <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
+                        @endif
+                        <div style="margin-left: 10px;"> <!-- Add margin for spacing between image and text -->
+                            <a href="{{ route('categories.edit', ['id' => $category->id]) }}">
+                                {{$category->cat_name}}
+                            </a><br>
+                            <p>Handle: {{$category->cat_handle}}</p>
+                        </div>
+                    </div>
+                </td>
+                
+                <td>
+                    {{ $category->items->count() }} items
+                </td>
+            </tr>
             @endforeach
+            
         </tbody>
     
 </table>
