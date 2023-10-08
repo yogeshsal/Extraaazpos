@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\models\Discount;
-
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -31,4 +31,49 @@ class DiscountController extends Controller
         return redirect('discounts');
 
     }
+    public function edit($id)
+    {
+        // Find the discount record by ID
+        $discount = Discount::find($id);
+    
+        // Check if the discount record exists
+        if (!$discount) {
+            // You can customize this logic for handling a non-existent discount
+            return redirect()->route('discounts.index')->with('error', 'Discount not found.');
+        }
+    
+        // Load the edit view and pass the discount data to it
+        return view('catalogue.discounts.edit', compact('discount'));
+    }
+    
+    public function update(Request $request, $id)
+    {
+        // Find the discount record by ID
+        $discount = Discount::find($id);
+
+        // Check if the discount record exists
+        if (!$discount) {
+            return redirect()->route('discounts.index')->with('error', 'Discount not found.');
+        }
+
+        // Update the discount record with the new values from the form
+        $discount->discount_name = $request->input('discount_name');
+        $discount->applicable_on = $request->input('applicable_on');
+        $discount->discount_type = $request->input('discount_type');
+        $discount->discount_value = $request->input('discount_value');
+        $discount->desc = $request->input('desc');
+        $discount->max_discount_value = $request->input('max_discount_value');
+        $discount->min_total_amount = $request->input('min_total_amount');
+        $discount->auto_apply_billing_type = $request->input('auto_apply_billing_type');
+        $discount->user_role = $request->input('user_role');
+
+        // Save the updated discount record
+        $discount->save();
+
+        // Redirect back to the discounts index page with a success message
+        //return redirect()->route('catalogue.discounts.index')->with('success', 'Discount updated successfully.');
+        return redirect('discounts')->with('success', 'Image updated successfully');
+    }
+
+    
 }

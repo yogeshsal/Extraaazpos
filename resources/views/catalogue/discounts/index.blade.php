@@ -84,16 +84,20 @@
     </thead>
     <tbody>
         @foreach($data as $d)
-        <tr>
-            <td>{{$d->discount_name}}
+        <tr> 
+            <td>
+                <a href="{{ route('discounts.edit', ['id' => $d->id]) }}">
+                    {{$d->discount_name}}
+                </a>
+                
                 <br>
-                {{$d->discount_type}} Amount of ₹ {{$d->discount_value}} on item
+                {{$d->discount_type}} Amount of ₹ {{$d->discount_value}} on item 
             </td>
             <td>item</td>
             <td>location</td>
             <td>{{$d->updated_at}}</td>
-
         </tr>
+        
        @endforeach
     </tbody>
 </table>

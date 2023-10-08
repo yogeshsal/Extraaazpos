@@ -8,7 +8,8 @@ use App\Http\Controllers\CustomerController;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register web routes
+ for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
@@ -143,6 +144,9 @@ Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController
 //discount
 Route::get('/discounts', [App\Http\Controllers\DiscountController::class, 'index']);
 Route::post('/discounts', [App\Http\Controllers\DiscountController::class, 'add_discount']);
+Route::get('/discounts/{id}/edit', [App\Http\Controllers\DiscountController::class, 'edit'])->name('discounts.edit');
+Route::put('/discounts/update/{id}', [App\Http\Controllers\DiscountController::class, 'update'])->name('discounts.update');
+
 
 
 
