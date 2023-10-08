@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\models\ModifierGroup;
 use App\models\Modifier_group_type;
 use App\models\User;
+use App\models\Modifieritem;
+use App\models\item;
+
+
 use Auth;
 
 class ModifierGroupsController extends Controller
@@ -53,11 +57,13 @@ class ModifierGroupsController extends Controller
         $currentUserId = Auth::user()->id;
         $modifiergroup = ModifierGroup::find($id);
         $modifiergrouptype = Modifier_group_type::pluck('type', 'id');  
-        // $categories = Category::all();
-        // $category_desc = $category['cat_desc'];
-        // $categories = Category::pluck('item_name', 'id');
-        // $locations = Location::where('user_id', $currentUserId)->pluck('item_name', 'id'); 
-        return view('catalogue.modifier-group.edit', compact('modifiergroup','modifiergrouptype'));
+
+        $modifier_ids = Modifieritem::where('modifier_id', $id)->pluck('item_id')->flatten()->toArray();
+
+        $items = Item::leftJoin('categories', 'items.item_category_id', '=', 'categories.id')
+        ->whereIn('items.id', $modifier_ids)->get(); 
+
+        return view('catalogue.modifier-group.edit', compact('modifiergroup','modifiergrouptype','items'));
     }
 
 
@@ -96,4 +102,64 @@ class ModifierGroupsController extends Controller
         // Redirect to a success page or back to the edit form with a success message
         return redirect('modifiergroups')->with('success', 'Modifier Group updated successfully');
     }
+
+    public function select_items($id)
+    {
+        
+        $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
+        ->select('items.*','categories.cat_name')
+        ->where('items.user_id', Auth::user()->id)
+        ->get();
+
+        $selectedItemIds = Modifieritem::where('modifier_id', $id)->pluck('item_id')->all();
+
+       // dd($selectedItemIds);
+
+        $ids= [];
+        
+        if (!empty($selectedItemIds) && isset($selectedItemIds[0])) {
+            // Access $selectedItemIds[0] here
+            $ids = $selectedItemIds[0];
+        }
+       
+        
+       return view('catalogue.modifier-group.select_items',compact('items','ids'));
+    }
+
+    public function restrictItems(Request $request,$id)
+    {
+       
+        $selectedItemsIds = $request->input('selected_items');
+
+        $user_id = Auth::user()->id;
+    
+       $existingTaxitem = Modifieritem::where('modifier_id', $id)
+            ->where('user_id', $user_id)
+            ->first();
+    
+        if ($existingTaxitem) {
+            // If a record already exists, update the item_id
+            $existingTaxitem->update(['item_id' => $selectedItemsIds]);
+        } else {
+            // If no record exists, create a new Taxitem record
+            $newTaxitem = new Modifieritem;
+            $newTaxitem->modifier_id = $id;
+            $newTaxitem->user_id = $user_id;
+            $newTaxitem->item_id = $selectedItemsIds; // Assuming item_id is an array field
+            $newTaxitem->save();
+        }
+        
+        return redirect('modifiergroups');
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

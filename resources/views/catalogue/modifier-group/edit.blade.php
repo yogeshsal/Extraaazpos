@@ -195,8 +195,41 @@
             </div>  
         </div>        
         <div id="tab2">
-            <span>Inside Tab 2, how <b>interesting</b>.</span>
+            <div class="card shadow p-3">
+                <div class="row">
+                    <div class="col">
+                        <h4>All Items</h4>
+                    </div>
+                        <div class="col-auto">
+                            <a type="button" class="btn btn-orange" href="{{ route('modifiergroups.select_items', $modifiergroup->id ) }}">Restrict items</a>  
+                        </div>
+                </div>
+            </div>
+
+            <div class="card shadow p-3 mt-3">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                             <th scope="col">Name</th>
+                             <th scope="col">Category</th>
+                         </tr>
+                    </thead>
+                        <tbody>
+                        @foreach($items as $i)
+                            <tr>
+                            <td>{{$i->item_name}}</td>
+                            <td>{{ $i->cat_name }}</td>
+                        </tr>
+                        @endforeach    
+
+
+                        </tbody>
+                </table>
+             </div>
         </div>
+
+
+
         <div id="tab3">
             <span>Inside Tab 3, how <b>interesting</b>.</span>
         </div>        

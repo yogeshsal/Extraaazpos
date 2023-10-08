@@ -127,6 +127,8 @@ Route::get('/modifiergroups', [App\Http\Controllers\ModifierGroupsController::cl
 Route::post('/create-modifier-group', [App\Http\Controllers\ModifierGroupsController::class, 'store'])->name('modifiergroups.store');
 Route::get('/modifiergroups/edit/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'edit'])->name('modifiergroups.edit');
 Route::put('/modifiergroups/{id}', [App\Http\Controllers\ModifierGroupsController::class,'update'])->name('modifiergroups.update');
+Route::get('/modifiergroups/select_items/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'select_items'])->name('modifiergroups.select_items');
+Route::post('/modifiergroups-items/{id}', [App\Http\Controllers\ModifierGroupsController::class,'restrictItems'])->name('modifiergroups.items');
 
 
 
