@@ -119,7 +119,7 @@
                             <div class="form-group">
                                 <label for="cat_timing_group">Category Timing Group:</label>
                                 <select name="cat_timing_group" class="form-select" aria-label="Default select example">
-                                    <option selected>------</option>
+                                    <option selected>Select Category timing</option>
                                     @foreach($timing as $t)
                                     <option value="{{$t->id}}">{{$t->name}}</option>
                                     @endforeach
@@ -159,7 +159,7 @@
         tr = table.getElementsByTagName("tr");
 
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1]; // Change the index to match the column you want to search
+            td = tr[i].getElementsByTagName("td")[0]; // Change the index to match the column you want to search
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
