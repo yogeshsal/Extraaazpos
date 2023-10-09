@@ -16,17 +16,13 @@ class CategoryController extends Controller
     {
         $data = Category ::where('user_id',Auth::user()->id)
         ->with('items')
-        ->get();
-        // ->toArray();
-
-        //dd($data);
-        
+        ->paginate(2);
 
         $location =Location::where('user_id',Auth::user()->id)->get();
 
         $timing = CategoryTiming::where('user_id',Auth::user()->id)->get();
         
-        return view('catalogue.categories.index',['category'=>$data,'location'=>$location,'timing'=>$timing]);
+        return view('catalogue.categories.index',['categories'=>$data,'location'=>$location,'timing'=>$timing]);
     }
 
     public function store(Request $request)

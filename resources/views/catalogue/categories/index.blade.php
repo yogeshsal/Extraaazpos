@@ -29,6 +29,11 @@
     .right-align {
         text-align: right; /* Right-align the content of the last td */
     }
+    .pagination-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px; /* Adjust the margin as needed */
+    }
 </style>
 
 <br>
@@ -56,7 +61,7 @@
     <thead></thead>
         <tbody>
         <div class="card">
-            @foreach($category as $category)   
+            @foreach($categories as $category)   
             <tr>
                 <td class="left-align">
                     <div style="display: flex; align-items: center;"> <!-- Use flexbox to align image and text -->
@@ -83,6 +88,9 @@
         </tbody>
     
 </table>
+<div class="pagination-wrapper">
+    {{ $categories->links() }}
+</div>
 
 </div>
 
