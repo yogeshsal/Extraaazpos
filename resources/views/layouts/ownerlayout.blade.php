@@ -133,12 +133,12 @@
         </a>
         <ul id="companyadmin" class="submenu">
             <li class="sub"><a class="nav-link" href="/settings">Settings</a></li>
-            <li class="sub"><a href="/user_role">User Role</a></li>
+            <li class="sub"><a href="/user-roles">User Role</a></li>
             <li class="sub"><a href="/employees">Employees</a></li>
-            <li class="sub"><a href="/location">Location</a></li>
+            <li class="sub"><a href="/locations">Location</a></li>
             <li class="sub"><a href="/brands">Brands</a></li>
             <li class="sub"><a href="/print_templates">Print Templates</a></li>
-            <li class="sub"><a href="/integration">Integrations</a></li>
+            <li class="sub"><a href="/integrations">Integrations</a></li>
         </ul>
       </li>
       <li class="nav-item">
