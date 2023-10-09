@@ -231,8 +231,39 @@
 
 
         <div id="tab3">
-            <span>Inside Tab 3, how <b>interesting</b>.</span>
-        </div>        
+           
+        <div class="card shadow p-3">
+                <div class="row">
+                    <div class="col">
+                        <h4>Modifiers</h4>
+                    </div>
+                        <div class="col-auto">
+                            <a type="button" class="btn btn-orange" href="{{ route('modifiergroups.create_modifier', $modifiergroup->id ) }}">Create New Modifier</a>  
+                        </div>
+                    </div>
+                </div>
+          
+
+                 <div class="card shadow p-3 mt-3">
+                    <table class="table table-hover">
+                    <thead>
+                      
+                    </thead>
+                        <tbody>
+                        @foreach($modifier as $modifiers)
+                         <tr>
+                            <td><a href="{{ route('modifier.edit', ['id' => $modifiers->id]) }}">{{$modifiers->title}}</a></td>
+                            
+                            <td>{{$modifiers->default_sale_price}}</td>
+                         </tr>
+                         @endforeach
+
+                        </tbody>
+                </table>
+             </div>
+
+            
+            
     </div>
     <!-- /tabContent -->
   </div>

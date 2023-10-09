@@ -131,6 +131,11 @@ Route::put('/modifiergroups/{id}', [App\Http\Controllers\ModifierGroupsControlle
 Route::get('/modifiergroups/select_items/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'select_items'])->name('modifiergroups.select_items');
 Route::post('/modifiergroups-items/{id}', [App\Http\Controllers\ModifierGroupsController::class,'restrictItems'])->name('modifiergroups.items');
 
+Route::get('/modifiergroups/create_modifier/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'listModifier'])->name('modifiergroups.create_modifier');
+Route::post('/modifiergroups-modifier/{id}', [App\Http\Controllers\ModifierGroupsController::class,'createModifier'])->name('modifiergroups.modifier');
+Route::get('/modifier/edit/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'editModifier'])->name('modifier.edit');
+Route::put('/modifier/{id}', [App\Http\Controllers\ModifierGroupsController::class,'update_modifier'])->name('modifier.update');
+
 
 
 //category-timing
