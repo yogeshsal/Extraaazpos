@@ -16,10 +16,10 @@ class ItemController extends Controller
     public function index()
     {
         $currentUserId = Auth::user()->id;        
-        $data = Item::where('user_id', $currentUserId)->with('category')->get(); 
+        $data = Item::where('user_id', $currentUserId)->with('category')->paginate(3); 
+        
         $resultArray = $data->toArray(); 
         //dd($resultArray);
-
         if (count($data) > 0) {
             $userid = $data[0]['user_id'];
             $user_name = User::where('id', $userid)->first();   

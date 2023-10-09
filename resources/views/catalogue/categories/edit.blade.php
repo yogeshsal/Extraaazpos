@@ -131,7 +131,7 @@
                             <div class="form-group">
                                 <label for="cat_timing_group">Timing Group</label>
                                 <select name="cat_timing_group" class="form-select" aria-label="Default select example">
-                                <option selected>------</option>
+                                <option selected>Select Timing Group</option>
                                 @foreach($timing as $t)
                                 <option value="{{$t->id}}">{{$t->name}}</option>
                                 @endforeach

@@ -57,6 +57,11 @@
     .table-image {
         width: 100px; /* Set the desired width */
         height: auto; /* Auto-adjust the height to maintain the aspect ratio */
+    }    
+    .pagination-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px; /* Adjust the margin as needed */
     }
 </style>
 <br>
@@ -93,33 +98,38 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($data as $data)
+    @foreach($data as $item)
             <tr>           
                 <td>
-                @if ($data->item_image)
-                    <img src="{{ asset('storage/' . $data->item_image) }}" alt="Image" class="table-image" width="20" height="20">
+                @if ($item->item_image)
+                    <img src="{{ asset('storage/' . $item->item_image) }}" alt="Image" class="table-image" width="20" height="20">
                 @else
                     <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
                 @endif 
                 </td> 
                 <td>              
-                @if ($data->item_food_type === 'Vegetarian')
+                @if ($item->item_food_type === 'Vegetarian')
                     <img src="{{ asset('storage/veg.png') }}" alt="Vegetarian Logo">
-                @elseif ($data->item_food_type === 'Non Vegetarian')
+                @elseif ($item->item_food_type === 'Non Vegetarian')
                     <img src="{{ asset('storage/nonveg.png') }}" alt="Non-Vegetarian Logo">
                 @endif 
                 </td>
                 <td>                              
-                <a href="{{ route('items.edit', ['id' => $data->id]) }}">{{ $data->item_name }}</a>
+                <a href="{{ route('items.edit', ['id' => $item->id]) }}">{{ $item->item_name }}</a>
                 </td>
-               <td>{{$data->item_pos_code}}</td>                   
-               <td>{{ optional($data->category)->cat_name }}</td>   
-               <td>{{$data->item_default_sell_price}} <br> <del>{{$data->item_markup_price}}</del></td>
-                <td>{{ $data->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
+               <td>{{$item->item_pos_code}}</td>                   
+               <td>{{ optional($item->category)->cat_name }}</td>   
+               <td>{{$item->item_default_sell_price}} <br> <del>{{$item->item_markup_price}}</del></td>
+                <td>{{ $item->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
             </tr>
         @endforeach
     </tbody>
 </table>
+<div class="pagination-wrapper">
+    {{ $data->links() }}
+</div>
+
+
 </div>
 
 

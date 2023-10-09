@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('modifiergroups', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
             $table->string('modifier_group_name');
             $table->string('modifier_group_type');
             $table->integer('modifier_group_assoc_items_count')->unsigned();

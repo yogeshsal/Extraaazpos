@@ -66,6 +66,8 @@ class CategoryController extends Controller
         ->select('items.*', 'categories.cat_name')
         ->where('categories.id', $id)
         ->paginate(2); 
+        
+        
         //dd($items);
         // $categories = Category::pluck('item_name', 'id');
         // $locations = Location::where('user_id', $currentUserId)->pluck('item_name', 'id'); 

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('item_short_name');
             $table->string('item_food_type');
             $table->string('item_pos_code');
-            $table->string('item_is_recommended')->nullable();
+            $table->string('item_is_recommended')->nullable(); 
             $table->string('item_is_package_good')->nullable();
             $table->string('item_sell_by_weight')->nullable();
             $table->string('item_image')->nullable();
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->decimal('item_aggregator_price', 10, 2)->nullable();
             $table->string('item_external_id')->nullable();
             $table->unsignedBigInteger('item_modifier_id')->nullable();
-            $table->boolean('item_advance_order')->nullable();
+            $table->boolean('ritem_advance_order')->nullable();
             $table->integer('cat_timing_id')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
