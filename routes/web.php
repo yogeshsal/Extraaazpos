@@ -104,6 +104,12 @@ Route::post('/create-item', [App\Http\Controllers\ItemController::class, 'store'
 Route::get('/items/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit'])->name('items.edit');
 Route::put('/items/{id}', [App\Http\Controllers\ItemController::class,'update'])->name('items.update');
 Route::put('/items/{id}/update-image', [App\Http\Controllers\ItemController::class,'updateImage'])->name('items.updateImage');
+Route::get('/items/select_location/{id}', [App\Http\Controllers\ItemController::class, 'select_location'])->name('items.select_location');
+Route::post('/location-items/{id}', [App\Http\Controllers\ItemController::class,'restrictItems'])->name('loction.items');
+
+
+
+
 
 
 //CATEGORY

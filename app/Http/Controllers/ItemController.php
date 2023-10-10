@@ -8,6 +8,8 @@ use App\models\Category;
 use App\models\Location;
 use App\models\User;
 use App\models\Foodtype;
+use App\models\Locationitem;
+
 use Auth;
 
 class ItemController extends Controller
@@ -67,8 +69,12 @@ class ItemController extends Controller
         $currentUserId = Auth::user()->id;
         $item = Item::find($id);
         $categories = Category::pluck('cat_name', 'id');   
-        $foodtype = Foodtype::pluck('name', 'id');       
-        $locations = Location::where('user_id', $currentUserId)->pluck('name', 'id'); 
+        $foodtype = Foodtype::pluck('name', 'id'); 
+        
+        $locations_id = Locationitem::where('item_id', $id)->pluck('location_id')->flatten()->toArray();
+        
+        $locations = Location::whereIn('id', $locations_id)->get();
+        
         return view('catalogue.items.edit', compact('item','categories','locations','foodtype'));
     }
 
@@ -146,6 +152,70 @@ class ItemController extends Controller
 
     return redirect()->route('items.edit', $id)->with('success', 'Image updated successfully');
 }
+
+
+    public function select_location($id)
+{
+    
+    // $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
+    // ->select('items.*','categories.cat_name')
+    // ->where('items.user_id', Auth::user()->id)
+    // ->get();
+
+    $location = Location::all();
+
+    $selectedLocationIds = Locationitem::where('item_id', $id)->pluck('location_id')->all();
+
+    $ids= [];
+    
+    if (!empty($selectedLocationIds) && isset($selectedLocationIds[0])) {
+        // Access $selectedItemIds[0] here
+        $ids = $selectedLocationIds[0];
+    }
+   
+    
+   return view('catalogue.items.select_location',compact('location','ids'));
+}
+
+
+public function restrictItems(Request $request,$id)
+    {
+       
+        $selectedItemsIds = $request->input('selected_items');
+
+        //dd($selectedItemsIds);
+
+        $user_id = Auth::user()->id;
+    
+       $existingTaxitem = Locationitem::where('item_id', $id)
+            ->where('user_id', $user_id)
+            ->first();
+    
+        if ($existingTaxitem) {
+            // If a record already exists, update the item_id
+            $existingTaxitem->update(['location_id' => $selectedItemsIds]);
+        } else {
+            // If no record exists, create a new Taxitem record
+            $newLocationItem = new Locationitem;
+            $newLocationItem->item_id = $id;
+            $newLocationItem->user_id = $user_id;
+            $newLocationItem->location_id = $selectedItemsIds; // Assuming item_id is an array field
+            $newLocationItem->save();
+        }
+        
+        return redirect('items');
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

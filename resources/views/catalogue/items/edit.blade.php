@@ -224,8 +224,44 @@
             <span>Inside Tab 3, how <b>interesting</b>.</span>
         </div>
         <div id="tab4">
-            <span>Inside Tab 4, how <b>interesting</b>.</span>
+           
+        <div class="card shadow p-3">
+                <div class="row">
+                        <div class="col">
+                            <h4>Associated Locations</h4>
+                        </div>
+                            <div class="col-auto">
+                            <a type="button" class="btn btn-orange" href="{{ route('items.select_location', $item->id ) }}">Restrict items</a>  
+                            </div>
+                </div>
         </div>
+
+
+        <div class="card shadow p-3 mt-3">
+                    <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>OVERRIDE SALES PRICE</th>
+                            
+                        </tr>
+                      
+                    </thead>
+                        <tbody>
+                        @foreach($locations as $l )
+                        <tr>
+                            <td>{{$l->name}}</td>
+                            <td></td>
+                        </tr>
+                     @endforeach
+                        
+
+                        </tbody>
+                </table>
+             </div>
+            
+            
+            </div>
         <div id="tab5">
             <span>Inside Tab 5, how <b>interesting</b>.</span>
         </div>
