@@ -129,12 +129,12 @@
                                     <div class="col-sm">
 
                                         <div class="d-flex justify-content-sm-end">
-                                            <button type="button" class="btn btn-outline-secondary">Help</button>
+                                            <button type="button" class="btn btn-outline-secondary">Help</button>&nbsp;&nbsp;
                                             <div class="search-box ms-2">
                                                 <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
                                                 <i class="ri-search-line search-icon"></i>
-                                            </div>
-                                            <button type="button" class="btn btn-outline-secondary ml-1">Filter</button>
+                                            </div>&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-outline-secondary ml-1">Filter</button>&nbsp;&nbsp;
                                             <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Add</button>
 
                                         </div>
