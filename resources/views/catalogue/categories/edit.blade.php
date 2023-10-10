@@ -94,7 +94,7 @@
     <ul class="tabs">
       <li><a src="tab1" href="javascript:void(0);" class="active">Basic Information</a></li>
       <li><a src="tab2" href="javascript:void(0);">images</a></li>
-      <li><a src="tab3" href="javascript:void(0);">Items</a></li>      
+      <li><a src="tab3" href="javascript:void(0);">Items ({{$itemCount}})</a></li>      
     </ul>
     <div class="tabContent">
         <div id="tab1">   

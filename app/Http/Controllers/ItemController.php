@@ -74,8 +74,10 @@ class ItemController extends Controller
         $locations_id = Locationitem::where('item_id', $id)->pluck('location_id')->flatten()->toArray();
         
         $locations = Location::whereIn('id', $locations_id)->get();
+
+        $locationCount = $locations->count();
         
-        return view('catalogue.items.edit', compact('item','categories','locations','foodtype'));
+        return view('catalogue.items.edit', compact('item','categories','locations','foodtype','locationCount'));
     }
 
 

@@ -95,7 +95,7 @@
       <li><a src="tab1" href="javascript:void(0);" class="active">Info</a></li>
       <li><a src="tab2" href="javascript:void(0);">images</a></li>
       <li><a src="tab3" href="javascript:void(0);">Taxes & Charges</a></li>
-      <li><a src="tab4" href="javascript:void(0);">Locations</a></li>
+      <li><a src="tab4" href="javascript:void(0);">Locations ({{ $locationCount}})</a></li>
       <li><a src="tab5" href="javascript:void(0);">Modifier Groups</a></li>
     </ul>
     <div class="tabContent">
