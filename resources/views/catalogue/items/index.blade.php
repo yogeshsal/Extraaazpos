@@ -141,43 +141,51 @@
                                     <table class="table align-middle table-nowrap" id="customerTable">
                                         <thead class="table-light">
                                             <tr>
-                                                <th scope="col" style="width: 50px;">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="checkAll" value="option">
-                                                    </div>
-                                                </th>
-                                                <th class="sort" data-sort="customer_name">Customer</th>
+                                                <th class="grey-background"></th>
+                                                <th class="grey-background"></th>
+                                                <th class="grey-background sort " data-sort="customer_name">NAME</th>
+                                                <th class="grey-background sort " data-sort="location">ASSOCIATED LOCATIONS</th>
+                                                <th class="grey-background sort " data-sort="category">CATEGORY</th>
+                                                <th class="grey-background sort " data-sort="salesprice">SALES PRICE (INR)</th>
+                                                <th class="grey-background sort " data-sort="update">UPDATED</th>
+
+                                                <!-- <th class="sort" data-sort="customer_name">Customer</th>
                                                 <th class="sort" data-sort="email">Email</th>
                                                 <th class="sort" data-sort="phone">Phone</th>
                                                 <th class="sort" data-sort="date">Joining Date</th>
                                                 <th class="sort" data-sort="status">Delivery Status</th>
-                                                <th class="sort" data-sort="action">Action</th>
+                                                <th class="sort" data-sort="action">Action</th> -->
                                             </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
+                                        
+                                            @foreach($data as $item)
                                             <tr>
-                                                <th scope="row">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
-                                                    </div>
-                                                </th>
-                                                <td class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ2101</a></td>
-                                                <td class="customer_name">Mary Cousar</td>
-                                                <td class="email">marycousar@Hybrix.com</td>
-                                                <td class="phone">580-464-4694</td>
-                                                <td class="date">06 Apr, 2021</td>
-                                                <td class="status"><span class="badge badge-soft-success text-uppercase">Active</span></td>
                                                 <td>
-                                                    <div class="d-flex gap-2">
-                                                        <div class="edit">
-                                                            <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal">Edit</button>
-                                                        </div>
-                                                        <div class="remove">
-                                                            <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Remove</button>
-                                                        </div>
-                                                    </div>
+                                                    @if ($item->item_image)
+                                                    <img src="{{ asset('storage/' . $item->item_image) }}" alt="Image" class="table-image" width="20" height="20">
+                                                    @else
+                                                    <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
+                                                    @endif
                                                 </td>
+                                                <td>
+                                                    @if ($item->item_food_type === 'Vegetarian')
+                                                    <img src="{{ asset('storage/veg.png') }}" alt="Vegetarian Logo">
+                                                    @elseif ($item->item_food_type === 'Non Vegetarian')
+                                                    <img src="{{ asset('storage/nonveg.png') }}" alt="Non-Vegetarian Logo">
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('items.edit', ['id' => $item->id]) }}">{{ $item->item_name }}</a>
+                                                </td>
+                                                <td>{{$item->item_pos_code}}</td>
+                                                <td>{{ optional($item->category)->cat_name }}</td>
+                                                <td>{{$item->item_default_sell_price}} <br> <del>{{$item->item_markup_price}}</del></td>
+                                                <td>{{ $item->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
                                             </tr>
+                                            @endforeach
+                                        
+                                       
                                         </tbody>
                                     </table>
                                     <div class="noresult" style="display: none">
