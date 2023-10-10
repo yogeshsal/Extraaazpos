@@ -13,6 +13,65 @@
     outline: none !important;
     box-shadow: none !important;
 }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transform: rotate(-45deg);
+}
+
+.circle-btn {
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    background: #0074cc;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transform: rotate(45deg);
+}
+
+.note-icon {
+    width: 30px;
+    height: 30px;
+    background: #0074cc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+#note {
+    background: white;
+}
+
+#finishorder {
+    background: #4caf50;
+}
+
+#hold {
+    background: #ff9800;
+}
+
 </style>
 <br>
 <div class="row">
@@ -126,11 +185,13 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-body">
-                <button type="button" class="btn btn-primary">Note</button>
-                <button type="button" class="btn btn-secondary">Hold</button>
-                <button type="button" class="btn btn-danger">Finish Order
-            </div>
+            <div class="circle">
+        <button id="note" class="circle-btn">
+            <div class="note-icon clickable"><i class="fas fa-pencil-alt"></i></div> 
+        </button>
+        <button id="finishorder" class="circle-btn"><i class="fas fa-check-circle"></i> </button>
+        <button id="hold" class="circle-btn"><i class="fas fa-pause"></i> </button>
+    </div>
     </div>
   </div>
 </div>
