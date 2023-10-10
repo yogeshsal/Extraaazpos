@@ -107,6 +107,9 @@ Route::put('/items/{id}/update-image', [App\Http\Controllers\ItemController::cla
 Route::get('/items/select_location/{id}', [App\Http\Controllers\ItemController::class, 'select_location'])->name('items.select_location');
 Route::post('/location-items/{id}', [App\Http\Controllers\ItemController::class,'restrictItems'])->name('loction.items');
 
+Route::get('/items/select_modifiergroup/{id}', [App\Http\Controllers\ItemController::class, 'select_modifiergroup'])->name('items.select_modifiergroup');
+
+Route::post('/modifiergroup-items/{id}', [App\Http\Controllers\ItemController::class,'updateModofiergroupItems'])->name('modifiergroup.items');
 
 
 

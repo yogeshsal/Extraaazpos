@@ -9,6 +9,8 @@ use App\models\Location;
 use App\models\User;
 use App\models\Foodtype;
 use App\models\Locationitem;
+use App\models\ModifierGroup;
+use App\models\Modifiergroupitem;
 
 use Auth;
 
@@ -76,8 +78,15 @@ class ItemController extends Controller
         $locations = Location::whereIn('id', $locations_id)->get();
 
         $locationCount = $locations->count();
+
         
-        return view('catalogue.items.edit', compact('item','categories','locations','foodtype','locationCount'));
+        $modifierGroupId = Modifiergroupitem::where('item_id', $id)->pluck('modifiergroup_id')->flatten()->toArray();
+
+        $modifierGroup = ModifierGroup::whereIn('id',  $modifierGroupId )->get();
+
+        $modifierGroupCount = $modifierGroup->count();
+        
+        return view('catalogue.items.edit', compact('item','categories','locations','foodtype','locationCount','modifierGroup','modifierGroupCount'));
     }
 
 
@@ -209,9 +218,50 @@ public function restrictItems(Request $request,$id)
     }
 
 
+    
+    public function select_modifiergroup($id)
+    {
+        
+        $modifierGroup = ModifierGroup::all();
+    //dd($modifierGroup);
+         $selectedLocationIds = Modifiergroupitem::where('item_id', $id)->pluck('modifiergroup_id')->all();
+    
+        $ids= [];
+        
+        if (!empty($selectedLocationIds) && isset($selectedLocationIds[0])) {
+            // Access $selectedItemIds[0] here
+            $ids = $selectedLocationIds[0];
+        }
+       
+        
+       return view('catalogue.items.select_modifiergroup',compact('modifierGroup','ids'));
+    }
 
+    public function updateModofiergroupItems(Request $request,$id)
+    {
+       
+        $selectedItemsIds = $request->input('selected_items');
 
-
+        $user_id = Auth::user()->id;
+    
+       $existingItemitem = Modifiergroupitem::where('item_id', $id)
+            ->where('user_id', $user_id)
+            ->first();
+    
+        if ($existingItemitem) {
+            // If a record already exists, update the item_id
+            $existingItemitem->update(['modifiergroup_id' => $selectedItemsIds]);
+        } else {
+            // If no record exists, create a new Taxitem record
+            $data = new Modifiergroupitem;
+            $data->item_id = $id;
+            $data->user_id = $user_id;
+            $data->modifiergroup_id = $selectedItemsIds; 
+            $data->save();
+        }
+        
+        return redirect('items');
+    }
 
 
 

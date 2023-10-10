@@ -96,7 +96,7 @@
       <li><a src="tab2" href="javascript:void(0);">images</a></li>
       <li><a src="tab3" href="javascript:void(0);">Taxes & Charges</a></li>
       <li><a src="tab4" href="javascript:void(0);">Locations ({{ $locationCount}})</a></li>
-      <li><a src="tab5" href="javascript:void(0);">Modifier Groups</a></li>
+      <li><a src="tab5" href="javascript:void(0);">Modifier Groups ( {{$modifierGroupCount}})</a></li>
     </ul>
     <div class="tabContent">
         <div id="tab1">   
@@ -263,7 +263,38 @@
             
             </div>
         <div id="tab5">
-            <span>Inside Tab 5, how <b>interesting</b>.</span>
+        <div class="card shadow p-3">
+                <div class="row">
+                        <div class="col">
+                            <h4>Modifier Groups </h4>
+                        </div>
+                            <div class="col-auto">
+                            <a type="button" class="btn btn-orange" href="{{ route('items.select_modifiergroup', $item->id ) }}">Update</a>  
+                            </div>
+                </div>
+        </div>  
+         <div class="card shadow p-3 mt-3">
+                    <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Modifier group</th>
+                       
+                        </tr>
+                      
+                    </thead>
+                        <tbody>
+                        @foreach($modifierGroup as $m)
+                    <tr>
+                    <td>{{$m->modifier_group_name}}</td>
+                    
+                 </tr>
+                   @endforeach
+                        
+
+                        </tbody>
+                </table>
+             </div> 
+
         </div>
     </div>
     <!-- /tabContent -->
