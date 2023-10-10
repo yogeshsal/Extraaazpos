@@ -559,7 +559,7 @@
                         <a href="/owner" class="nav-link menu-link"> <i class="bi bi-speedometer2"></i> <span data-key="t-dashboard">Dashboard</span> </a>
                     </li>
 
-                    <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Point of sale</span></li>
+                    <!-- <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Point of sale</span></li> -->
 
                     <!-- <li class="nav-item">
                         <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
@@ -738,9 +738,9 @@
                     </li> -->
 
                     <li class="nav-item">
-                        <!-- <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
-                                <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Point of sale</span>
-                            </a> -->
+                        <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                            <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Point of sale</span>
+                        </a>
 
                         <div class="collapse menu-dropdown" id="sidebarPages">
                             <ul class="nav nav-sm flex-column">
