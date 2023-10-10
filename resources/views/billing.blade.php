@@ -1,231 +1,379 @@
-
 @extends('layouts.ownerlayout')
 @extends('layouts.app')
 
 @section('ownercontent')
 
 <style>
-  .menu ul {
-      list-style-type: none;
-  }
-  /* .menu li {
+    .menu ul {
+        list-style-type: none;
+    }
+
+    /* .menu li {
       display: inline-block;
       vertical-align: middle;
       text-align: center;
   } */
-  .circle {
-      border-radius: 100px;
-      width: 100px;
-      height: 100px;
-      line-height: 100px;
-      background: #999da3;
-      margin-left: 5px;
-  }
-  </style>
+    .circle {
+        border-radius: 100px;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        background: #999da3;
+        margin-left: 5px;
+    }
+</style>
 
-  <style>
-    .selectWrapper{
-    border-radius:0px;
-    display:inline-block;
-    overflow:hidden;
-    background:#cccccc;
-    border:1px solid #cccccc;
-    margin-left: 555px;
-  }
-    .selectBox{
-    width:140px;
-    height:40px;
-    border:0px;
-    outline:none;
-  }
+<style>
+    .selectWrapper {
+        border-radius: 0px;
+        display: inline-block;
+        overflow: hidden;
+        background: #cccccc;
+        border: 1px solid #cccccc;
+        margin-left: 555px;
+    }
 
-        /* Center-align the text */
-        .card-title {
-            text-align: center;
-        }
+    /* .selectBox {
+        width: 140px;
+        height: 40px;
+        border: 0px;
+        outline: none;
+    } */
 
-        .circle-container {
+    /* Center-align the text */
+    .card-title {
+        text-align: center;
+    }
+
+    .circle-container {
         display: flex;
-        flex-wrap: wrap; /* Wrap circles to the next line when they don't fit horizontally */
-        justify-content: center; /* Center the circles horizontally */
+        flex-wrap: wrap;
+        /* Wrap circles to the next line when they don't fit horizontally */
+        justify-content: center;
+        /* Center the circles horizontally */
     }
 
     .circle {
-        width: 100px; /* Adjust the width of each circle */
-        height: 100px; /* Adjust the height of each circle */
+        width: 100px;
+        /* Adjust the width of each circle */
+        height: 100px;
+        /* Adjust the height of each circle */
         background-color: #3498db;
         border-radius: 50%;
-        margin: 30px; /* Add spacing between circles */
+        margin: 30px;
+        /* Add spacing between circles */
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 18px;
         color: white;
     }
-    .clicked-circle {
-    background-color: #F37429; /* Change the background color to your desired color */
-    color: white; /* Change the text color to contrast with the new background color */
-}
 
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Adjust the shadow properties as needed */
-}
-    </style>
-  
+    .clicked-circle {
+        background-color: #F37429;
+        /* Change the background color to your desired color */
+        color: white;
+        /* Change the text color to contrast with the new background color */
+    }
+
+    .card {
+        /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+        /* Adjust the shadow properties as needed */
+    }
+</style>
+
 
 <br>
-<div class="container">    
-    <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item">
-        <a href="#delivery" role="tab" data-toggle="tab"
-           class="nav-link active"> Delivery </a>
-      </li>
-      <li class="nav-item">
-        <a href="#dinein" role="tab" data-toggle="tab"
-           class="nav-link"> Dinein </a>
-      </li>      
-      <li class="nav-item">
-        <a href="#takeaway" role="tab" data-toggle="tab"
-           class="nav-link"> Takeaway </a>
-      </li>
-      <li class="nav-item">
-        <a href="#advanceorder" role="tab" data-toggle="tab"
-           class="nav-link"> Advance Orders </a>
-      </li>
-      <!-- <li class="nav-item">
-        <a href="#plus" role="tab" data-toggle="tab"
-           class="nav-link"> + </a>
-      </li> -->
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" role="tabpanel" id="delivery">
-        <h3> delivery </h3>
-        <p> Work in progress... </p>
-      </div>
-      <div class="tab-pane" role="tabpanel" id="dinein">
-        <br>
-        <div class="row">
-          <div class="col-sm-8">
-            <div class="card" >
-              <div class="card-body"> 
-                <!-- <div class="alert alert-secondary" role="alert"> -->
-                  <div class="selectWrapper">
-                   <select class="selectBox " id="dropdown">
-                      <option value="balcony">Balcony Section</option>
-                      <option value="table">Table</option>
-                  </select>
-                  </div>
-                <!-- </div> -->
-                <hr>
-                <div class="menu">
-                    <ul>
-                    <div id="balconyDiv">
-                      <li onclick="showBalcony()">
-                          <div class="circle-container">
-                              @for ($i = 1; $i <= $bal; $i++)
-                                  <div class="circle" id="bal-{{ $i }}" onclick="showCircleDetails(this)">
-                                      <span class="circle-number">{{ $i }}</span>
-                                  </div>
-                              @endfor
-                          </div>
-                      </li>
+
+
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">Tabs</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item">
+                                    <a href="javascript: void(0);">Base UI</a>
+                                </li>
+                                <li class="breadcrumb-item active">Tabs</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-xxl-8">
+                    <h5 class="mb-3">Default Tabs</h5>
+                    <div class="card">
+                        <div class="card-body">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs mb-3" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#home" role="tab" aria-selected="false">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#product1" role="tab" aria-selected="false">
+                                        Billing
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#messages" role="tab" aria-selected="false">
+                                        Messages
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#settings" role="tab" aria-selected="true">
+                                        Settings
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content text-muted">
+                                <div class="tab-pane" id="home" role="tabpanel">
+                                    <h6>Graphic Design</h6>
+                                    <p class="mb-0">
+                                        They all have something to say beyond the words on the
+                                        page. They can come across as casual or neutral,
+                                        exotic or graphic. That's why it's important to think
+                                        about your message, then choose a font that fits.
+                                        Cosby sweater eu banh mi, qui irure terry richardson
+                                        ex squid.
+                                    </p>
+                                </div>
+                                <div class="tab-pane active" id="product1" role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <select class="form-select mb-3 selectBox" id="dropdown" aria-label="Default select example">
+                                                <!-- <option selected>Select your Status </option> -->
+                                                <option value="balcony" selected>Balcony</option>
+                                                <option value="table">Table</option>
+                                                <!-- <option value="3">Wrong Amount</option> -->
+                                            </select>
+                                            <!-- <select class="selectBox " id="dropdown">
+                                    <option value="balcony">Balcony Section</option>
+                                    <option value="table">Table</option>
+                                </select> -->
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                                <div class="menu">
+                                                    <div id="balconyDiv">
+                                                        <li onclick="showBalcony()">
+                                                            <div class="circle-container">
+                                                                @for ($i = 1; $i <= $bal; $i++) <div class="circle" id="bal-{{ $i }}" onclick="showCircleDetails(this)">
+                                                                    <span class="circle-number">{{ $i }}</span>
+                                                            </div>
+                                                            @endfor
+                                                        </li>
+                                                    </div>
+                                                </div>
+
+                                                <div id="tableDiv" style="display: none;">
+                                                    <li onclick="showTable()">
+                                                        <div class="circle-container">
+                                                            @for ($i = 1; $i <= $table; $i++) <div class="circle" id="table-{{ $i }}" onclick="showCircleDetails(this)">
+                                                                <span class="circle-number">{{ $i }}</span>
+                                                        </div>
+                                                        @endfor
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                        <!-- <div class="card-footer">
+                                            <a href="javascript:void(0);" class="link-success float-end">Read More <i class="ri-arrow-right-s-line align-middle ms-1 lh-1"></i></a>
+                                            <p class="text-muted mb-0">1 days Ago</p>
+                                        </div> -->
+                                    </div>
+
+                                    <!-- <h6>Product</h6>
+                                    <p class="mb-0">
+                                        You've probably heard that opposites attract. The same
+                                        is true for fonts. Don't be afraid to combine font
+                                        styles that are different but complementary, like sans
+                                        serif with serif, short with tall, or decorative with
+                                        simple. Qui photo booth letterpress, commodo enim
+                                        craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+                                        cillum PBR.
+                                    </p> -->
+                                </div>
+                                <div class="tab-pane" id="messages" role="tabpanel">
+                                    <h6>Messages</h6>
+                                    <p class="mb-0">
+                                        Etsy mixtape wayfarers, ethical wes anderson tofu
+                                        before they sold out mcsweeney's organic lomo retro
+                                        fanny pack lo-fi farm-to-table readymade. Messenger
+                                        bag gentrify pitchfork tattooed craft beer, iphone
+                                        skateboard locavore carles etsy salvia banksy hoodie
+                                        helvetica. DIY synth PBR banksy irony.
+                                    </p>
+                                </div>
+                                <div class="tab-pane" id="settings" role="tabpanel">
+                                    <h6>Settings</h6>
+                                    <p class="mb-0">
+                                        Trust fund seitan letterpress, keytar raw denim
+                                        keffiyeh etsy art party before they sold out master
+                                        cleanse gluten-free squid scenester freegan cosby
+                                        sweater. Fanny pack portland seitan DIY, art party
+                                        locavore wolf cliche high life echo park Austin. Cred
+                                        vinyl keffiyeh DIY salvia PBR, banh mi before they
+                                        sold out farm-to-table VHS.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card-body -->
+                    </div>
+                    <!-- end card -->
+                </div>
+                <div class="col-xxl-4">
+                    <h5 class="mb-3">&nbsp;</h5>
+
+
+                    <div id="circleDetailDiv" class="card" style="display: none">
+                        <div class="card-body">
+                            <h4 class="card-title">Table - <span id="circleNumberSpan"></span></h4>
+
+                            <center>
+                                <p class="card-text">How many people are at the table ?</p>
+                            </center>
+                            <br>
+
+
+                            <div class="col-sm-12 text-center">
+                                <div>
+                                    <!-- <h5 class="fs-13 fw-medium text-muted">Light</h5> -->
+                                    <div class="input-step light">
+                                        <button type="button" class="minus">–</button>
+                                        <input type="number" class="product-quantity" value="5" min="0" max="100" readonly>
+                                        <button type="button" class="plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- counter -->
+                            <br>
+                            <center>
+                                <p class="card-text">Add Customer</p>
+                            </center>
+
+                            <center>
+                                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#myModal" id="selectCustomerButton">
+                                    Customer: Select Customer
+                                </button>
+                            </center>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="customer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Select Customer</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <select class="form-select" aria-label="Default select example" id="customerSelect">
+                                                    <option selected>Select Customer</option>
+                                                    @foreach($customer as $c)
+                                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" id="saveCustomerButton" data-dismiss="modal">Done</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <center>
+                                <p class="card-text">Add Server</p>
+                            </center>
+
+                            <center><button type="button" class="btn btn-outline-secondary">Server : Select Server</button>
+                                <center>
+                                    <a href="orders"><button type="button" class="btn btn-orange mt-2">New Bill</button></a>
+                        </div>
+                    </div>
+                    <!-- end card -->
+                </div>
+                <!--end col-->
+
+
+            </div>
+            <!--end row-->
+
+
+            <!--end row-->
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    © Hybrix.
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end d-none d-sm-block">
+                        Design & Develop by Themesbrand
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Select Customer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="col-xxl-12 col-md-10">
+                        <div>
+                            <label for="labelInput" class="form-label">Search by Name or Mobile Number</label>
+                            <input type="password" class="form-control" id="labelInput">
+                        </div>
                     </div>
 
-                      <div id="tableDiv" style="display: none;">
-                          <li onclick="showTable()">
-                              <div class="circle-container">
-                                  @for ($i = 1; $i <= $table; $i++)
-                                      <div class="circle" id="table-{{ $i }}" onclick="showCircleDetails(this)">
-                                          <span class="circle-number">{{ $i }}</span>
-                                      </div>
-                                  @endfor
-                              </div>
-                          </li>
-                      </div>
-                    </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div id="circleDetailDiv" class="card" style="display: none">
-              <div class="card-body">
-                <h4 class="card-title">Table - <span id="circleNumberSpan"></span></h4>
-                
-                <center><p class="card-text">How many people are at the table ?</p></center>
-                <br>
 
-
-                <center>
-                <!-- counter -->
-                <div class="counter-container">                
-                  <button class="counter-button" id="minusButton">-</button>  
-                  <span id="counterValue">0</span>
-                  <button class="counter-button" id="plusButton">+</button>
                 </div>
-                </center>
-                <!-- counter -->
-                <br>
-                <center><p class="card-text">Add Customer</p></center>
-                
-                <center>
-    <button data-toggle="modal" data-target="#customer" type="button" class="btn btn-outline-secondary" id="selectCustomerButton">
-        Customer: Select Customer
-    </button>
-</center>
-
-                 <!-- Modal -->
-<div class="modal fade" id="customer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Select Customer</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <select class="form-select" aria-label="Default select example" id="customerSelect">
-                        <option selected>Select Customer</option>
-                        @foreach($customer as $c)
-                            <option value="{{$c->id}}">{{$c->name}}</option>
-                        @endforeach
-                    </select>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary ">Save Changes</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-              
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveCustomerButton" data-dismiss="modal">Done</button>
-            </div>
-        </div>
-    </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+<!-- end main content-->
 </div>
 
-<br>
-                <center><p class="card-text">Add Server</p></center>
-                
-                <center><button type="button" class="btn btn-outline-secondary">Server : Select Server</button><center>
-                <a href= "orders"><button type="button" class="btn btn-orange mt-2">New Bill</button></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      
-      <div class="tab-pane" role="tabpanel" id="takeaway">
-        <h3> Take Away </h3>
-        <p> Lorem ipsum dolorem </p>
-      </div>
-      <div class="tab-pane" role="tabpanel" id="advanceorder">
-        <h3> Advance Order </h3>
-        <p> Lorem ipsum dolorem </p>
-      </div>
-    </div>
-</div>
-<script
+<!-- <script
         src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous">
@@ -239,114 +387,114 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous">
+</script> -->
+
+
+
+
+<script>
+    // Function to show the div
+    function showtable1() {
+        var div = document.getElementById('table1');
+        div.style.display = 'block';
+    }
 </script>
 
 
-
-
 <script>
-        // Function to show the div
-        function showtable1() {
-            var div = document.getElementById('table1');
-            div.style.display = 'block';
-        }
-    </script>
+    // Get references to the buttons and the counter value
+    const minusButton = document.getElementById('minusButton');
+    const plusButton = document.getElementById('plusButton');
+    const counterValue = document.getElementById('counterValue');
 
+    // Initialize the counter value
+    let count = 0;
 
-<script>
-        // Get references to the buttons and the counter value
-        const minusButton = document.getElementById('minusButton');
-        const plusButton = document.getElementById('plusButton');
-        const counterValue = document.getElementById('counterValue');
-
-        // Initialize the counter value
-        let count = 0;
-
-        // Function to decrease the counter value
-        minusButton.addEventListener('click', function () {
-            count--;
-            counterValue.textContent = count;
-        });
-
-        // Function to increase the counter value
-        plusButton.addEventListener('click', function () {
-            count++;
-            counterValue.textContent = count;
-        });
-
-
-
-// Get references to the dropdown and div elements
-var dropdown = document.getElementById("dropdown");
-var balconyDiv = document.getElementById("balconyDiv");
-var tableDiv = document.getElementById("tableDiv");
-
-// Function to show the Balcony div
-function showBalcony() {
-    balconyDiv.style.display = "block";
-    tableDiv.style.display = "none";
-}
-
-// Function to show the Table div
-function showTable() {
-    balconyDiv.style.display = "none";
-    tableDiv.style.display = "block";
-}
-
-// Add an event listener to the dropdown to detect changes
-dropdown.addEventListener("change", function() {
-    var selectedValue = dropdown.value;
-    if (selectedValue === "balcony") {
-        showBalcony();
-    } else if (selectedValue === "table") {
-        showTable();
-    }
-});
-
-function showCircleDetails(circle) {
-    // Display the circle details div
-    var circleDetailDiv = document.getElementById("circleDetailDiv");
-    circleDetailDiv.style.display = "block";
-
-    // Display the circle's number
-    var circleNumberSpan = document.getElementById("circleNumberSpan");
-    circleNumberSpan.textContent = circle.querySelector('.circle-number').textContent;
-    var allCircles = document.querySelectorAll('.circle');
-    allCircles.forEach(function (circle) {
-        circle.classList.remove('clicked-circle');
+    // Function to decrease the counter value
+    minusButton.addEventListener('click', function() {
+        count--;
+        counterValue.textContent = count;
     });
 
-    // Add the "clicked-circle" class to the clicked circle
-    circle.classList.add('clicked-circle');
-}
+    // Function to increase the counter value
+    plusButton.addEventListener('click', function() {
+        count++;
+        counterValue.textContent = count;
+    });
 
 
-// Add an event listener to the dropdown to detect changes
-dropdown.addEventListener("change", function() {
-    var selectedValue = dropdown.value;
-    if (selectedValue === "balcony") {
-        showBalcony();
-    } else if (selectedValue === "table") {
-        showTable();
+
+    // Get references to the dropdown and div elements
+    var dropdown = document.getElementById("dropdown");
+    var balconyDiv = document.getElementById("balconyDiv");
+    var tableDiv = document.getElementById("tableDiv");
+
+    // Function to show the Balcony div
+    function showBalcony() {
+        balconyDiv.style.display = "block";
+        tableDiv.style.display = "none";
     }
-});
+
+    // Function to show the Table div
+    function showTable() {
+        balconyDiv.style.display = "none";
+        tableDiv.style.display = "block";
+    }
+
+    // Add an event listener to the dropdown to detect changes
+    dropdown.addEventListener("change", function() {
+        var selectedValue = dropdown.value;
+        if (selectedValue === "balcony") {
+            showBalcony();
+        } else if (selectedValue === "table") {
+            showTable();
+        }
+    });
+
+    function showCircleDetails(circle) {
+        // Display the circle details div
+        var circleDetailDiv = document.getElementById("circleDetailDiv");
+        circleDetailDiv.style.display = "block";
+
+        // Display the circle's number
+        var circleNumberSpan = document.getElementById("circleNumberSpan");
+        circleNumberSpan.textContent = circle.querySelector('.circle-number').textContent;
+        var allCircles = document.querySelectorAll('.circle');
+        allCircles.forEach(function(circle) {
+            circle.classList.remove('clicked-circle');
+        });
+
+        // Add the "clicked-circle" class to the clicked circle
+        circle.classList.add('clicked-circle');
+    }
 
 
-// Get references to the dropdown and span elements
-var dropdown = document.getElementById("dropdown");
-var circleNumberSpan = document.getElementById("circleNumberSpan");
+    // Add an event listener to the dropdown to detect changes
+    dropdown.addEventListener("change", function() {
+        var selectedValue = dropdown.value;
+        if (selectedValue === "balcony") {
+            showBalcony();
+        } else if (selectedValue === "table") {
+            showTable();
+        }
+    });
 
-// Function to update the selected value in the span element
-// function updateSelectedValue() {
-//     var selectedOption = dropdown.options[dropdown.selectedIndex];
-//     circleNumberSpan.textContent = selectedOption.text;
-// }
 
-// Add an event listener to the dropdown to detect changes
-// dropdown.addEventListener("change", updateSelectedValue);
+    // Get references to the dropdown and span elements
+    var dropdown = document.getElementById("dropdown");
+    var circleNumberSpan = document.getElementById("circleNumberSpan");
 
-// Initial update when the page loads
-// updateSelectedValue();
+    // Function to update the selected value in the span element
+    // function updateSelectedValue() {
+    //     var selectedOption = dropdown.options[dropdown.selectedIndex];
+    //     circleNumberSpan.textContent = selectedOption.text;
+    // }
+
+    // Add an event listener to the dropdown to detect changes
+    // dropdown.addEventListener("change", updateSelectedValue);
+
+    // Initial update when the page loads
+    // updateSelectedValue();
 </script>
 
 <script>
@@ -358,10 +506,10 @@ var circleNumberSpan = document.getElementById("circleNumberSpan");
     document.getElementById('saveCustomerButton').addEventListener('click', function() {
         // Get the selected customer's name
         const selectedCustomerName = customerSelect.options[customerSelect.selectedIndex].text;
-        
+
         // Update the button text with the selected customer's name
         selectCustomerButton.innerText = `Customer: ${selectedCustomerName}`;
-        
+
         // Close the modal
         $('#customer').modal('hide');
     });
