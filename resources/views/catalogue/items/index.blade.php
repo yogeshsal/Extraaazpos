@@ -80,7 +80,7 @@
                 </button>
                 <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
                 <button type="button" class="btn btn-outline-secondary m-1"><i class="fa fa-filter" aria-hidden="true"></i>&nbsp;Filters</button>           
-                <a href="" class="btn btn-orange m-1" data-toggle="modal" data-target="#add_item_modal">+ Add Item</a>
+                <a href="" class="btn btn-orange m-1" data-toggle="modal" data-target="#add_item_modal">+ Add Items</a>
             </div>        
         </div>       
     </div> 
