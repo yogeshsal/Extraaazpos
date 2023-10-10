@@ -330,67 +330,7 @@
 <!-- end main content-->
 
 </div>
-<div class="card shadow">
-    <div class="card-body d-flex justify-content-between align-items-center">
-        <h3>Items</h3>
-        <div class="d-flex align-items-center">
-            <div class="input-group mr-2">
-                <button type="button" class="btn btn-outline-secondary m-1">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i> Help
-                </button>
-                <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-secondary m-1"><i class="fa fa-filter" aria-hidden="true"></i>&nbsp;Filters</button>
-                <a href="" class="btn btn-orange m-1" data-toggle="modal" data-target="#add_item_modal">+ Add Item</a>
-            </div>
-        </div>
-    </div>
 
-    <table id="data-table">
-        <thead>
-            <tr>
-                <th class="grey-background"></th>
-                <th class="grey-background"></th>
-                <th class="grey-background">NAME</th>
-                <th class="grey-background">ASSOCIATED LOCATIONS</th>
-                <th class="grey-background">CATEGORY</th>
-                <th class="grey-background">SALES PRICE (INR)</th>
-                <th class="grey-background">UPDATED</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($data as $item)
-            <tr>
-                <td>
-                    @if ($item->item_image)
-                    <img src="{{ asset('storage/' . $item->item_image) }}" alt="Image" class="table-image" width="20" height="20">
-                    @else
-                    <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
-                    @endif
-                </td>
-                <td>
-                    @if ($item->item_food_type === 'Vegetarian')
-                    <img src="{{ asset('storage/veg.png') }}" alt="Vegetarian Logo">
-                    @elseif ($item->item_food_type === 'Non Vegetarian')
-                    <img src="{{ asset('storage/nonveg.png') }}" alt="Non-Vegetarian Logo">
-                    @endif
-                </td>
-                <td>
-                    <a href="{{ route('items.edit', ['id' => $item->id]) }}">{{ $item->item_name }}</a>
-                </td>
-                <td>{{$item->item_pos_code}}</td>
-                <td>{{ optional($item->category)->cat_name }}</td>
-                <td>{{$item->item_default_sell_price}} <br> <del>{{$item->item_markup_price}}</del></td>
-                <td>{{ $item->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <div class="pagination-wrapper">
-        {{ $data->links() }}
-    </div>
-
-
-</div>
 
 
 
