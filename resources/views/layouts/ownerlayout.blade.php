@@ -761,6 +761,139 @@
                     </li>
 
 
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                            <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Online Orders</span>
+                        </a>
+
+                        <div class="collapse menu-dropdown" id="sidebarPages">
+                            <ul class="nav nav-sm flex-column">
+
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Order Tracker </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Pickup Display </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Order History </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Day Summary </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Logs </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/owner" class="nav-link menu-link"> <i class="bi bi-speedometer2"></i> <span data-key="t-dashboard">KDS</span> </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/customers" class="nav-link menu-link"> <i class="bi bi-speedometer2"></i> <span data-key="t-dashboard">Customers</span> </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                            <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Catalogue</span>
+                        </a>
+
+                        <div class="collapse menu-dropdown" id="sidebarPages">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="/items" class="nav-link" data-key="t-starter"> Items </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/categories" class="nav-link" data-key="t-starter"> Categories </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/category-timing" class="nav-link" data-key="t-starter"> Category Timings </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/modifiergroups" class="nav-link" data-key="t-starter"> Modifier Groups </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/taxes" class="nav-link" data-key="t-starter"> Taxes </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/charges" class="nav-link" data-key="t-starter"> Charges </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/discounts" class="nav-link" data-key="t-starter"> Discounts </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Billing Entities </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                            <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Raw Materials</span>
+                        </a>
+
+                        <div class="collapse menu-dropdown" id="sidebarPages">
+                            <ul class="nav nav-sm flex-column">
+
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Materials </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Intermediates </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Categories </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Modifier Groups </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Taxes </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                            <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Company Admin</span>
+                        </a>
+
+                        <div class="collapse menu-dropdown" id="sidebarPages">
+                            <ul class="nav nav-sm flex-column">
+
+
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Settings </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> User Role </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Employees </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Location </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Brands </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Print Templates </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Integrations </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+
 
                 </ul>
             </div>
