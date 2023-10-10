@@ -187,3 +187,8 @@ Route::view('brands', 'company-admin.brands');
 Route::view('print_templates', 'company-admin.print_templates');
 Route::view('integrations', 'company-admin.integrations');
 
+//raw materials
+Route::view('materials', 'rawmaterials.materials.index');
+Route::view('intermediates', 'rawmaterials.intermediates.index');
+Route::view('categories', 'rawmaterials.categories.index');
+Route::view('taxes', 'rawmaterials.taxes.index');
