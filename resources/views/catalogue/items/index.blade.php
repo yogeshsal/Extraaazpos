@@ -138,7 +138,7 @@
                                 </div>
 
                                 <div class="table-responsive table-card mt-3 mb-1">
-                                    <table class="table align-middle table-nowrap data-table" id="customerTable">
+                                    <table class="table align-middle table-nowrap data-table" id="data-table">
                                         <thead class="table-light">
                                             <tr>
                                                 <th class="grey-background"></th>
@@ -326,7 +326,7 @@
 <!-- end main content-->
 
 </div>
-<!-- <div class="card shadow">
+<div class="card shadow">
     <div class="card-body d-flex justify-content-between align-items-center">
         <h3>Items</h3>
         <div class="d-flex align-items-center">
@@ -386,7 +386,7 @@
     </div>
 
 
-</div> -->
+</div>
 
 
 
