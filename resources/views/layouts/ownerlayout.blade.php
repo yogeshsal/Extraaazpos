@@ -561,7 +561,7 @@
 
                     <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Pages</span></li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
                             <i class="bi bi-person-circle"></i> <span data-key="t-authentication">Authentication</span>
                         </a>
@@ -735,7 +735,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item">
                         <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
