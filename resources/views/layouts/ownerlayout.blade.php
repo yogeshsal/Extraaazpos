@@ -738,11 +738,11 @@
                     </li> -->
 
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                        <a class="nav-link menu-link" href="#pos" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
                             <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Point of sale</span>
                         </a>
 
-                        <div class="collapse menu-dropdown" id="sidebarPages">
+                        <div class="collapse menu-dropdown" id="pos">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="/dailyregister" class="nav-link" data-key="t-starter"> Register </a>
@@ -762,11 +762,11 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                        <a class="nav-link menu-link" href="#onlineorders" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
                             <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Online Orders</span>
                         </a>
 
-                        <div class="collapse menu-dropdown" id="sidebarPages">
+                        <div class="collapse menu-dropdown" id="onlineorders">
                             <ul class="nav nav-sm flex-column">
 
                                 <li class="nav-item">
@@ -797,11 +797,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                        <a class="nav-link menu-link" href="#catalogue" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
                             <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Catalogue</span>
                         </a>
 
-                        <div class="collapse menu-dropdown" id="sidebarPages">
+                        <div class="collapse menu-dropdown" id="catalogue">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="/items" class="nav-link" data-key="t-starter"> Items </a>
@@ -834,11 +834,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                        <a class="nav-link menu-link" href="#rawmaterials" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
                             <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Raw Materials</span>
                         </a>
 
-                        <div class="collapse menu-dropdown" id="sidebarPages">
+                        <div class="collapse menu-dropdown" id="rawmaterials">
                             <ul class="nav nav-sm flex-column">
 
                                 <li class="nav-item">
@@ -860,11 +860,11 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                        <a class="nav-link menu-link" href="#admin" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
                             <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Company Admin</span>
                         </a>
 
-                        <div class="collapse menu-dropdown" id="sidebarPages">
+                        <div class="collapse menu-dropdown" id="admin">
                             <ul class="nav nav-sm flex-column">
 
 
