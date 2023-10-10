@@ -123,19 +123,21 @@
                                 <div class="row g-4 mb-3">
                                     <div class="col-sm-auto">
                                         <div>
-                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Add</button>
                                             <button class="btn btn-soft-danger" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
                                         </div>
                                     </div>
                                     <div class="col-sm">
-                                        <button type="button" class="btn btn-outline-secondary">Secondary</button>
+
                                         <div class="d-flex justify-content-sm-end">
+                                            <button type="button" class="btn btn-outline-secondary">Help</button>
                                             <div class="search-box ms-2">
                                                 <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
                                                 <i class="ri-search-line search-icon"></i>
                                             </div>
+                                            <button type="button" class="btn btn-outline-secondary">Filter</button>
+                                            <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Add</button>
+
                                         </div>
-                                        <button type="button" class="btn btn-outline-secondary">Secondary</button>
                                     </div>
                                 </div>
 
