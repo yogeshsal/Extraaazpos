@@ -130,7 +130,7 @@
                                     <div class="col-sm">
                                         <div class="d-flex justify-content-sm-end">
                                             <div class="search-box ms-2">
-                                                <input type="text" class="form-control search" placeholder="Search...">
+                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
                                                 <i class="ri-search-line search-icon"></i>
                                             </div>
                                         </div>
@@ -138,7 +138,7 @@
                                 </div>
 
                                 <div class="table-responsive table-card mt-3 mb-1">
-                                    <table class="table align-middle table-nowrap" id="customerTable">
+                                    <table class="table align-middle table-nowrap data-table" id="customerTable">
                                         <thead class="table-light">
                                             <tr>
                                                 <th class="grey-background"></th>
