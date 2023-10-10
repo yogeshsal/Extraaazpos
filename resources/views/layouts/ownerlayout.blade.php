@@ -118,11 +118,10 @@
         <!-- <i class="fa-solid fa-caret-down"></i> -->
         </a>
         <ul id="rawmaterial" class="submenu">
-            <li class="sub"><a href="/owner">Materials</a></li>
-            <li class="sub"><a href="/owner">Intermediates</a></li>
-            <li class="sub"><a href="/owner">Categories</a></li>
-            <li class="sub"><a href="/owner">Modifier Groups</a></li>
-            <li class="sub"><a href="/owner">Taxes</a></li>            
+            <li class="sub"><a href="/materials">Materials</a></li>
+            <li class="sub"><a href="/intermediates">Intermediates</a></li>
+            <li class="sub"><a href="/categories">Categories</a></li>
+            <li class="sub"><a href="/taxes">Taxes</a></li>            
         </ul>
       </li>  
 
