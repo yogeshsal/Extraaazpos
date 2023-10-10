@@ -158,7 +158,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
-                                        
+
                                             @foreach($data as $item)
                                             <tr>
                                                 <td>
@@ -175,17 +175,17 @@
                                                     <img src="{{ asset('storage/nonveg.png') }}" alt="Non-Vegetarian Logo">
                                                     @endif
                                                 </td>
-                                                <td>
+                                                <td class="customer_name">
                                                     <a href="{{ route('items.edit', ['id' => $item->id]) }}">{{ $item->item_name }}</a>
                                                 </td>
-                                                <td>{{$item->item_pos_code}}</td>
-                                                <td>{{ optional($item->category)->cat_name }}</td>
-                                                <td>{{$item->item_default_sell_price}} <br> <del>{{$item->item_markup_price}}</del></td>
-                                                <td>{{ $item->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
+                                                <td class="location">{{$item->item_pos_code}}</td>
+                                                <td class="category">{{ optional($item->category)->cat_name }}</td>
+                                                <td class="salesprice">{{$item->item_default_sell_price}} <br> <del>{{$item->item_markup_price}}</del></td>
+                                                <td class="update">{{ $item->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
                                             </tr>
                                             @endforeach
-                                        
-                                       
+
+
                                         </tbody>
                                     </table>
                                     <div class="noresult" style="display: none">

@@ -30,3 +30,14 @@
 
  <!-- App js -->
  <script src="js/app.js"></script>
+
+ <!-- prismjs plugin -->
+ <script src="assets/libs/prismjs/prism.js"></script>
+ <script src="assets/libs/list.js/list.min.js"></script>
+ <script src="assets/libs/list.pagination.js/list.pagination.min.js"></script>
+
+ <!-- listjs init -->
+ <script src="assets/js/pages/listjs.init.js"></script>
+
+ <!-- Sweet Alerts js -->
+ <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
