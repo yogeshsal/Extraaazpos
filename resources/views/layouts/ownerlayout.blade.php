@@ -797,47 +797,43 @@
                     </li>
 
                     <li class="nav-item">
-                        <<<<<<< HEAD <a class="nav-link menu-link" href="#catalogue" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                        <a class="nav-link menu-link" href="#catalogues" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
                             <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Catalogue</span>
-                            </a>
+                        </a>
 
-                            <div class="collapse menu-dropdown" id="catalogue">
-                                =======
-                                <a class="nav-link menu-link" href="#catl" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
-                                    <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Catalogue</span>
-                                </a>
 
-                                <div class="collapse menu-dropdown" id="catl">
-                                    >>>>>>> 21cde6608b4dedf0f3e9db3f9614f212093f2bd1
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="/items" class="nav-link" data-key="t-starter"> Items </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/categories" class="nav-link" data-key="t-starter"> Categories </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/category-timing" class="nav-link" data-key="t-starter"> Category Timings </a>
-                                        </li>
 
-                                        <li class="nav-item">
-                                            <a href="/modifiergroups" class="nav-link" data-key="t-starter"> Modifier Groups </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/taxes" class="nav-link" data-key="t-starter"> Taxes </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/charges" class="nav-link" data-key="t-starter"> Charges </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/discounts" class="nav-link" data-key="t-starter"> Discounts </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/owner" class="nav-link" data-key="t-starter"> Billing Entities </a>
-                                        </li>
+                        <div class="collapse menu-dropdown" id="catalogues">
 
-                                    </ul>
-                                </div>
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="/items" class="nav-link" data-key="t-starter"> Items </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/categories" class="nav-link" data-key="t-starter"> Categories </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/category-timing" class="nav-link" data-key="t-starter"> Category Timings </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/modifiergroups" class="nav-link" data-key="t-starter"> Modifier Groups </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/taxes" class="nav-link" data-key="t-starter"> Taxes </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/charges" class="nav-link" data-key="t-starter"> Charges </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/discounts" class="nav-link" data-key="t-starter"> Discounts </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Billing Entities </a>
+                                </li>
+
+                            </ul>
+                        </div>
                     </li>
 
                     <li class="nav-item">
