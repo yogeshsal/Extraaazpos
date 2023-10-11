@@ -896,15 +896,11 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="/owner" class="nav-link menu-link"> <i class="bi bi-speedometer2"></i> <span data-key="t-dashboard">Refer and Earn</span> </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" href="#possetting" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
-                            <i class="bi bi-journal-medical"></i> <span data-key="t-pages">POS Setting</span>
+                        <a class="nav-link menu-link" href="#admin" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                            <i class="bi bi-journal-medical"></i> <span data-key="t-pages">POS Settings</span>
                         </a>
 
-                        <div class="collapse menu-dropdown" id="possetting">
+                        <div class="collapse menu-dropdown" id="admin">
                             <ul class="nav nav-sm flex-column">
 
 
@@ -912,9 +908,23 @@
                                     <a href="/location" class="nav-link" data-key="t-starter"> Add Location </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/add_floor" class="nav-link" data-key="t-starter"> Floor Plan </a>
+                                    <a href="/add_floor" class="nav-link" data-key="t-starter"> Add Floor </a>
                                 </li>
-
+                                <!-- <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Employees </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Location </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Brands </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Print Templates </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Integrations </a>
+                                </li> -->
                             </ul>
                         </div>
                     </li>
