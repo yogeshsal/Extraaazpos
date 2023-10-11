@@ -355,7 +355,7 @@
                     <div class="col-xxl-12 col-md-10">
                         <div>
                             <label for="labelInput" class="form-label">Search by Name or Mobile Number</label>
-                            <input type="password" class="form-control" id="labelInput">
+                            <input type="text" class="form-control" id="labelInput">
                         </div>
                     </div>
 

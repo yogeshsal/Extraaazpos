@@ -595,6 +595,7 @@
 .page-content {
     padding: calc(30px + 30px + 1.5rem) calc(1.5rem * 0.7) 60px
         calc(1.5rem * 0.5);
+    background: #ededed;
 }
 .navbar-menu {
     width: 250px;
