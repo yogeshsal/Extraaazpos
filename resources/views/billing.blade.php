@@ -109,7 +109,7 @@
             <!-- end page title -->
 
             <div class="row">
-                <div class="col-xxl-8">
+                <div class="col-xxl-7">
                     <h5 class="mb-3">Default Tabs</h5>
                     <div class="card">
                         <div class="card-body">
@@ -235,79 +235,71 @@
                     </div>
                     <!-- end card -->
                 </div>
-                <div class="col-xxl-4">
+                <div class="col-xxl-5">
                     <h5 class="mb-3">&nbsp;</h5>
 
 
-                    <div id="circleDetailDiv" class="card" style="display: none">
-                        <div class="card-body">
-                            <h4 class="card-title">Table - <span id="circleNumberSpan"></span></h4>
+                    <div id="circleDetailDiv" class="card" style="display: none; height: 90%;">
+                        <div class="card-header">
+                            <!-- <button type="button" class="btn-close float-end fs-11" aria-label="Close"></button> -->
+                            <h6 class="card-title mb-0 ">
 
-                            <center>
-                                <p class="card-text">How many people are at the table ?</p>
-                            </center>
-                            <br>
+                                <p class="text-start">
+                                    #118/00025
+                                    <span class="float-end">Customer Name : Erica</span>
+                                </p>
 
+                            </h6>
+                            <!-- <h6 class="card-title mb-0">Customer Name : Erica </h6> -->
+                        </div>
+                        <div class="card-body" style="height:67%">
+                            <!-- Small Tables -->
+                            <table class="table table-sm table-nowrap">
+                                <thead>
+                                    <tr>
 
-                            <div class="col-sm-12 text-center">
-                                <div>
-                                    <!-- <h5 class="fs-13 fw-medium text-muted">Light</h5> -->
-                                    <div class="input-step light">
-                                        <button type="button" class="minus">–</button>
-                                        <input type="number" class="product-quantity" value="5" min="0" max="100" readonly>
-                                        <button type="button" class="plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- counter -->
-                            <br>
-                            <center>
-                                <p class="card-text">Add Customer</p>
-                            </center>
-
-                            <center>
-                                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#myModal" id="selectCustomerButton">
-                                    Customer: Select Customer
-                                </button>
-                            </center>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="customer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Select Customer</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <select class="form-select" aria-label="Default select example" id="customerSelect">
-                                                    <option selected>Select Customer</option>
-                                                    @foreach($customer as $c)
-                                                    <option value="{{$c->id}}">{{$c->name}}</option>
-                                                    @endforeach
-                                                </select>
+                                        <th scope="col">PRODUCT</th>
+                                        <th scope="col">SERVED</th>
+                                        <th scope="col">UNIT PRICE</th>
+                                        <th scope="col">QUANTITY</th>
+                                        <th scope="col">TOTAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="#" class="fw-medium">Dahi Kebab</a></td>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="cardtableCheck01">
+                                                <label class="form-check-label" for="cardtableCheck01"></label>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
+                                        </td>
+                                        <td>$ 868</td>
+                                        <td>1</td>
+                                        <td>$ 868</td>
 
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary" id="saveCustomerButton" data-dismiss="modal">Done</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    </tr>
 
-                            <br>
-                            <center>
-                                <p class="card-text">Add Server</p>
-                            </center>
+                                </tbody>
+                            </table>
 
-                            <center><button type="button" class="btn btn-outline-secondary">Server : Select Server</button>
-                                <center>
-                                    <a href="orders"><button type="button" class="btn btn-orange mt-2">New Bill</button></a>
+                        </div>
+                        <div class="card-body">
+                            <a href="javascript:void(0);" class="float-end"> $868</a>
+                            <p class="text-muted mb-0">Total</p>
+                        </div>
+                        <div class="card-footer">
+                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-shopping-cart-fill"></i></button>
+                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-percent-line"></i></button>
+                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-money-dollar-box-line"></i></button>
+                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-printer-line"></i></button>
+                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-earth-line"></i></button>
+                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-file-edit-line"></i></button>
+                        <button class="btn btn-outline-success btn-lg float-end" type="button">Pay</button>
+
+
+                            
+
                         </div>
                     </div>
                     <!-- end card -->
