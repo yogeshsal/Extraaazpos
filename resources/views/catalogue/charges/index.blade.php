@@ -3,10 +3,6 @@
 
 @section('ownercontent')
 <style>
-    .grey-background {
-        background-color: grey;
-    }
-
     .circle {
         width: 30px;
         height: 30px;
@@ -106,7 +102,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade modal-lg" id="chargesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
