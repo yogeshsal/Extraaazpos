@@ -8,9 +8,9 @@
 
 <br>
 @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
 @endif
 
 <div class="main-content">
@@ -238,8 +238,6 @@
                         Design & Develop by Themesbrand
                     </div>
                 </div>
-                    <button type="submit" class="btn btn-orange">Upload Image</button>
-                </form>
             </div>
         </div>
     </footer>
@@ -290,7 +288,7 @@
 
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#item_is_recommended').bootstrapSwitch();
         $('#item_is_package_good').bootstrapSwitch();
         $('#item_sell_by_weight').bootstrapSwitch();
@@ -298,18 +296,18 @@
 </script>
 <script>
     $("#content").on("click", ".tabContainer .tabs a", function(e) {
-  e.preventDefault(),
-  $(this)
-    .parents(".tabContainer")
-    .find(".tabContent > div")
-    .each(function() {
-      $(this).hide();
+        e.preventDefault(),
+            $(this)
+            .parents(".tabContainer")
+            .find(".tabContent > div")
+            .each(function() {
+                $(this).hide();
+            });
+        $(this)
+            .parents(".tabs")
+            .find("a")
+            .removeClass("active"),
+            $(this).toggleClass("active"), $("#" + $(this).attr("src")).show();
     });
-  $(this)
-    .parents(".tabs")
-    .find("a")
-    .removeClass("active"),
-    $(this).toggleClass("active"), $("#" + $(this).attr("src")).show();
-});
 </script>
 @endsection
