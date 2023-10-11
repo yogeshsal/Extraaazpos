@@ -135,7 +135,8 @@
                                                 <i class="ri-search-line search-icon"></i>
                                             </div>&nbsp;&nbsp;
                                             <button type="button" class="btn btn-outline-secondary ml-1">Filter</button>&nbsp;&nbsp;
-                                            <button type="button" class="btn btn-orange  add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Add</button>
+                                            <!-- <button type="button" class="btn btn-orange  add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Add</button> -->
+                                            <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="ri-add-line align-bottom me-1"></i> Add</button>
 
                                         </div>
                                     </div>
@@ -223,6 +224,162 @@
 
 
             <!-- end row -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Recent Acitivity</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body p-0 overflow-hidden">
+                    <div data-simplebar style="height: calc(100vh - 40px); overflow-x:hidden;">
+                        <form action="{{ route('items.store') }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-xxl-12">
+                                    <div class="card">
+                                        <!-- <div class="card-header">
+                                            <h4 class="card-title mb-0">Form Grid</h4>
+                                        </div> -->
+                                        <!-- end card header -->
+
+                                        <div class="card-body">
+
+
+                                            <div class="row form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="name">Name:</label>
+                                                        <input type="text" name="item_name" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="mobile">Short Name:</label>
+                                                        <input type="text" name="item_short_name" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="category">Category</label>
+                                                        <select name="item_category_id" id="category" class="form-select mb-3">
+                                                            <option value="" disabled selected>Select Category</option>
+                                                            @foreach ($categories as $categoryId => $categoryName)
+                                                            <option value="{{ $categoryId }}">{{ $categoryName }}</option>
+                                                            @endforeach
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="location">POS Code</label>
+                                                        <select name="item_pos_code" id="pos_code" class="form-select mb-3">
+                                                            <option value="" disabled selected>Select POS</option>
+                                                            @foreach ($locations as $locationId => $locationName)
+                                                            <option value="{{ $locationId }}">{{ $locationName }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <!-- <select name="item_pos_code" id="pos_code" class="form-control">
+                                                            <option value="" disabled selected>Select POS</option>
+                                                            @foreach ($locations as $locationId => $locationName)
+                                                            <option value="{{ $locationId }}">{{ $locationName }}</option>
+                                                            @endforeach
+                                                        </select> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="food_type">Food Type</label>
+                                                        <select name="item_food_type" id="food_type" class="form-select mb-3">
+                                                            <option value="" disabled selected>Select Food Type</option>
+                                                            @foreach ($foodtype as $foodtypeId => $foodtypeName)
+                                                            <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <!-- <select name="item_food_type" id="food_type" class="form-control">
+                                                            <option value="" disabled selected>Select Food Type</option>
+                                                            @foreach ($foodtype as $foodtypeId => $foodtypeName)
+                                                            <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
+                                                            @endforeach
+                                                        </select> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="is_recommended">Is Recommended</label><br>
+                                                        <input type="checkbox" id="item_is_recommended" name="item_is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="is_package_good">Is Package Good</label><br>
+                                                        <input type="checkbox" id="item_is_package_good" name="item_is_package_good" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="is_recommended">Sell by Weight</label><br>
+                                                        <input type="checkbox" id="item_sell_by_weight" name="item_sell_by_weight" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="name">Default Sales Price:</label>
+                                                        <input type="text" name="item_default_sell_price" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label for="name">Markup Price (Optional):</label>
+                                                            <input type="text" name="item_markup_price" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-row">
+                                                <div class="form-group">
+                                                    <label for="item_description">Description</label>
+                                                    <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>&nbsp;&nbsp;
+                                                <button type="submit" class="btn btn-orange">Create</button>
+                                            </div>
+                                            <!--end row-->
+
+                                        </div>
+
+                                    </div>
+                                </div> <!-- end col -->
+
+
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+                <!-- <div class="offcanvas-foorter border p-3 text-center">
+                    <a href="javascript:void(0);" class="link-success">View All Acitivity <i class="ri-arrow-right-s-line align-middle ms-1"></i></a>
+                </div> -->
+            </div>
 
             <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -264,23 +421,30 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="category">Category</label>
-                                                        <select name="item_category_id" id="category" class="form-control">
+                                                        <select name="item_category_id" id="category" class="form-select mb-3">
                                                             <option value="" disabled selected>Select Category</option>
                                                             @foreach ($categories as $categoryId => $categoryName)
                                                             <option value="{{ $categoryId }}">{{ $categoryName }}</option>
                                                             @endforeach
                                                         </select>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="location">POS Code</label>
-                                                        <select name="item_pos_code" id="pos_code" class="form-control">
+                                                        <select name="item_pos_code" id="pos_code" class="form-select mb-3">
                                                             <option value="" disabled selected>Select POS</option>
                                                             @foreach ($locations as $locationId => $locationName)
                                                             <option value="{{ $locationId }}">{{ $locationName }}</option>
                                                             @endforeach
                                                         </select>
+                                                        <!-- <select name="item_pos_code" id="pos_code" class="form-control">
+                                                            <option value="" disabled selected>Select POS</option>
+                                                            @foreach ($locations as $locationId => $locationName)
+                                                            <option value="{{ $locationId }}">{{ $locationName }}</option>
+                                                            @endforeach
+                                                        </select> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -290,12 +454,18 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="food_type">Food Type</label>
-                                                        <select name="item_food_type" id="food_type" class="form-control">
+                                                        <select name="item_food_type" id="food_type" class="form-select mb-3">
                                                             <option value="" disabled selected>Select Food Type</option>
                                                             @foreach ($foodtype as $foodtypeId => $foodtypeName)
                                                             <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
                                                             @endforeach
                                                         </select>
+                                                        <!-- <select name="item_food_type" id="food_type" class="form-control">
+                                                            <option value="" disabled selected>Select Food Type</option>
+                                                            @foreach ($foodtype as $foodtypeId => $foodtypeName)
+                                                            <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
+                                                            @endforeach
+                                                        </select> -->
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -442,7 +612,11 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
+<<<<<<< HEAD
+                <h4 class="modal-title" id="exampleModalLabel">Create New Items</h4>                
+=======
                 <h4 class="modal-title" id="exampleModalLabel">Create New Item</h4>
+>>>>>>> 90f9279fa7094e26da999a95c7f91b9636d220e0
                 </button>
             </div>
             <div class="modal-body">
