@@ -44,7 +44,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tab" href="#settings" role="tab" aria-selected="true">
-                                        Location
+                                        Location ({{ $locationCount}})
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -176,6 +176,41 @@
                                     </form>
                                 </div>
                                 <div class="tab-pane" id="messages" role="tabpanel">
+
+                                 <h5>TAXES APPLICABLE</h5> 
+
+                                <div class="col-sm-6 col-lg-6 shadow">
+                                    @foreach($tax as $list)
+                                        <div class="card text-left">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-1">{{$list->name}}</h5>
+                                                <p class="card-text">{{$list->tax_percentage}}% on {{$list->applicable_on}}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <h5>CHARGES APPLICABLE</h5> 
+
+                                <div class="col-sm-6 col-lg-6 shadow">
+                                    @foreach($charge as $clist)
+                                        <div class="card text-left">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-1">{{$clist->name}}</h5>
+                                                <p class="card-text">{{$clist->amount_per_quantity}}% on {{$clist->applicable_on}}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+
+
+
+
+                                                                                                                
+
+
+
 
                                 </div>
                                 <div class="tab-pane" id="settings" role="tabpanel">
