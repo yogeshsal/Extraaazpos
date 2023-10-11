@@ -65,10 +65,11 @@ class ItemController extends Controller
 
     public function edit($id)
     {
-        
+
         $currentUserId = Auth::user()->id;
         $item = Item::find($id);
         $categories = Category::pluck('cat_name', 'id');
+        // dd($categories);
         $foodtype = Foodtype::pluck('name', 'id');
 
         $locations_id = Locationitem::where('item_id', $id)->pluck('location_id')->flatten()->toArray();
@@ -76,9 +77,9 @@ class ItemController extends Controller
         $locations = Location::whereIn('id', $locations_id)->get();
 
         $locationCount = $locations->count();
-        
 
-        
+
+
 
         return view('catalogue.items.edit', compact('item', 'categories', 'locations', 'foodtype', 'locationCount'));
     }
