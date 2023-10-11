@@ -12,7 +12,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4>Roles</h4>
-                                <h6>List of all roles in your company</h6>
+                                <h6>List of all role in your company</h6>
                                 <br>
                                 <h4>Popular Roles</h4>
                                 <br>
