@@ -9,7 +9,8 @@ use App\models\Location;
 use App\models\User;
 use App\models\Foodtype;
 use App\models\Locationitem;
-
+use App\models\Taxitem;
+use App\models\Chargesitem; 
 use Auth;
 
 class ItemController extends Controller
@@ -78,10 +79,13 @@ class ItemController extends Controller
 
         $locationCount = $locations->count();
 
-
-
-
-        return view('catalogue.items.edit', compact('item', 'categories', 'locations', 'foodtype', 'locationCount'));
+        $tax = Taxitem::leftJoin('taxes','taxitems.tax_id','=','taxes.id')
+        ->whereJsonContains('item_id',$id)->get();
+   
+        $charge = Chargesitem::leftJoin('charges','chargesitems.charge_id','=','charges.id')
+        ->whereJsonContains('item_id',$id)->get();
+        
+        return view('catalogue.items.edit', compact('item', 'categories', 'locations', 'foodtype', 'locationCount','tax','charge'));
     }
 
 
