@@ -797,11 +797,14 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#catl" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                        <a class="nav-link menu-link" href="#catalogues" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
                             <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Catalogue</span>
                         </a>
 
-                        <div class="collapse menu-dropdown" id="catl">
+
+
+                        <div class="collapse menu-dropdown" id="catalogues">
+
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="/items" class="nav-link" data-key="t-starter"> Items </a>
