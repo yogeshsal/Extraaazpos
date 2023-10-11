@@ -15,22 +15,30 @@
 </style>
 
 <br>
-<div class="row text-center">
-  <div class="center-container">
-    <div class="centered-card">
-      <h5 class="card-title">No Register Selected</h5>
-      <p class="card-text">Choose a register to open to start making sales.</p>
-      <button type="button" class="btn btn-orange" data-toggle="modal" data-target="#chooseRegister">
-      Choose Register
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade  bd-example-modal-md" id="chooseRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-    <div class="modal-content">
+<div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid">                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Daily Register</h4>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title mb-0">Daily Register</h4>
+                                    </div>
+                                    <div class="card-body text-center">
+                                    <h5 class="card-title">No Register Selected</h5>
+                                      <p class="card-text">Choose a register to open to start making sales.</p>
+                                      <button type="button" class="btn btn-orange " data-bs-toggle="modal" data-bs-target="#chooseRegister"> Choose Register</button>
+                                        <div>                                            
+                                            <div id="chooseRegister" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog">
+                                                <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Select Location</h5>        
       </div>
@@ -63,15 +71,44 @@
                 <button type="submit" class="btn btn-orange m-3" >Select Register</button>
                 </div>
               </form>
-
-              <!-- <a href="/create_register"><button type="submit" class="btn btn-success m-3" >Select Register</button></a> -->
-        
         </div>
       </div>
       </div>      
     </div>
-  </div>
-</div>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                    </div>
+                   
+                </div>
+                
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script> © Hybrix.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    Design & Develop by Themesbrand
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
 @endsection
 
 

@@ -2,7 +2,6 @@
 @extends('layouts.app')
 
 @section('ownercontent')
-
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
