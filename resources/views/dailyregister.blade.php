@@ -20,7 +20,7 @@
     <div class="centered-card">
       <h5 class="card-title">No Register Selected</h5>
       <p class="card-text">Choose a register to open to start making sales.</p>
-      <button type="button" class="btn btn-orange" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class="btn btn-orange" data-toggle="modal" data-target="#chooseRegister">
       Choose Register
       </button>
     </div>
@@ -28,7 +28,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade  bd-example-modal-md" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade  bd-example-modal-md" id="chooseRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -36,7 +36,7 @@
       </div>
       <div class="modal-body">
       
-      @if (count($loc) === 0)
+      @if (count($loc) === 0)     
     <!-- Display a button when $loc is empty -->
     <div class="text-center">
         <p>Registered Locations not found ! Kindly add.</p>

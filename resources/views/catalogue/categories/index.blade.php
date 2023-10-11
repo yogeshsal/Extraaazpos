@@ -204,8 +204,17 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="timimg_group">Timing Group</label><br>
-                                                        <input type="text" name="timing" class="form-control" required>
+                                                        <label for="timing_group">Timing Group</label><br>
+                                                        <select name="timing_group">
+                                                            <option value="option1">Option 1</option>
+                                                            <option value="option2">Option 2</option>
+                                                            <option value="option3">Option 3</option>
+                                                        </select>
+                                                        
+                                                        
+                                                        @foreach ($timing as $timing)
+                                                            <li>{{ $timing->name }}</li>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>

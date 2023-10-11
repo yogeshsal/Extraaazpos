@@ -99,14 +99,16 @@ class DailyRegisterController extends Controller
 
     function checkRegisterOpen()
     {
+        
         $currentUserId = Auth::user()->id;
+        //dd($currentUserId);
         $lastInsertedUserId = DB::table('daily_registers')
             ->where('user_id', $currentUserId)
             ->where('status', 1)
             ->latest('id')
             ->value('id');
 
-        //  dd($lastInsertedUserId);
+          //dd($lastInsertedUserId);
 
             $lastInsertedUser = Daily_register::where('id', $lastInsertedUserId)->first();
 
@@ -120,21 +122,23 @@ class DailyRegisterController extends Controller
           $opened_at = $lastInsertedUser['created_at']?? '';
           $closed_at = $lastInsertedUser['updated_at']?? '';
         
-        //   dd( $lastInsertedUser );
+          //dd( $lastInsertedUser );
         //  $lastInsertedUser->created_at = ($lastInsertedUser->created_at->addHours(24));
 
 
         if ($lastInsertedUser !== null) {
+            
             $lastInsertedUser->created_at = $lastInsertedUser->created_at->addHours(24);
             $current_date = date('Y-m-d H:i:s');
-
+            //dd($status);
             if( $status == 0 || ($current_date >= $lastInsertedUser->created_at))
             {
-
-              return view('dailyregister', compact('status'));
+                
+                $loc = [];
+              return view('dailyregister', compact('status', 'loc'));
             }
             else{
-              
+               
               return view('close_register', compact('id','status','opening_cash','opening_card','opening_credit','opening_upi', 'opened_at', 'closed_at'));
             }
         } else {
