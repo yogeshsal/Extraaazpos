@@ -2,19 +2,8 @@
 @extends('layouts.app')
 
 @section('ownercontent')
-<!-- Include Bootstrap CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
 
-<!-- Include jQuery (required for Bootstrap Switch) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Include Bootstrap Switch JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
 <style>
-    .grey-background {
-        background-color: grey;
-    }
-
     .circle {
         width: 30px;
         height: 30px;
@@ -37,13 +26,16 @@
         text-align: left;
     }
 
+    th {
+        background-color: #f5f5f5;
+        color: #646464;
+        font-weight: 950;
+        font-size: small;
+    }
+
     tr {
         border-bottom: 2px solid #F5F5F5;
         /* Light grey border between rows */
-    }
-
-    table tr:hover {
-        background-color: #b8b8b8;
     }
 
     .btn.btn-outline-secondary {
@@ -57,113 +49,57 @@
         background-color: transparent;
         color: orange;
     }
-
-    .form-row {
-        margin-bottom: 20px;
-        /* Add space below each row */
+    .page-content{
+        height:100vh;
     }
 </style>
-<style>
-    .table-image {
-        width: 100px;
-        /* Set the desired width */
-        height: auto;
-        /* Auto-adjust the height to maintain the aspect ratio */
-    }
 
-    .pagination-wrapper {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        /* Adjust the margin as needed */
-    }
-</style>
-<br>
-@if(session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
 
 
 
 <div class="main-content">
 
     <div class="page-content">
-        <div class="container-fluid">
+        <div class="card shadow">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="p-0">ITEMS</h3>
+                    <p class="text-muted">Central repository for all your menu items</p>
+                </div>
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Items</h4>
-
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li> -->
-                                <li class="breadcrumb-item active">Items</li>
-                            </ol>
-                        </div>
-
+                <div class="d-flex align-items-center">
+                    <div class="input-group mr-2">
+                        <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
+                        <div class="search-box ms-2">
+                        <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                        <i class="ri-search-line search-icon "></i>
+                        </div>&nbsp;&nbsp;                       
+                         <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
+                        <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#itemModal">
+                            <i class="bi bi-plus-lg fw-bolder text-white"></i> New Item</button>
                     </div>
+
                 </div>
             </div>
+
             <!-- end page title -->
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <!-- <div class="card-header">
-                            <h4 class="card-title mb-0">Add, Edit & Remove</h4>
-                        </div> -->
-                        <!-- end card header -->
+           
 
-                        <div class="card-body">
-                            <div id="customerList">
-                                <div class="row g-4 mb-3">
-                                    <!-- <div class="col-sm-auto">
-                                        <div>
-                                            <button class="btn btn-soft-danger" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
-                                        </div>
-                                    </div> -->
-                                    <div class="col-sm">
-
-                                        <div class="d-flex justify-content-sm-end">
-                                            <button type="button" class="btn btn-outline-secondary">Help</button>&nbsp;&nbsp;
-                                            <div class="search-box ms-2">
-                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
-                                                <i class="ri-search-line search-icon"></i>
-                                            </div>&nbsp;&nbsp;
-                                            <button type="button" class="btn btn-outline-secondary ml-1">Filter</button>&nbsp;&nbsp;
-                                            <!-- <button type="button" class="btn btn-orange  add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Add</button> -->
-                                            <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="ri-add-line align-bottom me-1"></i> Add</button>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="table-responsive table-card mt-3 mb-1">
-                                    <table class="table align-middle table-nowrap data-table" id="data-table">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th class="grey-background"></th>
-                                                <th class="grey-background"></th>
-                                                <th class="grey-background sort " data-sort="customer_name">NAME</th>
-                                                <th class="grey-background sort " data-sort="location">ASSOCIATED LOCATIONS</th>
-                                                <th class="grey-background sort " data-sort="category">CATEGORY</th>
-                                                <th class="grey-background sort " data-sort="salesprice">SALES PRICE (INR)</th>
-                                                <th class="grey-background sort " data-sort="update">UPDATED</th>
-
-                                                <!-- <th class="sort" data-sort="customer_name">Customer</th>
-                                                <th class="sort" data-sort="email">Email</th>
-                                                <th class="sort" data-sort="phone">Phone</th>
-                                                <th class="sort" data-sort="date">Joining Date</th>
-                                                <th class="sort" data-sort="status">Delivery Status</th>
-                                                <th class="sort" data-sort="action">Action</th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody class="list form-check-all">
-
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th > <th>
+                            <th class="grey-background sort " data-sort="customer_name">NAME</th>
+                        <th>ASSOCIATED LOCATIONS</th>
+                        <th>CATEGORY</th>
+                        <th>SALES PRICE ($)	</th>
+                        <th>UPDATED</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    
                                             @foreach($data as $item)
                                             <tr>
                                                 <td>
@@ -224,13 +160,18 @@
 
 
             <!-- end row -->
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                <div class="offcanvas-header border-bottom">
-                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Recent Acitivity</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body p-0 overflow-hidden">
-                    <div data-simplebar style="height: calc(100vh - 40px); overflow-x:hidden;">
+            <div class="modal fade modal-lg" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">New Charge</h4>
+
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span> -->
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
                         <form action="{{ route('items.store') }}" method="POST">
                             @csrf
                             <div class="row">
@@ -536,28 +477,7 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade zoomIn" id="deleteRecordModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mt-2 text-center">
-                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
-                                <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                    <h4>Are you Sure ?</h4>
-                                    <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Record ?</p>
-                                </div>
-                            </div>
-                            <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                                <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn w-sm btn-danger " id="delete-record">Yes, Delete It!</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <!--end modal -->
 
         </div>

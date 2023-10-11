@@ -2,80 +2,98 @@
 @extends('layouts.ownerlayout')
 @extends('layouts.app')
 @section('ownercontent')
+
+<style>
+    .circle {
+        width: 30px;
+        height: 30px;
+        background-color: grey;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f5f5f5;
+        color: #646464;
+        font-weight: 900;
+        font-size: small;
+    }
+
+    tr {
+        border-bottom: 2px solid #F5F5F5;
+        /* Light grey border between rows */
+    }
+
+    .btn.btn-outline-secondary {
+        border-color: #6c757d;
+        /* Set the default border color */
+    }
+
+    .btn.btn-outline-secondary:hover {
+        border-color: orange;
+        /* Change the border color to orange on hover */
+        background-color: transparent;
+        color: orange;
+    }
+
+    .page-content{
+        height:100vh;
+    }
+</style>
+
 <br>
+
 <div class="main-content">
 
     <div class="page-content">
-        <div class="container-fluid">
+        <div class="card shadow">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="p-0">Category Timing</h3>
+                    <p class="text-muted">Central repository for all your category timings</p>
+                </div>
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Category Timing</h4>
+                <div class="d-flex align-items-center">
+                    <div class="input-group mr-2">
+                        <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
+                        <div class="search-box ms-2">
+                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                                                <i class="ri-search-line search-icon "></i>
+                                            </div>&nbsp;&nbsp;
 
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li> -->
-                                <li class="breadcrumb-item active">Items</li>
-                            </ol>
-                        </div>
 
+                        <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
+                        <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#chargesModal">
+                            <i class="bi bi-plus-lg fw-bolder text-white"></i> New Category Timing</button>
                     </div>
+
                 </div>
             </div>
-            <!-- end page title -->
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <!-- <div class="card-header">
-                            <h4 class="card-title mb-0">Add, Edit & Remove</h4>
-                        </div> -->
-                        <!-- end card header -->
-
-                        <div class="card-body">
-                            <div id="customerList">
-                                <div class="row g-4 mb-3">
-                                    <!-- <div class="col-sm-auto">
-                                        <div>
-                                            <button class="btn btn-soft-danger" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
-                                        </div>
-                                    </div> -->
-                                    <div class="col-sm">
-
-                                        <div class="d-flex justify-content-sm-end">
-                                            <button type="button" class="btn btn-outline-secondary">Help</button>&nbsp;&nbsp;
-                                            <div class="search-box ms-2">
-                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
-                                                <i class="ri-search-line search-icon"></i>
-                                            </div>&nbsp;&nbsp;
-                                            <button type="button" class="btn btn-outline-secondary ml-1">Filter</button>&nbsp;&nbsp;
-                                            <button type="button" class="btn btn-orange  add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> Add</button>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-responsive table-card mt-3 mb-1">
-                                    <table class="table align-middle table-nowrap data-table" id="data-table">
-                                        <thead class="table-light">
-                                            <tr>
-                                                
-                                                <th class="grey-background sort " data-sort="customer_name">NAME</th>
-                                                <th class="grey-background sort " data-sort="Description">Description</th>
-                                                <th class="grey-background sort " data-sort="category">SLOT COUNT</th>
-                                                <th class="grey-background sort " data-sort="update">UPDATED</th>
-
-                                                <!-- <th class="sort" data-sort="customer_name">Customer</th>
-                                                <th class="sort" data-sort="email">Email</th>
-                                                <th class="sort" data-sort="phone">Phone</th>
-                                                <th class="sort" data-sort="date">Joining Date</th>
-                                                <th class="sort" data-sort="status">Delivery Status</th>
-                                                <th class="sort" data-sort="action">Action</th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody class="list form-check-all">
-                                        <tbody>
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>DESCRIPTION	</th>
+                        <th>SLOT COUNT	</th>
+                        <th>UPDATED</th>
+                    </tr>
+                </thead>
+                <tbody>
         @foreach($time as $t)
         <tr>
             <td>
@@ -97,10 +115,18 @@
 </table>
 
 <!-- create Modal -->
-<div class="modal fade" id="category_timing" tabindex="-1" role="dialog" aria-labelledby="addCategoryModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-left modal-lg large-modal" role="document">
-        <div class="modal-content p-3">
-            <h5>New Timing Group</h5>
+<div class="modal fade modal-lg" id="chargesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">New Timing Group</h4>
+
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span> -->
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
             <form method="POST">
                 @csrf
                 <div class="row mt-2">
