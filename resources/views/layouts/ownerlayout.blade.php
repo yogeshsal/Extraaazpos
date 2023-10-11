@@ -493,7 +493,8 @@
                             <span class="d-flex align-items-center">
                                 <img class="rounded-circle header-profile-user" src="images/users/avatar-1.jpg" alt="Header Avatar">
                                 <span class="text-start ms-xl-2">
-                                    <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{Auth::user()->name}}</span>
+                                    <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Edward
+                                        Diana</span>
                                     <span class="d-none d-xl-block ms-1 fs-13 text-muted user-name-sub-text">Founder</span>
                                 </span>
                             </span>
@@ -511,11 +512,8 @@
                             <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Balance : <b>$8451.36</b></span></a>
                             <a class="dropdown-item" href="pages-profile-settings.html"><span class="badge bg-success-subtle text-success mt-1 float-end">New</span><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Settings</span></a>
                             <a class="dropdown-item" href="auth-lockscreen-basic.html"><i class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Lock screen</span></a>
-                            <a  class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i><span class="align-middle" data-key="t-logout">Logout</span></a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>    
-                       </div>
+                            <a class="dropdown-item" href="auth-logout-basic.html"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -799,47 +797,40 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#catalogue" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                        <a class="nav-link menu-link" href="#catl" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
                             <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Catalogue</span>
-                            </a>
+                        </a>
 
-                            <div class="collapse menu-dropdown" id="catalogue">
-                               
-                                <a class="nav-link menu-link" href="#catl" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
-                                    <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Catalogue</span>
-                                </a>
+                        <div class="collapse menu-dropdown" id="catl">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="/items" class="nav-link" data-key="t-starter"> Items </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/categories" class="nav-link" data-key="t-starter"> Categories </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/category-timing" class="nav-link" data-key="t-starter"> Category Timings </a>
+                                </li>
 
-                                <div class="collapse menu-dropdown" id="catl">
-                                   
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="/items" class="nav-link" data-key="t-starter"> Items </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/categories" class="nav-link" data-key="t-starter"> Categories </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/category-timing" class="nav-link" data-key="t-starter"> Category Timings </a>
-                                        </li>
+                                <li class="nav-item">
+                                    <a href="/modifiergroups" class="nav-link" data-key="t-starter"> Modifier Groups </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/taxes" class="nav-link" data-key="t-starter"> Taxes </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/charges" class="nav-link" data-key="t-starter"> Charges </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/discounts" class="nav-link" data-key="t-starter"> Discounts </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Billing Entities </a>
+                                </li>
 
-                                        <li class="nav-item">
-                                            <a href="/modifiergroups" class="nav-link" data-key="t-starter"> Modifier Groups </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/taxes" class="nav-link" data-key="t-starter"> Taxes </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/charges" class="nav-link" data-key="t-starter"> Charges </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/discounts" class="nav-link" data-key="t-starter"> Discounts </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/owner" class="nav-link" data-key="t-starter"> Billing Entities </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
+                            </ul>
+                        </div>
                     </li>
 
                     <li class="nav-item">
@@ -902,15 +893,11 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="/owner" class="nav-link menu-link"> <i class="bi bi-speedometer2"></i> <span data-key="t-dashboard">Refer and Earn</span> </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" href="#possetting" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
-                            <i class="bi bi-journal-medical"></i> <span data-key="t-pages">POS Setting</span>
+                        <a class="nav-link menu-link" href="#admin" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                            <i class="bi bi-journal-medical"></i> <span data-key="t-pages">POS Settings</span>
                         </a>
 
-                        <div class="collapse menu-dropdown" id="possetting">
+                        <div class="collapse menu-dropdown" id="admin">
                             <ul class="nav nav-sm flex-column">
 
 
@@ -918,9 +905,23 @@
                                     <a href="/location" class="nav-link" data-key="t-starter"> Add Location </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/add_floor" class="nav-link" data-key="t-starter"> Floor Plan </a>
+                                    <a href="/add_floor" class="nav-link" data-key="t-starter"> Add Floor </a>
                                 </li>
-
+                                <!-- <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Employees </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Location </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Brands </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Print Templates </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/owner" class="nav-link" data-key="t-starter"> Integrations </a>
+                                </li> -->
                             </ul>
                         </div>
                     </li>
