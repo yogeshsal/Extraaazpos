@@ -65,41 +65,78 @@
         {{ session('success') }}
     </div>
 @endif
-<div class="card shadow">
-    <div class="card-body d-flex justify-content-between align-items-center">
-        <h3>Modifier Groups</h3>
-        <div class="d-flex align-items-center">
-            <div class="input-group mr-2">
-                <button type="button" class="btn btn-outline-secondary m-1">
-                <i class="fa fa-question-circle" aria-hidden="true"></i> Help
-                </button>
-                <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-secondary m-1"><i class="fa fa-filter" aria-hidden="true"></i>&nbsp;Filters</button>           
-                <a href="" class="btn btn-orange m-1" data-toggle="modal" data-target="#add_modifier_group_modal">+  New Modifier Group</a>
-            </div>        
-        </div>    
-        <!-- <div>
-            <button type="button" class="btn btn-outline-secondary">Filters</button>
-            <a href="" class="btn btn-orange" data-toggle="modal" data-target="#add_modifier_group_modal">+ New Modifier Group</a>            
-        </div> -->
-    </div>
-    
-    <table id="data-table">
-    <thead>
-        <tr > 
-            <th class="grey-background">NAME</th>
+
+
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">Modifier Group</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li> -->
+                                <li class="breadcrumb-item active">Modifier Group</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <!-- <div class="card-header">
+                            <h4 class="card-title mb-0">Add, Edit & Remove</h4>
+                        </div> -->
+                        <!-- end card header -->
+
+                        <div class="card-body">
+                            <div id="customerList">
+                                <div class="row g-4 mb-3">
+                                    <!-- <div class="col-sm-auto">
+                                        <div>
+                                            <button class="btn btn-soft-danger" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-sm">
+
+                                        <div class="d-flex justify-content-sm-end">
+                                            <button type="button" class="btn btn-outline-secondary">Help</button>&nbsp;&nbsp;
+                                            <div class="search-box ms-2">
+                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                                                <i class="ri-search-line search-icon"></i>
+                                            </div>&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-outline-secondary ml-1">Filter</button>&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-orange  add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i> New Modifier Group</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive table-card mt-3 mb-1">
+                                    <table class="table align-middle table-nowrap data-table" id="data-table">
+                                        <thead class="table-light">
+                                            <tr>
+                                            <th class="grey-background">NAME</th>
             <th class="grey-background">TYPE</th>
             <th class="grey-background">ASSOCIATED ITEMS</th>
             <th class="grey-background">MODIFIERS</th>
             <th class="grey-background">UPDATED</th>
-        </tr>
+   
     </thead>
     <tbody>
     @foreach($data as $data)
             <tr>           
                 <td><a href="{{ route('modifiergroups.edit', ['id' => $data->id]) }}">{{$data->modifier_group_name}}</a><br>Handle : {{$data->modifier_group_handle}}</td>
                 <td>{{$data->modifier_group_type}}</td>                   
-               <td></td>     
+               <td> </td>     
                <td> </td>
                 <td>{{ $data->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
             </tr>
