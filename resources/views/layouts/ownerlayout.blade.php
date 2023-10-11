@@ -799,18 +799,18 @@
                     </li>
 
                     <li class="nav-item">
-                        <<<<<<< HEAD <a class="nav-link menu-link" href="#catalogue" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                        <a class="nav-link menu-link" href="#catalogue" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
                             <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Catalogue</span>
                             </a>
 
                             <div class="collapse menu-dropdown" id="catalogue">
-                                =======
+                               
                                 <a class="nav-link menu-link" href="#catl" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
                                     <i class="bi bi-journal-medical"></i> <span data-key="t-pages">Catalogue</span>
                                 </a>
 
                                 <div class="collapse menu-dropdown" id="catl">
-                                    >>>>>>> 21cde6608b4dedf0f3e9db3f9614f212093f2bd1
+                                   
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item">
                                             <a href="/items" class="nav-link" data-key="t-starter"> Items </a>
