@@ -16,7 +16,6 @@
     }
 </style>
 <style>
-<<<<<<< HEAD
     .table-image {
         width: 100px; /* Set the desired width */
         height: auto; /* Auto-adjust the height to maintain the aspect ratio */
@@ -37,7 +36,6 @@
         display: flex;
         justify-content: center;
         margin-top: 20px; /* Adjust the margin as needed */
-=======
     * {
         margin: 0 auto;
         box-sizing: border-box;
@@ -107,7 +105,6 @@
     .tabs a:hover {
         background: #fff;
         color: orange;
->>>>>>> 21cde6608b4dedf0f3e9db3f9614f212093f2bd1
     }
 </style>
 

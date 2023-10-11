@@ -8,9 +8,6 @@
 
 <!-- Include Bootstrap Switch JS -->
 <style>
-    .grey-background {
-        background-color: grey;
-    }
     .circle {
         width: 30px;
         height: 30px;
@@ -21,110 +18,86 @@
         justify-content: center;
         font-weight: bold;
     }
+
     table {
         border-collapse: collapse;
         width: 100%;
     }
 
-    th, td {
+    th,
+    td {
         padding: 8px;
         text-align: left;
     }
 
-    tr {
-        border-bottom: 2px solid #F5F5F5; /* Light grey border between rows */
+    th {
+        background-color: #f5f5f5;
+        color: #646464;
+        font-weight: 900;
+        font-size: small;
     }
-    table tr:hover {
-    background-color: #b8b8b8; 
-}
+
+    tr {
+        border-bottom: 2px solid #F5F5F5;
+        /* Light grey border between rows */
+    }
+
     .btn.btn-outline-secondary {
-        border-color: #6c757d; /* Set the default border color */
+        border-color: #6c757d;
+        /* Set the default border color */
     }
 
     .btn.btn-outline-secondary:hover {
-        border-color: orange; /* Change the border color to orange on hover */
+        border-color: orange;
+        /* Change the border color to orange on hover */
         background-color: transparent;
-        color:orange;
+        color: orange;
     }
-    .form-row {
-        margin-bottom: 20px; /* Add space below each row */
+
+    .page-content{
+        height:100vh;
     }
 </style>
+
 <br>
+
 <div class="main-content">
 
     <div class="page-content">
-        <div class="container-fluid">
+        <div class="card shadow">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="p-0">Tax Rates</h3>
+                    <p class="text-muted">You can manage all taxes collected.</p>
+                </div>
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Tax Rates</h4>
+                <div class="d-flex align-items-center">
+                    <div class="input-group mr-2">
+                        <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
+                        <div class="search-box ms-2">
+                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                                                <i class="ri-search-line search-icon "></i>
+                                            </div>&nbsp;&nbsp;
 
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li> -->
-                                <li class="breadcrumb-item active">Tax Rates</li>
-                            </ol>
-                        </div>
 
+                        <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
+                        <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#chargesModal">
+                            <i class="bi bi-plus-lg fw-bolder text-white"></i> New Tax Rate</button>
                     </div>
+
                 </div>
             </div>
-            <!-- end page title -->
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <!-- <div class="card-header">
-                            <h4 class="card-title mb-0">Add, Edit & Remove</h4>
-                        </div> -->
-                        <!-- end card header -->
-
-                        <div class="card-body">
-                            <div id="customerList">
-                                <div class="row g-4 mb-3">
-                                    <!-- <div class="col-sm-auto">
-                                        <div>
-                                            <button class="btn btn-soft-danger" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
-                                        </div>
-                                    </div> -->
-                                    <div class="col-sm">
-
-                                        <div class="d-flex justify-content-sm-end">
-                                            <button type="button" class="btn btn-outline-secondary">Help</button>&nbsp;&nbsp;
-                                            <div class="search-box ms-2">
-                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
-                                                <i class="ri-search-line search-icon"></i>
-                                            </div>&nbsp;&nbsp;
-                                            <button type="button" class="btn btn-outline-secondary ml-1">Filter</button>&nbsp;&nbsp;
-                                            <button type="button" class="btn btn-orange  add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i>+New Tax Rate</button>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="table-responsive table-card mt-3 mb-1">
-                                    <table class="table align-middle table-nowrap data-table" id="data-table">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th class="grey-background"></th>
-                                                <th class="grey-background"></th>
-                                                <th class="grey-background sort " data-sort="customer_name">NAME</th>
-                                                <th class="grey-background sort " data-sort="item">ITEMS</th>
-                                                <th class="grey-background sort " data-sort="location">LOCATIONS</th>
-                                                <th class="grey-background sort " data-sort="update">UPDATED</th>
-
-                                                <!-- <th class="sort" data-sort="customer_name">Customer</th>
-                                                <th class="sort" data-sort="email">Email</th>
-                                                <th class="sort" data-sort="phone">Phone</th>
-                                                <th class="sort" data-sort="date">Joining Date</th>
-                                                <th class="sort" data-sort="status">Delivery Status</th>
-                                                <th class="sort" data-sort="action">Action</th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody class="list form-check-all">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>ITEMS</th>
+                        <th>LOCATIONS</th>
+                        <th>UPDATED</th>
+                    </tr>
+                </thead>
+                <tbody>
                                         @foreach ($data as $data)
             <tr>                
                 <td><a href="{{ route('taxes.edit', ['id' => $data->id]) }}">{{ $data->name }}</a>
@@ -169,15 +142,18 @@
 
 
 <!-- Modal -->
-<div class="modal fade modal-lg" id="add_item_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-lg" id="chargesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">New Tax Rate</h4>                
+                <h4 class="modal-title" id="exampleModalLabel">New Charge</h4>
+
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span> -->
                 </button>
             </div>
-        <div class="modal-body"> 
-            <div class="container">                
+            <div class="modal-body">
+                <div class="container">            
                 <form action="{{ route('taxes.store') }}" method="POST">
                     @csrf
 
@@ -285,6 +261,6 @@
         $('#is_package_good').bootstrapSwitch();
         $('#sell_by_weight').bootstrapSwitch();
     });
-
+</script>
 
 @endsection

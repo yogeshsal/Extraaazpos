@@ -28,7 +28,7 @@
     th {
         background-color: #f5f5f5;
         color: #646464;
-        font-weight: 500;
+        font-weight: 900;
         font-size: small;
     }
 
@@ -48,6 +48,10 @@
         background-color: transparent;
         color: orange;
     }
+
+    .page-content{
+        height:100vh;
+    }
 </style>
 
 <br>
@@ -65,7 +69,12 @@
                 <div class="d-flex align-items-center">
                     <div class="input-group mr-2">
                         <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
-                        <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
+                        <div class="search-box ms-2">
+                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                                                <i class="ri-search-line search-icon "></i>
+                                            </div>&nbsp;&nbsp;
+
+
                         <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
                         <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#chargesModal">
                             <i class="bi bi-plus-lg fw-bolder text-white"></i> New Charge</button>
