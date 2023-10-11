@@ -18,30 +18,13 @@
     <div class="page-content">
         <div class="container-fluid">
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Tabs</h4>
-
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Base UI</a></li>
-                                <li class="breadcrumb-item active">Tabs</li>
-                            </ol>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- end page title -->
 
             <div class="row">
                 <div class="col-xxl-12">
-                    <h5 class="mb-3">Default Tabs</h5>
+
                     <div class="card">
                         <div class="card-body">
-                            <p class="text-muted">Use <code>nav-tabs</code> class to generate a default tabbed interface.</p>
+
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs mb-3" role="tablist">
                                 <li class="nav-item">
@@ -76,25 +59,25 @@
                                     <form action="{{ route('items.update', $item->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
-                                        <div class="row form-row">
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="item_name">Name:</label>
-                                                    <input type="text" name="item_name" class="form-control" value="{{ $item->item_name }}">
+                                                    <input type="text" name="item_name" class="form-control my-2 my-2" value="{{ $item->item_name }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="item_short_name">Short Name:</label>
-                                                    <input type="text" name="item_short_name" class="form-control" value="{{ $item->item_short_name }}">
+                                                    <input type="text" name="item_short_name" class="form-control my-2" value="{{ $item->item_short_name }}">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row form-row">
+                                        <div class="row ">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="category">Category</label>
-                                                    <select name="item_category_id" id="category" class="form-control">
+                                                    <select name="item_category_id" id="category" class="form-control my-2">
                                                         <option value="" disabled>Select Category</option>
                                                         @foreach ($categories as $categoryId => $categoryName)
                                                         <option value="{{ $categoryId }}" {{ $categoryId == $item->item_category_id ? 'selected' : '' }}>
@@ -107,15 +90,15 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="item_pos_code">POS Code</label>
-                                                    <input type="text" name="item_pos_code" class="form-control" value="{{ $item->item_pos_code }}">
+                                                    <input type="text" name="item_pos_code" class="form-control my-2" value="{{ $item->item_pos_code }}">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row form-row">
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="item_food_type">Food Type <span class="text-danger">*</span></label>
-                                                    <select name="item_food_type" id="item_food_type" class="form-control" required>
+                                                    <select name="item_food_type" id="item_food_type" class="form-control my-2" required>
                                                         <option value="" disabled>Select Food Type</option>
                                                         @foreach ($foodtype as $foodtypeId => $foodtypeName)
                                                         <option value="{{ $foodtypeName}}" {{ old('item_food_type', $item->item_food_type) == $foodtypeName ? 'selected' : '' }}>
@@ -136,7 +119,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row form-row">
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="item_is_package_good">Is Package Good</label><br>
@@ -159,24 +142,24 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row form-row">
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="name">Default Sales Price:</label>
-                                                    <input type="text" name="item_default_sell_price" class="form-control" value="{{$item->item_default_sell_price}}">
+                                                    <input type="text" name="item_default_sell_price" class="form-control my-2" value="{{$item->item_default_sell_price}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label for="name">Markup Price (Optional):</label>
-                                                        <input type="text" name="item_markup_price" class="form-control" value="{{$item->item_markup_price}}">
+                                                        <input type="text" name="item_markup_price" class="form-control my-2" value="{{$item->item_markup_price}}">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer form-row">
-                                            <a href="\items"><button type="button" class="btn btn-secondary m-2" data-dismiss="modal">Cancel</button></a>
+                                        <div class="modal-footer">
+                                            <a href="\items"><button type="button" class="btn btn-outline-warning m-2" data-dismiss="modal">Cancel</button></a>
                                             <button type="submit" class="btn btn-orange">Update</button>
                                         </div>
                                     </form>
@@ -185,9 +168,9 @@
                                     <form method="POST" action="{{ route('items.updateImage', $item->id)}}" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
-                                        <div class="form-group form-row">
+                                        <div class="form-group">
                                             <label for="item_image">Upload New Image:</label>
-                                            <input type="file" name="item_image" id="item_image" class="form-control">
+                                            <input type="file" name="item_image" id="item_image" class="form-control my-2">
                                         </div>
                                         <button type="submit" class="btn btn-orange">Upload Image</button>
                                     </form>
