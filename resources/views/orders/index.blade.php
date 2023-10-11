@@ -16,7 +16,7 @@
         <div class="container-fluid">
 
             <!-- start page title -->
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0">Cards</h4>
@@ -30,7 +30,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- end page title -->
 
             <div class="row">
@@ -142,7 +142,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="text-sm-end d-none d-sm-block">
-                        Design & Develop by Themesbrand
+                        Design & Develop by Extraaaz
                     </div>
                 </div>
             </div>
@@ -269,37 +269,54 @@ resultDiv.appendChild(cardRow);
         }
     
         function updateBillData() {
-    var billData = document.getElementById('billdata').getElementsByTagName('tbody')[0];
-    billData.innerHTML = ''; // Clear the current content
+        var billData = document.getElementById('billdata').getElementsByTagName('tbody')[0];
+        billData.innerHTML = ''; // Clear the current content
 
-    // Initialize the total amount
-    var totalAmount = 0;
+        // Initialize the total amount
+        var totalAmount = 0;
 
-    // Add the table header
-    // ...
+        // Add the table header
+        // ...
 
-    // Iterate through selected items and display them in the bill data
-    selectedItems.forEach(item => {
-        var row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${item.name}</td>
-            <td>${item.quantity}</td>
-            <td>${item.price}</td>
-            <td>${item.price * item.quantity}</td>
-        `;
-        billData.appendChild(row);
+        // Iterate through selected items and display them in the bill data
+        selectedItems.forEach((item, index) => {
+            var row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>
+    <button class="btn btn-sm btn-info" onclick="decreaseQuantity(${index})">-</button>
+    <span id="quantity-${index}">${item.quantity}</span>
+    <button class="btn btn-sm btn-info" onclick="increaseQuantity(${index})">+</button>
+</td>
 
-        // Update the total amount
-        totalAmount += item.price * item.quantity;
-    });
+                <td>${item.price}</td>
+                <td>${item.price * item.quantity}</td>
+            `;
+            billData.appendChild(row);
 
-    // Display the total amount
-    var totalAmountElement = document.getElementById('total-amount');
-    totalAmountElement.textContent = totalAmount;
-}
+            // Update the total amount
+            totalAmount += item.price * item.quantity;
+        });
 
+        // Display the total amount
+        var totalAmountElement = document.getElementById('total-amount');
+        totalAmountElement.textContent = totalAmount;
+    }
 
+    function increaseQuantity(index) {
+        selectedItems[index].quantity += 1;
+        updateBillData();
+    }
 
-    </script>
+    function decreaseQuantity(index) {
+        if (selectedItems[index].quantity > 1) {
+            selectedItems[index].quantity -= 1;
+        } else {
+            // If quantity is 1 or less, remove the item from the array
+            selectedItems.splice(index, 1);
+        }
+        updateBillData();
+    }
+</script>
     
 @endsection
