@@ -222,8 +222,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
-                    <!-- <div class="card-body"> -->
+                    </div>                    
                     <ul class="list-group">
                         @foreach($categoryCounts as $categoryId => $itemCount)
                         @php
@@ -234,32 +233,9 @@
                         </li>
                         @endforeach
                     </ul>
-
-
-                    <!-- </div> -->
                 </div>
             </div>
-            <div class="col-sm-9">
-                <div class="card shadow" style="background-color: #FFFFFF;">
-                    <div class="card-header">
-                        <div class="row" style="height:29px;">
-                            <div class="col">
-                                Choose Items
-                            </div>
-                            <div class="col-auto">
-                                <input type="text" class="form-control" placeholder="Search by name or POS code" style="color: #000; height:29px; width: 250px;">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="card-body"> -->
-                    <!-- <div id="result"> -->
-                    <!-- <h1>Items List</h1> -->
-
-                    <!-- </div> -->
-
-                    <!-- </div> -->
-                </div>
-            </div>
+            
         </div>
 
 
@@ -272,63 +248,6 @@
 
 
     </div>
-    <div class="col-sm-4">
-        <div class="card shadow" style="background-color: #FFFFFF;">
-            <div class="card-body">
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="input-group mr-2">
-                                <label for="searchInput" class="mr-2">Table</label>
-                                <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card" style="height: 300px;">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Unit Price</th>
-                                <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <table>
-                            <tr>
-                                <td>Total :</td>
-                                <td>6560.00</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <button type="button" class="btn btn-primary">Note</button>
-                        <button type="button" class="btn btn-secondary">Hold</button>
-                        <button type="button" class="btn btn-danger">Finish Order
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
