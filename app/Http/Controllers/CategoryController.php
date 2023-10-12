@@ -27,6 +27,8 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+
+        dd("category");
         $data = new Category;
         $data->cat_name= $request->cat_name;
         $data->cat_short_name= $request->cat_short_name;
