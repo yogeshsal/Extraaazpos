@@ -46,8 +46,7 @@ class CategoryController extends Controller
         return redirect('categories');
     }
 
-    public function edit($id)    {    
-        
+    public function edit($id)    { 
         $currentUserId = Auth::user()->id;
         $category = Category::find($id);
         $categories = Category::all();
@@ -58,16 +57,13 @@ class CategoryController extends Controller
         ->select('items.*', 'categories.cat_name')
         ->where('categories.id', $id)
         ->paginate(2); 
-
-        $itemCount = $items->total();
-        
-        
+        $itemCount = $items->total();        
         return view('catalogue.categories.edit', compact('category','categories', 'category_desc','timing','items','itemCount'));
     }
 
     public function catupdate(Request $request, $id)
     {        
-        
+        //dd("hello");
         $request->validate([
             'cat_name' => 'required|string|max:255',
             'cat_short_name' => 'required|string|max:255',
@@ -96,9 +92,7 @@ class CategoryController extends Controller
         ]);
          //dd($validatedData) ;
         // Update the customer's data
-        $category->update($validatedData);
-
-        // Redirect to a success page or back to the edit form with a success message
+        $category->update($validatedData);        
         return redirect('categories')->with('success', 'category updated successfully');
     }
 
