@@ -98,14 +98,8 @@
                                         <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="handle">Handle</label>
-                                                    <select name=" " id=" handle" class="form-control my-2">
-                                                        <option value="" disabled>Select Category</option>
-                                                       
-                                                        <option value="" >
-                                                           
-                                                        </option>
-                                                       
-                                                    </select>
+                                                    <input type="text" name="handle" class="form-control my-2" value="{{ $item->handle }}">
+
                                                 </div>
                                             </div>
 
