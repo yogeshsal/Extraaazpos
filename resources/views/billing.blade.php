@@ -118,7 +118,7 @@
                             <ul class="nav nav-tabs mb-3" role="tablist">
                                 <li class="nav-item">
                                      <a class="nav-link active" data-bs-toggle="tab" href="#delivery" role="tab" aria-selected="false">
-                                        <a class="nav-link" data-bs-toggle="tab" href="#delivery" role="tab" aria-selected="false">
+                                        <!-- <a class="nav-link" data-bs-toggle="tab" href="#delivery" role="tab" aria-selected="false"> -->
                                             Delivery
                                         </a>
                                 </li>
@@ -281,7 +281,7 @@
                     <h5 class="mb-3">&nbsp;</h5>
 
 
-                    <div id="circleDetailDiv" class="card" style="display: none; height: 90%;">
+                    <div id="circleDetailDivs" class="card  " style="display: none; height: 90%;">
                         <div class="card-header">
                             <!-- <button type="button" class="btn-close float-end fs-11" aria-label="Close"></button> -->
                             <h6 class="card-title mb-0 ">
@@ -574,6 +574,79 @@
 
                         <!-- modals end -->
                     </div>
+                    <div id="circleDetailDiv" class="card " style="display: none">
+                        <div class="card-body">
+                            <h4 class="card-title">Table - <span id="circleNumberSpan"></span></h4>
+
+                            <center>
+                                <p class="card-text">How many people are at the table ?</p>
+                            </center>
+                            <br>
+
+
+                            <div class="col-sm-12 text-center">
+                                <div>
+                                    <!-- <h5 class="fs-13 fw-medium text-muted">Light</h5> -->
+                                    <div class="input-step light">
+                                        <button type="button" class="minus">–</button>
+                                        <input type="number" class="product-quantity" value="5" min="0" max="100" readonly>
+                                        <button type="button" class="plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- counter -->
+                            <br>
+                            <center>
+                                <p class="card-text">Add Customer</p>
+                            </center>
+
+                            <center>
+                                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#myModal" id="selectCustomerButton">
+                                    Customer: Select Customer
+                                </button>
+                            </center>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="customer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Select Customer</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <select class="form-select" aria-label="Default select example" id="customerSelect">
+                                                    <option selected>Select Customer</option>
+                                                    @foreach($customer as $c)
+                                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" id="saveCustomerButton" data-dismiss="modal">Done</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <center>
+                                <p class="card-text">Add Server</p>
+                            </center>
+
+                            <center><button type="button" class="btn btn-outline-secondary">Server : Select Server</button>
+                                <center>
+                                    <a href="orders"><button type="button" class="btn btn-orange mt-2">New Bill</button></a>
+                        </div>
+                    </div>
+
+
                     <!-- end card -->
                 </div>
                 <!--end col-->
@@ -652,6 +725,23 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous">
 </script> -->
+
+
+<script>
+        // 1. Get the ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+
+        // 2. Use JavaScript to find the element by its ID
+        const element = document.getElementById(id);
+
+        if (element) {
+            // 3. Change the CSS display property to show the element
+            element.style.display = "block";
+        } else {
+            console.error("Element not found");
+        }
+    </script>
 
 
 
@@ -736,6 +826,7 @@
         // Add the "clicked-circle" class to the clicked circle
         circle.classList.add('clicked-circle');
     }
+    
 
 
     // Add an event listener to the dropdown to detect changes
