@@ -9,7 +9,7 @@
     <div class="container-fluid">
 
       <!-- start page title -->
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-12">
           <div class="page-title-box d-sm-flex align-items-center justify-content-between">
             <h4 class="mb-sm-0">Cards</h4>
@@ -23,7 +23,7 @@
 
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- end page title -->
 
 
@@ -31,7 +31,7 @@
       <div class="row">
         <div class="col-12">
           <div class="justify-content-between d-flex align-items-center mt-3 mb-4">
-            <!-- <h5 class="mb-0 pb-1 text-decoration-underline">Card Header and Footer</h5> -->
+            <h5 class="mb-0 pb-1 text-decoration-none">SELECT ITEMS</h5>
           </div>
           <div class="row">
             <div class="col-xxl-12 col-lg-6">
@@ -82,10 +82,6 @@
                   </tbody>
                 </table>
                 </form>
-              </div>
-              <div class="card-footer">
-                <a href="javascript:void(0);" class="link-success float-end">Read More <i class="ri-arrow-right-s-line align-middle ms-1 lh-1"></i></a>
-                <p class="text-muted mb-0">1 days Ago</p>
               </div>
             </div>
           </div><!-- end col -->
@@ -165,4 +161,4 @@
 
 
 
-  @endsection
+@endsection
