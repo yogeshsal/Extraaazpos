@@ -212,93 +212,24 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                           
+                                            </div>                                          
 
                                             <div class="row form-row">
                                                 <div class="form-group">
-                                                    <label for="name">Name:</label>
-                                                    <input type="text" name="item_name" class="form-control" required>
+                                                    <label for="item_description">Description</label>
+                                                    <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="mobile">Short Name:</label>
-                                                    <input type="text" name="item_short_name" class="form-control" required>
-                                                </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-orange">Create</button>
                                             </div>
                                         </div>
-
-
-                                        <div class="row form-row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="category">Handle</label>
-                                                    <input type="text" name="item_short_name" class="form-control" required>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="location">Sort Category</label>
-                                                    <input type="text" name="item_short_name" class="form-control" required>
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="row form-row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="external_id">External ID</label>
-                                                    <input type="text" name="external_id" class="form-control" required>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="timing_group">Timing Group</label><br>
-                                                    <select name="timing_group " class="form-select mb-3">
-                                                        <option value="option1">Option 1</option>
-                                                        <option value="option2">Option 2</option>
-                                                        <option value="option3">Option 3</option>
-                                                    </select>
-
-
-                                                    @foreach ($timing as $timing)
-                                                    <li>{{ $timing->name }}</li>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="row form-row">
-                                            <div class="form-group">
-                                                <label for="item_description">Description</label>
-                                                <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-orange">Create</button>
-                                        </div>
-                                        <!--end row-->
-
                                     </div>
-
                                 </div>
-                            </div> <!-- end col -->
-
-
+                            </div>
                         </div>
-
-
                     </form>
                 </div>
             </div>

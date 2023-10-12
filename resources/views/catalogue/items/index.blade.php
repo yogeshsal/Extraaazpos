@@ -532,11 +532,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-<<<<<<< HEAD
-                <h4 class="modal-title" id="exampleModalLabel">Create New Items</h4>                
-=======
                 <h4 class="modal-title" id="exampleModalLabel">Create New Item</h4>
->>>>>>> 90f9279fa7094e26da999a95c7f91b9636d220e0
                 </button>
             </div>
             <div class="modal-body">
