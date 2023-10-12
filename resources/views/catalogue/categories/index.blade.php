@@ -205,16 +205,11 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="timing_group">Timing Group</label><br>
-                                                        <select name="timing_group">
-                                                            <option value="option1">Option 1</option>
-                                                            <option value="option2">Option 2</option>
-                                                            <option value="option3">Option 3</option>
+                                                        <select name="timing_group" class="form-select mb-3">
+                                                            @foreach ($timing as $time)
+                                                                <option value="{{ $time['name'] }}">{{ $time['name'] }}</option>
+                                                            @endforeach
                                                         </select>
-                                                        
-                                                        
-                                                        @foreach ($timing as $timing)
-                                                            <li>{{ $timing->name }}</li>
-                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
