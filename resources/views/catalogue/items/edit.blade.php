@@ -3,8 +3,31 @@
 
 @section('ownercontent')
 
+<style>
+.form-control {
+    /* Set the desired width */
+        width: 400px; 
+        height: 50px; 
+    }
+    .card-outer {
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Rounded corners */
+    padding:30px;
+}
+.page-content{
+        height:100vh;
+    }
+
+    .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
 
 
+
+
+</style>
 
 <br>
 @if(session('success'))
@@ -13,18 +36,13 @@
 </div>
 @endif
 
-<div class="main-content">
+<div class="main-content ">
 
     <div class="page-content">
         <div class="container-fluid">
-
-
             <div class="row">
-                <div class="col-xxl-12">
-
                     <div class="card">
                         <div class="card-body">
-
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs mb-3" role="tablist">
                                 <li class="nav-item">
@@ -54,12 +72,15 @@
                                 </li>
                             </ul>
                             <!-- Tab panes -->
-                            <div class="tab-content  text-muted">
-                                <div class="tab-pane active" id="home" role="tabpanel">
+                            
+                            <div class="card-outer center-content">
+                            <div class="tab-content  text-muted ">
+                                <div class="tab-pane active " id="home" role="tabpanel">
+
                                     <form action="{{ route('items.update', $item->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
-                                        <div class="row">
+                                        <div class="row d-flex justify-content-center">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="item_name">Name:</label>
@@ -73,10 +94,26 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row ">
-                                            <div class="col-md-6">
+                                        <div class="row d-flex">
+                                        <div class="col-md-6 mt-2">
                                                 <div class="form-group">
-                                                    <label for="category">Category</label>
+                                                    <label for="handle">Handle</label>
+                                                    <select name=" " id=" handle" class="form-control my-2">
+                                                        <option value="" disabled>Select Category</option>
+                                                       
+                                                        <option value="" >
+                                                           
+                                                        </option>
+                                                       
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-md-6 mt-2">
+                                                <div class="form-group">
+                                                    <label for="category">Category<span class="text-danger">*</span></label>
                                                     <select name="item_category_id" id="category" class="form-control my-2">
                                                         <option value="" disabled>Select Category</option>
                                                         @foreach ($categories as $categoryId => $categoryName)
@@ -87,15 +124,16 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="row">
+                                            <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="item_pos_code">POS Code</label>
                                                     <input type="text" name="item_pos_code" class="form-control my-2" value="{{ $item->item_pos_code }}">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
+
+                                        
+                                            <div class="col-md-6 mt-2">
                                                 <div class="form-group">
                                                     <label for="item_food_type">Food Type <span class="text-danger">*</span></label>
                                                     <select name="item_food_type" id="item_food_type" class="form-control my-2" required>
@@ -108,6 +146,17 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            
+                                            </div> 
+                                            </div>
+                                            <div class="row mt-2">   
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="is_recommended">Sort Order<span class="text-danger">*</span></label><br>
+                                                    <input type="text" name="item_pos_code" class="form-control my-2" value=" ">
+                                                    <!-- <input type="checkbox" id="item_is_recommended" name="item_is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No" {{ $item->item_is_recommended ? 'checked' : '' }}> -->
+                                                </div>
+                                            </div>  
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="is_recommended">Is Recommended</label><br>
@@ -119,7 +168,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row mt-2">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="item_is_package_good">Is Package Good</label><br>
@@ -127,10 +176,11 @@
                                                         <input class="form-check-input" id="item_is_package_good" name="item_is_package_good" type="checkbox" role="switch" id="SwitchCheck1" data-on-text="Yes" data-off-text="No" {{ $item->item_is_package_good ? 'checked' : '' }}>
                                                         <!-- <label class="form-check-label" for="SwitchCheck1">Switch Default</label> -->
                                                     </div>
+                                                    <p class="muted">Packaged or Prepared items whose tax liability falls on the Restaurant</p>
                                                     <!-- <input type="checkbox" id="item_is_package_good" name="item_is_package_good" data-toggle="switch" data-on-text="Yes" data-off-text="No" {{ $item->item_is_package_good ? 'checked' : '' }}> -->
                                                 </div>
                                             </div>
-
+                                            
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="is_recommended">Sell by Weight</label><br>
@@ -142,13 +192,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
+
+                                        <div class="row mt-2">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="name">Default Sales Price:</label>
-                                                    <input type="text" name="item_default_sell_price" class="form-control my-2" value="{{$item->item_default_sell_price}}">
+                                                    <label for="name">Default Sales Price<span class="text-danger">*</span></label>
+                                                    <input type="text" name="item_default_sell_price" class="form-control my-2" value="{{$item->item_default_sell_price}}" aria-describedby="basic-addon1">
                                                 </div>
                                             </div>
+                                            
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="form-group">
@@ -158,6 +210,40 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Aggregate Price<span class="text-danger">*</span></label>
+                                                    <input type="text" name="item_default_sell_price" class="form-control my-2" value="{{$item->item_default_sell_price}}" aria-describedby="basic-addon1">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label for="name">External Id</label>
+                                                        <input type="text" name="item_markup_price" class="form-control my-2" value="{{$item->item_markup_price}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-row mt-2">
+                                                <div class="form-group">
+                                                    <label for="item_description">Description</label>
+                                                    <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-row mt-2">
+                                                <div class="form-group">
+                                                    <p class="muted">Tag your items for easy bulk operations</p>
+                                                    <input type="text" name="item_markup_price" class="form-control" value="{{$item->item_markup_price}}">
+
+                                                </div>
+                                            </div>
+
                                         <div class="modal-footer">
                                             <a href="\items"><button type="button" class="btn btn-outline-warning m-2" data-dismiss="modal">Cancel</button></a>
                                             <button type="submit" class="btn btn-orange">Update</button>
@@ -196,34 +282,13 @@
                     </div><!-- end card -->
                 </div>
                 <!--end col-->
-
-
-                <!--end col-->
-            </div>
-            <!--end row-->
-
-
         </div>
         <!-- container-fluid -->
     </div>
+</div>
     <!-- End Page-content -->
 
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script> © Hybrix.
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-end d-none d-sm-block">
-                        Design & Develop by Themesbrand
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+   
 </div>
 <!-- end main content-->
 
