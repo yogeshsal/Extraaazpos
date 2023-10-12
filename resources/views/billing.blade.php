@@ -117,12 +117,13 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs mb-3" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#home" role="tab" aria-selected="false">
-                                        Home
-                                    </a>
+                                     <a class="nav-link active" data-bs-toggle="tab" href="#delivery" role="tab" aria-selected="false">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#delivery" role="tab" aria-selected="false">
+                                            Delivery
+                                        </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#product1" role="tab" aria-selected="false">
+                                    <a class="nav-link " data-bs-toggle="tab" href="#product1" role="tab" aria-selected="false">
                                         Billing
                                     </a>
                                 </li>
@@ -139,18 +140,58 @@
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content text-muted">
-                                <div class="tab-pane" id="home" role="tabpanel">
-                                    <h6>Graphic Design</h6>
-                                    <p class="mb-0">
-                                        They all have something to say beyond the words on the
-                                        page. They can come across as casual or neutral,
-                                        exotic or graphic. That's why it's important to think
-                                        about your message, then choose a font that fits.
-                                        Cosby sweater eu banh mi, qui irure terry richardson
-                                        ex squid.
+                                <div class="tab-pane active" id="delivery" role="tabpanel">
+                                    <!-- Small Tables -->
+                                    <div class="input-group">
+                                        <button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                        </ul>
+                                        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                                    </div>
+
+                                    <table class="table table-sm table-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="text-start">NO</th>
+                                                <th scope="col" class="text-center">Customer</th>
+                                                <th scope="col" class="text-center">KOT</th>
+                                                <th scope="col" class="text-center">Driver</th>
+                                                <th scope="col" class="text-center">Status</th>
+                                                <th scope="col" class="text-center">Open Time</th>
+                                                <th scope="col" class="text-end">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="text-start fs-12"><span class="badge badge-soft-warning">84/00062</span></th>
+                                                <td class="text-center fs-12">Sam <br>1234567890</td>
+                                                <td class="text-center fs-12"><span class="badge badge-soft-dark">84/001</span></td>
+                                                <td class="text-center fs-12"><a href="">Select Driver</a> </td>
+                                                <td class="text-center fs-12"><select class="form-select form-select-sm  mb-3" aria-label=".form-select-sm example">
+                                                        <option selected>Status</option>
+                                                        <option value="1">Pending</option>
+                                                        <option value="2">Dlivered</option>
+                                                        <option value="3">Three</option>
+                                                    </select></td>
+                                                <td class="text-center fs-12">1:42 </td>
+                                                <td class="text-end fs-12">200 </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+
                                     </p>
                                 </div>
-                                <div class="tab-pane active" id="product1" role="tabpanel">
+                                <div class="tab-pane " id="product1" role="tabpanel">
                                     <div class="card">
                                         <div class="card-header">
                                             <select class="form-select mb-3 selectBox" id="dropdown" aria-label="Default select example">
@@ -217,6 +258,7 @@
                                         helvetica. DIY synth PBR banksy irony.
                                     </p>
                                 </div>
+
                                 <div class="tab-pane" id="settings" role="tabpanel">
                                     <h6>Settings</h6>
                                     <p class="mb-0">
@@ -239,7 +281,7 @@
                     <h5 class="mb-3">&nbsp;</h5>
 
 
-                    <div id="circleDetailDiv" class="card" style="display: block; height: 90%;">
+                    <div id="circleDetailDiv" class="card" style="display: none; height: 90%;">
                         <div class="card-header">
                             <!-- <button type="button" class="btn-close float-end fs-11" aria-label="Close"></button> -->
                             <h6 class="card-title mb-0 ">
