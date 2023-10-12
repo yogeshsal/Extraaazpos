@@ -281,7 +281,7 @@
                     <h5 class="mb-3">&nbsp;</h5>
 
 
-                    <div id="circleDetailDiv" class="card  " style="display: none; height: 90%;">
+                    <div id="circleDetailDiv" class="card  " style="display: block; height: 90%;">
                         <div class="card-header">
                             <!-- <button type="button" class="btn-close float-end fs-11" aria-label="Close"></button> -->
                             <h6 class="card-title mb-0 ">
@@ -574,7 +574,7 @@
 
                         <!-- modals end -->
                     </div>
-                    <div id="circleDetailDiv" class="card " style="display: block">
+                    <div id="circleDetailDiv" class="card " style="display: none">
                         <div class="card-body">
                             <h4 class="card-title">Table - <span id="circleNumberSpan"></span></h4>
 
