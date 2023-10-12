@@ -63,8 +63,15 @@ class CategoryTimingController extends Controller
         
         
         $categories1 = Category::where('id', $id)->get()->toArray();
-        $cat_parent_cat = $categories1[0]['cat_parent_category'];
+        // $cat_parent_cat = $categories1[0]['cat_parent_category'];
         
+        if (!empty($categories1) && isset($categories1[0]['cat_parent_category'])) {
+            $cat_parent_cat = $categories1[0]['cat_parent_category'];
+        }
+
+
+
+
         // Initialize an array to store category names
         $categoryNames = [];
         
