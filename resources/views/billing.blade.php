@@ -8,10 +8,10 @@
         }
 
         /* .menu li {
-              display: inline-block;
-              vertical-align: middle;
-              text-align: center;
-          } */
+                  display: inline-block;
+                  vertical-align: middle;
+                  text-align: center;
+              } */
         .circle {
             border-radius: 100px;
             width: 100px;
@@ -33,11 +33,11 @@
         }
 
         /* .selectBox {
-                width: 140px;
-                height: 40px;
-                border: 0px;
-                outline: none;
-            } */
+                    width: 140px;
+                    height: 40px;
+                    border: 0px;
+                    outline: none;
+                } */
 
         /* Center-align the text */
         .card-title {
@@ -92,17 +92,17 @@
                 <div class="row">
                     <div class="col-12">
                         <!-- <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0">Tabs</h4>
+                                    <h4 class="mb-sm-0">Tabs</h4>
 
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item">
-                                            <a href="javascript: void(0);">Base UI</a>
-                                        </li>
-                                        <li class="breadcrumb-item active">Tabs</li>
-                                    </ol>
-                                </div>
-                            </div> -->
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item">
+                                                <a href="javascript: void(0);">Base UI</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">Tabs</li>
+                                        </ol>
+                                    </div>
+                                </div> -->
                     </div>
                 </div>
                 <!-- end page title -->
@@ -203,12 +203,13 @@
                                     <div class="tab-pane active " id="product1" role="tabpanel">
                                         <div class="card">
                                             <div class="card-header">
-                                                <select class="form-select mb-3 selectBox" id="dropdown" aria-label="Default select example">
+                                                <select class="form-select mb-3 selectBox" id="dropdown"
+                                                    aria-label="Default select example">
                                                     <option value="balcony" selected>Balcony</option>
                                                     <option value="table">Table</option>
                                                 </select>
-                                                
-                                                
+
+
                                             </div>
                                             <div class="card-body">
                                                 <ul>
@@ -242,21 +243,21 @@
                                                 </ul>
                                             </div>
                                             <!-- <div class="card-footer">
-                                                    <a href="javascript:void(0);" class="link-success float-end">Read More <i class="ri-arrow-right-s-line align-middle ms-1 lh-1"></i></a>
-                                                    <p class="text-muted mb-0">1 days Ago</p>
-                                                </div> -->
+                                                        <a href="javascript:void(0);" class="link-success float-end">Read More <i class="ri-arrow-right-s-line align-middle ms-1 lh-1"></i></a>
+                                                        <p class="text-muted mb-0">1 days Ago</p>
+                                                    </div> -->
                                         </div>
 
                                         <!-- <h6>Product</h6>
-                                            <p class="mb-0">
-                                                You've probably heard that opposites attract. The same
-                                                is true for fonts. Don't be afraid to combine font
-                                                styles that are different but complementary, like sans
-                                                serif with serif, short with tall, or decorative with
-                                                simple. Qui photo booth letterpress, commodo enim
-                                                craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-                                                cillum PBR.
-                                            </p> -->
+                                                <p class="mb-0">
+                                                    You've probably heard that opposites attract. The same
+                                                    is true for fonts. Don't be afraid to combine font
+                                                    styles that are different but complementary, like sans
+                                                    serif with serif, short with tall, or decorative with
+                                                    simple. Qui photo booth letterpress, commodo enim
+                                                    craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+                                                    cillum PBR.
+                                                </p> -->
                                     </div>
                                     <div class="tab-pane" id="messages" role="tabpanel">
                                         <h6>Messages</h6>
@@ -294,27 +295,20 @@
 
                         <div id="circleDetailDivs" class="card  " style="display: none; height: 90%;">
                             <div class="card-header">
-                                <!-- <button type="button" class="btn-close float-end fs-11" aria-label="Close"></button> -->
                                 <h6 class="card-title mb-0 ">
-
                                     <p class="text-start">
-                                        #118/00025
-                                        <span class="float-end">Customer Name : Erica
-                                            <br>
-                                            <a data-bs-toggle="modal" data-bs-target="#selectcustomer"> Select
-                                                Customer</a>
-                                        </span>
+                                        <span id="tableNumberPlaceholder"></span>
+                                        <span class="float-end">Customer Name : <span
+                                                id="customerNamePlaceholder"></span></span>
                                     </p>
-
                                 </h6>
-                                <!-- <h6 class="card-title mb-0">Customer Name : Erica </h6> -->
                             </div>
+
                             <div class="card-body" style="height:67%">
                                 <!-- Small Tables -->
                                 <table class="table table-sm table-nowrap">
                                     <thead>
-                                        <tr class>
-
+                                        <tr>
                                             <th scope="col" class="text-start">PRODUCT</th>
                                             <th class="text-center" scope="col">SERVED</th>
                                             <th class="text-center" scope="col">UNIT PRICE</th>
@@ -322,30 +316,18 @@
                                             <th scope="col" class="text-end">TOTAL</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><a href="#" class="fw-medium text-start">Dahi Kebab</a></td>
-                                            <td>
-                                                <div class="form-check text-center">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="cardtableCheck01">
-                                                    <label class="form-check-label" for="cardtableCheck01"></label>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">$ 868</td>
-                                            <td class="text-center">1</td>
-                                            <td class="text-end">$ 868</td>
-
-                                        </tr>
-
+                                    <tbody id="targetTableBody">
+                                        <!-- Data rows will be appended here -->
                                     </tbody>
                                 </table>
 
+
                             </div>
                             <div class="card-body">
-                                <a href="javascript:void(0);" class="float-end"> $868</a>
+                                <a href="javascript:void(0);" class="float-end" id="completeTotalPrice">$0</a>
                                 <p class="text-muted mb-0">Total</p>
                             </div>
+
                             <div class="card-footer">
                                 <a href="/orders"><button type="button" class="btn btn-light btn-icon rounded-pill"><i
                                             class=" ri-shopping-cart-fill"></i></button></a>
@@ -445,7 +427,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary ">Save Changes</button> -->
+                                                    <button type="button" class="btn btn-primary ">Save Changes</button> -->
                                         </div>
 
                                     </div><!-- /.modal-content -->
@@ -583,37 +565,37 @@
                                                             class="ri-check-fill align-bottom me-1 float-end"></i></span>
                                                 </button>
                                                 <!-- <input type="checkbox" class="btn-check" id="btn-check-outlined">
-                                                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
-                                                    <input type="checkbox" class="btn-check" id="btn-check-outlined">
-                                                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
-                                                    <input type="checkbox" class="btn-check" id="btn-check-outlined">
-                                                    <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+                                                        <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+                                                        <input type="checkbox" class="btn-check" id="btn-check-outlined">
+                                                        <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+                                                        <input type="checkbox" class="btn-check" id="btn-check-outlined">
+                                                        <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
 
 
 
-                                                    <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
-                                                    <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
-                                                    <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
-                                                    <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
-                                                    <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
-                                                    <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
-                                                    <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
-                                                    <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
-                                                    <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
-                                                    <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label> -->
+                                                        <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
+                                                        <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
+                                                        <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
+                                                        <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
+                                                        <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
+                                                        <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
+                                                        <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
+                                                        <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
+                                                        <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
+                                                        <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label> -->
 
                                                 <!-- <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" checked>
-                                                    <label class="btn btn-outline-success" for="success-outlined">Checked success radio</label> -->
+                                                        <label class="btn btn-outline-success" for="success-outlined">Checked success radio</label> -->
 
                                                 <!-- <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined"> -->
                                                 <!-- <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label> -->
                                             </div>
                                             <!-- <select class="form-select mb-3" aria-label=".form-select-lg example">
-                                                    <option selected>Open this select menu</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select> -->
+                                                        <option selected>Open this select menu</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select> -->
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-light"
@@ -664,20 +646,22 @@
                                 </center>
 
                                 <center>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="selectCustomerButton">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#myModal" id="selectCustomerButton">
                                         Customer: <span id="selectedCustomerName">Select Customer</span>
                                     </button>
                                 </center>
                                 <br>
-                                    <center>
-                                        <a href="orders"><button type="button" class="btn btn-orange mt-2" id="newBillButton">New Bill</button>
-                                        </a>
+                                <center>
+                                    <a href="orders"><button type="button" class="btn btn-orange mt-2"
+                                            id="newBillButton">New Bill</button>
+                                    </a>
                             </div>
                         </div>
 
 
                         <!-- end card -->
-                    </div> 
+                    </div>
                     <!--end col-->
 
 
@@ -708,7 +692,8 @@
                 </div>
             </div>
         </footer>
-        <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
+            style="display: none;">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -729,7 +714,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-orange" id="addCustomerButton" data-bs-dismiss="modal">Add</button>
+                        <button type="button" class="btn btn-orange" id="addCustomerButton"
+                            data-bs-dismiss="modal">Add</button>
                     </div>
                 </div>
             </div>
@@ -741,12 +727,12 @@
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-        </script> -->
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+                integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+            </script> -->
 
 
     <script>
@@ -769,38 +755,92 @@
 
 
     <script>
-   document.getElementById("addCustomerButton").addEventListener("click", function () {
-    var selectedOption = document.getElementById("customerSelect").options[document.getElementById("customerSelect").selectedIndex];
-    var selectedCustomerName = selectedOption.text;
-    document.getElementById("selectedCustomerName").textContent = selectedCustomerName;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve table number, customer name, and product data from localStorage
+            var tableNumber = localStorage.getItem('tableNumber');
+            var customerName = localStorage.getItem('customerName');
+            var productData = JSON.parse(localStorage.getItem('productData'));
 
-    // Fetch the selected area from the dropdown in Code 1
-    var selectedArea = document.getElementById("dropdown").value;
+            // Update the content of the placeholders in the card header
+            var tableNumberPlaceholder = document.getElementById('tableNumberPlaceholder');
+            var customerNamePlaceholder = document.getElementById('customerNamePlaceholder');
 
-    // Store the selected area, customer name, and other data in localStorage
-    localStorage.setItem("selectedArea", selectedArea);
-    localStorage.setItem("selectedCustomerName", selectedCustomerName);
-});
+            if (tableNumber && customerName) {
+                tableNumberPlaceholder.textContent = `Table Number: ${tableNumber}`;
+                customerNamePlaceholder.textContent = customerName;
+            }
 
-document.getElementById("newBillButton").addEventListener("click", function () {
-    // Get the selected customer ID, cover count, table number, and area
-    var selectedCustomer = document.getElementById("customerSelect").value;
-    var coverCount = parseInt(document.querySelector(".product-quantity").value);
-    var tableNumber = document.getElementById("circleNumberSpan").textContent;
+            if (productData && Array.isArray(productData)) {
+                var tableBody = document.getElementById('targetTableBody');
 
-    // Fetch the selected area from localStorage
-    var selectedArea = localStorage.getItem("selectedArea");
+                // Loop through the productData and create rows for the table
+                var completeTotal = 0; // Initialize the complete total
 
-    // Store the customer ID, cover count, table number, and area in localStorage
-    localStorage.setItem("selectedCustomer", selectedCustomer);
-    localStorage.setItem("coverCount", coverCount);
-    localStorage.setItem("tableNumber", tableNumber);
-    localStorage.setItem("selectedArea", selectedArea);
+                productData.forEach(function(product) {
+                    var row = document.createElement('tr');
 
-    // Perform the desired action (e.g., create a new bill)
-    createNewBill();
-});
-    
+                    row.innerHTML = `
+                <td class="text-start">${product.productName}</td>
+                <td class="text-center">
+                    <div class="form-check text-center">
+                        <input class="form-check-input" type="checkbox" value="" id="cardtableCheck01">
+                        <label class="form-check-label" for="cardtableCheck01"></label>
+                    </div>
+                </td>
+                <td class="text-center">${product.unitPrice}</td>
+                <td class="text-center">${product.quantity}</td>
+                <td class="text-end">${product.total}</td>
+            `;
+
+                    tableBody.appendChild(row);
+
+                    // Calculate and update the complete total
+                    completeTotal += parseFloat(product
+                    .total); // Remove the '$' sign and convert to a number
+                });
+
+                // Update the complete total in the specified div
+                var completeTotalPrice = document.getElementById('completeTotalPrice');
+                completeTotalPrice.textContent = `₹${completeTotal.toFixed(2)}`; // Display with 2 decimal places
+            }
+        });
+
+
+
+
+        document.getElementById("addCustomerButton").addEventListener("click", function() {
+            var selectedOption = document.getElementById("customerSelect").options[document.getElementById(
+                "customerSelect").selectedIndex];
+            var selectedCustomerName = selectedOption.text;
+            document.getElementById("selectedCustomerName").textContent = selectedCustomerName;
+
+            // Fetch the selected area from the dropdown in Code 1
+            var selectedArea = document.getElementById("dropdown").value;
+
+            // Store the selected area, customer name, and other data in localStorage
+            localStorage.setItem("selectedArea", selectedArea);
+            localStorage.setItem("selectedCustomerName", selectedCustomerName);
+        });
+
+        document.getElementById("newBillButton").addEventListener("click", function() {
+            // Get the selected customer ID, cover count, table number, and area
+            var selectedCustomer = document.getElementById("customerSelect").value;
+            var coverCount = parseInt(document.querySelector(".product-quantity").value);
+            var tableNumber = document.getElementById("circleNumberSpan").textContent;
+
+            // Fetch the selected area from localStorage
+            var selectedArea = localStorage.getItem("selectedArea");
+
+            // Store the customer ID, cover count, table number, and area in localStorage
+            localStorage.setItem("selectedCustomer", selectedCustomer);
+            localStorage.setItem("coverCount", coverCount);
+            localStorage.setItem("tableNumber", tableNumber);
+            localStorage.setItem("selectedArea", selectedArea);
+
+            // Perform the desired action (e.g., create a new bill)
+            createNewBill();
+        });
+
 
 
         // Function to show the div
