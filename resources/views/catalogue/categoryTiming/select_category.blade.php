@@ -36,7 +36,6 @@
                         <td>{{$i->cat_name}}</td>
                         <td>{{$i->name}}</td>
                         <td>{{ $itemCounts[$i->id] }}</td>
-
                     </tr>
                     @endforeach
                 </tbody>
