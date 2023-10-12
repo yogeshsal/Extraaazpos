@@ -2,24 +2,20 @@
 @extends('layouts.app')
 
 @section('ownercontent')
-
 <style>
-#totalRow>td {
-    cursor: pointer;
-}
-
-.slide-up-down {
-    display: none;
-}
+/* .close {
+                    border: none !important;
+                    outline: none !important;
+                    box-shadow: none !important;
+                } */
 </style>
-
+<br>
 <div class="main-content">
 
     <div class="page-content">
         <div class="container-fluid">
-
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-sm-6 col-xl-2">
                     <!-- Simple card -->
                     <div class="card">
                         <ul class="list-group" id="category-list">
@@ -32,9 +28,11 @@
                             </li>
                             @endforeach
                         </ul>
+
+
                     </div><!-- end card -->
                 </div><!-- end col -->
-                <div class="col-md-5">
+                <div class="col-sm-12 col-xl-6">
                     <div class="card">
                         <div class="card-header">
                             <div class="row" style="height:29px;">
@@ -55,7 +53,7 @@
                     </div><!-- end card -->
                 </div><!-- end col -->
 
-                <div class="col-md-5">
+                <div class="col-sm-6 col-xl-4">
                     <div class="card">
                         <div class="card-body">
 
@@ -63,49 +61,46 @@
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="input-group mr-2">
-                                            <label for="searchInput" class="mr-2">Table</label>
-                                            <input type="search" id="searchInput" class="form-control rounded m-1"
-                                                placeholder="Search by Name" aria-label="Search"
-                                                aria-describedby="search-addon" />
+                                            {{-- <label for="searchInput" class="mr-2">Table</label> --}}
+                                            {{-- <input type="search" id="searchInput" class="form-control rounded m-1"
+                                                    placeholder="Search by Name" aria-label="Search"
+                                                    aria-describedby="search-addon" /> --}}
+                                            <p>Table Number: <span id="tableNumber"></span></p>
                                         </div>
                                         <div>
-                                            <p>Table Number: <span id="tableNumber"></span></p>
+
                                             <p>Customer Name: <span id="customerName"></span></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="card" id="billdata">
+                            <div class="card" id="billdata" style="height: 300px;">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Product</th>
-                                            <th>Quantity</th>
-                                            <th>Unit Price</th>
-                                            <th>Total</th>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Unit Price</th>
+                                            <th scope="col">Total</th>
                                         </tr>
                                     </thead>
-                                    <tbody style="height: 300px;">
+                                    <tbody>
 
                                     </tbody>
-                                    <tfoot style="background-color:#f5f5f5">
-                                        <tr id="subtotalRow" class="slide-up-down py-0">
-                                            <td colspan="3" class="small py-0">Subtotal</td>
-                                            <td id="subtotal" class="small py-0">0</td>
-                                        </tr>
-                                        <tr id="totalTaxesRow" class="slide-up-down py-0">
-                                            <td colspan="3" class="small py-0">Total Taxes</td>
-                                            <td id="totalTaxes" class="small py-0">0</td>
-                                        </tr>
-                                        <tr id="totalRow">
-                                            <td colspan="3" class="toggle-slide" id="total">Total <i
-                                                    class="bi bi-chevron-expand"></i></td>
-                                            <td id="total-amount">0</td>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="total">
+                                        <tr>
+                                            <td>Total :</td>
+                                            <td id="total-amount">0</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
 
 
                             <div class="card">
@@ -113,7 +108,8 @@
                                     <button type="button" class="btn btn-primary">Note</button>
                                     <button type="button" class="btn btn-secondary">Hold</button>
                                     <a href="/billing?id=circleDetailDivs">
-                                        <button type="button" class="btn btn-danger">Finish Order</button></a>
+                                        <button type="button" id="finishOrderButton" class="btn btn-danger">Finish
+                                            Order</button></a>
                                 </div>
                             </div>
                         </div>
@@ -147,32 +143,44 @@
 </div>
 <!-- end main content-->
 </div>
-
-<script script src="https://code.jquery.com/jquery-3.6.0.min.js">
-</script>
 <script>
-$(document).ready(function() {
-    const total = $('#total');
-    const subtotalRow = $('#subtotalRow');
-    const totalTaxesRow = $('#totalTaxesRow');
+document.getElementById("finishOrderButton").addEventListener("click", function() {
+    // Get the table number
+    var tableNumber = document.getElementById("tableNumber").textContent;
 
-    total.click(function() {
-        toggleRows(subtotalRow);
-        toggleRows(totalTaxesRow);
-    });
+    // Get the customer name
+    var customerName = document.getElementById("customerName").textContent;
 
-    function toggleRows(element) {
-        if (element.is(':visible')) {
-            element.slideUp('fast');
-        } else {
-            element.slideDown('fast');
-        }
+    // Get the product, quantity, unit price, and total data
+    var productData = [];
+    var rows = document.getElementById("billdata").getElementsByTagName("tbody")[0].rows;
 
+    for (var i = 0; i < rows.length; i++) {
+        var productName = rows[i].cells[0].textContent;
+        var quantity = rows[i].cells[1].getElementsByTagName("span")[0].textContent;
+        var unitPrice = rows[i].cells[2].textContent;
+        var total = rows[i].cells[3].textContent;
+
+        // Push the data to the productData array
+        productData.push({
+            productName: productName,
+            quantity: quantity,
+            unitPrice: unitPrice,
+            total: total,
+        });
     }
-})
+
+    // Store the data in localStorage
+    localStorage.setItem("tableNumber", tableNumber);
+    localStorage.setItem("customerName", customerName);
+    localStorage.setItem("productData", JSON.stringify(productData));
+});
+
+
+
 
 const tableNumber = localStorage.getItem('tableNumber');
-const customerName = localStorage.getItem('selectedCustomer');
+const customerName = localStorage.getItem('selectedCustomerName');
 
 // Update the content of the div with the retrieved data
 if (tableNumber) {
