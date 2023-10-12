@@ -193,29 +193,12 @@ $formattedTime = 'just now';
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    <h2 class="text-dark">Associated Categories</h2>
+                                                    <h4 class="text-dark">Associated Categories</h4>
                                                     <p class="fs-5 text-muted">categories(s) are associated to this category timing</p>
                                                 </div>
                                                 <div>
                                                     <a type="button" class="btn btn-orange" href="{{ route('category-timing.select_category', $timing->id) }}">Update Categories</a>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row ">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <h4>Associated Categories</h4>
-                                        </div>
-                                    </div>
-
-                                    <br>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="col-auto">
-
                                             </div>
                                         </div>
                                     </div>
