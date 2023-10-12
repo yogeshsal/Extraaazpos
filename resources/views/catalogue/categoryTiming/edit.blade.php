@@ -188,6 +188,21 @@ $formattedTime = 'just now';
                         </div>
                         <div class="tab-content  text-muted">
                             <div class="tab-pane " id="product1" role="tabpanel">
+                                <div class="container shadow-lg p-0">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <h2 class="text-dark">Associated Categories</h2>
+                                                    <p class="fs-5 text-muted">categories(s) are associated to this category timing</p>
+                                                </div>
+                                                <div>
+                                                    <a type="button" class="btn btn-orange" href="{{ route('category-timing.select_category', $timing->id) }}">Update Categories</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row ">
                                     <div class="col-md-6">
@@ -200,7 +215,7 @@ $formattedTime = 'just now';
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="col-auto">
-                                                <a type="button" class="btn btn-orange" href="{{ route('category-timing.select_category', $timing->id) }}">Update Categories</a>
+
                                             </div>
                                         </div>
                                     </div>
