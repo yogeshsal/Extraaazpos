@@ -146,8 +146,8 @@
             </div>
             <div class="modal-body">
                 <div class="container">
-                        <form action="{{ route('items.store') }}" method="POST">
-                            
+                        <form action="{{ route('categories.store') }}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-xxl-12">
                                     <div class="card">
