@@ -99,10 +99,10 @@ tr {
                                     <!-- Use flexbox to align image and text -->
                                     @if ($category->cat_image)
                                     <img src="{{ asset('storage/'.$category->cat_image) }}" alt="Image"
-                                        class="table-image">
+                                        class="table-image" style="height:100px; width:100px;">
                                     @else
                                     <img src="{{ asset('storage/item_images/placeholder.png') }}"
-                                        alt="Placeholder Image" class="table-image">
+                                        alt="Placeholder Image" class="table-image" style="height:100px; width:100px;">
                                     @endif
                                     <div style="margin-left: 10px;">
                                         <!-- Add margin for spacing between image and text -->
