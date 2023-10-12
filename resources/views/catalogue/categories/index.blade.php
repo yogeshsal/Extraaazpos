@@ -49,8 +49,8 @@
         color: orange;
     }
 
-    .page-content{
-        height:100vh;
+    .page-content {
+        height: 100vh;
     }
 </style>
 
@@ -67,9 +67,9 @@
                     <div class="input-group mr-2">
                         <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
                         <div class="search-box ms-2">
-                        <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
-                        <i class="ri-search-line search-icon "></i>
-                        </div>&nbsp;&nbsp;                        
+                            <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                            <i class="ri-search-line search-icon "></i>
+                        </div>&nbsp;&nbsp;
                         <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
                         <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#categoryModal">
                             <i class="bi bi-plus-lg fw-bolder text-white"></i> Add Category</button>
@@ -78,7 +78,7 @@
                 </div>
             </div>
 
-                                
+
             <table id="dataTable">
                 <thead>
                     <tr>
@@ -89,52 +89,52 @@
                     </tr>
                 </thead>
                 <tbody>
-                   
+
                     <tr>
-                        <td> 
+                        <td>
                         </td>
                         <td></td>
-                        
+
                     </tr>
-                   
+
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-                                    <div class="noresult" style="display: none">
-                                        <div class="text-center">
-                                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
-                                            <h5 class="mt-2">Sorry! No Result Found</h5>
-                                            <p class="text-muted mb-0">We've searched more than 150+ Orders We did not find any orders for you search.</p>
-                                        </div>
-                                    </div>
-                                </div>
+<div class="noresult" style="display: none">
+    <div class="text-center">
+        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
+        <h5 class="mt-2">Sorry! No Result Found</h5>
+        <p class="text-muted mb-0">We've searched more than 150+ Orders We did not find any orders for you search.</p>
+    </div>
+</div>
+</div>
 
-                                <div class="d-flex justify-content-end">
-                                    <div class="pagination-wrap hstack gap-2">
-                                        <a class="page-item pagination-prev disabled" href="#">
-                                            Previous
-                                        </a>
-                                        <ul class="pagination listjs-pagination mb-0"></ul>
-                                        <a class="page-item pagination-next" href="#">
-                                            Next
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end card -->
-                    </div>
-                    <!-- end col -->
-                </div>
-                <!-- end col -->
-            </div>
-            <!-- end row -->
+<div class="d-flex justify-content-end">
+    <div class="pagination-wrap hstack gap-2">
+        <a class="page-item pagination-prev disabled" href="#">
+            Previous
+        </a>
+        <ul class="pagination listjs-pagination mb-0"></ul>
+        <a class="page-item pagination-next" href="#">
+            Next
+        </a>
+    </div>
+</div>
+</div>
+</div><!-- end card -->
+</div>
+<!-- end col -->
+</div>
+<!-- end col -->
+</div>
+<!-- end row -->
 
 
-            <!-- end row -->
+<!-- end row -->
 
-            <div class="modal fade modal-lg" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-lg" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -146,154 +146,154 @@
             </div>
             <div class="modal-body">
                 <div class="container">
-                        <form action="{{ route('items.store') }}" method="POST">
-                            
-                            <div class="row">
-                                <div class="col-xxl-12">
-                                    <div class="card">
-                                        <!-- <div class="card-header">
+                    <form action="{{ route('items.store') }}" method="POST">
+
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card">
+                                    <!-- <div class="card-header">
                                             <h4 class="card-title mb-0">Form Grid</h4>
                                         </div> -->
-                                        <!-- end card header -->
+                                    <!-- end card header -->
 
-                                        <div class="card-body">
-
-
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="name">Name:</label>
-                                                        <input type="text" name="item_name" class="form-control" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="mobile">Short Name:</label>
-                                                        <input type="text" name="item_short_name" class="form-control" required>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="card-body">
 
 
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="category">Handle</label>
-                                                        <input type="text" name="item_short_name" class="form-control" required>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="location">Sort Category</label>
-                                                        <input type="text" name="item_short_name" class="form-control" required>
-
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="external_id">External ID</label>
-                                                        <input type="text" name="external_id" class="form-control" required>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="timing_group">Timing Group</label><br>
-                                                        <select name="timing_group">
-                                                            <option value="option1">Option 1</option>
-                                                            <option value="option2">Option 2</option>
-                                                            <option value="option3">Option 3</option>
-                                                        </select>
-                                                        
-                                                        
-                                                        @foreach ($timing as $timing)
-                                                            <li>{{ $timing->name }}</li>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                           
-
-                                            <div class="row form-row">
+                                        <div class="row form-row">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="item_description">Description</label>
-                                                    <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                                    <label for="name">Name:</label>
+                                                    <input type="text" name="item_name" class="form-control" required>
                                                 </div>
                                             </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-orange">Create</button>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="mobile">Short Name:</label>
+                                                    <input type="text" name="item_short_name" class="form-control" required>
+                                                </div>
                                             </div>
-                                            <!--end row-->
-
                                         </div>
 
+
+                                        <div class="row form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="category">Handle</label>
+                                                    <input type="text" name="item_short_name" class="form-control" required>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="location">Sort Category</label>
+                                                    <input type="text" name="item_short_name" class="form-control" required>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="external_id">External ID</label>
+                                                    <input type="text" name="external_id" class="form-control" required>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="timing_group">Timing Group</label><br>
+                                                    <select name="timing_group " class="form-select mb-3">
+                                                        <option value="option1">Option 1</option>
+                                                        <option value="option2">Option 2</option>
+                                                        <option value="option3">Option 3</option>
+                                                    </select>
+
+
+                                                    @foreach ($timing as $timing)
+                                                    <li>{{ $timing->name }}</li>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row form-row">
+                                            <div class="form-group">
+                                                <label for="item_description">Description</label>
+                                                <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-orange">Create</button>
+                                        </div>
+                                        <!--end row-->
+
                                     </div>
-                                </div> <!-- end col -->
 
-
-                            </div>
-
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade zoomIn" id="deleteRecordModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mt-2 text-center">
-                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
-                                <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                    <h4>Are you Sure ?</h4>
-                                    <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Record ?</p>
                                 </div>
+                            </div> <!-- end col -->
+
+
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade zoomIn" id="deleteRecordModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mt-2 text-center">
+                            <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
+                            <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                                <h4>Are you Sure ?</h4>
+                                <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Record ?</p>
                             </div>
-                            <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                                <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn w-sm btn-danger " id="delete-record">Yes, Delete It!</button>
-                            </div>
+                        </div>
+                        <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                            <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn w-sm btn-danger " id="delete-record">Yes, Delete It!</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--end modal -->
-
         </div>
-        <!-- container-fluid -->
-    </div>
-    <!-- End Page-content -->
+        <!--end modal -->
 
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script> © Hybrix.
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-end d-none d-sm-block">
-                        Design & Develop by Themesbrand
-                    </div>
+    </div>
+    <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
+
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> © Hybrix.
+            </div>
+            <div class="col-sm-6">
+                <div class="text-sm-end d-none d-sm-block">
+                    Design & Develop by Themesbrand
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 </div>
 <!-- end main content-->
 
@@ -331,7 +331,7 @@
             <div class="modal-body">
                 <div class="container">
                     <form action="{{ route('items.store') }}" method="POST">
-                       
+
 
                         <div class="row form-row">
                             <div class="col-md-6">
@@ -355,9 +355,9 @@
                                     <label for="category">Category</label>
                                     <select name="item_category_id" id="category" class="form-control">
                                         <option value="" disabled selected>Select Category</option>
-                                       
+
                                         <option value=" "></option>
-                                       
+
                                     </select>
                                 </div>
                             </div>
@@ -367,7 +367,7 @@
                                     <select name="item_pos_code" id="pos_code" class="form-control">
                                         <option value="" disabled selected>Select POS</option>
                                         <option value=""></option>
-                                       
+
                                     </select>
                                 </div>
                             </div>
@@ -380,9 +380,9 @@
                                     <label for="food_type">Food Type</label>
                                     <select name="item_food_type" id="food_type" class="form-control">
                                         <option value="" disabled selected>Select Food Type</option>
-                                        
+
                                         <option value=""></option>
-                                       
+
                                     </select>
                                 </div>
                             </div>

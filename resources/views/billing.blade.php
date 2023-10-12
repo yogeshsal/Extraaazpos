@@ -239,14 +239,17 @@
                     <h5 class="mb-3">&nbsp;</h5>
 
 
-                    <div id="circleDetailDiv" class="card" style="display: none; height: 90%;">
+                    <div id="circleDetailDiv" class="card" style="display: block; height: 90%;">
                         <div class="card-header">
                             <!-- <button type="button" class="btn-close float-end fs-11" aria-label="Close"></button> -->
                             <h6 class="card-title mb-0 ">
 
                                 <p class="text-start">
                                     #118/00025
-                                    <span class="float-end">Customer Name : Erica</span>
+                                    <span class="float-end">Customer Name : Erica
+                                        <br>
+                                        <a data-bs-toggle="modal" data-bs-target="#selectcustomer"> Select Customer</a>
+                                    </span>
                                 </p>
 
                             </h6>
@@ -289,18 +292,245 @@
                             <p class="text-muted mb-0">Total</p>
                         </div>
                         <div class="card-footer">
-                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-shopping-cart-fill"></i></button>
-                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-percent-line"></i></button>
-                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-money-dollar-box-line"></i></button>
-                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-printer-line"></i></button>
-                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-earth-line"></i></button>
-                        <button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-file-edit-line"></i></button>
-                        <button class="btn btn-outline-success btn-lg float-end" type="button">Pay</button>
+                            <a href="/orders"><button type="button" class="btn btn-light btn-icon rounded-pill"><i class=" ri-shopping-cart-fill"></i></button></a>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#discount" class="btn btn-light btn-icon rounded-pill"><i class=" ri-percent-line"></i></button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#charges" class="btn btn-light btn-icon rounded-pill"><i class=" ri-money-dollar-box-line"></i></button>
+                            <button type="button" class="btn btn-light btn-icon rounded-pill printButton"><i class=" ri-printer-line"></i></button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#selectcustomer" class="btn btn-light btn-icon rounded-pill"><i class=" ri-earth-line"></i></button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#modalnote" class="btn btn-light btn-icon rounded-pill"><i class=" ri-file-edit-line"></i></button>
+                            <button class="btn btn-outline-success btn-lg float-end" type="button">Pay</button>
 
 
-                            
+
 
                         </div>
+
+
+
+                        <!-- modals start -->
+
+                        <!-- Standard Modal -->
+                        <!-- Discount Modal -->
+                        <div id="discount" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel">Bill Discount</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <select class="form-select mb-3" aria-label=".form-select-lg example">
+                                            <option selected>Open this select menu</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary ">Save Changes</button>
+                                    </div>
+
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                        <!-- Discount Modal End -->
+                        <!-- Modalnote Modal -->
+                        <div id="modalnote" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel">Note</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="">
+                                            <div class="mb-3">
+                                                <label for="employeeName" class="form-label ">Kitchen Instructions</label>
+                                                <select class="form-select mb-3" name="k_inst" aria-label=".form-select-lg example">
+                                                    <option selected>Open this select menu</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                                <!-- <input type="text" class="form-control" id="employeeName" placeholder="Enter emploree name"> -->
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="Billnote" class="form-label">Bill Note</label>
+                                                <input type="text" class="form-control" id="bill_note" name="bill_note" placeholder="Bill Note">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="Internalnote" class="form-label">Internal Note</label>
+                                                <input type="text" class="form-control" id="int_note" placeholder="Internal Note" name="int_note">
+                                            </div>
+
+                                            <div class="text-end">
+                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary ">Save Changes</button> -->
+                                    </div>
+
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                        <!-- ]Modalnote Modal End -->
+
+                        <!-- Select Customer -->
+                        <div id="selectcustomer" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel">Select Bill Currencies</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            Main Bill Currency
+                                        </p>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="radio" name="currency" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                USD
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="currency" id="flexRadioDefault2" checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                India
+                                            </label>
+                                        </div>
+
+
+                                    </div>
+                                    <hr>
+                                    <div class="modal-body">
+                                        <p>
+                                            Currencies to Show Bill Total
+                                        </p>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="radio" name="currency_total" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                USD
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="currency_total" id="flexRadioDefault2" checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                India
+                                            </label>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary ">Save Changes</button>
+                                    </div>
+
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                        <!-- Select Customer End -->
+
+                        <!-- Charges Modal -->
+                        <div id="charges" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel">Select Charges</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Outlined Styles -->
+                                        <div class="hstack gap-2 d-grid flex-wrap">
+
+                                            <button type="button" class="btn btn-outline-light custom-toggle text-start" data-bs-toggle="button">
+                                                <span class="icon-on "> Service Charge</span>
+                                                <span class="icon-off "> Service Charge<i class="ri-check-fill align-bottom me-1 float-end"></i></span>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-light custom-toggle text-start" data-bs-toggle="button">
+                                                <span class="icon-on "> Mudassar Charges</span>
+                                                <span class="icon-off"> Mudassar Charges<i class="ri-check-fill align-bottom me-1 float-end"></i></span>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-light custom-toggle text-start" data-bs-toggle="button">
+                                                <span class="icon-on "> AC Charges</span>
+                                                <span class="icon-off "> AC Charges<i class="ri-check-fill align-bottom me-1 float-end"></i></span>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-light custom-toggle text-start" data-bs-toggle="button">
+                                                <span class="icon-on "> 250</span>
+                                                <span class="icon-off "> 250<i class="ri-check-fill align-bottom me-1 float-end"></i></span>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-light custom-toggle text-start" data-bs-toggle="button">
+                                                <span class="icon-on "> Packet</span>
+                                                <span class="icon-off"> Packet<i class="ri-check-fill align-bottom me-1 float-end"></i></span>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-light custom-toggle text-start" data-bs-toggle="button">
+                                                <span class="icon-on "> Packing Charges</span>
+                                                <span class="icon-off "> Packing Charges<i class="ri-check-fill align-bottom me-1 float-end"></i></span>
+                                            </button>
+                                            <button type="button" class="btn btn-outline-light custom-toggle text-start" data-bs-toggle="button">
+                                                <span class="icon-on "> New Charges</span>
+                                                <span class="icon-off "> New Charges<i class="ri-check-fill align-bottom me-1 float-end"></i></span>
+                                            </button>
+                                            <!-- <input type="checkbox" class="btn-check" id="btn-check-outlined">
+                                            <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+                                            <input type="checkbox" class="btn-check" id="btn-check-outlined">
+                                            <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+                                            <input type="checkbox" class="btn-check" id="btn-check-outlined">
+                                            <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
+
+
+
+                                            <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
+                                            <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
+                                            <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
+                                            <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
+                                            <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
+                                            <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
+                                            <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
+                                            <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label>
+                                            <input type="checkbox" class="btn-check" id="btn-check-2-outlined">
+                                            <label class="btn btn-outline-light" for="btn-check-2-outlined">Service Charge</label> -->
+
+                                            <!-- <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" checked>
+                                            <label class="btn btn-outline-success" for="success-outlined">Checked success radio</label> -->
+
+                                            <!-- <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined"> -->
+                                            <!-- <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label> -->
+                                        </div>
+                                        <!-- <select class="form-select mb-3" aria-label=".form-select-lg example">
+                                            <option selected>Open this select menu</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select> -->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary ">Save Changes</button>
+                                    </div>
+
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                        <!-- Charges Modal End -->
+
+                        <!-- Notes Modal -->
+
+
+                        <!-- Notes Modal End -->
+
+                        <!-- <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target=".bs-example-modal-center">Center Modal</button> -->
+
+
+                        <!-- modals end -->
                     </div>
                     <!-- end card -->
                 </div>
@@ -390,6 +620,11 @@
         var div = document.getElementById('table1');
         div.style.display = 'block';
     }
+    const printButton = document.getElementsByClassName('printButton');
+
+    printButton.addEventListener('click', function() {
+        window.print(); // Open the print dialog
+    });
 </script>
 
 

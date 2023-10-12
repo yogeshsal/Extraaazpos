@@ -3523,8 +3523,8 @@ fieldset:disabled .btn {
     --tb-gradient: none;
 }
 .btn-outline-light {
-    --tb-btn-color: #eff2f7;
-    --tb-btn-border-color: #eff2f7;
+    --tb-btn-color: #606060;
+    --tb-btn-border-color: #606060;
     --tb-btn-hover-color: #000;
     --tb-btn-hover-bg: #eff2f7;
     --tb-btn-hover-border-color: #eff2f7;
