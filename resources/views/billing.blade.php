@@ -601,9 +601,9 @@
                             </center>
 
                             <center>
-                                <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#myModal" id="selectCustomerButton">
-                                    Customer: Select Customer
-                                </button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="selectCustomerButton">
+                                Customer: <span id="selectedCustomerName">Select Customer</span>
+    </button>
                             </center>
 
                             <!-- Modal -->
@@ -692,15 +692,23 @@
                     <div class="col-xxl-12 col-md-10">
                         <div>
                             <label for="labelInput" class="form-label">Search by Name or Mobile Number</label>
-                            <input type="text" class="form-control" id="labelInput">
+
+                            <!-- <input type="text" class="form-control" id="labelInput"> -->
+                            <select class="form-select" id="customerSelect" required name="name">
+                                <option value="">Select</option> 
+                                @foreach($customer as $c)
+                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary ">Save Changes</button>
+                    <button type="button" class="btn btn-orange" data-bs-dismiss="modal">Add</button>
+                    <!-- <button type="button" class="btn btn-primary" onclick="updateSelectedCustomerName()">Save Changes</button> -->
+
                 </div>
 
             </div><!-- /.modal-content -->
