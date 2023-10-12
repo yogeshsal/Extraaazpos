@@ -54,8 +54,8 @@
         color: orange;
     }
 
-    .page-content{
-        height:100vh;
+    .page-content {
+        height: 100vh;
     }
 </style>
 
@@ -75,10 +75,9 @@
                     <div class="input-group mr-2">
                         <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
                         <div class="search-box ms-2">
-                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
-                                                <i class="ri-search-line search-icon "></i>
-                                            </div>&nbsp;&nbsp;
-
+                            <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                            <i class="ri-search-line search-icon "></i>
+                        </div>&nbsp;&nbsp;
 
                         <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
                         <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#chargesModal">
@@ -98,169 +97,146 @@
                     </tr>
                 </thead>
                 <tbody>
-                                        @foreach ($data as $data)
-            <tr>                
-                <td><a href="{{ route('taxes.edit', ['id' => $data->id]) }}">{{ $data->name }}</a>
-                <br>
-                {{$data->tax_percentage}} % on {{ $data->applicable_on }}
-                </td>
-                <td></td>
-                <td></td>
-                <td>{{ $data->updated_at ->format('d M, Y - h:i A') }}
-                <br>
-                By {{$data->user_name}}
+                    @foreach ($data as $data)
+                    <tr>
+                        <td><a href="{{ route('taxes.edit', ['id' => $data->id]) }}">{{ $data->name }}</a>
+                            <br>
+                            {{$data->tax_percentage}} % on {{ $data->applicable_on }}
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ $data->updated_at ->format('d M, Y - h:i A') }}
+                            <br>
+                            By {{$data->user_name}}
 
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-
-        
-    
-    
-</div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
 
+        <script>
+            $(document).ready(function() {
+                $('tr[data-toggle="modal"]').click(function() {
+                    var name = $(this).data('name');
+                    $('#modalTitle').text(name); // Update the modal title
+                });
+            });
+        </script>
 
+        <!-- Modal -->
+        <div class="modal fade modal-lg" id="chargesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">New Tax Rate</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <form action="{{ route('taxes.store') }}" method="POST">
+                                @csrf
+                                <div class="row form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tax_type">Type</label>
+                                            <select name="tax_type" id="tax_type" class="form-control my-2" required>
+                                                <option value="" disabled selected>Select Tax Type</option>
+                                                <option value="gst">GST</option>
+                                                <option value="custom">Customn</option>
+                                                <option value="purchasereceive">PurchaseReceive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="tax_code">Tax Code</label>
+                                            <select name="tax_code" id="tax_code" class="form-control my-2">
+                                                <option value="" disabled selected>Select Tax Code</option>
+                                                <option value="igst">IGST</option>
+                                                <option value="sgst">SGST</option>
+                                                <option value="cgst">CGST</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="row form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="name">Name:</label>
+                                            <input type="text" name="name" class="form-control my-2" required>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="row form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="description">Description:</label>
+                                            <input type="text" name="description" class="form-control my-2">
+                                        </div>
+                                    </div>
+                                </div>
 
-<script>
-    $(document).ready(function () {
-        $('tr[data-toggle="modal"]').click(function () {
-            var name = $(this).data('name');
-            $('#modalTitle').text(name); // Update the modal title
-        });
-    });
-</script>
+                                <div class="row form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="applicable_on">Applicable On</label>
+                                            <select name="applicable_on" id="applicable_on" class="form-control my-2" required>
+                                                <option value="" disabled selected>Select Applicable On</option>
+                                                <option value="item_price">Item Price</option>
+                                                <option value="charge">Charge</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="tax_percentage">Tax Percentage:</label>
+                                                <input type="text" name="tax_percentage" class="form-control my-2" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="row form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="applicable_modes">Applicable Modes</label>
+                                            <select name="applicable_modes" id="applicable_modes" class="form-control my-2" required>
+                                                <option value="" disabled selected>Select Applicable Modes</option>
+                                                <option value="online">Online</option>
+                                                <option value="in_store">In Store</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
 
+                                    </div>
+                                </div>
 
-
-
-
-
-<!-- Modal -->
-<div class="modal fade modal-lg" id="chargesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">New Charge</h4>
-
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span> -->
-                </button>
+                                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-orange">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <div class="container">            
-                <form action="{{ route('taxes.store') }}" method="POST">
-                    @csrf
-
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="tax_type">Type</label>
-                                <select name="tax_type" id="tax_type" class="form-control" required >
-                                    <option value="" disabled selected>Select Tax Type</option>                                         
-                                    <option value="gst">GST</option>
-                                    <option value="custom">Customn</option>
-                                    <option value="purchasereceive">PurchaseReceive</option>                                    
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="tax_code">Tax Code</label>
-                                <select name="tax_code" id="tax_code" class="form-control">  
-                                    <option value="" disabled selected>Select Tax Code</option>                                  
-                                    <option value="igst">IGST</option>
-                                    <option value="sgst">SGST</option>
-                                    <option value="cgst">CGST</option>                                    
-                                </select>
-                            </div>
-                        </div>
-                    </div>
 
 
-                    <div class="row form-row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="name">Name:</label>
-                                <input type="text" name="name" class="form-control" required>
-                            </div>
-                        </div>                        
-                    </div>
+            <!-- edit modal -->
 
-                    <div class="row form-row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="description">Description:</label>
-                                <input type="text" name="description" class="form-control">
-                            </div>
-                        </div>
-                    </div>
+            <script>
+                $(document).ready(function() {
+                    $('#is_recommended').bootstrapSwitch();
+                    $('#is_package_good').bootstrapSwitch();
+                    $('#sell_by_weight').bootstrapSwitch();
+                });
+            </script>
 
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="applicable_on">Applicable On</label>
-                                <select name="applicable_on" id="applicable_on" class="form-control" required>
-                                    <option value="" disabled selected>Select Applicable On</option>                                         
-                                    <option value="item_price">Item Price</option>
-                                    <option value="charge">Charge</option>                                                                       
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <div class="form-group">
-                                <label for="tax_percentage">Tax Percentage:</label>
-                                <input type="text" name="tax_percentage" class="form-control" required>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="applicable_modes">Applicable Modes</label>
-                                <select name="applicable_modes" id="applicable_modes" class="form-control" required>
-                                    <option value="" disabled selected>Select Applicable Modes</option>                                         
-                                    <option value="online">Online</option>
-                                    <option value="in_store">In Store</option>                                                                       
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            
-                        </div>
-                    </div>
-
-                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-orange">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>        
-    </div>
-</div>
-
-
-<!-- edit modal -->
-
-
-<!-- edit modal -->
-
-<script>
-    $(document).ready(function () {
-        $('#is_recommended').bootstrapSwitch();
-        $('#is_package_good').bootstrapSwitch();
-        $('#sell_by_weight').bootstrapSwitch();
-    });
-</script>
-
-@endsection
+            @endsection

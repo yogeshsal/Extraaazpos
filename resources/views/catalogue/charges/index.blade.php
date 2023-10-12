@@ -49,8 +49,8 @@
         color: orange;
     }
 
-    .page-content{
-        height:100vh;
+    .page-content {
+        height: 100vh;
     }
 </style>
 
@@ -70,9 +70,9 @@
                     <div class="input-group mr-2">
                         <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
                         <div class="search-box ms-2">
-                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
-                                                <i class="ri-search-line search-icon "></i>
-                                            </div>&nbsp;&nbsp;
+                            <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                            <i class="ri-search-line search-icon "></i>
+                        </div>&nbsp;&nbsp;
 
 
                         <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
@@ -118,10 +118,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel">New Charge</h4>
-
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span> -->
-                </button>
             </div>
             <div class="modal-body">
                 <div class="container">
@@ -167,8 +163,6 @@
                                 </div>
                             </div>
 
-
-
                             <div class="col-md-6">
                                 <label for="mobile">Amount per Quantity:</label>
                                 <div class="input-group">
@@ -186,28 +180,20 @@
                                 <div class="form-group">
                                     <label for="mobile">Applicable modes:</label>
                                     <select class="form-select" name="applicable_modes">
-
                                         <option value="1">Online</option>
                                         <option value="2">In store</option>
-
-
                                     </select>
                                 </div>
                             </div>
-
-
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="mobile">Auto Apply Billing Type:</label>
                                     <select class="form-select" name="auto_apply_billing_types">
-
                                         <option value="1">AC Table</option>
                                         <option value="2">Inside Section</option>
                                         <option value="2">Pool Section</option>
                                         <option value="2">Dine In</option>
-
-
                                     </select>
                                 </div>
                             </div>
