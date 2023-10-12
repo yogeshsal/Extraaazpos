@@ -189,24 +189,23 @@ table {
         <div class="tab-content  text-muted">
         <div class="tab-pane " id="product1" role="tabpanel">
 
-        <div class="row ">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <h4>Associated Categories</h4>
-                            </div>
+        <div class="container shadow-lg p-0">
+            <div class="card">   
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="text-dark">Associated Categories</h4>
+                            <p class="fs-5 text-muted">categories(s) are associated to this category timing</p>
                         </div>
-                        
-<br>
-                        <div class="col-md-6">
-                     <div class="form-group">
-                            <div class="col-auto">
-              <a type="button" class="btn btn-orange" href="{{ route('category-timing.select_category', $timing->id) }}">Update Categories</a>  
-             </div>
-                            </div>
+                        <div>
+                            <a type="button" class="btn btn-orange" href="{{ route('category-timing.select_category', $timing->id) }}">Update Categories</a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
                      
-                    <table id="dataTable">
+        <table id="dataTable">
                 <thead>
                     <tr>
                         <th>NAME</th>
@@ -233,7 +232,7 @@ table {
                 </tbody>
                 </table>
             </div>
-</div>
+        </div>
 
         </div>
               
