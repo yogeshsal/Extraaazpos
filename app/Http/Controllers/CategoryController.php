@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $data = Category ::where('user_id',Auth::user()->id)
+        $data = Category ::where('user_id', Auth::user()->id)
         ->with('items')
         ->paginate(2);
 
@@ -26,16 +26,15 @@ class CategoryController extends Controller
     }
 
     public function store(Request $request)
-    {
-
-        dd("category");
+    {        
         $data = new Category;
         $data->cat_name= $request->cat_name;
         $data->cat_short_name= $request->cat_short_name;
         $data->cat_handle = $request->cat_handle;
+        $data->cat_sort_category = $request->cat_sort_category;
         $data->cat_timing_group	= $request->cat_timing_group;
         $data->cat_desc= $request->cat_desc;
-        $data->user_id= auth::user()->id;
+        $data->user_id= Auth::user()->id;
        
         // if (is_array($request->loc_id)) {
         //     $data->loc_id = implode(',', $request->loc_id); // Convert array to comma-separated string
