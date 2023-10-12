@@ -4,35 +4,16 @@
 @section('ownercontent')
     <style>
         /* .close {
-                border: none !important;
-                outline: none !important;
-                box-shadow: none !important;
-            } */
+                    border: none !important;
+                    outline: none !important;
+                    box-shadow: none !important;
+                } */
     </style>
     <br>
     <div class="main-content">
 
         <div class="page-content">
             <div class="container-fluid">
-
-                <!-- start page title -->
-                {{-- <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Cards</h4>
-
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Base UI</a></li>
-                                <li class="breadcrumb-item active">Cards</li>
-                            </ol>
-                        </div>
-
-                    </div>
-                </div>
-            </div> --}}
-                <!-- end page title -->
-
                 <div class="row">
                     <div class="col-sm-6 col-xl-2">
                         <!-- Simple card -->
@@ -80,13 +61,14 @@
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
                                             <div class="input-group mr-2">
-                                                <label for="searchInput" class="mr-2">Table</label>
-                                                <input type="search" id="searchInput" class="form-control rounded m-1"
+                                                {{-- <label for="searchInput" class="mr-2">Table</label> --}}
+                                                {{-- <input type="search" id="searchInput" class="form-control rounded m-1"
                                                     placeholder="Search by Name" aria-label="Search"
-                                                    aria-describedby="search-addon" />
+                                                    aria-describedby="search-addon" /> --}}
+                                                <p>Table Number: <span id="tableNumber"></span></p>
                                             </div>
                                             <div>
-                                                <p>Table Number: <span id="tableNumber"></span></p>
+
                                                 <p>Customer Name: <span id="customerName"></span></p>
                                             </div>
                                         </div>
@@ -126,7 +108,7 @@
                                         <button type="button" class="btn btn-primary">Note</button>
                                         <button type="button" class="btn btn-secondary">Hold</button>
                                         <a href="/billing?id=circleDetailDivs">
-                                            <button type="button" class="btn btn-danger">Finish Order</button></a>
+                                            <button type="button" id="finishOrderButton" class="btn btn-danger">Finish Order</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -161,8 +143,52 @@
     <!-- end main content-->
     </div>
     <script>
+        document.getElementById("finishOrderButton").addEventListener("click", function () {
+    // Get the table number
+    var tableNumber = document.getElementById("tableNumber").textContent;
+
+    // Get the customer name
+    var customerName = document.getElementById("customerName").textContent;
+
+    // Get the product, quantity, unit price, and total data
+    var productData = [];
+    var rows = document.getElementById("billdata").getElementsByTagName("tbody")[0].rows;
+    var completeTotal = 0; // Initialize complete total
+
+    for (var i = 0; i < rows.length; i++) {
+        var productName = rows[i].cells[0].textContent;
+        var quantity = rows[i].cells[1].getElementsByTagName("span")[0].textContent;
+        var unitPrice = rows[i].cells[2].textContent;
+        var total = rows[i].cells[3].textContent;
+
+        // Push the data to the productData array
+        productData.push({
+            productName: productName,
+            quantity: quantity,
+            unitPrice: unitPrice,
+            total: total,
+        });
+
+        // Calculate the complete total
+        completeTotal += parseFloat(total); // Ensure 'total' is numeric
+    }
+
+    // Store the data in localStorage
+    localStorage.setItem("tableNumber", tableNumber);
+    localStorage.setItem("customerName", customerName);
+    localStorage.setItem("productData", JSON.stringify(productData));
+    localStorage.setItem("completeTotal", completeTotal); // Store complete total
+
+    // Redirect to the target page
+    window.location.href = "/billing?id=circleDetailDivs";
+});
+
+   
+    
+
+        
         const tableNumber = localStorage.getItem('tableNumber');
-        const customerName = localStorage.getItem('selectedCustomer');
+        const customerName = localStorage.getItem('selectedCustomerName');
 
         // Update the content of the div with the retrieved data
         if (tableNumber) {
