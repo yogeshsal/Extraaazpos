@@ -117,13 +117,10 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs mb-3" role="tablist">
                                 <li class="nav-item">
-<<<<<<< Updated upstream
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#delivery" role="tab" aria-selected="false">
-=======
-                                    <a class="nav-link" data-bs-toggle="tab" href="#delivery" role="tab" aria-selected="false">
->>>>>>> Stashed changes
-                                        Delivery
-                                    </a>
+                                     <a class="nav-link active" data-bs-toggle="tab" href="#delivery" role="tab" aria-selected="false">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#delivery" role="tab" aria-selected="false">
+                                            Delivery
+                                        </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link " data-bs-toggle="tab" href="#product1" role="tab" aria-selected="false">
@@ -261,6 +258,7 @@
                                         helvetica. DIY synth PBR banksy irony.
                                     </p>
                                 </div>
+
                                 <div class="tab-pane" id="settings" role="tabpanel">
                                     <h6>Settings</h6>
                                     <p class="mb-0">
