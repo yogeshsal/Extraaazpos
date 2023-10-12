@@ -190,7 +190,7 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary mt-3" data-dismiss="modal">Cancle</button>
+                                        <button type="button" class="btn btn-secondary mt-3" data-bs-dismiss="modal">Cancel</button>
                                         <button type="submit" class="btn btn-orange mt-3">Save</button>
                                     </div>
 
