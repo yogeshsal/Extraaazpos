@@ -117,7 +117,11 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs mb-3" role="tablist">
                                 <li class="nav-item">
+<<<<<<< Updated upstream
                                     <a class="nav-link active" data-bs-toggle="tab" href="#delivery" role="tab" aria-selected="false">
+=======
+                                    <a class="nav-link" data-bs-toggle="tab" href="#delivery" role="tab" aria-selected="false">
+>>>>>>> Stashed changes
                                         Delivery
                                     </a>
                                 </li>
