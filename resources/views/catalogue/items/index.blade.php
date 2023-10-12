@@ -87,7 +87,7 @@
 
 
 
-            <table id="dataTable">
+            <table id="data-table">
                 <thead>
                     <tr>
                         <th>
@@ -315,9 +315,7 @@
                     </form>
                 </div>
             </div>
-            <!-- <div class="offcanvas-foorter border p-3 text-center">
-                    <a href="javascript:void(0);" class="link-success">View All Acitivity <i class="ri-arrow-right-s-line align-middle ms-1"></i></a>
-                </div> -->
+    
         </div>
 
         <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -667,6 +665,7 @@
     <script>
         // Function to filter the table based on user input
         function filterTable() {
+            console.log("hitting!!!");
             var input, filter, table, tr, td, i, txtValue;
             input = document.getElementById("searchInput");
             filter = input.value.toUpperCase();
