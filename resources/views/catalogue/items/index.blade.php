@@ -49,8 +49,9 @@
         background-color: transparent;
         color: orange;
     }
-    .page-content{
-        height:100vh;
+
+    .page-content {
+        height: 100vh;
     }
 </style>
 
@@ -71,10 +72,10 @@
                     <div class="input-group mr-2">
                         <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
                         <div class="search-box ms-2">
-                        <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
-                        <i class="ri-search-line search-icon "></i>
-                        </div>&nbsp;&nbsp;                       
-                         <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
+                            <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                            <i class="ri-search-line search-icon "></i>
+                        </div>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
                         <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#itemModal">
                             <i class="bi bi-plus-lg fw-bolder text-white"></i> New Item</button>
                     </div>
@@ -84,83 +85,84 @@
 
             <!-- end page title -->
 
-           
+
 
             <table id="dataTable">
                 <thead>
                     <tr>
-                        <th > <th>
-                            <th class="grey-background sort " data-sort="customer_name">NAME</th>
+                        <th>
+                        <th>
+                        <th class="grey-background sort " data-sort="customer_name">NAME</th>
                         <th>ASSOCIATED LOCATIONS</th>
                         <th>CATEGORY</th>
-                        <th>SALES PRICE ($)	</th>
+                        <th>SALES PRICE ($) </th>
                         <th>UPDATED</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
-                    
-                                            @foreach($data as $item)
-                                            <tr>
-                                                <td>
-                                                    @if ($item->item_image)
-                                                    <img src="{{ asset('storage/' . $item->item_image) }}" alt="Image" class="table-image" width="20" height="20">
-                                                    @else
-                                                    <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($item->item_food_type === 'Vegetarian')
-                                                    <img src="{{ asset('storage/veg.png') }}" alt="Vegetarian Logo">
-                                                    @elseif ($item->item_food_type === 'Non Vegetarian')
-                                                    <img src="{{ asset('storage/nonveg.png') }}" alt="Non-Vegetarian Logo">
-                                                    @endif
-                                                </td>
-                                                <td class="customer_name">
-                                                    <a href="{{ route('items.edit', ['id' => $item->id]) }}">{{ $item->item_name }}</a>
-                                                </td>
-                                                <td class="location">{{$item->item_pos_code}}</td>
-                                                <td class="category">{{ optional($item->category)->cat_name }}</td>
-                                                <td class="salesprice">{{$item->item_default_sell_price}} <br> <del>{{$item->item_markup_price}}</del></td>
-                                                <td class="update">{{ $item->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
-                                            </tr>
-                                            @endforeach
+
+                    @foreach($data as $item)
+                    <tr>
+                        <td>
+                            @if ($item->item_image)
+                            <img src="{{ asset('storage/' . $item->item_image) }}" alt="Image" class="table-image" width="20" height="20">
+                            @else
+                            <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image" class="table-image">
+                            @endif
+                        </td>
+                        <td>
+                            @if ($item->item_food_type === 'Vegetarian')
+                            <img src="{{ asset('storage/veg.png') }}" alt="Vegetarian Logo">
+                            @elseif ($item->item_food_type === 'Non Vegetarian')
+                            <img src="{{ asset('storage/nonveg.png') }}" alt="Non-Vegetarian Logo">
+                            @endif
+                        </td>
+                        <td class="customer_name">
+                            <a href="{{ route('items.edit', ['id' => $item->id]) }}">{{ $item->item_name }}</a>
+                        </td>
+                        <td class="location">{{$item->item_pos_code}}</td>
+                        <td class="category">{{ optional($item->category)->cat_name }}</td>
+                        <td class="salesprice">{{$item->item_default_sell_price}} <br> <del>{{$item->item_markup_price}}</del></td>
+                        <td class="update">{{ $item->updated_at ->format('d M, Y - h:i A') }} <br>By {{$user_name}}</td>
+                    </tr>
+                    @endforeach
 
 
-                                        </tbody>
-                                    </table>
-                                    <div class="noresult" style="display: none">
-                                        <div class="text-center">
-                                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
-                                            <h5 class="mt-2">Sorry! No Result Found</h5>
-                                            <p class="text-muted mb-0">We've searched more than 150+ Orders We did not find any orders for you search.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex justify-content-end">
-                                    <div class="pagination-wrap hstack gap-2">
-                                        <a class="page-item pagination-prev disabled" href="#">
-                                            Previous
-                                        </a>
-                                        <ul class="pagination listjs-pagination mb-0"></ul>
-                                        <a class="page-item pagination-next" href="#">
-                                            Next
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end card -->
-                    </div>
-                    <!-- end col -->
+                </tbody>
+            </table>
+            <div class="noresult" style="display: none">
+                <div class="text-center">
+                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
+                    <h5 class="mt-2">Sorry! No Result Found</h5>
+                    <p class="text-muted mb-0">We've searched more than 150+ Orders We did not find any orders for you search.</p>
                 </div>
-                <!-- end col -->
             </div>
-            <!-- end row -->
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <div class="pagination-wrap hstack gap-2">
+                <a class="page-item pagination-prev disabled" href="#">
+                    Previous
+                </a>
+                <ul class="pagination listjs-pagination mb-0"></ul>
+                <a class="page-item pagination-next" href="#">
+                    Next
+                </a>
+            </div>
+        </div>
+    </div>
+</div><!-- end card -->
+</div>
+<!-- end col -->
+</div>
+<!-- end col -->
+</div>
+<!-- end row -->
 
 
-            <!-- end row -->
-            <div class="modal fade modal-lg" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- end row -->
+<div class="modal fade modal-lg" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -172,335 +174,331 @@
             </div>
             <div class="modal-body">
                 <div class="container">
-                        <form action="{{ route('items.store') }}" method="POST">
-                            @csrf
-                            <div class="row">
-                                <div class="col-xxl-12">
-                                    <div class="card">
-                                        <!-- <div class="card-header">
+                    <form action="{{ route('items.store') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="card">
+                                <!-- <div class="card-header">
                                             <h4 class="card-title mb-0">Form Grid</h4>
                                         </div> -->
-                                        <!-- end card header -->
+                                <!-- end card header -->
 
-                                        <div class="card-body">
+                                <div class="card-body">
 
 
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="name">Name:</label>
-                                                        <input type="text" name="item_name" class="form-control" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="mobile">Short Name:</label>
-                                                        <input type="text" name="item_short_name" class="form-control" required>
-                                                    </div>
-                                                </div>
+                                    <div class="row form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Name:</label>
+                                                <input type="text" name="item_name" class="form-control" required>
                                             </div>
-
-
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="category">Category</label>
-                                                        <select name="item_category_id" id="category" class="form-select mb-3">
-                                                            <option value="" disabled selected>Select Category</option>
-                                                            @foreach ($categories as $categoryId => $categoryName)
-                                                            <option value="{{ $categoryId }}">{{ $categoryName }}</option>
-                                                            @endforeach
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="location">POS Code</label>
-                                                        <select name="item_pos_code" id="pos_code" class="form-select mb-3">
-                                                            <option value="" disabled selected>Select POS</option>
-                                                            @foreach ($locations as $locationId => $locationName)
-                                                            <option value="{{ $locationId }}">{{ $locationName }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <!-- <select name="item_pos_code" id="pos_code" class="form-control">
-                                                            <option value="" disabled selected>Select POS</option>
-                                                            @foreach ($locations as $locationId => $locationName)
-                                                            <option value="{{ $locationId }}">{{ $locationName }}</option>
-                                                            @endforeach
-                                                        </select> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="food_type">Food Type</label>
-                                                        <select name="item_food_type" id="food_type" class="form-select mb-3">
-                                                            <option value="" disabled selected>Select Food Type</option>
-                                                            @foreach ($foodtype as $foodtypeId => $foodtypeName)
-                                                            <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <!-- <select name="item_food_type" id="food_type" class="form-control">
-                                                            <option value="" disabled selected>Select Food Type</option>
-                                                            @foreach ($foodtype as $foodtypeId => $foodtypeName)
-                                                            <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
-                                                            @endforeach
-                                                        </select> -->
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="is_recommended">Is Recommended</label><br>
-                                                        <input type="checkbox" id="item_is_recommended" name="item_is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="is_package_good">Is Package Good</label><br>
-                                                        <input type="checkbox" id="item_is_package_good" name="item_is_package_good" data-toggle="switch" data-on-text="Yes" data-off-text="No">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="is_recommended">Sell by Weight</label><br>
-                                                        <input type="checkbox" id="item_sell_by_weight" name="item_sell_by_weight" data-toggle="switch" data-on-text="Yes" data-off-text="No">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="name">Default Sales Price:</label>
-                                                        <input type="text" name="item_default_sell_price" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="form-group">
-                                                            <label for="name">Markup Price (Optional):</label>
-                                                            <input type="text" name="item_markup_price" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-row">
-                                                <div class="form-group">
-                                                    <label for="item_description">Description</label>
-                                                    <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>&nbsp;&nbsp;
-                                                <button type="submit" class="btn btn-orange">Create</button>
-                                            </div>
-                                            <!--end row-->
-
                                         </div>
-
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="mobile">Short Name:</label>
+                                                <input type="text" name="item_short_name" class="form-control" required>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div> <!-- end col -->
 
+
+                                    <div class="row form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="category">Category</label>
+                                                <select name="item_category_id" id="category" class="form-select mb-3">
+                                                    <option value="" disabled selected>Select Category</option>
+                                                    @foreach ($categories as $categoryId => $categoryName)
+                                                    <option value="{{ $categoryId }}">{{ $categoryName }}</option>
+                                                    @endforeach
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="location">POS Code</label>
+                                                <select name="item_pos_code" id="pos_code" class="form-select mb-3">
+                                                    <option value="" disabled selected>Select POS</option>
+                                                    @foreach ($locations as $locationId => $locationName)
+                                                    <option value="{{ $locationId }}">{{ $locationName }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <!-- <select name="item_pos_code" id="pos_code" class="form-control">
+                                                            <option value="" disabled selected>Select POS</option>
+                                                            @foreach ($locations as $locationId => $locationName)
+                                                            <option value="{{ $locationId }}">{{ $locationName }}</option>
+                                                            @endforeach
+                                                        </select> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="food_type">Food Type</label>
+                                                <select name="item_food_type" id="food_type" class="form-select mb-3">
+                                                    <option value="" disabled selected>Select Food Type</option>
+                                                    @foreach ($foodtype as $foodtypeId => $foodtypeName)
+                                                    <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <!-- <select name="item_food_type" id="food_type" class="form-control">
+                                                            <option value="" disabled selected>Select Food Type</option>
+                                                            @foreach ($foodtype as $foodtypeId => $foodtypeName)
+                                                            <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
+                                                            @endforeach
+                                                        </select> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="is_recommended">Is Recommended</label><br>
+                                                <input type="checkbox" id="item_is_recommended" name="item_is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="is_package_good">Is Package Good</label><br>
+                                                <input type="checkbox" id="item_is_package_good" name="item_is_package_good" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="is_recommended">Sell by Weight</label><br>
+                                                <input type="checkbox" id="item_sell_by_weight" name="item_sell_by_weight" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Default Sales Price:</label>
+                                                <input type="text" name="item_default_sell_price" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label for="name">Markup Price (Optional):</label>
+                                                    <input type="text" name="item_markup_price" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-row">
+                                        <div class="form-group">
+                                            <label for="item_description">Description</label>
+                                            <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>&nbsp;&nbsp;
+                                        <button type="submit" class="btn btn-orange">Create</button>
+                                    </div>
+                                    <!--end row-->
+
+                                </div>
 
                             </div>
+                        </div>
 
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
-                <!-- <div class="offcanvas-foorter border p-3 text-center">
+            </div>
+            <!-- <div class="offcanvas-foorter border p-3 text-center">
                     <a href="javascript:void(0);" class="link-success">View All Acitivity <i class="ri-arrow-right-s-line align-middle ms-1"></i></a>
                 </div> -->
-            </div>
+        </div>
 
-            <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-light p-3">
-                            <h5 class="modal-title" id="exampleModalLabel"> Add Item</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
-                        </div>
-                        <form action="{{ route('items.store') }}" method="POST">
-                            @csrf
-                            <div class="row">
-                                <div class="col-xxl-12">
-                                    <div class="card">
-                                        <!-- <div class="card-header">
+        <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-light p-3">
+                        <h5 class="modal-title" id="exampleModalLabel"> Add Item</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
+                    </div>
+                    <form action="{{ route('items.store') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card">
+                                    <!-- <div class="card-header">
                                             <h4 class="card-title mb-0">Form Grid</h4>
                                         </div> -->
-                                        <!-- end card header -->
+                                    <!-- end card header -->
 
-                                        <div class="card-body">
-
-
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="name">Name:</label>
-                                                        <input type="text" name="item_name" class="form-control" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="mobile">Short Name:</label>
-                                                        <input type="text" name="item_short_name" class="form-control" required>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="card-body">
 
 
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="category">Category</label>
-                                                        <select name="item_category_id" id="category" class="form-select mb-3">
-                                                            <option value="" disabled selected>Select Category</option>
-                                                            @foreach ($categories as $categoryId => $categoryName)
-                                                            <option value="{{ $categoryId }}">{{ $categoryName }}</option>
-                                                            @endforeach
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="location">POS Code</label>
-                                                        <select name="item_pos_code" id="pos_code" class="form-select mb-3">
-                                                            <option value="" disabled selected>Select POS</option>
-                                                            @foreach ($locations as $locationId => $locationName)
-                                                            <option value="{{ $locationId }}">{{ $locationName }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <!-- <select name="item_pos_code" id="pos_code" class="form-control">
-                                                            <option value="" disabled selected>Select POS</option>
-                                                            @foreach ($locations as $locationId => $locationName)
-                                                            <option value="{{ $locationId }}">{{ $locationName }}</option>
-                                                            @endforeach
-                                                        </select> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="food_type">Food Type</label>
-                                                        <select name="item_food_type" id="food_type" class="form-select mb-3">
-                                                            <option value="" disabled selected>Select Food Type</option>
-                                                            @foreach ($foodtype as $foodtypeId => $foodtypeName)
-                                                            <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <!-- <select name="item_food_type" id="food_type" class="form-control">
-                                                            <option value="" disabled selected>Select Food Type</option>
-                                                            @foreach ($foodtype as $foodtypeId => $foodtypeName)
-                                                            <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
-                                                            @endforeach
-                                                        </select> -->
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="is_recommended">Is Recommended</label><br>
-                                                        <input type="checkbox" id="item_is_recommended" name="item_is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="is_package_good">Is Package Good</label><br>
-                                                        <input type="checkbox" id="item_is_package_good" name="item_is_package_good" data-toggle="switch" data-on-text="Yes" data-off-text="No">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="is_recommended">Sell by Weight</label><br>
-                                                        <input type="checkbox" id="item_sell_by_weight" name="item_sell_by_weight" data-toggle="switch" data-on-text="Yes" data-off-text="No">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="name">Default Sales Price:</label>
-                                                        <input type="text" name="item_default_sell_price" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="form-group">
-                                                            <label for="name">Markup Price (Optional):</label>
-                                                            <input type="text" name="item_markup_price" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-row">
+                                        <div class="row form-row">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="item_description">Description</label>
-                                                    <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                                    <label for="name">Name:</label>
+                                                    <input type="text" name="item_name" class="form-control" required>
                                                 </div>
                                             </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-orange">Create</button>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="mobile">Short Name:</label>
+                                                    <input type="text" name="item_short_name" class="form-control" required>
+                                                </div>
                                             </div>
-                                            <!--end row-->
-
                                         </div>
 
+
+                                        <div class="row form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="category">Category</label>
+                                                    <select name="item_category_id" id="category" class="form-select mb-3">
+                                                        <option value="" disabled selected>Select Category</option>
+                                                        @foreach ($categories as $categoryId => $categoryName)
+                                                        <option value="{{ $categoryId }}">{{ $categoryName }}</option>
+                                                        @endforeach
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="location">POS Code</label>
+                                                    <select name="item_pos_code" id="pos_code" class="form-select mb-3">
+                                                        <option value="" disabled selected>Select POS</option>
+                                                        @foreach ($locations as $locationId => $locationName)
+                                                        <option value="{{ $locationId }}">{{ $locationName }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <!-- <select name="item_pos_code" id="pos_code" class="form-control">
+                                                            <option value="" disabled selected>Select POS</option>
+                                                            @foreach ($locations as $locationId => $locationName)
+                                                            <option value="{{ $locationId }}">{{ $locationName }}</option>
+                                                            @endforeach
+                                                        </select> -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="food_type">Food Type</label>
+                                                    <select name="item_food_type" id="food_type" class="form-select mb-3">
+                                                        <option value="" disabled selected>Select Food Type</option>
+                                                        @foreach ($foodtype as $foodtypeId => $foodtypeName)
+                                                        <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <!-- <select name="item_food_type" id="food_type" class="form-control">
+                                                            <option value="" disabled selected>Select Food Type</option>
+                                                            @foreach ($foodtype as $foodtypeId => $foodtypeName)
+                                                            <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
+                                                            @endforeach
+                                                        </select> -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="is_recommended">Is Recommended</label><br>
+                                                    <input type="checkbox" id="item_is_recommended" name="item_is_recommended" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="is_package_good">Is Package Good</label><br>
+                                                    <input type="checkbox" id="item_is_package_good" name="item_is_package_good" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="is_recommended">Sell by Weight</label><br>
+                                                    <input type="checkbox" id="item_sell_by_weight" name="item_sell_by_weight" data-toggle="switch" data-on-text="Yes" data-off-text="No">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Default Sales Price:</label>
+                                                    <input type="text" name="item_default_sell_price" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label for="name">Markup Price (Optional):</label>
+                                                        <input type="text" name="item_markup_price" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-row">
+                                            <div class="form-group">
+                                                <label for="item_description">Description</label>
+                                                <textarea name="item_description" class="form-control mt-3" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-orange">Create</button>
+                                        </div>
+                                        <!--end row-->
+
                                     </div>
-                                </div> <!-- end col -->
+
+                                </div>
+                            </div> <!-- end col -->
 
 
-                            </div>
+                        </div>
 
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
-
-            <!-- Modal -->
-            
-            <!--end modal -->
-
         </div>
-        <!-- container-fluid -->
+
+        <!-- Modal -->
+
+        <!--end modal -->
+
     </div>
-    <!-- End Page-content -->
+    <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
 
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script> © Hybrix.
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-end d-none d-sm-block">
-                        Design & Develop by Themesbrand
-                    </div>
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> © Hybrix.
+            </div>
+            <div class="col-sm-6">
+                <div class="text-sm-end d-none d-sm-block">
+                    Design & Develop by Themesbrand
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 </div>
 <!-- end main content-->
 
