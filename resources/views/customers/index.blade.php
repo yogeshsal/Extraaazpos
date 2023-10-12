@@ -45,28 +45,28 @@
     }
 </style> -->
 <style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
-    th,
-    td {
-        padding: 8px;
-        text-align: left;
-    }
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
 
-    th {
-        background-color: #f5f5f5;
-        color: #646464;
-        font-weight: 950;
-        font-size: small;
-    }
+th {
+    background-color: #f5f5f5;
+    color: #646464;
+    font-weight: 950;
+    font-size: small;
+}
 
-    tr {
-        border-bottom: 2px solid #F5F5F5;
-        /* Light grey border between rows */
-    }
+tr {
+    border-bottom: 2px solid #F5F5F5;
+    /* Light grey border between rows */
+}
 </style>
 
 <br>
@@ -77,20 +77,22 @@
         <div class="card shadow">
             <div class="card-body d-flex justify-content-between align-items-center">
                 <div>
-                    <h3 class="p-0">ITEMS</h3>
-                    <p class="text-muted">Central repository for all your menu items</p>
+                    <h3 class="p-0">CUSTOMERS</h3>
                 </div>
 
                 <div class="d-flex align-items-center">
                     <div class="input-group mr-2">
-                        <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
+                        <button type="button" class="btn btn-outline-secondary m-1"> <i
+                                class="bi bi-question-circle"></i> Help</button>
                         <div class="search-box ms-2">
                             <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
                             <i class="ri-search-line search-icon "></i>
                         </div>&nbsp;&nbsp;
-                        <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
-                        <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#itemModal">
-                            <i class="bi bi-plus-lg fw-bolder text-white"></i> New Item</button>
+                        <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i>
+                            Filters</button>
+                        <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal"
+                            data-bs-target="#newCustomer">
+                            <i class="bi bi-plus-lg fw-bolder text-white"></i>New Customer</button>
                     </div>
 
                 </div>
@@ -133,7 +135,8 @@
                         <td>{{ $data->mobile }}</td>
                         <td></td>
                         <td></td>
-                        <td><a href="/customers/{{ $data->id }}/edit"><button type="button" class="btn btn-outline-secondary">Edit Customer</button></a>
+                        <td><a href="/customers/{{ $data->id }}/edit"><button type="button"
+                                    class="btn btn-outline-secondary">Edit Customer</button></a>
                     </tr>
                     @endforeach
 
@@ -144,9 +147,11 @@
             </table>
             <div class="noresult" style="display: none">
                 <div class="text-center">
-                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
+                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+                        colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
                     <h5 class="mt-2">Sorry! No Result Found</h5>
-                    <p class="text-muted mb-0">We've searched more than 150+ Orders We did not find any orders for you search.</p>
+                    <p class="text-muted mb-0">We've searched more than 150+ Orders We did not find any orders for you
+                        search.</p>
                 </div>
             </div>
         </div>
@@ -173,7 +178,8 @@
 
 
 <!-- Modal -->
-<div class="modal fade modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-lg" id="newCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -264,29 +270,29 @@
 
 
     <script>
-        // Function to filter the table based on user input
-        function filterTable() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("dataTable");
-            tr = table.getElementsByTagName("tr");
+    // Function to filter the table based on user input
+    function filterTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dataTable");
+        tr = table.getElementsByTagName("tr");
 
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[2]; // Change the index to match the column you want to search
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2]; // Change the index to match the column you want to search
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
                 }
             }
         }
+    }
 
-        // Add an event listener to the search input
-        document.getElementById("searchInput").addEventListener("keyup", filterTable);
+    // Add an event listener to the search input
+    document.getElementById("searchInput").addEventListener("keyup", filterTable);
     </script>
 
 

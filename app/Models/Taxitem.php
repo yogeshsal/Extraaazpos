@@ -11,8 +11,7 @@ class Taxitem extends Model
 
     protected $guarded = [];
     
-     protected $casts = [
+    protected $casts = [
         'item_id' => 'array',
     ];
-
 }
