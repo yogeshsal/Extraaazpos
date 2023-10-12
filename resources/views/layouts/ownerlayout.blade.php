@@ -513,11 +513,11 @@
                             <a class="dropdown-item" href="auth-lockscreen-basic.html"><i class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Lock screen</span></a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
-                            {{ __('Logout') }}
+                                {{ __('Logout') }}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                            </form>                        
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -901,11 +901,11 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="#admin" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                        <a class="nav-link menu-link" href="#posset" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
                             <i class="bi bi-journal-medical"></i> <span data-key="t-pages">POS Settings</span>
                         </a>
 
-                        <div class="collapse menu-dropdown" id="admin">
+                        <div class="collapse menu-dropdown" id="posset">
                             <ul class="nav nav-sm flex-column">
 
 
