@@ -163,7 +163,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="name">Name:</label>
-                                                        <input type="text" name="item_name" class="form-control" required>
+                                                        <input type="text" name="cat_name" class="form-control" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
