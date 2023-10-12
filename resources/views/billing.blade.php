@@ -259,27 +259,27 @@
                             <!-- Small Tables -->
                             <table class="table table-sm table-nowrap">
                                 <thead>
-                                    <tr>
+                                    <tr class>
 
-                                        <th scope="col">PRODUCT</th>
-                                        <th scope="col">SERVED</th>
-                                        <th scope="col">UNIT PRICE</th>
-                                        <th scope="col">QUANTITY</th>
-                                        <th scope="col">TOTAL</th>
+                                        <th scope="col" class="text-start">PRODUCT</th>
+                                        <th class="text-center" scope="col">SERVED</th>
+                                        <th class="text-center" scope="col">UNIT PRICE</th>
+                                        <th class="text-center" scope="col">QUANTITY</th>
+                                        <th scope="col" class="text-end">TOTAL</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="#" class="fw-medium">Dahi Kebab</a></td>
+                                        <td><a href="#" class="fw-medium text-start">Dahi Kebab</a></td>
                                         <td>
-                                            <div class="form-check">
+                                            <div class="form-check text-center">
                                                 <input class="form-check-input" type="checkbox" value="" id="cardtableCheck01">
                                                 <label class="form-check-label" for="cardtableCheck01"></label>
                                             </div>
                                         </td>
-                                        <td>$ 868</td>
-                                        <td>1</td>
-                                        <td>$ 868</td>
+                                        <td class="text-center">$ 868</td>
+                                        <td class="text-center">1</td>
+                                        <td class="text-end">$ 868</td>
 
                                     </tr>
 
