@@ -281,7 +281,7 @@
                     <h5 class="mb-3">&nbsp;</h5>
 
 
-                    <div id="circleDetailDiv" class="card  " style="display: block; height: 90%;">
+                    <div id="circleDetailDivs" class="card  " style="display: none; height: 90%;">
                         <div class="card-header">
                             <!-- <button type="button" class="btn-close float-end fs-11" aria-label="Close"></button> -->
                             <h6 class="card-title mb-0 ">
@@ -727,6 +727,23 @@
 </script> -->
 
 
+<script>
+        // 1. Get the ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+
+        // 2. Use JavaScript to find the element by its ID
+        const element = document.getElementById(id);
+
+        if (element) {
+            // 3. Change the CSS display property to show the element
+            element.style.display = "block";
+        } else {
+            console.error("Element not found");
+        }
+    </script>
+
+
 
 
 <script>
@@ -809,6 +826,7 @@
         // Add the "clicked-circle" class to the clicked circle
         circle.classList.add('clicked-circle');
     }
+    
 
 
     // Add an event listener to the dropdown to detect changes

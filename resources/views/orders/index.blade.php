@@ -117,7 +117,8 @@
                                 <div class="card-body">
                                     <button type="button" class="btn btn-primary">Note</button>
                                     <button type="button" class="btn btn-secondary">Hold</button>
-                                    <button type="button" class="btn btn-danger">Finish Order
+                                    <a href="/billing?id=circleDetailDivs">
+                                    <button type="button" class="btn btn-danger">Finish Order</button></a>
                                 </div>
                             </div>
                         </div>
