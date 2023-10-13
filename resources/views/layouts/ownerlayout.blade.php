@@ -850,13 +850,13 @@
                             <ul class="nav nav-sm flex-column">
 
                                 <li class="nav-item">
-                                    <a href="/owner" class="nav-link" data-key="t-starter"> Materials </a>
+                                    <a href="/materials" class="nav-link" data-key="t-starter"> Materials </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/owner" class="nav-link" data-key="t-starter"> Intermediates </a>
+                                    <a href="/intermediates" class="nav-link" data-key="t-starter"> Intermediates </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/owner" class="nav-link" data-key="t-starter"> Categories </a>
+                                    <a href="/raw-categories" class="nav-link" data-key="t-starter"> Categories </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/owner" class="nav-link" data-key="t-starter"> Modifier Groups </a>
