@@ -17,46 +17,6 @@
                 action="{{ route('tax.items', ['id' => Route::current()->parameter('id')]) }}"> @csrf
                 <!-- Your checkboxes and table here -->
 
-                table {
-                border-collapse: collapse;
-                width: 100%;
-                }
-
-                th,
-                td {
-                padding: 8px;
-                text-align: left;
-                }
-
-                th {
-                background-color: #f5f5f5;
-                color: #646464;
-                font-weight: 900;
-                font-size: small;
-                }
-
-                tr {
-                border-bottom: 2px solid #F5F5F5;
-                /* Light grey border between rows */
-                }
-
-                .btn.btn-outline-secondary {
-                border-color: #6c757d;
-                /* Set the default border color */
-                }
-
-                .btn.btn-outline-secondary:hover {
-                border-color: orange;
-                /* Change the border color to orange on hover */
-                background-color: transparent;
-                color: orange;
-                }
-
-                .page-content {
-                height: 100vh;
-                }
-                </style>
-
                 <div class="main-content">
 
                     <div class="page-content">
