@@ -114,7 +114,7 @@ Route::post('/location-items/{id}', [App\Http\Controllers\ItemController::class,
 
 //CATEGORY
 // Route::view('items', 'items.index');
-Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->middleware('owner');
+Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->middleware('admin');
 Route::post('/create-category', [App\Http\Controllers\CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categories/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('/categories/{id}', [App\Http\Controllers\CategoryController::class,'catupdate'])->name('categories.update');
@@ -145,8 +145,8 @@ Route::put('/modifier/{id}', [App\Http\Controllers\ModifierGroupsController::cla
 
 
 //category-timing
-Route::get('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'index'])->middleware('owner');
-Route::post('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'addCategoryTiming'])->middleware('owner');
+Route::get('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'index'])->middleware('admin');
+Route::post('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'addCategoryTiming'])->middleware('admin');
 Route::get('/category-timing/edit/{id}', [App\Http\Controllers\CategoryTimingController::class, 'edit'])->name('category-timing.edit');
 Route::put('/category-timing/{id}', [App\Http\Controllers\CategoryTimingController::class,'update'])->name('category-timing.update');
 Route::get('/category-timing/select_category/{id}', [App\Http\Controllers\CategoryTimingController::class, 'select_category'])->name('category-timing.select_category');

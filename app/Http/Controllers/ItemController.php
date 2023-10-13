@@ -36,8 +36,11 @@ class ItemController extends Controller
             ->pluck('name', 'id');
 
         $foodtype = Foodtype::pluck('name', 'id');
+        
+        $data = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data[0]['restaurant_id'];
 
-        return view('catalogue.items.index', compact('data', 'categories', 'locations', 'foodtype', 'user_name'));
+        return view('catalogue.items.index', compact('data', 'categories', 'locations', 'foodtype', 'user_name','restaurant_id'));
     }
 
     public function store(Request $request)

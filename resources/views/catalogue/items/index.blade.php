@@ -108,7 +108,17 @@ tr {
                     @foreach($data as $item)
                     <tr>
                         <td>
-                            @if ($item->item_image)
+
+                            if (isset($yourArrayOrObject['item_image'])) {
+                            // Access the 'item_image' property here
+                            $itemImage = $yourArrayOrObject['item_image'];
+                            } else {
+                            // Handle the case where 'item_image' is not present in the array or object
+                            $itemImage = 'Default Value'; // You can set a default value or handle the error accordingly
+
+
+                            }
+                            @if (isset($item->item_image))
                             <img src="{{ asset('storage/' . $item->item_image) }}" alt="Image" class="table-image"
                                 width="20" height="20">
                             @else
@@ -117,11 +127,11 @@ tr {
                             @endif
                         </td>
                         <td>
-                            @if ($item->item_food_type === 'Vegetarian')
+                            <!-- @if ($item->item_food_type === 'Vegetarian')
                             <img src="{{ asset('storage/veg.png') }}" alt="Vegetarian Logo">
                             @elseif ($item->item_food_type === 'Non Vegetarian')
                             <img src="{{ asset('storage/nonveg.png') }}" alt="Non-Vegetarian Logo">
-                            @endif
+                            @endif -->
                         </td>
                         <td class="customer_name">
                             <a href="{{ route('items.edit', ['id' => $item->id]) }}">{{ $item->item_name }}</a>
