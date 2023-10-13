@@ -37,8 +37,8 @@ class ItemController extends Controller
 
         $foodtype = Foodtype::pluck('name', 'id');
         
-        $data = User::where('id', $currentUserId)->get()->toArray();
-        $restaurant_id = $data[0]['restaurant_id'];
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
 
         return view('catalogue.items.index', compact('data', 'categories', 'locations', 'foodtype', 'user_name','restaurant_id'));
     }
