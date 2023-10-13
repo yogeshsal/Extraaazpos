@@ -101,6 +101,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
+        $restaurant_id = 'EPOS' . str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
+
+        // Ensure the generated restaurant_id is unique
+        while (User::where('restaurant_id', $restaurant_id)->exists()) {
+            $restaurant_id = 'EPOS' . str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
+        }
+
+        
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -109,6 +118,7 @@ class RegisterController extends Controller
             'state' => "Maharashtra",
             'role' => $data['role'],
             'status_id' => 1,
+            'restaurant_id' => $restaurant_id,
         ]);
     }
 }
