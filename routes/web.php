@@ -35,10 +35,10 @@ Route::view('create_register', 'create_register');
 Route::view('close_register', 'close_register');
 
 
-Route::get('dailyregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegisterOpen'])->middleware('owner');
-Route::get('closeregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegister'])->middleware('owner');
+Route::get('dailyregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegisterOpen'])->middleware('admin');
+Route::get('closeregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegister'])->middleware('admin');
 
-//Route::post('/closed_register', [App\Http\Controllers\DailyRegisterController::class, 'closeregister'])->name('closedregister');
+
 //billing
 
 // Route::view('billing', 'billing');
@@ -47,9 +47,9 @@ Route::get('closeregister', [App\Http\Controllers\DailyRegisterController::class
 //     return view('dailyregister');
 // });
 
-Route::get('/location', function () {
-    return view('location.location');
-});
+// Route::get('/location', function () {
+//     return view('location.location');
+// });
 
 
 Route::post('store-form', [App\Http\Controllers\LocationController::class, 'store']);
@@ -188,7 +188,7 @@ Route::post('/restrict-items/{id}', [App\Http\Controllers\ChargeController::clas
 Route::view('settings', 'company-admin.settings');
 Route::view('user-roles', 'company-admin.user-roles');
 Route::view('employees', 'company-admin.employees');
-Route::view('locations', 'company-admin.locations');
+Route::view('locations', 'company-admin.locations')->middleware('admin');
 Route::view('brands', 'company-admin.brands');
 Route::view('print_templates', 'company-admin.print_templates');
 Route::view('integrations', 'company-admin.integrations');
