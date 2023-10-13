@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\item;
 use Auth;
+use DB;
 
 class OrderController extends Controller
 {
@@ -26,9 +27,47 @@ class OrderController extends Controller
     }
        
     public function getitems(Request $request, $categoryId) {
-    $items = Item::where('item_category_id', $categoryId)->get();
 
-    return response()->json(['items' => $items]);
+
+   // $items = Item::where('item_category_id', $categoryId)->get();
+
+   $data = DB::table('items AS i')
+        ->leftJoin('taxitems AS t', function ($join) {
+            $join->on(DB::raw('JSON_UNQUOTE(JSON_EXTRACT(t.item_id, \'$[0]\'))'), '=', 'i.id')
+                ->orWhere(DB::raw('JSON_UNQUOTE(JSON_EXTRACT(t.item_id, \'$[1]\'))'), '=', 'i.id');
+        })
+        ->leftJoin('taxes AS tx', 't.tax_id', '=', 'tx.id')
+        ->select('i.id AS item_id', 'i.item_name', 't.tax_id', 't.status AS tax_status','tx.name AS tax_name')
+        ->get();
+
+    if ($data->isEmpty()) {
+        return response()->json(["message" => "No items with associated taxes found."]);
+    }
+
+    return response()->json($data, 200, [], JSON_PRETTY_PRINT);
+   // return response()->json(['items' => $items]);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
