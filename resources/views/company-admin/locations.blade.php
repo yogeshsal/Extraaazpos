@@ -99,7 +99,9 @@
                         <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
                         <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
                         <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
-                        <a href="" class="btn btn-orange m-1" data-toggle="modal" data-target="#add_item_modal"><i class="bi bi-plus-lg fw-bolder text-white"></i> New</a>
+                        <button type="button" class="btn btn-orange m-1" data-bs-toggle="modal" data-bs-target="#newLocationModal">
+                            <i class="bi bi-plus-lg fw-bolder text-white"></i> New
+                        </button>
                     </div>
                 </div>
             </div>
@@ -204,7 +206,7 @@
             </div>
 
             <!-- modal starts here -->
-            <div class="modal fade modal-lg" id="add_item_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade modal-lg" id="newLocationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -214,14 +216,15 @@
                         <div class="modal-body">
                             <div class="container">
                                 <form action=" " method="POST">
-                                    <div class="row ">
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="name">Title<span class="red-asterisk"></span></label>
                                                 <input type="text" name="item_name" class="form-control" required>
                                             </div>
-
-                                            <div class="col-md-6">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="form-group mt-3">
                                                     <label for="category">Type<span class="red-asterisk"></span></label>
                                                     <select name="item_category_id" id="category" class="form-control">
@@ -231,35 +234,33 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="form-group mt-3">
                                                     <label for="handle">Handle</label>
                                                     <input type="text" name="handle" class="form-control" required>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <label for="tax_number">Tax Number</label>
                                                     <input type="text" name="item_name" class="form-control" required>
-
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <label for="city">City<span class="red-asterisk"></span></label>
                                                     <input type="text" name="item_name" class=" form-control red-asterisk" required>
-
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <label for="state">State</label>
                                                     <input type="text" name="state" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label for="fssai_id">FSSAI ID</label>
@@ -269,20 +270,20 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row mb-3">
                                             <div class="form-group">
                                                 <label for="address">Address<span class="red-asterisk"></span></label>
                                                 <textarea name="address" class="form-control mt-3" id="addressTextarea1" rows="2"></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <label for="state">Stock Location<span class="red-asterisk"></span></label>
                                                     <input type="text" name="state" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label for="brand">Brand<span class="red-asterisk"></span></label>
@@ -296,7 +297,7 @@
                                             </div>
                                         </div>
                                         <div class="row ">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <label for="state">Max Slot Number</label>
                                                     <input type="text" name="slot_number" class="form-control">
@@ -307,7 +308,7 @@
 
                                         <div class="modal-footer">
                                             <div class="ml-auto"> <!-- Use 'ml-auto' class to push the button to the left -->
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                                 <button type="submit" class="btn btn-orange">Create Location</button>
                                             </div>
                                         </div>
