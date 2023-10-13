@@ -7,6 +7,7 @@ use App\Models\CategoryTiming;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Item;
+use App\models\User;
 use Auth;
 use DB;
 
@@ -18,7 +19,11 @@ class CategoryTimingController extends Controller
         ->select('users.name as username','category_timings.*')
         ->where('category_timings.user_id',Auth::user()->id)
         ->paginate(20);
-        return view('catalogue.categoryTiming.index',['time'=>$data]);
+
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        return view('catalogue.categoryTiming.index',['time'=>$data, 'restaurant_id'=>$restaurant_id]);
     }
 
     function addCategoryTiming(Request $request)
@@ -203,4 +208,3 @@ class CategoryTimingController extends Controller
 
 
 }
-
