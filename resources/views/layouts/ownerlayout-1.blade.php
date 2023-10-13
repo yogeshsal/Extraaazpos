@@ -161,7 +161,15 @@
             <li class="sub"><a href="/add_floor">Floor Plan</a></li>                        
         </ul>
       </li> 
-    </ul>   
+    </ul> 
+    
+    <li class="nav-item">
+        <a class="nav-link"  onclick="togglereport()" href="#report" data-toggle="collapse" >
+        <i class="fa-solid fa-basket-shopping"></i>&nbsp;Report &nbsp;
+        <!-- <i class="fa-solid fa-caret-down"></i> -->
+        </a>
+        
+      </li>    
   </nav>
 
   <script>
@@ -212,6 +220,14 @@
 
         function togglecompanyadmin() {
             var submenu = document.getElementById("companyadmin");
+            if (submenu.style.display === "none" || submenu.style.display === "") {
+                submenu.style.display = "block";
+            } else {
+                submenu.style.display = "none";
+            }
+        }
+        function togglereport() {
+            var submenu = document.getElementById("report");
             if (submenu.style.display === "none" || submenu.style.display === "") {
                 submenu.style.display = "block";
             } else {
