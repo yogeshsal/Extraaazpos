@@ -26,12 +26,10 @@ class OrderController extends Controller
         return view('orders.index',['categoryCounts' => $categoryCounts]);
     }
        
-    public function getitems(Request $request, $categoryId) {
-
-
-   // $items = Item::where('item_category_id', $categoryId)->get();
-
-   $data = DB::table('items AS i')
+    public function getitems(Request $request, $categoryId) 
+    {
+        
+        $data = DB::table('items AS i')
         ->leftJoin('taxitems AS t', function ($join) {
             $join->on(DB::raw('JSON_UNQUOTE(JSON_EXTRACT(t.item_id, \'$[0]\'))'), '=', 'i.id')
                 ->orWhere(DB::raw('JSON_UNQUOTE(JSON_EXTRACT(t.item_id, \'$[1]\'))'), '=', 'i.id');
@@ -40,13 +38,13 @@ class OrderController extends Controller
         ->select('i.item_default_sell_price','i.item_image','i.item_name', 't.tax_id', 't.status AS tax_status','tx.name AS tax_name')
         ->get();
 
-    if ($data->isEmpty()) {
-        return response()->json(["message" => "No items with associated taxes found."]);
-    }
+        if ($data->isEmpty()) {
+            return response()->json(["message" => "No items with associated taxes found."]);
+        }
 
-    return response()->json($data, 200, [], JSON_PRETTY_PRINT);
-   // return response()->json(['items' => $items]);
-}
+        return response()->json($data, 200, [], JSON_PRETTY_PRINT);
+   
+    }
 
 
 
