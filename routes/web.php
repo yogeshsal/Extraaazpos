@@ -188,7 +188,8 @@ Route::post('/restrict-items/{id}', [App\Http\Controllers\ChargeController::clas
 Route::view('settings', 'company-admin.settings');
 Route::view('user-roles', 'company-admin.user-roles');
 Route::view('employees', 'company-admin.employees');
-Route::view('locations', 'company-admin.locations')->middleware('admin');
+//Route::view('locations', 'company-admin.locations')->middleware('admin');
+Route::get('/locations', [App\Http\Controllers\LocationController::class, 'index'])->name('locations')->middleware('admin');
 Route::view('brands', 'company-admin.brands');
 Route::view('print_templates', 'company-admin.print_templates');
 Route::view('integrations', 'company-admin.integrations');
