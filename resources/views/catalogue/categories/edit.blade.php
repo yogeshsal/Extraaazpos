@@ -82,11 +82,7 @@
 </style> -->
 
 <br>
-@if(session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
+
 
 <div class="main-content">
     <div class="page-content">
@@ -94,6 +90,11 @@
             <!-- start page title -->
 
             <!-- end page title -->
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
 
             <div class="row">
                 <div class="col-xxl-12">

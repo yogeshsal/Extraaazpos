@@ -137,8 +137,8 @@ tr {
 
 
                 </tbody>
-            </table>
-            <div class="text-center">
+            </table><br>
+            <div style="display: flex; justify-content: center;">
                 {{ $data->links() }}
             </div>
 

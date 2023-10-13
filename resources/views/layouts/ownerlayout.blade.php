@@ -935,9 +935,15 @@
                     </li>
 
 
+                    <li class="nav-item">
+                        <a href="/report" class="nav-link menu-link"> <i class="bi bi-speedometer2"></i> <span data-key="t-dashboard">Report</span> </a>
+                    </li>
 
                 </ul>
             </div>
+
+
+            
             <!-- Sidebar -->
         </div>
 
