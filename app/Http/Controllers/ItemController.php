@@ -42,6 +42,7 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
+        //dd("yes");
         $currentUserId = Auth::user()->id;
         $data = new Item;
         $data->user_id = $currentUserId;
@@ -58,7 +59,7 @@ class ItemController extends Controller
         $data->item_markup_price = $request->item_markup_price;
         $data->item_aggregator_price = $request->item_aggregator_price;
         $data->item_external_id = $request->item_external_id;
-
+        //dd($data);
         $data->save();
         return redirect('items')
             ->with('success', 'Item added successfully.');
@@ -123,8 +124,6 @@ class ItemController extends Controller
             'item_food_type' => 'required|string|max:255',
             'item_default_sell_price' => 'required|string|max:255',
             'item_markup_price' => 'required|string|max:255',
-
-
         ]);
 
         // Update the customer's data
