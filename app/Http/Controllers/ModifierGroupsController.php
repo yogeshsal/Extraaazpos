@@ -18,6 +18,7 @@ class ModifierGroupsController extends Controller
 {
     public function index()
     {
+        
         $currentUserId = Auth::user()->id;        
         $data = Modifiergroup::where('user_id', $currentUserId)->get(); // Fetch all posts 
 
@@ -31,6 +32,7 @@ class ModifierGroupsController extends Controller
         }
 
         $modifiergrouptype = Modifier_group_type::pluck('type', 'id');  
+        //dd($modifiergrouptype);
         return view('catalogue.modifier-group.index',compact('data', 'user_name','modifiergrouptype'));
     }
 
