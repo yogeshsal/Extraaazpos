@@ -108,7 +108,7 @@ class FloorSettingController extends Controller
         $restaurant_id = $data1[0]['restaurant_id']; 
 
         $discount = Discount::all();
-        dd($discount);
+        //dd($discount);
 
         return view('billing',compact('bal','table'),['customer'=>$customer, 'restaurant_id'=>$restaurant_id]);
 
