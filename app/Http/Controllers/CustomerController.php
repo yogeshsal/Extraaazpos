@@ -10,10 +10,8 @@ use Auth;
 class CustomerController extends Controller
 {
     
-    public function index()
-    {
+    public function index()    {
         $data = Customer::all(); // Fetch all posts
-
         $currentUserId = Auth::user()->id;
         $data1 = User::where('id', $currentUserId)->get()->toArray();
         $restaurant_id = $data1[0]['restaurant_id']; 

@@ -362,10 +362,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <select class="form-select mb-3" aria-label=".form-select-lg example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            <option selected>Select Discount</option> git
                                         </select>
                                     </div>
                                     <div class="modal-footer">
@@ -864,7 +861,6 @@ plusButton.addEventListener('click', function() {
     count++;
     counterValue.textContent = count;
 });
-
 
 
 // Get references to the dropdown and div elements

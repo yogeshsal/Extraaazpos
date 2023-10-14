@@ -137,14 +137,7 @@ tr {
                                 <div class="row">
                                     <div class="col-xxl-12">
                                         <div class="card">
-                                            <!-- <div class="card-header">
-                                            <h4 class="card-title mb-0">Form Grid</h4>
-                                        </div> -->
-                                            <!-- end card header -->
-
                                             <div class="card-body">
-
-
                                                 <div class="row form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -173,13 +166,14 @@ tr {
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="name">Discount Type</label>
-                                                                <select id="discount_type" class="form-select"
+                                                                <select id="discount_type" name="discount_type"
+                                                                    class=" form-select"
                                                                     aria-label="Default select example">
-                                                                    <option selected value=""></option>
+                                                                    <option selected disabled
+                                                                        value="Select Discount Type"></option>
                                                                     <option value="Fixed">Fixed</option>
                                                                     <option value="Percentage">Percentage</option>
                                                                 </select>
-
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -190,7 +184,7 @@ tr {
                                                                         <span class="input-group-text"
                                                                             id="basic-addon3">$</span>
                                                                     </div>
-                                                                    <input name="max_discount_value" type="text"
+                                                                    <input name="discount_value" type="text"
                                                                         class="form-control" id="basic-url"
                                                                         aria-describedby="basic-addon3">
                                                                 </div>
@@ -198,13 +192,12 @@ tr {
                                                             </div>
                                                         </div>
                                                     </div>
-
-
                                                     <div class="row form-row">
                                                         <div class="form-group">
                                                             <label for="address">Description</label>
-                                                            <textarea name="item_description" class="form-control mt-3"
-                                                                id="exampleFormControlTextarea1" rows="4"></textarea>
+                                                            <textarea name="desc" class="
+                                                                form-control mt-3" id="exampleFormControlTextarea1"
+                                                                rows="4"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="row form-row">
@@ -265,6 +258,17 @@ tr {
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <div class="form-group">
+                                                                        <label for="name">Restaurant ID</label>
+                                                                        <input type="text" name="restaurant_id"
+                                                                            class="form-control"
+                                                                            value={{$restaurant_id}}>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
 
 

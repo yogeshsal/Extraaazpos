@@ -173,8 +173,10 @@ class CategoryTimingController extends Controller
             $itemCounts[$cat_id] = $item_count;
         }
         //dd($itemCounts);
-        
-       return view('catalogue.categoryTiming.select_category', compact('categories', 'itemCounts'));
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+       return view('catalogue.categoryTiming.select_category', compact('categories', 'itemCounts','restaurant_id'));
     }
 
     public function associateCategories(Request $request,$id)
