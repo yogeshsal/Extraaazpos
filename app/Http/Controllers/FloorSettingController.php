@@ -102,7 +102,11 @@ class FloorSettingController extends Controller
 
         $customer = Customer::all();
 
-        return view('billing',compact('bal','table'),['customer'=>$customer]);
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id']; 
+
+        return view('billing',compact('bal','table'),['customer'=>$customer, 'restaurant_id'=>$restaurant_id]);
 
     }
 
