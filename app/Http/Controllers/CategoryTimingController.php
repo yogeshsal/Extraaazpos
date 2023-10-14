@@ -105,9 +105,10 @@ class CategoryTimingController extends Controller
             $itemCounts[$cat_id] = $item_count;
         }
 
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
 
-
-        return view('catalogue.categoryTiming.edit', compact('timing','categories','locations','itemCounts'),['categoryNames' => $categoryNames]);
+        return view('catalogue.categoryTiming.edit', compact('timing','categories','locations','itemCounts' ,'restaurant_id'),['categoryNames' => $categoryNames]);
     }
 
     public function update(Request $request, $id)
