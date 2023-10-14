@@ -8,7 +8,7 @@ use App\models\Category;
 use App\models\Location;
 use App\models\item;
 use App\models\Taxitem;
-
+use App\models\User;
 
 use Auth;
 
@@ -21,8 +21,12 @@ class TaxController extends Controller
         // $data = Tax::all(); // Fetch all posts           
         $data = Tax::select('taxes.*', 'users.name as user_name')
         ->join('users', 'taxes.user_id', '=', 'users.id')
-        ->get();       
-        return view('catalogue.taxes.index', compact('data',));       
+        ->get(); 
+        
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];    
+        return view('catalogue.taxes.index', compact('data', 'restaurant_id'));       
         
     }
     
