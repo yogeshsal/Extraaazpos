@@ -361,17 +361,20 @@
                                             aria-label="Close"> </button>
                                     </div>
                                     <div class="modal-body">
-                                        <select class="form-select mb-3" aria-label=".form-select-lg example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <select class="form-select mb-3" aria-label=".form-select-lg example" name="">
+                                            <option selected>Select Dsicounts</option>
+                                           @foreach($discounts as $d)
+                                            <option value="{{$d->id}}">{{$d->discount_name}}
+                                        
+                                        </option>
+                                           @endforeach
+                                            
                                         </select>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary ">Save Changes</button>
+                                            data-bs-dismiss="modal">Save</button>
+                                        <!-- <button type="button" class="btn btn-primary ">Save Changes</button> -->
                                     </div>
 
                                 </div><!-- /.modal-content -->
@@ -395,10 +398,12 @@
                                                     Instructions</label>
                                                 <select class="form-select mb-3" name="k_inst"
                                                     aria-label=".form-select-lg example">
-                                                    <option selected>Open this select menu</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                    <option selected>select Instructions</option>
+                                                    <option value="1">More Suger</option>
+                                                    <option value="2">Less Spicy</option>
+                                                    <option value="3">More Spicy</option>
+                                                    <option value="3">Medium Spicy</option>
+                                                    <option value="3">Without Ice</option>
                                                 </select>
                                                 <!-- <input type="text" class="form-control" id="employeeName" placeholder="Enter emploree name"> -->
                                             </div>
@@ -510,13 +515,15 @@
                                         <!-- Outlined Styles -->
                                         <div class="hstack gap-2 d-grid flex-wrap">
 
+                                        @foreach($charge as $c)
                                             <button type="button" class="btn btn-outline-light custom-toggle text-start"
                                                 data-bs-toggle="button">
-                                                <span class="icon-on "> Service Charge</span>
-                                                <span class="icon-off "> Service Charge<i
+                                                <span class="icon-on "> {{$c->name}}</span>
+                                                <span class="icon-off "> {{$c->name}}<i
                                                         class="ri-check-fill align-bottom me-1 float-end"></i></span>
                                             </button>
-                                            <button type="button" class="btn btn-outline-light custom-toggle text-start"
+                                            @endforeach
+                                            <!-- <button type="button" class="btn btn-outline-light custom-toggle text-start"
                                                 data-bs-toggle="button">
                                                 <span class="icon-on "> Mudassar Charges</span>
                                                 <span class="icon-off"> Mudassar Charges<i
@@ -551,7 +558,7 @@
                                                 <span class="icon-on "> New Charges</span>
                                                 <span class="icon-off "> New Charges<i
                                                         class="ri-check-fill align-bottom me-1 float-end"></i></span>
-                                            </button>
+                                            </button> -->
                                             <!-- <input type="checkbox" class="btn-check" id="btn-check-outlined">
                                                         <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
                                                         <input type="checkbox" class="btn-check" id="btn-check-outlined">
@@ -587,8 +594,8 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary ">Save Changes</button>
+                                            data-bs-dismiss="modal">Save Changes</button>
+                                        <!-- <button type="button" class="btn btn-primary ">Save Changes</button> -->
                                     </div>
 
                                 </div><!-- /.modal-content -->

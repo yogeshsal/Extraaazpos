@@ -12,6 +12,7 @@ class OrderController extends Controller
 {
     public function index1()
     {
+        //dd('test');
         $categories = Category::where('user_id', Auth::user()->id)->get();
 
         $categoryCounts = [];

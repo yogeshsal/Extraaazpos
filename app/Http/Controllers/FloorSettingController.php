@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Daily_register;
 use App\Models\Add_floor;
 use App\Models\Customer;
+use App\Models\Discount;
+use App\Models\Charge;
+
 use Auth;
 use DB;
 
@@ -14,7 +17,6 @@ class FloorSettingController extends Controller
 {
     public function index()
     {
-
         $currentUserId = Auth::user()->id;
         $lastInsertedUserId = DB::table('daily_registers')
             ->where('user_id', $currentUserId)
@@ -75,6 +77,7 @@ class FloorSettingController extends Controller
 
     public function show_table()
     {
+        
         $data = Add_floor::where('user_id',Auth::user()->id)->first();
 
         if (isset($data['balcony'])) {
@@ -97,7 +100,11 @@ class FloorSettingController extends Controller
 
         $customer = Customer::all();
 
-        return view('billing',compact('bal','table'),['customer'=>$customer]);
+        $discounts = Discount::all();
+
+        $charge = Charge::all();
+
+        return view('billing',compact('bal','table'),['customer'=>$customer,'discounts'=>$discounts,'charge' => $charge]);
 
     }
 
