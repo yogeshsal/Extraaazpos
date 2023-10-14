@@ -88,8 +88,12 @@ class ItemController extends Controller
    
         $charge = Chargesitem::leftJoin('charges','chargesitems.charge_id','=','charges.id')
         ->whereJsonContains('item_id',$id)->get();
+
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+
         
-        return view('catalogue.items.edit', compact('item', 'categories', 'locations', 'foodtype', 'locationCount','tax','charge'));
+        return view('catalogue.items.edit', compact('item', 'categories', 'locations', 'foodtype', 'locationCount','tax','charge','restaurant_id'));
     }
 
 
