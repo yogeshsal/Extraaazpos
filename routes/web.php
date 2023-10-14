@@ -142,6 +142,8 @@ Route::get('/discounts', [App\Http\Controllers\DiscountController::class, 'index
 Route::post('/discounts', [App\Http\Controllers\DiscountController::class, 'add_discount'])->name('add_discount');
 Route::get('/discounts/{id}/edit', [App\Http\Controllers\DiscountController::class, 'edit'])->name('discounts.edit');
 Route::put('/discounts/update/{id}', [App\Http\Controllers\DiscountController::class, 'update'])->name('discounts.update');
+Route::get('/discounts/select_items/{id}', [App\Http\Controllers\DiscountController::class, 'select_items'])->name('discounts.select_items');
+Route::post('/discounts-items/{id}', [App\Http\Controllers\DiscountController::class,'discountItems'])->name('discounts.items');
 
 
 
