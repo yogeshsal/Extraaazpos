@@ -162,11 +162,8 @@
                             </div>
                         </div>
                     </div>
-
-
                     <button type="button" class="btn btn-light" data-bs-container="body" data-bs-toggle="popover"
                         data-bs-placement="top" data-bs-content="UNIQUE EXTRAAAZPOS ID">
-                        {{$restaurant_id}}
                     </button>
 
                     <div class="ms-1 header-item d-none d-sm-flex">

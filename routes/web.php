@@ -69,10 +69,10 @@ Route::post('/closeregister', [App\Http\Controllers\DailyRegisterController::cla
 
 
 //floor setting
-Route::get('add_floor', [App\Http\Controllers\FloorSettingController::class, 'index'])->middleware('owner');
-Route::post('add_floor', [App\Http\Controllers\FloorSettingController::class, 'add_floor'])->middleware('owner');
+Route::get('add_floor', [App\Http\Controllers\FloorSettingController::class, 'index'])->middleware('admin');
+Route::post('add_floor', [App\Http\Controllers\FloorSettingController::class, 'add_floor'])->middleware('admin');
 
-Route::get('billing', [App\Http\Controllers\FloorSettingController::class, 'show_table'])->middleware('owner');
+Route::get('billing', [App\Http\Controllers\FloorSettingController::class, 'show_table'])->middleware('admin');
 
 
 //customer
@@ -156,7 +156,7 @@ Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController
 
 //discount
 Route::get('/discounts', [App\Http\Controllers\DiscountController::class, 'index']);
-Route::post('/discounts', [App\Http\Controllers\DiscountController::class, 'add_discount']);
+Route::post('/discounts', [App\Http\Controllers\DiscountController::class, 'add_discount'])->name('add_discount');
 Route::get('/discounts/{id}/edit', [App\Http\Controllers\DiscountController::class, 'edit'])->name('discounts.edit');
 Route::put('/discounts/update/{id}', [App\Http\Controllers\DiscountController::class, 'update'])->name('discounts.update');
 
