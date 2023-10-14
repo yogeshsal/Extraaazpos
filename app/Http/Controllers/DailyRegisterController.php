@@ -250,8 +250,13 @@ class DailyRegisterController extends Controller
         $id = DB::table('locations')
         ->where('name', $locationname)
         ->where('user_id', $currentUserId)
-        ->value('id');         
-        return view('/create_register', ['locationname'=>$locationname, 'loc_id'=>$id]);
+        ->value('id');    
+        
+        
+        
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id']; 
+        return view('/create_register', ['locationname'=>$locationname, 'loc_id'=>$id, 'restaurant_id'=>$restaurant_id]);
        
         }
 
