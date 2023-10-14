@@ -24,19 +24,18 @@ class FloorSettingController extends Controller
             ->latest('id')
             ->value('id');
 
-         
-            $lastInsertedUser = Daily_register::where('id', $lastInsertedUserId)->first();
 
-           // dd($lastInsertedUser);
-         
-           $loc_id = $lastInsertedUser['loc_id']?? '';
+        $lastInsertedUser = Daily_register::where('id', $lastInsertedUserId)->first();
 
-            $currentUserId = Auth::user()->id;
-            $data1 = User::where('id', $currentUserId)->get()->toArray();
-            $restaurant_id = $data1[0]['restaurant_id']; 
+        // dd($lastInsertedUser);
 
-        return view('add_floor',compact('loc_id','restaurant_id'));
+        $loc_id = $lastInsertedUser['loc_id'] ?? '';
 
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+
+        return view('add_floor', compact('loc_id', 'restaurant_id'));
     }
 
     // public function add_floor(Request $request)
@@ -52,36 +51,36 @@ class FloorSettingController extends Controller
     // }
 
     public function add_floor(Request $request)
-{
-    // Check if an existing record exists
-    $existingRecord = Add_floor::where('user_id', Auth::user()->id)
-        ->where('loc_id', $request->loc_id)
-        ->first();
+    {
+        // Check if an existing record exists
+        $existingRecord = Add_floor::where('user_id', Auth::user()->id)
+            ->where('loc_id', $request->loc_id)
+            ->first();
 
-    if ($existingRecord) {
-        // Update the existing record
-        $existingRecord->update([
-            'balcony' => $request->balcony,
-            'table' => $request->table,
-            // Add more fields to update as needed
-        ]);
-    } else {
-        // Create a new record
-        $data = new Add_floor;
-        $data->user_id = Auth::user()->id;
-        $data->loc_id = $request->loc_id;
-        $data->balcony = $request->balcony;
-        $data->table = $request->table;
-        $data->save();
+        if ($existingRecord) {
+            // Update the existing record
+            $existingRecord->update([
+                'balcony' => $request->balcony,
+                'table' => $request->table,
+                // Add more fields to update as needed
+            ]);
+        } else {
+            // Create a new record
+            $data = new Add_floor;
+            $data->user_id = Auth::user()->id;
+            $data->loc_id = $request->loc_id;
+            $data->balcony = $request->balcony;
+            $data->table = $request->table;
+            $data->save();
+        }
+
+        return redirect('billing');
     }
-
-    return redirect('billing');
-}
 
 
     public function show_table()
     {
-        $data = Add_floor::where('user_id',Auth::user()->id)->first();
+        $data = Add_floor::where('user_id', Auth::user()->id)->first();
 
         if (isset($data['balcony'])) {
             $bal = $data['balcony'];
@@ -90,7 +89,7 @@ class FloorSettingController extends Controller
             // Handle the case where 'balcony' key is not set
             $bal = null; // or provide a default value
         }
-        
+
         if (isset($data['table'])) {
             $table = $data['table'];
             // Now you can safely use $bal
@@ -98,20 +97,18 @@ class FloorSettingController extends Controller
             // Handle the case where 'balcony' key is not set
             $table = null; // or provide a default value
         }
-        
+
         //dd($bal);
 
         $customer = Customer::all();
 
         $currentUserId = Auth::user()->id;
         $data1 = User::where('id', $currentUserId)->get()->toArray();
-        $restaurant_id = $data1[0]['restaurant_id']; 
+        $restaurant_id = $data1[0]['restaurant_id'];
 
         $discount = Discount::all();
-        dd($discount);
+        // dd($discount);
 
-        return view('billing',compact('bal','table'),['customer'=>$customer, 'restaurant_id'=>$restaurant_id]);
-
+        return view('billing', compact('bal', 'table'), ['customer' => $customer, 'restaurant_id' => $restaurant_id]);
     }
-
 }
