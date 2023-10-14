@@ -19,7 +19,7 @@ class LocationController extends Controller
         // Retrieve the Point Of Sale locations here
         $locations = Location::where('type', 'Point Of Sale')->get();
     
-        return view('company-admin.locations', compact('restaurant_id', 'locations'));
+        return view('company-admin.locations', compact('restaurant_id', 'locations', 'currentUserId'));
     }
     
     
@@ -41,13 +41,14 @@ class LocationController extends Controller
             'stock_location' => 'nullable|string',
             'brand' => 'nullable|string',
             'max_slot_number' => 'nullable|integer',
-            
+            'user_id' =>'required',
             // Add more validation rules for other fields
         ]);
     
-        $validatedData['user_id'] = Auth::user()->id;
         // Create a new Location instance and fill it with the validated data
-        $location = new Location();  
+        $location = new Location();
+        
+        //dd($validatedData);
         $location->fill($validatedData);
     
         // Save the location to the database

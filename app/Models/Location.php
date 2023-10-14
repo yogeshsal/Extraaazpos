@@ -20,6 +20,7 @@ class Location extends Model
         'brand',
         'max_slot_number',
         'last_publish',
+        'user_id',
     ];
     use HasFactory;
 }

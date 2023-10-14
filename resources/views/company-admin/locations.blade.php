@@ -115,7 +115,7 @@ table tr:hover {
                             placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
                         <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i>
                             Filters</button>
-                        <a href="#" class="btn btn-orange m-1" data-toggle="modal" data-target="#add_item_modal">
+                        <a href="#" class="btn btn-orange m-1" data-toggle="modal" data-target="#add_location_modal">
                             <i class="bi bi-plus-lg fw-bolder text-white"></i> New
                         </a>
 
@@ -234,7 +234,7 @@ table tr:hover {
             <!-- modal starts here -->
             <!-- ... Previous HTML code ... -->
 
-            <div class="modal fade modal-lg" id="add_item_modal" tabindex="-1" role="dialog"
+            <div class="modal fade modal-lg" id="add_location_modal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -329,12 +329,22 @@ table tr:hover {
                                                 <input type="text" name="max_slot_number" class="form-control">
                                             </div>
                                         </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                <input type="hidden" name="user_id" class="form-control"
+                                                    value={{$currentUserId}}>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="modal-footer">
+
+                                    <div class=" modal-footer">
                                         <div class="ml-auto">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-orange">Create Location</button>
+                                            <button type="submit" class="btn btn-orange">Create
+                                                Location</button>
                                         </div>
                                     </div>
                                 </form>
