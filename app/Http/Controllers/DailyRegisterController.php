@@ -143,8 +143,14 @@ class DailyRegisterController extends Controller
             }
         } else {
             $location = Location::where('user_id', $currentUserId)->get()->toArray();
-            //dd($location);
-            return view('dailyregister', ['loc'=>$location]);
+            
+
+
+
+            $currentUserId = Auth::user()->id;
+            $data1 = User::where('id', $currentUserId)->get()->toArray();
+            $restaurant_id = $data1[0]['restaurant_id'];            
+            return view('dailyregister', ['loc'=>$location, 'restaurant_id'=>$restaurant_id]);
         }
 
         
