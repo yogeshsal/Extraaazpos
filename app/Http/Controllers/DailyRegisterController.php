@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Daily_register;
 use App\Models\Location;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Auth;
@@ -101,6 +102,8 @@ class DailyRegisterController extends Controller
     {
         
         $currentUserId = Auth::user()->id;
+            $data1 = User::where('id', $currentUserId)->get()->toArray();
+            $restaurant_id = $data1[0]['restaurant_id']; 
         //dd($currentUserId);
         $lastInsertedUserId = DB::table('daily_registers')
             ->where('user_id', $currentUserId)
@@ -135,24 +138,25 @@ class DailyRegisterController extends Controller
             {
                 
                 $loc = [];
-              return view('dailyregister', compact('status', 'loc'));
+                
+              return view('dailyregister', compact('status', 'loc', 'restaurant_id'));
             }
             else{
-               
-              return view('close_register', compact('id','status','opening_cash','opening_card','opening_credit','opening_upi', 'opened_at', 'closed_at'));
+                
+                                
+              return view('close_register', compact('id','status','opening_cash','opening_card','opening_credit','opening_upi', 'opened_at', 'closed_at','restaurant_id'));
             }
         } else {
             $location = Location::where('user_id', $currentUserId)->get()->toArray();
             
+        
 
 
-
-            $currentUserId = Auth::user()->id;
-            $data1 = User::where('id', $currentUserId)->get()->toArray();
-            $restaurant_id = $data1[0]['restaurant_id'];            
+            
+               
             return view('dailyregister', ['loc'=>$location, 'restaurant_id'=>$restaurant_id]);
+        
         }
-
         
     }
 
