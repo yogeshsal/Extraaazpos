@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Daily_register;
 use App\Models\Add_floor;
 use App\Models\Customer;
+use App\Models\User;
 use Auth;
 use DB;
 
@@ -29,7 +30,11 @@ class FloorSettingController extends Controller
          
            $loc_id = $lastInsertedUser['loc_id']?? '';
 
-        return view('add_floor',compact('loc_id'));
+            $currentUserId = Auth::user()->id;
+            $data1 = User::where('id', $currentUserId)->get()->toArray();
+            $restaurant_id = $data1[0]['restaurant_id']; 
+
+        return view('add_floor',compact('loc_id','restaurant_id'));
 
     }
 
@@ -97,7 +102,11 @@ class FloorSettingController extends Controller
 
         $customer = Customer::all();
 
-        return view('billing',compact('bal','table'),['customer'=>$customer]);
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id']; 
+
+        return view('billing',compact('bal','table'),['customer'=>$customer, 'restaurant_id'=>$restaurant_id]);
 
     }
 

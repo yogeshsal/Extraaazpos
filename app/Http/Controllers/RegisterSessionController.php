@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Daily_register;
 use App\Models\Location;
+use App\Models\User;
 use Auth;
 
 
@@ -24,9 +25,13 @@ class RegisterSessionController extends Controller
         $data = $dataQuery->paginate(20);        
         
         //this location is for search match
-        $location= Location::where('user_id', Auth::user()->id)->get();     
+        $location= Location::where('user_id', Auth::user()->id)->get();   
+        
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id']; 
 
-        return view('register_session',['sessions' => $data,'location'=>$location]);
+        return view('register_session',['sessions' => $data,'location'=>$location, 'restaurant_id'=>$restaurant_id]);
     }
 
 

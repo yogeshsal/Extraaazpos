@@ -108,11 +108,9 @@ tr {
                     @foreach($data as $item)
                     <tr>
                         <td>
-
-
                             @if (isset($item->item_image))
                             <img src="{{ asset('storage/' . $item->item_image) }}" alt="Image" class="table-image"
-                                width="20" height="20">
+                                width="100px" height="100px">
                             @else
                             <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image"
                                 class="table-image">
