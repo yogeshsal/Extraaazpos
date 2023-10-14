@@ -185,7 +185,4 @@ Route::view('integrations', 'company-admin.integrations');
 Route::view('materials', 'rawmaterials.materials.index');
 Route::view('intermediates', 'rawmaterials.intermediates.index');
 Route::view('raw-categories', 'rawmaterials.categories.index');
-// Route::view('taxes', 'c.taxes.index');
-
-//report
-Route::view('report','report.report');
+Route::view('taxes', 'rawmaterials.taxes.index');

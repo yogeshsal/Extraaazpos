@@ -780,7 +780,7 @@
                                     <a href="/owner" class="nav-link" data-key="t-starter"> Modifier Groups </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/owner" class="nav-link" data-key="t-starter"> Taxes </a>
+                                    <a href="/taxes" class="nav-link" data-key="t-starter"> Taxes </a>
                                 </li>
                             </ul>
                         </div>
