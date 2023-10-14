@@ -80,7 +80,7 @@
                                     <div class="d-flex align-items-center">
                                         <div class="input-group mr-2">
                                             <label for="searchInput" class="mr-2">Table</label>
-                                            <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
+                                            <input  type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                                 <div class="card-body">
                                     <button type="button" class="btn btn-primary">Note</button>
                                     <button type="button" class="btn btn-secondary">Hold</button>
-                                    <button type="button" class="btn btn-danger">Finish Order
+                                  <a href="{{ route('print.kot') }}" target="_blank"><button id="placeOrderButton" type="button"  class="btn btn-danger kot" >Finish Order</button></a>
                                 </div>
                             </div>
                         </div>
@@ -297,9 +297,46 @@ resultDiv.appendChild(cardRow);
     var totalAmountElement = document.getElementById('total-amount');
     totalAmountElement.textContent = totalAmount;
 }
+</script>
 
 
 
-    </script>
+
+
+
+<script type="text/javascript">
+    document.getElementById('placeOrderButton').addEventListener('click', function() {
+        placeOrder();
+    });
+
+    function placeOrder() {
+        // Prepare the data to send to the controller
+        var orderData = {
+            items: selectedItems, // An array of selected items
+            totalAmount: parseFloat(document.getElementById('total-amount').textContent)
+        };
+
+        // Make an AJAX request to the controller endpoint
+        fetch('/print-kot', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response, if needed
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+
+
+
+
     
 @endsection

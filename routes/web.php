@@ -96,6 +96,15 @@ Route::put('/update', [App\Http\Controllers\CustomerController::class,'update'])
 // Route::view('orders', 'orders.index');
 Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index1']);
 
+Route::get('/print-kot',[App\Http\Controllers\OrderController::class, 'printContent'])->name('print.kot');
+
+Route::post('/print-kot',[App\Http\Controllers\OrderController::class, 'placeOrder'])->name('print.kot');
+
+//Route::view('print-kot','orders.print_kot');
+
+
+// Route::post('/place-order', [App\Http\Controllers\OrderController::class,'placeOrder'])->name('place.order');
+
 
 //ITEM
 // Route::view('items', 'items.index');
