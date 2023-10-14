@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Daily_register;
 use App\Models\Add_floor;
 use App\Models\Customer;
+use App\Models\Discount;
 use App\Models\User;
 use Auth;
 use DB;
@@ -105,6 +106,9 @@ class FloorSettingController extends Controller
         $currentUserId = Auth::user()->id;
         $data1 = User::where('id', $currentUserId)->get()->toArray();
         $restaurant_id = $data1[0]['restaurant_id']; 
+
+        $discount = Discount::all();
+        dd($discount);
 
         return view('billing',compact('bal','table'),['customer'=>$customer, 'restaurant_id'=>$restaurant_id]);
 

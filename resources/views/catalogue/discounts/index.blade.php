@@ -265,6 +265,16 @@ tr {
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <div class="form-group">
+                                                                        <label for="name">Restaurant ID</label>
+                                                                        <input type="text" name="restaurant_id"
+                                                                            class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
 
 
