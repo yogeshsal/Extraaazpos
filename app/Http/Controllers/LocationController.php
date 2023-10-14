@@ -28,6 +28,7 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         // Validate the form data
+        $currentUserId = Auth::user()->id;
         $validatedData = $request->validate([
             'name' => 'required|string',
             'type' => 'required|in:Online,Inventory,Point Of Sale',
@@ -40,11 +41,13 @@ class LocationController extends Controller
             'stock_location' => 'nullable|string',
             'brand' => 'nullable|string',
             'max_slot_number' => 'nullable|integer',
+            
             // Add more validation rules for other fields
         ]);
     
+        $validatedData['user_id'] = Auth::user()->id;
         // Create a new Location instance and fill it with the validated data
-        $location = new Location();
+        $location = new Location();  
         $location->fill($validatedData);
     
         // Save the location to the database
