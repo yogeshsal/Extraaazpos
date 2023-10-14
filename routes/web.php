@@ -21,8 +21,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/owner', [App\Http\Controllers\OwnerController::class, 'index'])->name('owner')->middleware('owner');
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin')->middleware('admin');
 Route::get('/cashier', [App\Http\Controllers\CashierController::class, 'index'])->name('cashier')->middleware('cashier');
@@ -33,34 +31,19 @@ Route::get('/kitchen', [App\Http\Controllers\KitchenController::class, 'index'])
 //register
 Route::view('create_register', 'create_register');
 Route::view('close_register', 'close_register');
-
-
 Route::get('dailyregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegisterOpen'])->middleware('admin');
 Route::get('closeregister', [App\Http\Controllers\DailyRegisterController::class, 'checkRegister'])->middleware('admin');
 
 
 //billing
-
-// Route::view('billing', 'billing');
-
-// Route::get('/dailyregister', function () {
-//     return view('dailyregister');
-// });
-
-// Route::get('/location', function () {
-//     return view('location.location');
-// });
-
-
 Route::post('store-form', [App\Http\Controllers\LocationController::class, 'store']);
 Route::post('select_register', [App\Http\Controllers\DailyRegisterController::class, 'passlocation']);
 Route::post('/storeRegister', [App\Http\Controllers\DailyRegisterController::class, 'storeregister'])->name('storeRegister');
-
 Route::post('/closeregister', [App\Http\Controllers\DailyRegisterController::class, 'closeregister'])->middleware('owner');
 
 
 //register Session
- Route::get('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('owner');
+ Route::get('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('admin');
 //  Route::get('index', [App\Http\Controllers\RegisterSessionController::class, 'fetchSessions'])->middleware('owner');
 
 // Route::post('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('owner');
@@ -89,7 +72,7 @@ Route::put('/update', [App\Http\Controllers\CustomerController::class,'update'])
 //billing
 
 
-// Route::get('categories/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->middleware('owner');
+
 
 
 //ORDER
