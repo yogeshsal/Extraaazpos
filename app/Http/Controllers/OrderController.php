@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Item;
 use App\Models\User;
 use Auth;
+use DB; 
 
 class OrderController extends Controller
 {
@@ -29,9 +30,25 @@ class OrderController extends Controller
         return view('orders.index',['categoryCounts' => $categoryCounts, 'restaurant_id'=>$restaurant_id]);
     }
        
-    public function getitems(Request $request, $categoryId) {
-    $items = Item::where('item_category_id', $categoryId)->get();
-
-    return response()->json(['items' => $items]);
-}
+    public function getitems(Request $request, $categoryId)
+    {
+        // Get the currently logged-in user's ID
+        $userId = Auth::id();
+    
+        $data = DB::table('items AS i')
+            ->leftJoin('taxitems AS t', function ($join) {
+                $join->on(DB::raw('JSON_UNQUOTE(JSON_EXTRACT(t.item_id, \'$[0]\'))'), '=', 'i.id')
+                    ->orWhere(DB::raw('JSON_UNQUOTE(JSON_EXTRACT(t.item_id, \'$[1]\'))'), '=', 'i.id');
+            })
+            ->leftJoin('taxes AS tx', 't.tax_id', '=', 'tx.id')
+            ->select('i.item_default_sell_price', 'i.item_image', 'i.item_name', 't.tax_id', 't.status AS tax_status', 'tx.name AS tax_name')
+            ->where('i.user_id', $userId) // Add a condition to filter items by the user's ID
+            ->get();
+    
+        if ($data->isEmpty()) {
+            return response()->json(["message" => "No items with associated taxes found for this user."]);
+        }
+    
+        return response()->json($data, 200, [], JSON_PRETTY_PRINT);
+    }
 }

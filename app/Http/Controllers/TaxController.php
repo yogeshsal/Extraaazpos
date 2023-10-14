@@ -51,13 +51,17 @@ class TaxController extends Controller
     {        
         $currentUserId = Auth::user()->id;
         $tax = Tax::find($id);
-
+      
+       
         $item_ids = Taxitem::where('tax_id', $id)->pluck('item_id')->flatten()->toArray();
 
         $items = Item::leftJoin('categories', 'items.item_category_id', '=', 'categories.id')
         ->whereIn('items.id', $item_ids)->get();
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];    
+        return view('catalogue.taxes.edit', compact('tax','items','restaurant_id'));       
         
-        return view('catalogue.taxes.edit', compact('tax','items'));
     }
 
 
@@ -102,8 +106,11 @@ class TaxController extends Controller
             // Access $selectedItemIds[0] here
             $ids = $selectedItemIds[0];
         }
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];    
+        return view('catalogue.taxes.select_items',compact('items','ids','restaurant_id'));       
         
-        return view('catalogue.taxes.select_items',compact('items','ids'));
     }
 
 
