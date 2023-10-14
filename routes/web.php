@@ -173,6 +173,10 @@ Route::view('user-roles', 'company-admin.user-roles');
 Route::view('employees', 'company-admin.employees');
 //Route::view('locations', 'company-admin.locations')->middleware('admin');
 Route::get('/locations', [App\Http\Controllers\LocationController::class, 'index'])->name('locations')->middleware('admin');
+Route::post('/locations', 'App\Http\Controllers\LocationController@store')->name('locations.store');
+Route::get('/locations/pos', 'LocationController@posTab')->name('locations.pos');
+
+
 Route::view('brands', 'company-admin.brands');
 Route::view('print_templates', 'company-admin.print_templates');
 Route::view('integrations', 'company-admin.integrations');
@@ -181,7 +185,4 @@ Route::view('integrations', 'company-admin.integrations');
 Route::view('materials', 'rawmaterials.materials.index');
 Route::view('intermediates', 'rawmaterials.intermediates.index');
 Route::view('raw-categories', 'rawmaterials.categories.index');
-// Route::view('taxes', 'c.taxes.index');
-
-//report
-Route::view('report','report.report');
+Route::view('taxes', 'rawmaterials.taxes.index');

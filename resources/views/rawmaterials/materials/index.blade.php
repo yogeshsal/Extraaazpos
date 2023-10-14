@@ -81,7 +81,7 @@
 
 
                         <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
-                        <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#chargesModal">
+                        <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#intermediateModal">
                             <i class="bi bi-plus-lg fw-bolder text-white"></i> New Material</button>
                     </div>
 
@@ -141,7 +141,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade modal-lg" id=" " tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-lg" id="intermediateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -157,65 +157,40 @@
                     @csrf
 
                     <div class="row form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="tax_type">Type</label>
-                                <select name="tax_type" id="tax_type" class="form-control" required >
-                                    <option value="" disabled selected>Select Tax Type</option>                                         
-                                    <option value="gst">GST</option>
-                                    <option value="custom">Customn</option>
-                                    <option value="purchasereceive">PurchaseReceive</option>                                    
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="tax_code">Tax Code</label>
-                                <select name="tax_code" id="tax_code" class="form-control">  
-                                    <option value="" disabled selected>Select Tax Code</option>                                  
-                                    <option value="igst">IGST</option>
-                                    <option value="sgst">SGST</option>
-                                    <option value="cgst">CGST</option>                                    
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row form-row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Name:</label>
+                                <label for="name"> Product Name<span class="asterisk">*</span></label>
+                                
                                 <input type="text" name="name" class="form-control" required>
+                                <p class="text-muted">Product name as it will be displayed throughout the system</p>
                             </div>
                         </div>                        
                     </div>
 
-                    <div class="row form-row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="description">Description:</label>
-                                <input type="text" name="description" class="form-control">
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <div class="row form-row">
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label for="applicable_on">Applicable On</label>
-                                <select name="applicable_on" id="applicable_on" class="form-control" required>
-                                    <option value="" disabled selected>Select Applicable On</option>                                         
-                                    <option value="item_price">Item Price</option>
-                                    <option value="charge">Charge</option>                                                                       
-                                </select>
-                            </div>
-                        </div>
+                            <label for="applicable_on">Brand</label>
+                            <div class="input-group">
+                <input type="text" name="brand" class="form-control" placeholder="Enter Brand Name" required>
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#brandModal">+</button>
+                </div>
+            </div>                            
+            
+            <p class="text-muted">Link brands for better reporting and insights</p>
+                            
+        </div>
+                        
+        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                             <div class="form-group">
-                                <label for="tax_percentage">Tax Percentage:</label>
-                                <input type="text" name="tax_percentage" class="form-control" required>
+                                <label for="tax_percentage">Category</label>
+                                <input type="text" name="category" class="form-control" required>
+                                <p class="text-muted">Select a category for product</p>
                             </div>
                             </div>
                         </div>
@@ -224,20 +199,142 @@
                     <div class="row form-row">
                         <div class="col-md-6">
                         <div class="form-group">
-                            <label for="applicable_modes">Applicable Modes</label>
-                                <select name="applicable_modes" id="applicable_modes" class="form-control" required>
-                                    <option value="" disabled selected>Select Applicable Modes</option>                                         
-                                    <option value="online">Online</option>
-                                    <option value="in_store">In Store</option>                                                                       
-                                </select>
+                            <label for="applicable_modes">Suppliers</label>
+                            <div class="input-group">
+                <input type="text" name="brand" class="form-control" placeholder="Enter Brand Name" required>
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#supplierModal">+</button>
+                </div>
+            </div>                            
+            <p class="text-muted">Default supplier for the product.</p>
+
                             </div>
                         </div>
                         <div class="col-md-6">
                             
                         </div>
                     </div>
+                    <div>
+                    <h4 class="p-0">Product Locations</h4>
+                    <p class="text-muted">Locations that the product is available at.The product can only be sold at these locations and inventory can also only be added at this location for the product.You can add/disable locations for a product as required.
 
-                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+Cant see a location?Please ask your administrator to ensure you have permission to create products for that location</p>
+                </div>
+
+                <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>NAME</th>
+                        <th ><input type="checkbox">Applicable</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>                
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        
+    </tbody>
+</table>
+
+<div>
+                    <h4 class="p-0">Unit of Measurement</h4>
+                    <p class="text-muted">1.Base Unit: The unit for tracking inventory. This is the minimum amount you can sell at.</p>
+                    <p class="text-muted">2.Default Unit: The default unit to be chosen to show inventory in, sell and receive with.</p>
+
+                </div>
+                <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>NAME</th>
+                        <th >SCALE</th>
+                        <th >TYPE</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                                    
+            <tr>                
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        
+    </tbody>
+</table>
+
+
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="input-group ">
+                     <button type="button" class="btn btn-outline-secondary m-1"> +Add Unit</button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                    <h4 class="p-0">Identifiers</h4>
+                </div>
+
+
+                <div class="row form-row mt-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name"> SKU </label>
+                                
+                                <input type="text" name="name" class="form-control" required>
+                                <p class="text-muted">Unique stock keeping code. If left blank a code will be auto generated</p>
+
+                            </div>
+                        </div> 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="applicable_on">Barcode</label>
+                            <input type="text" name="brand" class="form-control" placeholder="Enter Brand Name"required>
+                            <p class="text-muted">Barcode if any printed on the product</p>
+
+                            </div>
+                        </div>                       
+                    </div>
+
+                    
+
+                    <div class="row form-row mt-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="applicable_on">Minimum Stock Level pcs</label>
+                            <input type="text" name="brand" class="form-control" placeholder="Enter Brand Name"required>
+                            <p class="text-muted">When stock levels drop below this quantity, you will see low stock alerts</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <div class="form-group">
+                                <label for="tax_percentage">HSN</label>
+                                <input type="text" name="category" class="form-control" required>
+                                <p class="text-muted">Harmonized System of Nomenclature</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row form-row mt-2">
+                        <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="applicable_modes">Standard Cost for 1 pcs</label>
+                            <input type="text" name=" " class="form-control" placeholder="Enter Supplier Name"required>
+                            <p class="text-muted">Standard Cost Price, A separate weighted average cost will be automatically calculated as you receive stock.</p>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            
+                        </div>
+                    </div>
+                    <div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-orange">Save</button>
@@ -249,17 +346,12 @@
 </div>
 
 
-<!-- edit modal -->
-
 
 <!-- edit modal -->
 
-<script>
-    $(document).ready(function () {
-        $('#is_recommended').bootstrapSwitch();
-        $('#is_package_good').bootstrapSwitch();
-        $('#sell_by_weight').bootstrapSwitch();
-    });
-</script>
+
+
+<!-- edit modal -->
+
 
 @endsection

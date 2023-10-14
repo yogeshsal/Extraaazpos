@@ -151,21 +151,16 @@
                 <div>
                 <h4 class="modal-title" id="exampleModalLabel">New Product</h4>
                 <p>Basic Information</p>
-</div>
+            </div>
 
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span> -->
+                
                 </button>
             </div>
             <div class="modal-body">
                 <div class="container">            
                 <form action=" " method="POST">
                     @csrf
-
-                    
-
-
-                    <div class="row form-row">
+                     <div class="row form-row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="name"> Product Name<span class="asterisk">*</span></label>

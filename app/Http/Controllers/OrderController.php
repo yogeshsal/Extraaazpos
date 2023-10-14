@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\item;
+use App\Models\Item;
+use App\Models\User;
 use Auth;
 use DB;
 
@@ -22,8 +23,11 @@ class OrderController extends Controller
         }
         
       
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id']; 
         
-        return view('orders.index',['categoryCounts' => $categoryCounts]);
+        return view('orders.index',['categoryCounts' => $categoryCounts, 'restaurant_id'=>$restaurant_id]);
     }
        
     public function getitems(Request $request, $categoryId) {
