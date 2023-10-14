@@ -107,10 +107,12 @@ class FloorSettingController extends Controller
         $data1 = User::where('id', $currentUserId)->get()->toArray();
         $restaurant_id = $data1[0]['restaurant_id']; 
 
-        $discount = Discount::all();
-        //dd($discount);
+        // $data = User::where('id', $currentUserId)->pluck('restaurant_id');
+        // dd($data[0]);
+        $discounts = Discount::where('restaurant_id',$restaurant_id)->get()->toArray();
+        
 
-        return view('billing',compact('bal','table'),['customer'=>$customer, 'restaurant_id'=>$restaurant_id]);
+        return view('billing',compact('bal','table'),['customer'=>$customer, 'restaurant_id'=>$restaurant_id, 'discounts'=>$discounts]);
 
     }
 
