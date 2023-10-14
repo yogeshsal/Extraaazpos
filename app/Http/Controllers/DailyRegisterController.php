@@ -104,6 +104,7 @@ class DailyRegisterController extends Controller
         $currentUserId = Auth::user()->id;
             $data1 = User::where('id', $currentUserId)->get()->toArray();
             $restaurant_id = $data1[0]['restaurant_id']; 
+            $user_name = $data1[0]['name'];
         //dd($currentUserId);
         $lastInsertedUserId = DB::table('daily_registers')
             ->where('user_id', $currentUserId)
@@ -125,7 +126,7 @@ class DailyRegisterController extends Controller
           $opened_at = $lastInsertedUser['created_at']?? '';
           $closed_at = $lastInsertedUser['updated_at']?? '';
         
-          //dd( $lastInsertedUser );
+         // dd( $opened_at );
         //  $lastInsertedUser->created_at = ($lastInsertedUser->created_at->addHours(24));
 
 
@@ -144,7 +145,7 @@ class DailyRegisterController extends Controller
             else{
                 
                                 
-              return view('close_register', compact('id','status','opening_cash','opening_card','opening_credit','opening_upi', 'opened_at', 'closed_at','restaurant_id'));
+              return view('close_register', compact('id','status','opening_cash','opening_card','opening_credit','opening_upi', 'opened_at', 'closed_at','restaurant_id','user_name'));
             }
         } else {
             $location = Location::where('user_id', $currentUserId)->get()->toArray();
