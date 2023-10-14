@@ -10,7 +10,7 @@ use App\models\User;
 use App\models\Foodtype;
 use App\models\Locationitem;
 use App\models\Taxitem;
-use App\models\Chargesitem; 
+use App\models\Chargesitem;
 use Auth;
 
 class ItemController extends Controller
@@ -36,11 +36,11 @@ class ItemController extends Controller
             ->pluck('name', 'id');
 
         $foodtype = Foodtype::pluck('name', 'id');
-        
+
         $data1 = User::where('id', $currentUserId)->get()->toArray();
         $restaurant_id = $data1[0]['restaurant_id'];
 
-        return view('catalogue.items.index', compact('data', 'categories', 'locations', 'foodtype', 'user_name','restaurant_id'));
+        return view('catalogue.items.index', compact('data', 'categories', 'locations', 'foodtype', 'user_name', 'restaurant_id'));
     }
 
     public function store(Request $request)
@@ -64,7 +64,7 @@ class ItemController extends Controller
         $data->item_external_id = $request->item_external_id;
         //dd($data);
         $data->save();
-        return redirect('items')
+        return redirect('/items')
             ->with('success', 'Item added successfully.');
     }
 
@@ -83,17 +83,17 @@ class ItemController extends Controller
 
         $locationCount = $locations->count();
 
-        $tax = Taxitem::leftJoin('taxes','taxitems.tax_id','=','taxes.id')
-        ->whereJsonContains('item_id',$id)->get();
-   
-        $charge = Chargesitem::leftJoin('charges','chargesitems.charge_id','=','charges.id')
-        ->whereJsonContains('item_id',$id)->get();
+        $tax = Taxitem::leftJoin('taxes', 'taxitems.tax_id', '=', 'taxes.id')
+            ->whereJsonContains('item_id', $id)->get();
+
+        $charge = Chargesitem::leftJoin('charges', 'chargesitems.charge_id', '=', 'charges.id')
+            ->whereJsonContains('item_id', $id)->get();
 
         $data1 = User::where('id', $currentUserId)->get()->toArray();
         $restaurant_id = $data1[0]['restaurant_id'];
 
-        
-        return view('catalogue.items.edit', compact('item', 'categories', 'locations', 'foodtype', 'locationCount','tax','charge','restaurant_id'));
+
+        return view('catalogue.items.edit', compact('item', 'categories', 'locations', 'foodtype', 'locationCount', 'tax', 'charge', 'restaurant_id'));
     }
 
 
@@ -137,10 +137,9 @@ class ItemController extends Controller
         $item->update($validatedData);
 
         // Redirect to a success page or back to the edit form with a success message
-        return redirect('items')->with('success', 'Item updated successfully');
+        // return redirect('items')->route('items.edit')->with('success', 'Item updated successfully');
+        return redirect("/items")->with('success', 'Item updated successfully');
     }
-
-
 
 
     public function updateImage(Request $request, $id)
