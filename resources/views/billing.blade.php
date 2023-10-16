@@ -338,7 +338,7 @@
                                 class="btn btn-light btn-icon rounded-pill"><i class=" ri-earth-line"></i></button>
                             <button type="button" data-bs-toggle="modal" data-bs-target="#modalnote"
                                 class="btn btn-light btn-icon rounded-pill"><i class=" ri-file-edit-line"></i></button>
-                            <button class="btn btn-outline-success btn-lg float-end" type="button">Pay</button>
+                            <button class="btn btn-outline-success btn-lg float-end" type="button">Collect</button>
 
 
 

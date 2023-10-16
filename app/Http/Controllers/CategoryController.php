@@ -143,7 +143,10 @@ public function showitems($id){
     ->select('items.*', 'categories.cat_name')
     ->get();
     //dd($items);
-    return view('catalogue.categories.select-items', compact('items'));
+    $currentUserId = Auth::user()->id;
+    $data1 = User::where('id', $currentUserId)->get()->toArray();
+    $restaurant_id = $data1[0]['restaurant_id'];
+    return view('catalogue.categories.select-items', compact('items','restaurant_id'));
 }
 
 
