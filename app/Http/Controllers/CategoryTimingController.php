@@ -7,6 +7,7 @@ use App\Models\CategoryTiming;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Item;
+use App\models\User;
 use Auth;
 use DB;
 
@@ -18,7 +19,11 @@ class CategoryTimingController extends Controller
         ->select('users.name as username','category_timings.*')
         ->where('category_timings.user_id',Auth::user()->id)
         ->paginate(20);
-        return view('catalogue.categoryTiming.index',['time'=>$data]);
+
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        return view('catalogue.categoryTiming.index',['time'=>$data, 'restaurant_id'=>$restaurant_id]);
     }
 
     function addCategoryTiming(Request $request)
@@ -100,9 +105,10 @@ class CategoryTimingController extends Controller
             $itemCounts[$cat_id] = $item_count;
         }
 
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
 
-
-        return view('catalogue.categoryTiming.edit', compact('timing','categories','locations','itemCounts'),['categoryNames' => $categoryNames]);
+        return view('catalogue.categoryTiming.edit', compact('timing','categories','locations','itemCounts' ,'restaurant_id'),['categoryNames' => $categoryNames]);
     }
 
     public function update(Request $request, $id)
@@ -167,8 +173,10 @@ class CategoryTimingController extends Controller
             $itemCounts[$cat_id] = $item_count;
         }
         //dd($itemCounts);
-        
-       return view('catalogue.categoryTiming.select_category', compact('categories', 'itemCounts'));
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+       return view('catalogue.categoryTiming.select_category', compact('categories', 'itemCounts','restaurant_id'));
     }
 
     public function associateCategories(Request $request,$id)
@@ -203,4 +211,3 @@ class CategoryTimingController extends Controller
 
 
 }
-

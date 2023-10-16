@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('mobile');
             $table->string('email');
             $table->date('date_of_birth');
-            $table->string('address');
-            $table->integer('tax_number');
+            $table->string('address');            
+            $table->string('tax_number', 10)->nullable()->unique()->comment('PAN Number (10 characters)');
             $table->integer('credit_limit');
             $table->string('note');
             $table->timestamps();

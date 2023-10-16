@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Location;
 use App\Models\Item;
 use App\Models\CategoryTiming;
+use App\models\User;
 use Auth;
 use DB;
 
@@ -21,8 +22,12 @@ class CategoryController extends Controller
         $location =Location::where('user_id',Auth::user()->id)->get();
 
         $timing = CategoryTiming::where('user_id',Auth::user()->id)->get();
+
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
         
-        return view('catalogue.categories.index',['categories'=>$data,'location'=>$location,'timing'=>$timing]);
+        return view('catalogue.categories.index',['categories'=>$data,'location'=>$location,'timing'=>$timing, 'restaurant_id'=>$restaurant_id]);
     }
 
     public function store(Request $request)
@@ -57,8 +62,12 @@ class CategoryController extends Controller
         ->select('items.*', 'categories.cat_name')
         ->where('categories.id', $id)
         ->paginate(2); 
-        $itemCount = $items->total();        
-        return view('catalogue.categories.edit', compact('category','categories', 'category_desc','timing','items','itemCount'));
+        $itemCount = $items->total();   
+        
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        return view('catalogue.categories.edit', compact('category','categories', 'category_desc','timing','items','itemCount','restaurant_id'));
     }
 
     public function catupdate(Request $request, $id)

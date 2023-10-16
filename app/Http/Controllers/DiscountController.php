@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\models\Discount;
+use App\models\User;
 use Auth;
 
 use Illuminate\Http\Request;
@@ -11,7 +12,13 @@ class DiscountController extends Controller
     public function index()
     {
         $data = Discount::all(); 
-        return view('catalogue.discounts.index',['data'=>$data]);        
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id']; 
+
+        
+             
+        return view('catalogue.discounts.index',['data'=>$data, 'restaurant_id'=>$restaurant_id]);        
     }
 
     public function add_discount(Request $request)
@@ -26,7 +33,9 @@ class DiscountController extends Controller
         $data->max_discount_value = $request->max_discount_value;
         $data->min_total_amount = $request->min_total_amount;
         $data->auto_apply_billing_type = $request->auto_apply_billing_type;
-        $data->user_role = $request->user_role;
+        $data->user_role = $request->user_role; 
+        $data->restaurant_id = $request->restaurant_id;             
+       
         $data->save();
         return redirect('discounts');
 

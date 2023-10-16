@@ -33,7 +33,11 @@ class ModifierGroupsController extends Controller
 
         $modifiergrouptype = Modifier_group_type::pluck('type', 'id');  
         //dd($modifiergrouptype);
-        return view('catalogue.modifier-group.index',compact('data', 'user_name','modifiergrouptype'));
+
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];           
+        return view('catalogue.modifier-group.index',compact('data', 'user_name','modifiergrouptype', 'restaurant_id'));
     }
 
 

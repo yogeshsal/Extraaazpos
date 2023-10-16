@@ -10,7 +10,7 @@ use App\models\User;
 use App\models\Foodtype;
 use App\models\Locationitem;
 use App\models\Taxitem;
-use App\models\Chargesitem; 
+use App\models\Chargesitem;
 use Auth;
 
 class ItemController extends Controller
@@ -19,7 +19,10 @@ class ItemController extends Controller
     public function index()
     {
         $currentUserId = Auth::user()->id;
-        $data = Item::where('user_id', $currentUserId)->with('category')->paginate(3);
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        
+        $data = Item::where('restaurant_id',$restaurant_id )->with('category')->paginate(3);
 
         $resultArray = $data->toArray();
         //dd($resultArray);
@@ -37,13 +40,19 @@ class ItemController extends Controller
 
         $foodtype = Foodtype::pluck('name', 'id');
 
-        return view('catalogue.items.index', compact('data', 'categories', 'locations', 'foodtype', 'user_name'));
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+
+        return view('catalogue.items.index', compact('data', 'categories', 'locations', 'foodtype', 'user_name', 'restaurant_id'));
     }
 
     public function store(Request $request)
     {
         //dd("yes");
         $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];       
+       
         $data = new Item;
         $data->user_id = $currentUserId;
         $data->item_name = $request->item_name;
@@ -59,9 +68,12 @@ class ItemController extends Controller
         $data->item_markup_price = $request->item_markup_price;
         $data->item_aggregator_price = $request->item_aggregator_price;
         $data->item_external_id = $request->item_external_id;
+        $data->handle = $request->handle;
+        $data->item_description = $request->item_description;
+        $data->restaurant_id = $restaurant_id;
         //dd($data);
         $data->save();
-        return redirect('items')
+        return redirect('/items')
             ->with('success', 'Item added successfully.');
     }
 
@@ -80,13 +92,17 @@ class ItemController extends Controller
 
         $locationCount = $locations->count();
 
-        $tax = Taxitem::leftJoin('taxes','taxitems.tax_id','=','taxes.id')
-        ->whereJsonContains('item_id',$id)->get();
-   
-        $charge = Chargesitem::leftJoin('charges','chargesitems.charge_id','=','charges.id')
-        ->whereJsonContains('item_id',$id)->get();
-        
-        return view('catalogue.items.edit', compact('item', 'categories', 'locations', 'foodtype', 'locationCount','tax','charge'));
+        $tax = Taxitem::leftJoin('taxes', 'taxitems.tax_id', '=', 'taxes.id')
+            ->whereJsonContains('item_id', $id)->get();
+
+        $charge = Chargesitem::leftJoin('charges', 'chargesitems.charge_id', '=', 'charges.id')
+            ->whereJsonContains('item_id', $id)->get();
+
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+
+
+        return view('catalogue.items.edit', compact('item', 'categories', 'locations', 'foodtype', 'locationCount', 'tax', 'charge', 'restaurant_id'));
     }
 
 
@@ -96,6 +112,7 @@ class ItemController extends Controller
         $request->validate([
             'item_name' => 'required|string|max:255',
             'item_short_name' => 'required|string|max:255',
+            'handle' => 'required|string|max:255',
             'item_category_id' => 'required|string|max:255',
             'item_pos_code' => 'required|string|max:255',
             'item_food_type' => 'required|string|max:255',
@@ -119,6 +136,7 @@ class ItemController extends Controller
         $validatedData = $request->validate([
             'item_name' => 'required|string|max:255',
             'item_short_name' => 'required|string|max:255',
+            'handle' => 'required|string|max:255',
             'item_category_id' => 'required|string|max:255',
             'item_pos_code' => 'required|string|max:255',
             'item_food_type' => 'required|string|max:255',
@@ -127,13 +145,9 @@ class ItemController extends Controller
         ]);
 
         // Update the customer's data
-        $item->update($validatedData);
-
-        // Redirect to a success page or back to the edit form with a success message
-        return redirect('items')->with('success', 'Item updated successfully');
+        $item->update($validatedData);        
+        return redirect("/items")->with('success', 'Item updated successfully');
     }
-
-
 
 
     public function updateImage(Request $request, $id)

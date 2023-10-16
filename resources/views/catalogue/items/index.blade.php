@@ -55,12 +55,16 @@ tr {
 }
 </style>
 
-
-
-
 <div class="main-content">
 
     <div class="page-content">
+
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <div class="card shadow">
             <div class="card-body d-flex justify-content-between align-items-center">
                 <div>
@@ -108,9 +112,9 @@ tr {
                     @foreach($data as $item)
                     <tr>
                         <td>
-                            @if ($item->item_image)
+                            @if (isset($item->item_image))
                             <img src="{{ asset('storage/' . $item->item_image) }}" alt="Image" class="table-image"
-                                width="20" height="20">
+                                width="100px" height="100px">
                             @else
                             <img src="{{ asset('storage/item_images/placeholder.png') }}" alt="Placeholder Image"
                                 class="table-image">
@@ -137,8 +141,8 @@ tr {
 
 
                 </tbody>
-            </table>
-            <div class="text-center">
+            </table><br>
+            <div style="display: flex; justify-content: center;">
                 {{ $data->links() }}
             </div>
 
@@ -180,11 +184,11 @@ tr {
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">New Charge</h4>
+                <h4 class="modal-title" id="exampleModalLabel">New Item</h4>
 
                 <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span> -->
-                </button>
+                <span aria-hidden="true">&times;</span>
+                </button> -->
             </div>
             <div class="modal-body">
                 <div class="container">
@@ -192,14 +196,7 @@ tr {
                         @csrf
                         <div class="row">
                             <div class="card">
-                                <!-- <div class="card-header">
-                                            <h4 class="card-title mb-0">Form Grid</h4>
-                                        </div> -->
-                                <!-- end card header -->
-
                                 <div class="card-body">
-
-
                                     <div class="row form-row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -238,12 +235,6 @@ tr {
                                                     <option value="{{ $locationId }}">{{ $locationName }}</option>
                                                     @endforeach
                                                 </select>
-                                                <!-- <select name="item_pos_code" id="pos_code" class="form-control">
-                                                            <option value="" disabled selected>Select POS</option>
-                                                            @foreach ($locations as $locationId => $locationName)
-                                                            <option value="{{ $locationId }}">{{ $locationName }}</option>
-                                                            @endforeach
-                                                        </select> -->
                                             </div>
                                         </div>
                                     </div>
@@ -259,12 +250,6 @@ tr {
                                                     <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
                                                     @endforeach
                                                 </select>
-                                                <!-- <select name="item_food_type" id="food_type" class="form-control">
-                                                            <option value="" disabled selected>Select Food Type</option>
-                                                            @foreach ($foodtype as $foodtypeId => $foodtypeName)
-                                                            <option value="{{ $foodtypeId }}">{{ $foodtypeName }}</option>
-                                                            @endforeach
-                                                        </select> -->
                                             </div>
                                         </div>
                                         <div class="col-md-6">
