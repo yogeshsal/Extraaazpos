@@ -2,21 +2,6 @@
 @extends('layouts.app')
 @section('ownercontent')
 <!-- Include Bootstrap CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css"
-    rel="stylesheet">
-
-<!-- Include jQuery (required for Bootstrap Switch) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-<!-- Include Bootstrap Switch JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
-<style>
-.form-row {
-    margin-bottom: 20px;
-    /* Add space below each row */
-}
-</style>
 
 <style>
 #content1 {
@@ -353,6 +338,49 @@ table th {
                             </table>
                         </div>
                     </div>
+
+
+                    <div class="tab-content  text-muted">
+                        <div class="tab-pane " id="location" role="tabpanel">
+                            <div class="container-fluid shadow-lg p-0">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h4 class="text-dark">Selected Locations</h4>
+                                                <p class="fs-5 text-muted">Discount is applicable to only these selected locations</p>
+                                            </div>
+                                            <div>
+                                                <a type="button" class="btn btn-orange"
+                                                    href="{{ route('discounts.select_location', $discount->id) }}">Update
+                                                    Locations</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">City</th>
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+
+
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+
                 </div>
                 <!-- /tabContent -->
             </div>

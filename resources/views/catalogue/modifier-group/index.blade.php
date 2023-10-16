@@ -80,7 +80,7 @@ tr {
                             Filters</button>
                         <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal"
                             data-bs-target="#chargesModal">
-                            <i class="bi bi-plus-lg fw-bolder text-white"></i> New Charge</button>
+                            <i class="bi bi-plus-lg fw-bolder text-white"></i> New Modifier Group</button>
                     </div>
 
                 </div>
@@ -228,6 +228,21 @@ tr {
                                     <div class="col-md-6">
                                         <div class="form-group">
 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Sort Order<span class="text-danger">*</span></label>
+                                            <input type="text" name="modifier_sort_order" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">External Id</label>
+                                            <input type="text" name="modifier_external_id" class="form-control">
                                         </div>
                                     </div>
                                 </div>
