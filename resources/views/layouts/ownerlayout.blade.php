@@ -840,9 +840,7 @@
                             <ul class="nav nav-sm flex-column">
 
 
-                                <li class="nav-item">
-                                    <a href="/location" class="nav-link" data-key="t-starter"> Add Location </a>
-                                </li>
+
                                 <li class="nav-item">
                                     <a href="/add_floor" class="nav-link" data-key="t-starter"> Add Floor </a>
                                 </li>
