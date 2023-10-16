@@ -602,9 +602,9 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>NAME</th>
-                            <th>SCALE</th>
-                            <th>TYPE</th>
+                            <th> </th>
+                            <th> </th>
+                            <th> </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -655,6 +655,14 @@
                                     </div>
                                 </div>
                             </td>
+                            <td>
+                            <div class="row form-row">
+                                    <div class="col-md-6">
+                                    <button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
+
+                                    </div>
+                                </div>
+                                </td>
                         </tr>
                     </tbody>
                 </table>
@@ -662,6 +670,10 @@
                         var tableContainer = document.getElementById("tableContainer");
                         tableContainer.innerHTML += tableHtml;
                     });
+                    function deleteRow(button) {
+                        var row = button.closest("tr");
+                        row.remove();
+                    }
                 </script>
 
                 @endsection
