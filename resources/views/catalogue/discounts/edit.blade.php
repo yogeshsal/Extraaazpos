@@ -19,25 +19,10 @@
 </style>
 
 <style>
-* {
-    margin: 0 auto;
-    box-sizing: border-box;
-    font-family: Roboto, sans-serif;
-}
-
-/* body{
-  background:#222;
-} */
-
 #content1 {
     max-width: 100vw;
 }
 
-/* .tabContainer {
-  background: #333;
-  border: .45px solid #555;
-  margin: 0 auto;
-} */
 .tabContent {
     padding: 10px;
     text-align: left;
@@ -89,6 +74,10 @@
     background: #fff;
     color: orange;
 }
+
+table th {
+    background-color: #f5f5f5;
+}
 </style>
 
 <br>
@@ -98,355 +87,284 @@
 </div>
 @endif
 
-
 <div class="main-content">
-
-
     <div class="page-content">
-
         <div class="container-fluid">
-
-
             <div class="row">
-                <div class="col-xxl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="nav nav-tabs mb-3" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab"
+                                    aria-selected="false">
+                                    Details
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " data-bs-toggle="tab" href="#item" role="tab" aria-selected="false">
+                                    Items
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " data-bs-toggle="tab" href="#location" role="tab"
+                                    aria-selected="false">
+                                    Locations
+                                </a>
+                            </li>
+                        </ul>
 
+                        <div class="tab-content  text-muted">
+                            <div class="tab-pane active" id="home" role="tabpanel">
+                                <form action="{{ route('discounts.update', ['id' => $discount->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
 
-                    <div class="card">
-
-                        <div class="card-body">
-
-                            <ul class="nav nav-tabs mb-3" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab"
-                                        aria-selected="false">
-                                        Details
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " data-bs-toggle="tab" href="#item" role="tab"
-                                        aria-selected="false">
-                                        Items
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " data-bs-toggle="tab" href="#location" role="tab"
-                                        aria-selected="false">
-                                        Locations
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div class="tab-content  text-muted">
-                                <div class="tab-pane active" id="home" role="tabpanel">
-                                    <form action="{{ route('discounts.update', ['id' => $discount->id]) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('PUT')
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="name">Disount Name</label>
-                                                    <input type="text" name="discount_name" class="form-control"
-                                                        value="{{ $discount->discount_name }}" required>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Disount Name</label>
+                                                <input type="text" name="discount_name" class="form-control"
+                                                    value="{{ $discount->discount_name }}" required>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="name">Applicable On:</label>
-                                                    <select name="applicable_on" class="form-select"
-                                                        aria-label="Default select example" id="selectOption">
-                                                        <option value="1"
-                                                            {{ $discount->applicable_on == 1 ? 'selected' : '' }}>Bill
-                                                            Sub
-                                                            Total Amount</option>
-                                                        <option value="2"
-                                                            {{ $discount->applicable_on == 2 ? 'selected' : '' }}>
-                                                            Specific
-                                                            Items</option>
-                                                    </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Applicable On:</label>
+                                                <select name="applicable_on" class="form-select"
+                                                    aria-label="Default select example" id="selectOption">
+                                                    <option value="1"
+                                                        {{ $discount->applicable_on == 1 ? 'selected' : '' }}>Bill
+                                                        Sub
+                                                        Total Amount</option>
+                                                    <option value="2"
+                                                        {{ $discount->applicable_on == 2 ? 'selected' : '' }}>
+                                                        Specific
+                                                        Items</option>
+                                                </select>
 
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Discount Type</label>
+                                                <select id="discount_type" class="form-select"
+                                                    aria-label="Default select example">
+                                                    <option value=""
+                                                        {{ is_null($discount->discount_type) ? 'selected' : '' }}>
+                                                        Select Type</option>
+                                                    <option value="Fixed"
+                                                        {{ $discount->discount_type === 'Fixed' ? 'selected' : '' }}>
+                                                        Fixed</option>
+                                                    <option value="Percentage"
+                                                        {{ $discount->discount_type === 'Percentage' ? 'selected' : '' }}>
+                                                        Percentage
+                                                    </option>
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mt-0">
+                                            <!-- Add mt-0 class here -->
+                                            <label for="basic-url">Discount Value</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span id="discount_icon"
+                                                        class="input-group-text">{{ $discount->discount_type === 'Fixed' ? '₹' : '%' }}</span>
                                                 </div>
+                                                <input name="discount_value" type="text" class="form-control"
+                                                    id="basic-url" aria-describedby="basic-addon3"
+                                                    value="{{ $discount->discount_value }}">
                                             </div>
                                         </div>
 
 
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="name">Discount Type</label>
-                                                    <select id="discount_type" class="form-select"
-                                                        aria-label="Default select example">
-                                                        <option value=""
-                                                            {{ is_null($discount->discount_type) ? 'selected' : '' }}>
-                                                            Select Type</option>
-                                                        <option value="Fixed"
-                                                            {{ $discount->discount_type === 'Fixed' ? 'selected' : '' }}>
-                                                            Fixed</option>
-                                                        <option value="Percentage"
-                                                            {{ $discount->discount_type === 'Percentage' ? 'selected' : '' }}>
-                                                            Percentage
-                                                        </option>
-                                                    </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Description:</label>
+                                        <textarea name="desc" class="form-control"
+                                            rows="3">{{ $discount->desc }}</textarea>
+                                    </div>
 
 
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="basic-url">Maximum Discount Value</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon3">₹</span>
                                                 </div>
+                                                <input name="max_discount_value" type="text" class="form-control"
+                                                    id="basic-url" aria-describedby="basic-addon3"
+                                                    value="{{ $discount->max_discount_value }}">
                                             </div>
-                                            <div class="col-md-6 mt-0">
-                                                <!-- Add mt-0 class here -->
-                                                <label for="basic-url">Discount Value</label>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span id="discount_icon"
-                                                            class="input-group-text">{{ $discount->discount_type === 'Fixed' ? '₹' : '%' }}</span>
-                                                    </div>
-                                                    <input name="discount_value" type="text" class="form-control"
-                                                        id="basic-url" aria-describedby="basic-addon3"
-                                                        value="{{ $discount->discount_value }}">
-                                                </div>
-                                            </div>
-
-
                                         </div>
-                                        <div class="form-group">
-                                            <label for="address">Description:</label>
-                                            <textarea name="desc" class="form-control"
-                                                rows="3">{{ $discount->desc }}</textarea>
+                                        <div class="col-md-6">
+                                            <label for="basic-url" id="dynamicLabel">Minimum Bill Sub Total
+                                                Amount</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon3">₹</span>
+                                                </div>
+                                                <input name="min_total_amount" type="text" class="form-control"
+                                                    id="basic-url" aria-describedby="basic-addon3"
+                                                    value="{{ $discount->min_total_amount }}">
+                                            </div>
                                         </div>
 
-
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="basic-url">Maximum Discount Value</label>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon3">₹</span>
-                                                    </div>
-                                                    <input name="max_discount_value" type="text" class="form-control"
-                                                        id="basic-url" aria-describedby="basic-addon3"
-                                                        value="{{ $discount->max_discount_value }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="basic-url" id="dynamicLabel">Minimum Bill Sub Total
-                                                    Amount</label>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon3">₹</span>
-                                                    </div>
-                                                    <input name="min_total_amount" type="text" class="form-control"
-                                                        id="basic-url" aria-describedby="basic-addon3"
-                                                        value="{{ $discount->min_total_amount }}">
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mt-3">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Auto Apply</label><br>
                                                 <input type="checkbox"
                                                     {{ $discount->auto_apply_billing_type ? 'checked' : '' }}
                                                     data-toggle="toggle" id="toggleButton" data-style="ios">
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group" id="textboxContainer">
-                                                    <label for="name">Auto Apply Billing Type</label>
-                                                    <select name="auto_apply_billing_type" class="form-select"
-                                                        aria-label="Default select example" id="textBox">
-                                                        <option value="1"
-                                                            {{ $discount->auto_apply_billing_type == 1 ? 'selected' : '' }}>
-                                                            Ac Table
-                                                        </option>
-                                                        <option value="2"
-                                                            {{ $discount->auto_apply_billing_type == 2 ? 'selected' : '' }}>
-                                                            Inside
-                                                            Section</option>
-                                                        <option value="3"
-                                                            {{ $discount->auto_apply_billing_type == 3 ? 'selected' : '' }}>
-                                                            Pool Section
-                                                        </option>
-                                                        <option value="4"
-                                                            {{ $discount->auto_apply_billing_type == 4 ? 'selected' : '' }}>
-                                                            Token
-                                                        </option>
-                                                        <option value="5"
-                                                            {{ $discount->auto_apply_billing_type == 5 ? 'selected' : '' }}>
-                                                            Dine In
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
                                         </div>
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="name">Authorised User Roles</label>
-                                                    <select name="user_role" class="form-select"
-                                                        aria-label="Default select example">
-                                                        <option value="" {{ $discount->user_role ? '' : 'selected' }}>
-                                                            Select a role
-                                                        </option>
-                                                        <option value="All"
-                                                            {{ $discount->user_role == 'All' ? 'selected' : '' }}>All
-                                                        </option>
-                                                        <option value="Administrator"
-                                                            {{ $discount->user_role == 'Administrator' ? 'selected' : '' }}>
-                                                            Administrator</option>
-                                                        <option value="Cashier"
-                                                            {{ $discount->user_role == 'Cashier' ? 'selected' : '' }}>
-                                                            Cashier</option>
-                                                        <option value="Manager"
-                                                            {{ $discount->user_role == 'Manager' ? 'selected' : '' }}>
-                                                            Manager</option>
-                                                        <option value="Online Order Supervisor"
-                                                            {{ $discount->user_role == 'Online Order Supervisor' ? 'selected' : '' }}>
-                                                            Online Order Supervisor</option>
-                                                        <option value="Satellite Tracker"
-                                                            {{ $discount->user_role == 'Satellite Tracker' ? 'selected' : '' }}>
-                                                            Satellite Tracker</option>
-                                                        <option value="Online Order Processor"
-                                                            {{ $discount->user_role == 'Online Order Processor' ? 'selected' : '' }}>
-                                                            Online Order Processor</option>
-                                                        <option value="Billing User"
-                                                            {{ $discount->user_role == 'Billing User' ? 'selected' : '' }}>
-                                                            Billing User
-                                                        </option>
-                                                        <option value="Captain"
-                                                            {{ $discount->user_role == 'Captain' ? 'selected' : '' }}>
-                                                            Captain</option>
-                                                        <!-- Add more options here if needed -->
-                                                    </select>
-                                                </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group" id="textboxContainer">
+                                                <label for="name">Auto Apply Billing Type</label>
+                                                <select name="auto_apply_billing_type" class="form-select"
+                                                    aria-label="Default select example" id="textBox">
+                                                    <option value="1"
+                                                        {{ $discount->auto_apply_billing_type == 1 ? 'selected' : '' }}>
+                                                        Ac Table
+                                                    </option>
+                                                    <option value="2"
+                                                        {{ $discount->auto_apply_billing_type == 2 ? 'selected' : '' }}>
+                                                        Inside
+                                                        Section</option>
+                                                    <option value="3"
+                                                        {{ $discount->auto_apply_billing_type == 3 ? 'selected' : '' }}>
+                                                        Pool Section
+                                                    </option>
+                                                    <option value="4"
+                                                        {{ $discount->auto_apply_billing_type == 4 ? 'selected' : '' }}>
+                                                        Token
+                                                    </option>
+                                                    <option value="5"
+                                                        {{ $discount->auto_apply_billing_type == 5 ? 'selected' : '' }}>
+                                                        Dine In
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
 
+                                    </div>
 
-                                        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-                                        <div class="modal-footer form-row mt-3">
-
-                                            <button type="submit" class="btn btn-orange">Update</button>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="name">Authorised User Roles</label>
+                                            <select name="user_role" class="form-select"
+                                                aria-label="Default select example">
+                                                <option value="" {{ $discount->user_role ? '' : 'selected' }}>
+                                                    Select a role
+                                                </option>
+                                                <option value="All"
+                                                    {{ $discount->user_role == 'All' ? 'selected' : '' }}>All
+                                                </option>
+                                                <option value="Administrator"
+                                                    {{ $discount->user_role == 'Administrator' ? 'selected' : '' }}>
+                                                    Administrator</option>
+                                                <option value="Cashier"
+                                                    {{ $discount->user_role == 'Cashier' ? 'selected' : '' }}>
+                                                    Cashier</option>
+                                                <option value="Manager"
+                                                    {{ $discount->user_role == 'Manager' ? 'selected' : '' }}>
+                                                    Manager</option>
+                                                <option value="Online Order Supervisor"
+                                                    {{ $discount->user_role == 'Online Order Supervisor' ? 'selected' : '' }}>
+                                                    Online Order Supervisor</option>
+                                                <option value="Satellite Tracker"
+                                                    {{ $discount->user_role == 'Satellite Tracker' ? 'selected' : '' }}>
+                                                    Satellite Tracker</option>
+                                                <option value="Online Order Processor"
+                                                    {{ $discount->user_role == 'Online Order Processor' ? 'selected' : '' }}>
+                                                    Online Order Processor</option>
+                                                <option value="Billing User"
+                                                    {{ $discount->user_role == 'Billing User' ? 'selected' : '' }}>
+                                                    Billing User
+                                                </option>
+                                                <option value="Captain"
+                                                    {{ $discount->user_role == 'Captain' ? 'selected' : '' }}>
+                                                    Captain</option>
+                                                <!-- Add more options here if needed -->
+                                            </select>
                                         </div>
+                                    </div>
 
-                                    </form>
+                                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                                    <div class="modal-footer form-row mt-3">
 
+                                        <button type="submit" class="btn btn-orange">Update</button>
+                                    </div>
 
-                                </div>
+                                </form>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="tab-content  text-muted">
-                            <div class="tab-pane " id="item" role="tabpanel">
-
-                                <div class="container shadow-lg p-0">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div>
-                                                    <h4 class="text-dark">Selected Items</h4>
-                                                    <p class="fs-5 text-muted">Discount is applicable to only these
-                                                        selected items</p>
-                                                </div>
-                                                <div>
-                                                    <a type="button" class="btn btn-orange"
-                                                        href="{{ route('discounts.select_items', $discount->id) }}">Update
-                                                        Items</a>
-                                                </div>
+                    <div class="tab-content  text-muted">
+                        <div class="tab-pane " id="item" role="tabpanel">
+                            <div class="container-fluid shadow-lg p-0">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h4 class="text-dark">Selected Items</h4>
+                                                <p class="fs-5 text-muted">Discount is applicable to only these selected
+                                                    items</p>
+                                            </div>
+                                            <div>
+                                                <a type="button" class="btn btn-orange"
+                                                    href="{{ route('discounts.select_items', $discount->id) }}">Update
+                                                    Items</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <table id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">Selling Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($items as $i)
-                                        <tr>
-                                            <td>{{$i->item_name}}</td>
-                                            <td>{{ $i->cat_name }}</td>
-                                            <td>{{$i->item_default_sell_price}}</td>
-                                        </tr>
-                                        @endforeach
-
-
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
                             </div>
+                            <table class="table" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Selling Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($items as $i)
+                                    <tr>
+                                        <td>{{$i->item_name}}</td>
+                                        <td>{{ $i->cat_name }}</td>
+                                        <td>{{$i->item_default_sell_price}}</td>
+                                    </tr>
+                                    @endforeach
+                                <tbody>
+
+                                </tbody>
+                            </table>
                         </div>
-
                     </div>
-
                 </div>
                 <!-- /tabContent -->
             </div>
             <!-- /tabContainer -->
-
         </div>
         <!-- /content -->
     </div>
 </div>
 
-
-
-
-<br>
--------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- /tabContainer -->
-</div>
+<!-- </div> -->
 <!-- /content -->
-
-
-
-
-
 
 
 <script>
