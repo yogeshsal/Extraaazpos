@@ -19,7 +19,10 @@ class ItemController extends Controller
     public function index()
     {
         $currentUserId = Auth::user()->id;
-        $data = Item::where('user_id', $currentUserId)->with('category')->paginate(3);
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        
+        $data = Item::where('restaurant_id',$restaurant_id )->with('category')->paginate(3);
 
         $resultArray = $data->toArray();
         //dd($resultArray);
@@ -47,6 +50,9 @@ class ItemController extends Controller
     {
         //dd("yes");
         $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];       
+       
         $data = new Item;
         $data->user_id = $currentUserId;
         $data->item_name = $request->item_name;
@@ -62,6 +68,9 @@ class ItemController extends Controller
         $data->item_markup_price = $request->item_markup_price;
         $data->item_aggregator_price = $request->item_aggregator_price;
         $data->item_external_id = $request->item_external_id;
+        $data->handle = $request->handle;
+        $data->item_description = $request->item_description;
+        $data->restaurant_id = $restaurant_id;
         //dd($data);
         $data->save();
         return redirect('/items')
@@ -103,6 +112,7 @@ class ItemController extends Controller
         $request->validate([
             'item_name' => 'required|string|max:255',
             'item_short_name' => 'required|string|max:255',
+            'handle' => 'required|string|max:255',
             'item_category_id' => 'required|string|max:255',
             'item_pos_code' => 'required|string|max:255',
             'item_food_type' => 'required|string|max:255',
@@ -126,6 +136,7 @@ class ItemController extends Controller
         $validatedData = $request->validate([
             'item_name' => 'required|string|max:255',
             'item_short_name' => 'required|string|max:255',
+            'handle' => 'required|string|max:255',
             'item_category_id' => 'required|string|max:255',
             'item_pos_code' => 'required|string|max:255',
             'item_food_type' => 'required|string|max:255',
@@ -134,10 +145,7 @@ class ItemController extends Controller
         ]);
 
         // Update the customer's data
-        $item->update($validatedData);
-
-        // Redirect to a success page or back to the edit form with a success message
-        // return redirect('items')->route('items.edit')->with('success', 'Item updated successfully');
+        $item->update($validatedData);        
         return redirect("/items")->with('success', 'Item updated successfully');
     }
 
