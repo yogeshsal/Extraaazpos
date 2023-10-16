@@ -160,24 +160,8 @@
                                 <div class="mt-4">
                                     <button class="btn btn-primary w-100" type="submit">{{ __('Register') }}</button>
                                 </div>
-
-                                <!-- <div class="mt-4 text-center">
-                  <div class="signin-other-title">
-                    <h5 class="fs-13 mb-4 title text-muted">Create account with</h5>
-                  </div>
-
-                  <div>
-                    <button type="button" class="btn btn-soft-primary btn-icon "><i class="ri-facebook-fill fs-16"></i></button>
-                    <button type="button" class="btn btn-soft-danger btn-icon "><i class="ri-google-fill fs-16"></i></button>
-                    <button type="button" class="btn btn-soft-dark btn-icon "><i class="ri-github-fill fs-16"></i></button>
-                    <button type="button" class="btn btn-soft-info btn-icon "><i class="ri-twitter-fill fs-16"></i></button>
-                  </div>
-                </div> -->
                             </form>
                         </div>
-                        <!-- <div class="mt-4 text-center">
-              <p class="mb-0">Already have an account ? <a href="auth-signin-basic-2.html" class="fw-semibold text-primary text-decoration-underline"> Signin </a> </p>
-            </div> -->
                     </div>
                     <!-- end card body -->
                 </div>
