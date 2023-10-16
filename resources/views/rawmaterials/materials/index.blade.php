@@ -344,93 +344,90 @@
                                         </table>
 
 
-                                        <div class="d-flex align-items-center justify-content-center ">
-                                            <div class="input-group ">
-                                                <button type="button" class="btn btn-outline-secondary m-1"
-                                                    id="addUnitButton">+ Add Unit</button>
-
-
-                                            </div>
-                                        </div>
-
-                                        <div id="tableContainer"></div>
-
-                                    </div>
-
-                                    <div>
-                                        <h4 class="p-0">Identifiers</h4>
-                                    </div>
-
-
-                                    <div class="row form-row mt-2">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="name"> SKU </label>
-
-                                                <input type="text" name="name" class="form-control" required>
-                                                <p class="text-muted">Unique stock keeping code. If left blank a code
-                                                    will
-                                                    be auto generated</p>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="applicable_on">Barcode</label>
-                                                <input type="text" name="brand" class="form-control"
-                                                    placeholder="Enter Brand Name" required>
-                                                <p class="text-muted">Barcode if any printed on the product</p>
-
-                                            </div>
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-outline-secondary m-1"
+                                                id="addUnitButton">+ Add Unit</button>
                                         </div>
                                     </div>
 
+                                    <div id="tableContainer"></div>
+
+                                </div>
+
+                                <div>
+                                    <h4 class="p-0">Identifiers</h4>
+                                </div>
 
 
-                                    <div class="row form-row mt-2">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="applicable_on">Minimum Stock Level pcs</label>
-                                                <input type="text" name="brand" class="form-control"
-                                                    placeholder="Enter Brand Name" required>
-                                                <p class="text-muted">When stock levels drop below this quantity, you
-                                                    will
-                                                    see low stock alerts</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <div class="form-group">
-                                                    <label for="tax_percentage">HSN</label>
-                                                    <input type="text" name="category" class="form-control" required>
-                                                    <p class="text-muted">Harmonized System of Nomenclature</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="row form-row mt-2">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name"> SKU </label>
 
-                                    <div class="row form-row mt-2">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="applicable_modes">Standard Cost for 1 pcs</label>
-                                                <input type="text" name=" " class="form-control"
-                                                    placeholder="Enter Supplier Name" required>
-                                                <p class="text-muted">Standard Cost Price, A separate weighted average
-                                                    cost
-                                                    will be automatically calculated as you receive stock.</p>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                            <input type="text" name="name" class="form-control" required>
+                                            <p class="text-muted">Unique stock keeping code. If left blank a code
+                                                will
+                                                be auto generated</p>
 
                                         </div>
                                     </div>
-                                    <div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-orange">Save</button>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="applicable_on">Barcode</label>
+                                            <input type="text" name="brand" class="form-control"
+                                                placeholder="Enter Brand Name" required>
+                                            <p class="text-muted">Barcode if any printed on the product</p>
+
                                         </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row form-row mt-2">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="applicable_on">Minimum Stock Level pcs</label>
+                                            <input type="text" name="brand" class="form-control"
+                                                placeholder="Enter Brand Name" required>
+                                            <p class="text-muted">When stock levels drop below this quantity, you
+                                                will
+                                                see low stock alerts</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="tax_percentage">HSN</label>
+                                                <input type="text" name="category" class="form-control" required>
+                                                <p class="text-muted">Harmonized System of Nomenclature</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-row mt-2">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="applicable_modes">Standard Cost for 1 pcs</label>
+                                            <input type="text" name=" " class="form-control"
+                                                placeholder="Enter Supplier Name" required>
+                                            <p class="text-muted">Standard Cost Price, A separate weighted average
+                                                cost
+                                                will be automatically calculated as you receive stock.</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-orange">Save</button>
+                                    </div>
                             </form>
                         </div>
                     </div>
@@ -657,10 +654,11 @@
                             </td>
                             <td>
                             <div class="row form-row">
-                                    <div class="col-md-6">
-                                    <button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
+                          
+    <button type="button" class="btn btn-danger" onclick="deleteRow(this)">
+        <i class="bi bi-trash"></i> 
+    </button>
 
-                                    </div>
                                 </div>
                                 </td>
                         </tr>
@@ -671,8 +669,8 @@
                         tableContainer.innerHTML += tableHtml;
                     });
                     function deleteRow(button) {
-                        var row = button.closest("tr");
-                        row.remove();
+                        var table = button.closest("table");
+                        table.remove();
                     }
                 </script>
 
