@@ -805,7 +805,7 @@
                                     <a href="/owner" class="nav-link" data-key="t-starter"> Employees </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/owner" class="nav-link" data-key="t-starter"> Location </a>
+                                    <a href="/locations" class="nav-link" data-key="t-starter"> Location </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/owner" class="nav-link" data-key="t-starter"> Brands </a>

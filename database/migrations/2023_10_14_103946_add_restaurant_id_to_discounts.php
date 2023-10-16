@@ -11,7 +11,12 @@ return new class extends Migration
      *
      * @return void
      */
-    
+    public function up()
+    {
+        Schema::table('discounts', function (Blueprint $table) {
+           $table->string('restaurant_id', 10);
+        });
+    }
     /**
      * Reverse the migrations.
      *
