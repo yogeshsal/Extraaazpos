@@ -150,7 +150,7 @@ table tr:hover {
                         <thead>
                             <tr>
                                 <th class="grey-background"></th>
-                                <th class="grey-background"></th>
+                                <th class="grey-background"><input type="checkbox"></th>
                                 <th class="grey-background">NAME</th>
                                 <th class="grey-background">CITY</th>
                                 <th class="grey-background">PRODUCTS</th>
@@ -177,7 +177,7 @@ table tr:hover {
                         <thead>
                             <tr>
                                 <th class="grey-background"></th>
-                                <th class="grey-background"></th>
+                                <th class="grey-background"><input type="checkbox"></th>
                                 <th class="grey-background">NAME</th>
                                 <th class="grey-background">CITY</th>
                                 <th class="grey-background">PRODUCTS</th>
@@ -204,7 +204,7 @@ table tr:hover {
                     <table id="data-table">
                         <thead>
                             <tr>
-                                <th class="grey-background"></th>
+                                <th class="grey-background"><input type="checkbox"></th>
                                 <th class="grey-background">NAME</th>
                                 <th class="grey-background">CITY</th>
                                 <th class="grey-background">REGISTERS</th>
@@ -297,14 +297,14 @@ table tr:hover {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mt-2">
                                         <div class="form-group">
                                             <label for="address">Address<span class="red-asterisk"></span></label>
                                             <textarea name="address" class="form-control" required id="addressTextarea1"
                                                 rows="2"></textarea>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mt-2">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="stock_location">Stock Location</label>
@@ -322,7 +322,7 @@ table tr:hover {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mt-2">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="max_slot_number">Max Slot Number</label>

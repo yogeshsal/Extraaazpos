@@ -132,7 +132,7 @@
         <i class="fa fa-cogs"></i>&nbsp;Company Admin
         </a>
         <ul id="companyadmin" class="submenu">
-            <li class="sub"><a class="nav-link" href="/settings">Settings</a></li>
+            <li class="sub"><a class="/settings" href="/settings">Settings</a></li>
             <li class="sub"><a href="/user-roles">User Role</a></li>
             <li class="sub"><a href="/employees">Employees</a></li>
             <li class="sub"><a href="/locations">Location</a></li>
