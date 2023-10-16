@@ -195,9 +195,13 @@ class ItemController extends Controller
             // Access $selectedItemIds[0] here
             $ids = $selectedLocationIds[0];
         }
+        
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
 
 
-        return view('catalogue.items.select_location', compact('location', 'ids'));
+        return view('catalogue.items.select_location', compact('location', 'ids','restaurant_id'));
     }
 
 

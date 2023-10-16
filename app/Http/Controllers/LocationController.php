@@ -63,14 +63,5 @@ class LocationController extends Controller
     $locations = Location::where('type', 'Point Of Sale')->get();
     return view('company-admin.locations', compact('locations'));
 }
-
     
-    // public function store(Request $request) {
-    // $data = new Location;
-    // $data->name = $request->name; 
-    // $data->city = $request->city;    
-    // $data->user_id = Auth::user()->id;    
-    // $data->save();
-    // return redirect('/location')->with('status', 'Location has been added');
-    // }
 }
