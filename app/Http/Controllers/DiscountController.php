@@ -18,9 +18,7 @@ class DiscountController extends Controller
         $data = Discount::all(); 
         $currentUserId = Auth::user()->id;
         $data1 = User::where('id', $currentUserId)->get()->toArray();
-        $restaurant_id = $data1[0]['restaurant_id']; 
-
-        
+        $restaurant_id = $data1[0]['restaurant_id'];         
              
         return view('catalogue.discounts.index',['data'=>$data, 'restaurant_id'=>$restaurant_id]);        
     }
