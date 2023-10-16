@@ -14,15 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('modifiergroups', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('user_id');
-            $table->string('modifier_group_name');
-            $table->string('modifier_group_type');
-            $table->integer('modifier_group_assoc_items_count')->unsigned();
-            $table->text('modifier_group_modifiers');
+            $table->string('modifier_group_name')->nullable();
+            $table->string('modifier_group_type')->nullable();
+            $table->integer('modifier_group_assoc_items_count')->unsigned()->nullable();
+            $table->text('modifier_group_modifiers')->nullable();
             $table->string('modifier_group_short_name')->nullable();
-            $table->string('modifier_group_handle');
+            $table->string('modifier_group_handle')->nullable();
             $table->text('modifier_group_desc')->nullable();
+            $table->text('modifier_sort_order')->nullable();
+            $table->text('modifier_external_id')->nullable();
             $table->timestamps();
         });
     }

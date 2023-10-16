@@ -52,8 +52,8 @@ class ModifierGroupsController extends Controller
             $data->modifier_group_short_name = $request->modifier_group_short_name;
             $data->modifier_group_handle = $request->modifier_group_handle;
             $data->modifier_group_desc = $request->modifier_group_desc;
-            
-            
+            $data->modifier_sort_order	 = $request->modifier_sort_order;
+            $data->modifier_external_id = $request->modifier_external_id; 
             $data->save();            
             return redirect('modifiergroups')
             ->with('success', 'Modifier Group added successfully.');        
@@ -73,9 +73,12 @@ class ModifierGroupsController extends Controller
 
         $modifier = Modifier::where('modifier_group_id',$id)->get();
 
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];  
+
       // dd($modifier);
 
-        return view('catalogue.modifier-group.edit', compact('modifiergroup','modifiergrouptype','items','modifier'));
+        return view('catalogue.modifier-group.edit', compact('modifiergroup','modifiergrouptype','items','modifier','restaurant_id'));
     }
 
 
@@ -87,7 +90,9 @@ class ModifierGroupsController extends Controller
             'modifier_group_name' => 'required|string|max:255',
              'modifier_group_short_name' => 'required|string|max:255',
             'modifier_group_handle' => 'required|string|max:255', 
-            'modifier_group_desc' => 'required|string|max:255',    
+            'modifier_group_desc' => 'required|string|max:255',
+            'modifier_external_id' => 'string|max:255', 
+            'modifier_sort_order' => 'required|string|max:255',    
 
             
         ]);
@@ -104,7 +109,9 @@ class ModifierGroupsController extends Controller
             'modifier_group_name' => 'required|string|max:255',
             'modifier_group_short_name' => 'required|string|max:255',  
             'modifier_group_handle' => 'required|string|max:255',  
-            'modifier_group_desc' => 'required|string|max:255',    
+            'modifier_group_desc' => 'required|string|max:255',
+            'modifier_external_id' => 'string|max:255', 
+            'modifier_sort_order' => 'required|string|max:255',    
         ]);
             
         // Update the modifier group data
@@ -133,9 +140,12 @@ class ModifierGroupsController extends Controller
             // Access $selectedItemIds[0] here
             $ids = $selectedItemIds[0];
         }
-       
         
-       return view('catalogue.modifier-group.select_items',compact('items','ids'));
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        
+       return view('catalogue.modifier-group.select_items',compact('items','ids','restaurant_id'));
     }
 
     public function restrictItems(Request $request,$id)
@@ -168,7 +178,10 @@ class ModifierGroupsController extends Controller
     {
         $foodtype = Foodtype::all();
         
-        return view('catalogue.modifier-group.create_modifier',compact('foodtype'));
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        return view('catalogue.modifier-group.create_modifier',compact('foodtype','restaurant_id'));
     }
 
     public function createModifier(Request $request, $id)
