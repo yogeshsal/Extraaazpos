@@ -233,6 +233,21 @@ tr {
                                 </div>
 
                                 <div class="row form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Sort Order<span class="text-danger">*</span></label>
+                                            <input type="text" name="modifier_sort_order" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">External Id</label>
+                                            <input type="text" name="modifier_external_id" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-row">
                                     <div class="form-group">
                                         <label for="modifier_group_handle">Description</label>
                                         <textarea name="modifier_group_desc" class="form-control mt-3"

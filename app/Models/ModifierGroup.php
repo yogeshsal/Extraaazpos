@@ -17,5 +17,7 @@ class ModifierGroup extends Model
         'modifier_group_short_name',
         'modifier_group_handle',
         'modifier_group_desc',
+        'modifier_sort_order',
+        'modifier_external_id',
     ];
 }
