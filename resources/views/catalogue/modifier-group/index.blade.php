@@ -80,7 +80,7 @@ tr {
                             Filters</button>
                         <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal"
                             data-bs-target="#chargesModal">
-                            <i class="bi bi-plus-lg fw-bolder text-white"></i> New Charge</button>
+                            <i class="bi bi-plus-lg fw-bolder text-white"></i> New Modifier Group</button>
                     </div>
 
                 </div>
