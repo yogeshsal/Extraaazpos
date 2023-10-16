@@ -54,12 +54,13 @@
         color: orange;
     }
 
-    .page-content{
-        height:100vh;
+    .page-content {
+        height: 100vh;
     }
+
     .asterisk {
-    color: red;
-}
+        color: red;
+    }
 </style>
 
 <br>
@@ -76,15 +77,18 @@
 
                 <div class="d-flex align-items-center">
                     <div class="input-group mr-2">
-                        <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
+                        <button type="button" class="btn btn-outline-secondary m-1"> <i
+                                class="bi bi-question-circle"></i> Help</button>
                         <div class="search-box ms-2">
-                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
-                                                <i class="ri-search-line search-icon "></i>
-                                            </div>&nbsp;&nbsp;
+                            <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                            <i class="ri-search-line search-icon "></i>
+                        </div>&nbsp;&nbsp;
 
 
-                        <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
-                        <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#intermediateModal">
+                        <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i>
+                            Filters</button>
+                        <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal"
+                            data-bs-target="#intermediateModal">
                             <i class="bi bi-plus-lg fw-bolder text-white"></i> New Intermediate</button>
                     </div>
 
@@ -102,279 +106,339 @@
                     </tr>
                 </thead>
                 <tbody>
-                                    
-            <tr>                
-                <td>
-                </td>
-                <td></td>
-                <td></td>
-                <td>
-                <br>
-               
 
-                </td>
-            </tr>
-        
-    </tbody>
-</table>
-
-        
-    
-    
-</div>
-
-
-
-
-
-
-<script>
-    $(document).ready(function () {
-        $('tr[data-toggle="modal"]').click(function () {
-            var name = $(this).data('name');
-            $('#modalTitle').text(name); // Update the modal title
-        });
-    });
-</script>
-
-
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade modal-lg" id="intermediateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                <h4 class="modal-title" id="exampleModalLabel">New Product</h4>
-                <p>Basic Information</p>
-            </div>
-
-                
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container">            
-                <form action=" " method="POST">
-                    @csrf
-                     <div class="row form-row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="name"> Product Name<span class="asterisk">*</span></label>
-                                
-                                <input type="text" name="name" class="form-control" required>
-                                <p class="text-muted">Product name as it will be displayed throughout the system</p>
-                            </div>
-                        </div>                        
-                    </div>
-
-                    
-
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="applicable_on">Brand</label>
-                            <div class="input-group">
-                <input type="text" name="brand" class="form-control" placeholder="Enter Brand Name" required>
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-primary" onclick="location.href=' '">+</button>
-                </div>
-            </div>                            <p class="text-muted">Link brands for better reporting and insights</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <div class="form-group">
-                                <label for="tax_percentage">Category</label>
-                                <input type="text" name="category" class="form-control" required>
-                                <p class="text-muted">Select a category for product</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row form-row">
-                        <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="applicable_modes">Suppliers</label>
-                            <div class="input-group">
-                <input type="text" name="brand" class="form-control" placeholder="Enter Brand Name" required>
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-primary" onclick="location.href=' '">+</button>
-                </div>
-            </div>                            <p class="text-muted">Default supplier for the product.</p>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            
-                        </div>
-                    </div>
-                    <div>
-                    <h4 class="p-0">Product Locations</h4>
-                    <p class="text-muted">Locations that the product is available at.The product can only be sold at these locations and inventory can also only be added at this location for the product.You can add/disable locations for a product as required.
-
-Cant see a location?Please ask your administrator to ensure you have permission to create products for that location</p>
-                </div>
-
-                <table id="dataTable">
-                <thead>
                     <tr>
-                        <th> </th>
-                        <th>NAME</th>
-                        <th ><input type="checkbox">Applicable</th>
-                        
-                        <th></th>
+                        <td>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <br>
+
+
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                                    
-            <tr>                
-                <td>
-                </td>
-                <td></td>
-                
-                <td>
-                <br>
-               
 
-                </td>
-            </tr>
-        
-    </tbody>
-</table>
-
-<div>
-                    <h4 class="p-0">Unit of Measurement</h4>
-                    <p class="text-muted">1.Base Unit: The unit for tracking inventory. This is the minimum amount you can sell at.</p>
-                    <p class="text-muted">2.Default Unit: The default unit to be chosen to show inventory in, sell and receive with.</p>
-
-                </div>
-                <table id="dataTable">
-                <thead>
-                    <tr>
-                        <th> </th>
-                        <th>NAME</th>
-                        <th >SCALE</th>
-                        <th >TYPE</th>
-
-                        
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                                    
-            <tr>                
-                <td>
-                </td>
-                <td></td>
-                
-                <td>
-                <br>
-               
-
-                </td>
-            </tr>
-        
-    </tbody>
-</table>
+                </tbody>
+            </table>
 
 
-<div class="d-flex align-items-center justify-content-center">
-                    <div class="input-group ">
-                     <button type="button" class="btn btn-outline-secondary m-1"> +Add Unit</button>
-                        
+
+
+        </div>
+
+
+
+
+
+
+        <script>
+            $(document).ready(function () {
+                $('tr[data-toggle="modal"]').click(function () {
+                    var name = $(this).data('name');
+                    $('#modalTitle').text(name); // Update the modal title
+                });
+            });
+        </script>
+
+
+
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade modal-lg" id="intermediateModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div>
+                            <h4 class="modal-title" id="exampleModalLabel">New Product</h4>
+                            <p>Basic Information</p>
+                        </div>
+
+
+                        </button>
                     </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <form action=" " method="POST">
+                                @csrf
+                                <div class="row form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="name"> Product Name<span class="asterisk">*</span></label>
 
+                                            <input type="text" name="name" class="form-control" required>
+                                            <p class="text-muted">Product name as it will be displayed throughout the
+                                                system</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="applicable_on">Brand</label>
+                                            <div class="input-group">
+                                                <input type="text" name="brand" class="form-control"
+                                                    placeholder="Enter Brand Name" required>
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-primary"
+                                                        onclick="location.href=' '">+</button>
+                                                </div>
+                                            </div>
+                                            <p class="text-muted">Link brands for better reporting and insights</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="tax_percentage">Category</label>
+                                                <input type="text" name="category" class="form-control" required>
+                                                <p class="text-muted">Select a category for product</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="applicable_modes">Suppliers</label>
+                                            <div class="input-group">
+                                                <input type="text" name="brand" class="form-control"
+                                                    placeholder="Enter Brand Name" required>
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-primary"
+                                                        onclick="location.href=' '">+</button>
+                                                </div>
+                                            </div>
+                                            <p class="text-muted">Default supplier for the product.</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="p-0">Product Locations</h4>
+                                    <p class="text-muted">Locations that the product is available at.The product can
+                                        only be sold at these locations and inventory can also only be added at this
+                                        location for the product.You can add/disable locations for a product as
+                                        required.
+
+                                        Cant see a location?Please ask your administrator to ensure you have permission
+                                        to create products for that location</p>
+                                </div>
+
+                                <table id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th> </th>
+                                            <th>NAME</th>
+                                            <th><input type="checkbox" class="me-2">Applicable</th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td></td>
+
+                                            <td>
+                                                <br>
+
+
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <div>
+                                    <h4 class="p-0">Unit of Measurement</h4>
+                                    <p class="text-muted mb-0">1.Base Unit: The unit for tracking inventory. This is the
+                                        minimum amount you can sell at.</p>
+                                    <p class="text-muted mb-0">2.Default Unit: The default unit to be chosen to show
+                                        inventory in, sell and receive with.</p>
+
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+
+                                            <th>NAME</th>
+                                            <th>SCALE</th>
+                                            <th>TYPE</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>
+
+                                                <div class="row form-row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+
+                                                            <div class="input-group">
+                                                                <input type="text" name="brand" class="form-control"
+                                                                    placeholder="PCS" required>
+
+                                                            </div>
+                                                            <p class="text-muted">Eg- pcs, case, g, kg, ...
+                                                                (Base Unit)
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="row form-row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+
+                                                            <div class="input-group">
+                                                                <input class="form-control" type="text" placeholder="1"
+                                                                    aria-label="Disabled input example" disabled>
+                                                            </div>
+                                                            <p class="text-muted">1 x pcs = 1 pcs
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="flexRadioDefault1" checked>
+                                                    <label class="form-check-label" for="flexRadioDefault2">
+                                                        Default Unit
+                                                    </label>
+                                                    <div>
+                                                        <div>
+                                                            <input class="form-check-input" type="radio"
+                                                                name="flexRadioDefault1" id="flexRadioDefault2" checked>
+                                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                                Purchase Unit
+                                                            </label>
+                                                            <div>
+                                                                <div>
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="flexRadioDefault2" id="flexRadioDefault3"
+                                                                        checked>
+                                                                    <label class="form-check-label"
+                                                                        for="flexRadioDefault2">
+                                                                        Transfer Unit
+                                                                    </label>
+                                                                    <div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <div class="input-group ">
+                                        <button type="button" class="btn btn-outline-secondary m-1"> +Add Unit</button>
+
+                                    </div>
+
+                                </div>
+                        </div>
+
+                        <div>
+                            <h4 class="p-0">Identifiers</h4>
+                        </div>
+
+
+                        <div class="row form-row mt-2">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name"> SKU </label>
+
+                                    <input type="text" name="name" class="form-control" required>
+                                    <p class="text-muted">Unique stock keeping code. If left blank a code will be auto
+                                        generated</p>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="applicable_on">Barcode</label>
+                                    <input type="text" name="brand" class="form-control" placeholder="Enter Brand Name"
+                                        required>
+                                    <p class="text-muted">Barcode if any printed on the product</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row form-row mt-2">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="applicable_on">Minimum Stock Level pcs</label>
+                                    <input type="text" name="brand" class="form-control" placeholder="Enter Brand Name"
+                                        required>
+                                    <p class="text-muted">When stock levels drop below this quantity, you will see low
+                                        stock alerts</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label for="tax_percentage">HSN</label>
+                                        <input type="text" name="category" class="form-control" required>
+                                        <p class="text-muted">Harmonized System of Nomenclature</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row form-row mt-2">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="applicable_modes">Standard Cost for 1 pcs</label>
+                                    <input type="text" name=" " class="form-control" placeholder="Enter Supplier Name"
+                                        required>
+                                    <p class="text-muted">Standard Cost Price, A separate weighted average cost will be
+                                        automatically calculated as you receive stock.</p>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+                        <div>
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-orange">Save</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div>
-                    <h4 class="p-0">Identifiers</h4>
-                </div>
+
+            <!-- edit modal -->
 
 
-                <div class="row form-row mt-2">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name"> SKU </label>
-                                
-                                <input type="text" name="name" class="form-control" required>
-                                <p class="text-muted">Unique stock keeping code. If left blank a code will be auto generated</p>
-
-                            </div>
-                        </div> 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="applicable_on">Barcode</label>
-                            <input type="text" name="brand" class="form-control" placeholder="Enter Brand Name"required>
-                            <p class="text-muted">Barcode if any printed on the product</p>
-
-                            </div>
-                        </div>                       
-                    </div>
-
-                    
-
-                    <div class="row form-row mt-2">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <label for="applicable_on">Minimum Stock Level pcs</label>
-                            <input type="text" name="brand" class="form-control" placeholder="Enter Brand Name"required>
-                            <p class="text-muted">When stock levels drop below this quantity, you will see low stock alerts</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                            <div class="form-group">
-                                <label for="tax_percentage">HSN</label>
-                                <input type="text" name="category" class="form-control" required>
-                                <p class="text-muted">Harmonized System of Nomenclature</p>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row form-row mt-2">
-                        <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="applicable_modes">Standard Cost for 1 pcs</label>
-                            <input type="text" name=" " class="form-control" placeholder="Enter Supplier Name"required>
-                            <p class="text-muted">Standard Cost Price, A separate weighted average cost will be automatically calculated as you receive stock.</p>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            
-                        </div>
-                    </div>
-                    <div>
-                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-orange">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>        
-    </div>
-</div>
+            <!-- edit modal -->
 
 
-<!-- edit modal -->
-
-
-<!-- edit modal -->
-
-<script>
-    $(document).ready(function () {
-        $('#is_recommended').bootstrapSwitch();
-        $('#is_package_good').bootstrapSwitch();
-        $('#sell_by_weight').bootstrapSwitch();
-    });
-</script>
-
-@endsection
+            @endsection
