@@ -33,45 +33,50 @@ tr {
 </div>
 @endif
 
-<h3>{{$timing->name}}</h3>
 
-
-@php
-// Calculate the time difference
-$currentTime = now();
-$updatedAt = $timing->updated_at;
-$diff = $currentTime->diff($updatedAt);
-
-// Determine the appropriate format based on the time elapsed
-$formattedTime = '';
-
-if ($diff->y > 0) {
-$formattedTime = $diff->y . ' year' . ($diff->y > 1 ? 's' : '') . ' ago';
-} elseif ($diff->m > 0) {
-$formattedTime = $diff->m . ' month' . ($diff->m > 1 ? 's' : '') . ' ago';
-} elseif ($diff->d > 0) {
-$formattedTime = $diff->d . ' day' . ($diff->d > 1 ? 's' : '') . ' ago';
-} elseif ($diff->h > 0) {
-$formattedTime = $diff->h . ' hour' . ($diff->h > 1 ? 's' : '') . ' ago';
-} elseif ($diff->i > 0) {
-$formattedTime = $diff->i . ' minute' . ($diff->i > 1 ? 's' : '') . ' ago';
-} else {
-$formattedTime = 'just now';
-}
-@endphp
-<h6>Last updated {{ $formattedTime }}</h6>
 <br>
 <div class="main-content">
 
+
     <div class="page-content">
+
         <div class="container-fluid">
 
 
             <div class="row">
                 <div class="col-xxl-12">
 
+
                     <div class="card">
+
                         <div class="card-body">
+                            <h3>{{$timing->name}}</h3>
+
+
+                            @php
+                            // Calculate the time difference
+                            $currentTime = now();
+                            $updatedAt = $timing->updated_at;
+                            $diff = $currentTime->diff($updatedAt);
+
+                            // Determine the appropriate format based on the time elapsed
+                            $formattedTime = '';
+
+                            if ($diff->y > 0) {
+                            $formattedTime = $diff->y . ' year' . ($diff->y > 1 ? 's' : '') . ' ago';
+                            } elseif ($diff->m > 0) {
+                            $formattedTime = $diff->m . ' month' . ($diff->m > 1 ? 's' : '') . ' ago';
+                            } elseif ($diff->d > 0) {
+                            $formattedTime = $diff->d . ' day' . ($diff->d > 1 ? 's' : '') . ' ago';
+                            } elseif ($diff->h > 0) {
+                            $formattedTime = $diff->h . ' hour' . ($diff->h > 1 ? 's' : '') . ' ago';
+                            } elseif ($diff->i > 0) {
+                            $formattedTime = $diff->i . ' minute' . ($diff->i > 1 ? 's' : '') . ' ago';
+                            } else {
+                            $formattedTime = 'just now';
+                            }
+                            @endphp
+                            <h6>Last updated {{ $formattedTime }}</h6>
                             <ul class="nav nav-tabs mb-3" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab"
