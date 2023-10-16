@@ -50,9 +50,13 @@ class DiscountController extends Controller
             // You can customize this logic for handling a non-existent discount
             return redirect()->route('discounts.index')->with('error', 'Discount not found.');
         }
+
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
     
         // Load the edit view and pass the discount data to it
-        return view('catalogue.discounts.edit', compact('discount'));
+        return view('catalogue.discounts.edit', compact('discount','restaurant_id'));
     }
     
     public function update(Request $request, $id)
