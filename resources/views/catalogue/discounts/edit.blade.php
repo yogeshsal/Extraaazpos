@@ -338,6 +338,49 @@ table th {
                             </table>
                         </div>
                     </div>
+
+
+                    <div class="tab-content  text-muted">
+                        <div class="tab-pane " id="location" role="tabpanel">
+                            <div class="container-fluid shadow-lg p-0">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h4 class="text-dark">Selected Locations</h4>
+                                                <p class="fs-5 text-muted">Discount is applicable to only these selected locations</p>
+                                            </div>
+                                            <div>
+                                                <a type="button" class="btn btn-orange"
+                                                    href="{{ route('discounts.select_location', $discount->id) }}">Update
+                                                    Locations</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">City</th>
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+
+
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+
                 </div>
                 <!-- /tabContent -->
             </div>

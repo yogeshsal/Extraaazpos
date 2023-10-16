@@ -5,8 +5,10 @@ use App\models\Discount;
 use App\models\Item;
 use App\models\Taxitem;
 use App\models\Discountitem;
-
+use App\models\Location_discount;
 use App\models\User;
+use App\models\Location;
+ 
 use Auth;
 
 use Illuminate\Http\Request;
@@ -58,12 +60,22 @@ class DiscountController extends Controller
         $items = Item::leftJoin('categories', 'items.item_category_id', '=', 'categories.id')
         ->whereIn('items.id', $item_ids)->get();
 
+        $locations_id = Location_discount ::where('discount_id', $id)->pluck('location_id')->flatten()->toArray();
+
+        $locations = Location::whereIn('id', $locations_id)->get();
+
+        $locationCount = $locations->count();
+
+        $tax = Taxitem::leftJoin('taxes', 'taxitems.tax_id', '=', 'taxes.id')
+            ->whereJsonContains('item_id', $id)->get();
+
+
         $currentUserId = Auth::user()->id;
         $data1 = User::where('id', $currentUserId)->get()->toArray();
         $restaurant_id = $data1[0]['restaurant_id'];
     
         // Load the edit view and pass the discount data to it
-        return view('catalogue.discounts.edit', compact('discount','items','restaurant_id'));
+        return view('catalogue.discounts.edit', compact('discount','items','restaurant_id','locationCount','locations'));
     }
     
     public function update(Request $request, $id)
@@ -143,6 +155,61 @@ class DiscountController extends Controller
     return redirect('discounts');
 
     }
+
+    public function select_location($id)
+    {
+
+        // $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
+        // ->select('items.*','categories.cat_name')
+        // ->where('items.user_id', Auth::user()->id)
+        // ->get();
+
+        $location = Location::all();
+
+        $selectedLocationIds = Location_discount::where('discount_id', $id)->pluck('location_id')->all();
+
+        $ids = [];
+
+        if (!empty($selectedLocationIds) && isset($selectedLocationIds[0])) {
+            // Access $selectedItemIds[0] here
+            $ids = $selectedLocationIds[0];
+        }
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];    
+
+
+        return view('catalogue.discounts.select_location', compact('location', 'ids','restaurant_id'));
+    }
+
+    public function restrictItems(Request $request, $id)
+    {
+
+        $selectedItemsIds = $request->input('selected_items');
+
+        //dd($selectedItemsIds);
+
+        $user_id = Auth::user()->id;
+
+        $existingTaxitem = Location_discount::where('discount_id', $id)
+            ->where('user_id', $user_id)
+            ->first();
+
+        if ($existingTaxitem) {
+            // If a record already exists, update the item_id
+            $existingTaxitem->update(['location_id' => $selectedItemsIds]);
+        } else {
+            // If no record exists, create a new Taxitem record
+            $newLocationItem = new Location_discount;
+            $newLocationItem->item_id = $id;
+            $newLocationItem->user_id = $user_id;
+            $newLocationItem->location_id = $selectedItemsIds; // Assuming item_id is an array field
+            $newLocationItem->save();
+        }
+
+        return redirect('discounts');
+    }
+
 
 
     
