@@ -73,9 +73,12 @@ class ModifierGroupsController extends Controller
 
         $modifier = Modifier::where('modifier_group_id',$id)->get();
 
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];  
+
       // dd($modifier);
 
-        return view('catalogue.modifier-group.edit', compact('modifiergroup','modifiergrouptype','items','modifier'));
+        return view('catalogue.modifier-group.edit', compact('modifiergroup','modifiergrouptype','items','modifier','restaurant_id'));
     }
 
 
@@ -137,9 +140,12 @@ class ModifierGroupsController extends Controller
             // Access $selectedItemIds[0] here
             $ids = $selectedItemIds[0];
         }
-       
         
-       return view('catalogue.modifier-group.select_items',compact('items','ids'));
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        
+       return view('catalogue.modifier-group.select_items',compact('items','ids','restaurant_id'));
     }
 
     public function restrictItems(Request $request,$id)
@@ -172,7 +178,10 @@ class ModifierGroupsController extends Controller
     {
         $foodtype = Foodtype::all();
         
-        return view('catalogue.modifier-group.create_modifier',compact('foodtype'));
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        return view('catalogue.modifier-group.create_modifier',compact('foodtype','restaurant_id'));
     }
 
     public function createModifier(Request $request, $id)
