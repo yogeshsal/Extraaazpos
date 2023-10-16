@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('discounts', function (Blueprint $table) {
+        Schema::table('items', function (Blueprint $table) {
            $table->string('restaurant_id', 10);
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -24,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('discounts', function (Blueprint $table) {          
-            $table->dropColumn('restaurant_id');
+        Schema::table('items', function (Blueprint $table) {
+           $table->dropColumn('restaurant_id');
         });
     }
 };
