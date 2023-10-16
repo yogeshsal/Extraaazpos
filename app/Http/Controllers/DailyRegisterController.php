@@ -199,8 +199,10 @@ class DailyRegisterController extends Controller
               return view('dailyregister', compact('status'));
             }
             else{
+                $data1 = User::where('id', $currentUserId)->get()->toArray();
+                $restaurant_id = $data1[0]['restaurant_id']; 
               
-              return view('closeregister', compact('id','status','opening_cash','opening_card','opening_credit','opening_upi', 'opened_at', 'closed_at'));
+              return view('closeregister', compact('id','status','opening_cash','opening_card','opening_credit','opening_upi', 'opened_at', 'closed_at','restaurant_id'));
             }
         } else {
             $location = Location::where('user_id', $currentUserId)->get()->toArray();
