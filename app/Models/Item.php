@@ -31,7 +31,9 @@ class Item extends Model
             'item_advance_order',
             'tax_status',
             'status',
-            'discounts_status'
+            'discounts_status',
+            'handle',
+            'restaurant_id',
 
     ];
 

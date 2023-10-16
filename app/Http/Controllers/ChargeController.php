@@ -51,7 +51,10 @@ class ChargeController extends Controller
         $items = Item::leftJoin('categories', 'items.item_category_id', '=', 'categories.id')
         ->whereIn('items.id', $charge_ids)->get();
         
-        return view('catalogue.charges.edit', compact('Charge','items'));
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];    
+        return view('catalogue.charges.edit', compact('Charge','items','restaurant_id'));
     }
 
     public function update(Request $request, $id)

@@ -164,7 +164,7 @@
                     </div>
                     <button type="button" class="btn btn-light" data-bs-container="body" data-bs-toggle="popover"
                         data-bs-placement="top" data-bs-content="UNIQUE EXTRAAAZPOS ID">
-                        {{$restaurant_id}}
+                       
                     </button>
 
                     <div class="ms-1 header-item d-none d-sm-flex">
@@ -805,7 +805,7 @@
                                     <a href="/owner" class="nav-link" data-key="t-starter"> Employees </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/owner" class="nav-link" data-key="t-starter"> Location </a>
+                                    <a href="/locations" class="nav-link" data-key="t-starter"> Location </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/owner" class="nav-link" data-key="t-starter"> Brands </a>
