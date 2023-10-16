@@ -2,21 +2,6 @@
 @extends('layouts.app')
 @section('ownercontent')
 <!-- Include Bootstrap CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css"
-    rel="stylesheet">
-
-<!-- Include jQuery (required for Bootstrap Switch) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-<!-- Include Bootstrap Switch JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
-<style>
-.form-row {
-    margin-bottom: 20px;
-    /* Add space below each row */
-}
-</style>
 
 <style>
 #content1 {
