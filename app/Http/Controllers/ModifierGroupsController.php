@@ -52,8 +52,8 @@ class ModifierGroupsController extends Controller
             $data->modifier_group_short_name = $request->modifier_group_short_name;
             $data->modifier_group_handle = $request->modifier_group_handle;
             $data->modifier_group_desc = $request->modifier_group_desc;
-            
-            
+            $data->modifier_sort_order	 = $request->modifier_sort_order;
+            $data->modifier_external_id = $request->modifier_external_id; 
             $data->save();            
             return redirect('modifiergroups')
             ->with('success', 'Modifier Group added successfully.');        
@@ -87,7 +87,9 @@ class ModifierGroupsController extends Controller
             'modifier_group_name' => 'required|string|max:255',
              'modifier_group_short_name' => 'required|string|max:255',
             'modifier_group_handle' => 'required|string|max:255', 
-            'modifier_group_desc' => 'required|string|max:255',    
+            'modifier_group_desc' => 'required|string|max:255',
+            'modifier_external_id' => 'string|max:255', 
+            'modifier_sort_order' => 'required|string|max:255',    
 
             
         ]);
@@ -104,7 +106,9 @@ class ModifierGroupsController extends Controller
             'modifier_group_name' => 'required|string|max:255',
             'modifier_group_short_name' => 'required|string|max:255',  
             'modifier_group_handle' => 'required|string|max:255',  
-            'modifier_group_desc' => 'required|string|max:255',    
+            'modifier_group_desc' => 'required|string|max:255',
+            'modifier_external_id' => 'string|max:255', 
+            'modifier_sort_order' => 'required|string|max:255',    
         ]);
             
         // Update the modifier group data
