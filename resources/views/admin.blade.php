@@ -63,7 +63,7 @@ tr {
             <div class="container">
                 <div class="d-flex justify-content-between py-4">
                     <div>
-                        <h4 class="text-dark">Sales Dashboard</h4>
+                        <h4 class="text-dark">Sales Dashboard 1</h4>
                     </div>
                     <div class="d-flex">
                         <select class="form-control mx-2" id="location">
