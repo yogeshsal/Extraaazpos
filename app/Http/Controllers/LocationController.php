@@ -42,13 +42,14 @@ class LocationController extends Controller
             'brand' => 'nullable|string',
             'max_slot_number' => 'nullable|integer',
             'user_id' =>'required',
+            'restaurant_id' => 'required',
             // Add more validation rules for other fields
         ]);
     
         // Create a new Location instance and fill it with the validated data
         $location = new Location();
         
-        //dd($validatedData);
+       // dd($validatedData);
         $location->fill($validatedData);
     
         // Save the location to the database

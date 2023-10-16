@@ -21,6 +21,7 @@ class Location extends Model
         'max_slot_number',
         'last_publish',
         'user_id',
+        'restaurant_id',
     ];
     use HasFactory;
 }

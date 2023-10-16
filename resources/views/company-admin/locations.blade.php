@@ -330,11 +330,19 @@ table tr:hover {
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
 
                                                 <input type="hidden" name="user_id" class="form-control"
                                                     value={{$currentUserId}}>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+
+                                                <input type="hidden" name="restaurant_id" class="form-control"
+                                                    value={{$restaurant_id}}>
                                             </div>
                                         </div>
                                     </div>
