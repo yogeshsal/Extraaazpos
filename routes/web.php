@@ -187,7 +187,8 @@ Route::view('print_templates', 'company-admin.print_templates');
 Route::view('integrations', 'company-admin.integrations');
 
 //raw materials
-Route::view('materials', 'rawmaterials.materials.index');
+Route::get('/materials', [App\Http\Controllers\MaterialController::class, 'index']);
+//Route::view('materials', 'rawmaterials.materials.index');
 Route::view('intermediates', 'rawmaterials.intermediates.index');
 Route::view('raw-categories', 'rawmaterials.categories.index');
 Route::view('taxes1', 'rawmaterials.taxes.index');
