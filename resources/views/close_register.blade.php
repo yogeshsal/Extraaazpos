@@ -15,6 +15,29 @@
     display: flex;
     flex-direction: column;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f5f5f5;
+    color: #646464;
+    font-weight: 950;
+    font-size: small;
+}
+
+tr {
+    border-bottom: 2px solid #F5F5F5;
+    /* Light grey border between rows */
+}
+
 </style>
 
 <div class="main-content">
@@ -66,7 +89,7 @@
                             </div>
                         </div>
 
-                        <table class="table table-hover table-bordered mt-5">
+                        <table id="data-table">
                             <thead>
                                 <tr>
                                     <th scope="col">TYPE</th>
@@ -112,7 +135,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="card shadow mt-5">
-                    <div class="card-body">
+                    <div class="card-body" style="height:280px">
                         <div class="alert alert-primary" role="alert">
                             <p>Register is open</p>
 
@@ -147,7 +170,7 @@
                         </div>
 
 
-                        <table class="table table-borderless table-responsive">
+                        <table id="data-table">
                             <tbody>
                                 <tr>
                                     <td>Opened:</td>
@@ -177,8 +200,8 @@
     Featured
   </div> -->
             <div class="card-body">
-                <h3>Payments</h3>
-                <table id="myTable" class="table table-hover table-bordered mt-5">
+            <h3 class="p-0">Payments</h3>
+                <table id="data-table">
                     <thead>
                         <tr>
 
