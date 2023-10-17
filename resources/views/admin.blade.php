@@ -39,6 +39,27 @@ $date = date('Y-m-d');
             <!-- chart card -->
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="card shadow-lg">
+                            <div class="card-body">
+                                <h5 class="card-title">Net Sales</h5>
+                                <canvas id="increasingGraph" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card shadow-lg">
+                            <div class="card-body">
+                                <h5 class="card-title">Sales Count</h5>
+                                <canvas id="decreasingGraph" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
 
                     <div class="col-md-3">
                         <div class="card shadow-lg p-2 p-2">
