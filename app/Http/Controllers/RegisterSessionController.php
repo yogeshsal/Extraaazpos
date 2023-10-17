@@ -31,7 +31,15 @@ class RegisterSessionController extends Controller
         $data1 = User::where('id', $currentUserId)->get()->toArray();
         $restaurant_id = $data1[0]['restaurant_id']; 
 
-        return view('register_session',['sessions' => $data,'location'=>$location, 'restaurant_id'=>$restaurant_id]);
+        $loc = Location::leftJoin('daily_registers','daily_registers.loc_id','=','locations.id')
+        ->where('locations.user_id', $currentUserId)
+        ->where('daily_registers.status',1)
+        ->get()->toArray();
+        // dd($loc);
+         $locationname = $loc[0]['name'] ?? ""; 
+
+
+        return view('register_session',compact('locationname'),['sessions' => $data,'location'=>$location, 'restaurant_id'=>$restaurant_id]);
     }
 
 

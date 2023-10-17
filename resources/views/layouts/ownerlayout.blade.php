@@ -168,6 +168,11 @@
                         {{$restaurant_id}}
                     </button>
 
+                    <button type="button" class="btn btn-light m-4" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="top" data-bs-content="UNIQUE EXTRAAAZPOS ID">
+                        <?php echo $locationname ?? "" ?>
+                    </button>
+
                     <div class="ms-1 header-item d-none d-sm-flex">
                         <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle"
                             data-toggle="fullscreen">

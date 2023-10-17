@@ -8,6 +8,7 @@ use App\Models\Add_floor;
 use App\Models\Customer;
 use App\Models\Discount;
 use App\Models\User;
+use App\Models\Location;
 use Auth;
 use DB;
 
@@ -79,7 +80,7 @@ class FloorSettingController extends Controller
 }
 
 
-    public function show_table()
+    public function show_table(Request $request)
     {
         $data = Add_floor::where('user_id',Auth::user()->id)->first();
 
@@ -111,8 +112,16 @@ class FloorSettingController extends Controller
         // dd($data[0]);
         $discounts = Discount::where('restaurant_id',$restaurant_id)->get()->toArray();
         
+         
+        $loc = Location::leftJoin('daily_registers','daily_registers.loc_id','=','locations.id')
+        ->where('locations.user_id', $currentUserId)
+        ->where('daily_registers.status',1)
+        ->get()->toArray();
+        // dd($loc);
+         $locationname = $loc[0]['name'] ??''; 
+        
 
-        return view('billing',compact('bal','table'),['customer'=>$customer, 'restaurant_id'=>$restaurant_id, 'discounts'=>$discounts]);
+        return view('billing',compact('bal','table'),['customer'=>$customer, 'restaurant_id'=>$restaurant_id, 'discounts'=>$discounts,'locationname'=>$locationname]);
 
     }
 
