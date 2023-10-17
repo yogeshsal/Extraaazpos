@@ -27,7 +27,7 @@ class Owner
 
         if (Auth::user()->role == 2) {
             return $next($request);            
-        }
+        }        
 
         if (Auth::user()->role == 3) {
             return redirect()->route('cashier');

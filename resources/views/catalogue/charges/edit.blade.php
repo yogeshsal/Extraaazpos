@@ -10,6 +10,9 @@
 <!-- Include Bootstrap Switch JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
 <style>
+     .text-danger {
+        color: red;
+     }
     .form-row {
         margin-bottom: 20px; /* Add space below each row */
     }
@@ -117,11 +120,15 @@
 @endphp
 <h6>Last updated {{ $formattedTime }}</h6>
 <br>
+<div class="container">
+<div class="card card shadow p-3">
+    <h3>Edit Charge</h3>
+    <form action="{{ route('catalogue.store') }}" method="POST">
 <div id="content1">
   <div class="tabContainer">
     <ul class="tabs">
-      <li><a src="tab1" href="javascript:void(0);" class="active">Basic Information</a></li>
-      <li><a src="tab2" href="javascript:void(0);">Items</a></li>
+      <li><a data-target="tab1" href="javascript:void(0);"  class="active">Basic Information</a></li>
+      <li><a data-target="tab2"href="javascript:void(0);"  >Items</a></li>
         
     </ul>
     <div class="tabContent">
@@ -136,56 +143,30 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Name:</label>
+                                <input type="text" name="name" class="form-control" required>
                                 <input type="text" name="name" class="form-control" required value="{{$Charge->name}}">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label >Charge Type:</label>
-                                <select class="form-select" name="charge_type" aria-label="Default select example">
-                                    
-                                    <option value="1">Packaging Charge</option>
-                                    <option value="2">Delivery Charge</option>
-                                    
-                                </select>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="form-group mt-3">
                         <label for="description	">Description:</label>
+                        <textarea name="description" class="form-control" rows="3"></textarea>
                         <input style="height: 80px;" type="text" name="description" class="form-control" value="{{$Charge->description}}">
                     </div>
 
                     
-                    <div class="row mt-3">
-                    <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Applicable On:</label>
-                                <select class="form-select" aria-label="Default select example"name="applicable_on">
-                                   
-                                    <option value="Order Sub Total(%)">Order Sub Total(%)</option>
-                                    <option value="Order Sub Total(Fixed)">Order Sub Total(Fixed)</option>
-                                    <option value="Item Quantity">Item Quantity</option>
-                                    
-                                </select>
-                            </div>
-                        </div>
 
-
-
-                        <div class="col-md-6">
-                        <label for="mobile">Amount per Quantity:</label>
-                        <div class="input-group">
                             <div class="input-group-prepend">
                                     <span class="input-group-text" id="">LKR</span>
                                 </div>
+                                <input type="text" class="form-control" name="amount_per_quantity">
                                 <input type="text" class="form-control" value="{{$Charge->amount_per_quantity}}" name="amount_per_quantity">
                             </div>
                         </div>
                     </div>
 
-
-                    <div class="row mt-3">
                     <div class="col-md-6">
                             <div class="form-group">
                                 <label for="mobile">Applicable modes:</label>
@@ -193,33 +174,7 @@
                                 <select class="form-select" name="applicable_modes">
                                    
                                     <option value="1">Online</option>
-                                    <option value="2">In store</option>
-                                   
-                                    
-                                </select>
-                            </div>
-                        </div>
 
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="mobile">Auto Apply Billing Type:</label>
-                                <select class="form-select" name="auto_apply_billing_types">
-                                   
-                                    <option value="1">AC Table</option>
-                                    <option value="2">Inside Section</option>
-                                    <option value="2">Pool Section</option>
-                                    <option value="2">Dine In</option>
-                                   
-                                    
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-orange">Save</button>
                     </div>
                 </form>
@@ -270,6 +225,7 @@
   <!-- /tabContainer -->
   
 </div>
+</div>
 <!-- /content -->
 
 
@@ -285,22 +241,18 @@
 </script>
 
 <script>
-    $("#content").on("click", ".tabContainer .tabs a", function(e) {
-  e.preventDefault(),
-  $(this)
-    .parents(".tabContainer")
-    .find(".tabContent > div")
-    .each(function() {
-      $(this).hide();
+    
+    $(".tabs a").click(function(e) {
+        e.preventDefault();
+        // Remove the 'active' class from all tabs
+        $(".tabs a").removeClass("active");
+        // Add the 'active' class to the clicked tab
+        $(this).addClass("active");
+        // Hide all tab content
+        $(".tabContent > div").hide();
+        // Show the content of the selected tab
+        $("#" + $(this).data("target")).show();
     });
-  
-  $(this)
-    .parents(".tabs")
-    .find("a")
-    .removeClass("active"),
-    $(this).toggleClass("active"), $("#" + $(this).attr("src")).show();
-});
-
-
 </script>
+
 @endsection

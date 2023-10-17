@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->string('name');
-            $table->timestamps();
-        });
+       Schema::table('users', function (Blueprint $table) {
+        $table->string('restaurant_id', 10)->unique()->default('');
+    });
     }
 
     /**
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('locations');
+         Schema::table('users', function (Blueprint $table) {
+        $table->dropColumn('restaurant_id');
+    });
     }
 };

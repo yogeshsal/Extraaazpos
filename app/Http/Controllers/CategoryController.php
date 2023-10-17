@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Location;
 use App\Models\Item;
 use App\Models\CategoryTiming;
+use App\models\User;
 use Auth;
 use DB;
 
@@ -14,26 +15,31 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $data = Category ::where('user_id',Auth::user()->id)
+        $data = Category ::where('user_id', Auth::user()->id)
         ->with('items')
         ->paginate(2);
 
         $location =Location::where('user_id',Auth::user()->id)->get();
 
         $timing = CategoryTiming::where('user_id',Auth::user()->id)->get();
+
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
         
-        return view('catalogue.categories.index',['categories'=>$data,'location'=>$location,'timing'=>$timing]);
+        return view('catalogue.categories.index',['categories'=>$data,'location'=>$location,'timing'=>$timing, 'restaurant_id'=>$restaurant_id]);
     }
 
     public function store(Request $request)
-    {
+    {        
         $data = new Category;
         $data->cat_name= $request->cat_name;
         $data->cat_short_name= $request->cat_short_name;
         $data->cat_handle = $request->cat_handle;
+        // $data->cat_sort_category = $request->cat_sort_category;
         $data->cat_timing_group	= $request->cat_timing_group;
         $data->cat_desc= $request->cat_desc;
-        $data->user_id= auth::user()->id;
+        $data->user_id= Auth::user()->id;
        
         // if (is_array($request->loc_id)) {
         //     $data->loc_id = implode(',', $request->loc_id); // Convert array to comma-separated string
@@ -45,8 +51,7 @@ class CategoryController extends Controller
         return redirect('categories');
     }
 
-    public function edit($id)    {    
-        
+    public function edit($id)    { 
         $currentUserId = Auth::user()->id;
         $category = Category::find($id);
         $categories = Category::all();
@@ -57,16 +62,17 @@ class CategoryController extends Controller
         ->select('items.*', 'categories.cat_name')
         ->where('categories.id', $id)
         ->paginate(2); 
-
-        $itemCount = $items->total();
+        $itemCount = $items->total();   
         
-        
-        return view('catalogue.categories.edit', compact('category','categories', 'category_desc','timing','items','itemCount'));
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        return view('catalogue.categories.edit', compact('category','categories', 'category_desc','timing','items','itemCount','restaurant_id'));
     }
 
     public function catupdate(Request $request, $id)
     {        
-        
+        //dd("hello");
         $request->validate([
             'cat_name' => 'required|string|max:255',
             'cat_short_name' => 'required|string|max:255',
@@ -95,9 +101,7 @@ class CategoryController extends Controller
         ]);
          //dd($validatedData) ;
         // Update the customer's data
-        $category->update($validatedData);
-
-        // Redirect to a success page or back to the edit form with a success message
+        $category->update($validatedData);        
         return redirect('categories')->with('success', 'category updated successfully');
     }
 
@@ -139,7 +143,10 @@ public function showitems($id){
     ->select('items.*', 'categories.cat_name')
     ->get();
     //dd($items);
-    return view('catalogue.categories.select-items', compact('items'));
+    $currentUserId = Auth::user()->id;
+    $data1 = User::where('id', $currentUserId)->get()->toArray();
+    $restaurant_id = $data1[0]['restaurant_id'];
+    return view('catalogue.categories.select-items', compact('items','restaurant_id'));
 }
 
 

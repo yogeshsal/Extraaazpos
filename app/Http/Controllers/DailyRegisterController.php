@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Daily_register;
 use App\Models\Location;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Auth;
@@ -99,14 +100,28 @@ class DailyRegisterController extends Controller
 
     function checkRegisterOpen()
     {
+        
         $currentUserId = Auth::user()->id;
+            $data1 = User::where('id', $currentUserId)->get()->toArray();
+            $restaurant_id = $data1[0]['restaurant_id']; 
+            $user_name = $data1[0]['name'];
+        //dd($currentUserId);
+
+        $loc = Location::leftJoin('daily_registers','daily_registers.loc_id','=','locations.id')
+        ->where('locations.user_id', $currentUserId)
+        ->where('daily_registers.status',1)
+        ->get()->toArray();
+        // dd($loc);
+         $locationname = $loc[0]['name'] ?? ""; 
+
+
         $lastInsertedUserId = DB::table('daily_registers')
             ->where('user_id', $currentUserId)
             ->where('status', 1)
             ->latest('id')
             ->value('id');
 
-        //  dd($lastInsertedUserId);
+          //dd($lastInsertedUserId);
 
             $lastInsertedUser = Daily_register::where('id', $lastInsertedUserId)->first();
 
@@ -120,29 +135,33 @@ class DailyRegisterController extends Controller
           $opened_at = $lastInsertedUser['created_at']?? '';
           $closed_at = $lastInsertedUser['updated_at']?? '';
         
-        //   dd( $lastInsertedUser );
+         // dd( $opened_at );
         //  $lastInsertedUser->created_at = ($lastInsertedUser->created_at->addHours(24));
 
 
         if ($lastInsertedUser !== null) {
+            
             $lastInsertedUser->created_at = $lastInsertedUser->created_at->addHours(24);
             $current_date = date('Y-m-d H:i:s');
-
+            //dd($status);
             if( $status == 0 || ($current_date >= $lastInsertedUser->created_at))
             {
-
-              return view('dailyregister', compact('status'));
+                
+                $loc = [];
+                
+              return view('dailyregister', compact('status', 'loc', 'restaurant_id'));
             }
             else{
-              
-              return view('close_register', compact('id','status','opening_cash','opening_card','opening_credit','opening_upi', 'opened_at', 'closed_at'));
+                
+                                
+              return view('close_register', compact('id','status','opening_cash','opening_card','opening_credit','opening_upi', 'opened_at', 'closed_at','restaurant_id','user_name','locationname'));
             }
         } else {
             $location = Location::where('user_id', $currentUserId)->get()->toArray();
-            //dd($location);
-            return view('dailyregister', ['loc'=>$location]);
+            
+            return view('dailyregister',compact('locationname'), ['loc'=>$location, 'restaurant_id'=>$restaurant_id]);
+        
         }
-
         
     }
 
@@ -159,6 +178,15 @@ class DailyRegisterController extends Controller
 
         //  dd($lastInsertedUserId);
 
+        $loc = Location::leftJoin('daily_registers','daily_registers.loc_id','=','locations.id')
+        ->where('locations.user_id', $currentUserId)
+        ->where('daily_registers.status',1)
+        ->get()->toArray();
+        // dd($loc);
+         $locationname = $loc[0]['name'] ?? ""; 
+
+
+
             $lastInsertedUser = Daily_register::where('id', $lastInsertedUserId)->first();
 
         //   dd($lastInsertedUser['opening_cash']);
@@ -185,13 +213,15 @@ class DailyRegisterController extends Controller
               return view('dailyregister', compact('status'));
             }
             else{
+                $data1 = User::where('id', $currentUserId)->get()->toArray();
+                $restaurant_id = $data1[0]['restaurant_id']; 
               
-              return view('closeregister', compact('id','status','opening_cash','opening_card','opening_credit','opening_upi', 'opened_at', 'closed_at'));
+              return view('closeregister', compact('id','status','opening_cash','opening_card','opening_credit','opening_upi', 'opened_at', 'closed_at','restaurant_id','locationname'));
             }
         } else {
             $location = Location::where('user_id', $currentUserId)->get()->toArray();
            // dd($location);
-            return view('dailyregister', ['loc'=>$location]);
+            return view('dailyregister',compact('locationname'), ['loc'=>$location]);
         }
 
         
@@ -222,6 +252,9 @@ class DailyRegisterController extends Controller
             'closing_upi' => $closing_upi,
             'updated_at' => $currentTimestamp,
         ]);
+      
+
+
 
         return redirect('dailyregister');
 
@@ -236,8 +269,13 @@ class DailyRegisterController extends Controller
         $id = DB::table('locations')
         ->where('name', $locationname)
         ->where('user_id', $currentUserId)
-        ->value('id');         
-        return view('/create_register', ['locationname'=>$locationname, 'loc_id'=>$id]);
+        ->value('id');    
+        
+        
+        
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id']; 
+        return view('/create_register', ['locationname'=>$locationname, 'loc_id'=>$id, 'restaurant_id'=>$restaurant_id]);
        
         }
 

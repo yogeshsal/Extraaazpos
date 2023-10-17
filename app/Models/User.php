@@ -26,6 +26,7 @@ class User extends Authenticatable
         'role',
         'status_id',
         'state',
+        'restaurant_id',
     ];
 
     /**

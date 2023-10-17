@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Charge;
 use App\Models\Item;
+use App\Models\User;
 use App\Models\Chargesitem;
 use Auth;
 
@@ -13,7 +14,11 @@ class ChargeController extends Controller
     public function index()
     {
         $data = Charge::all(); 
-        return view('catalogue.charges.index',compact('data'));
+        
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];    
+        return view('catalogue.charges.index',compact('data','restaurant_id'));
     }
 
     public function store(Request $request)
@@ -46,7 +51,10 @@ class ChargeController extends Controller
         $items = Item::leftJoin('categories', 'items.item_category_id', '=', 'categories.id')
         ->whereIn('items.id', $charge_ids)->get();
         
-        return view('catalogue.charges.edit', compact('Charge','items'));
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];    
+        return view('catalogue.charges.edit', compact('Charge','items','restaurant_id'));
     }
 
     public function update(Request $request, $id)

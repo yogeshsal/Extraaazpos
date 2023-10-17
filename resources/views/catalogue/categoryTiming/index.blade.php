@@ -2,28 +2,131 @@
 @extends('layouts.ownerlayout')
 @extends('layouts.app')
 @section('ownercontent')
+
+<style>
+    .circle {
+        width: 30px;
+        height: 30px;
+        background-color: grey;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f5f5f5;
+        color: #646464;
+        font-weight: 900;
+        font-size: small;
+    }
+
+    tr {
+        border-bottom: 2px solid #F5F5F5;
+        /* Light grey border between rows */
+    }
+
+    .btn.btn-outline-secondary {
+        border-color: #6c757d;
+        /* Set the default border color */
+    }
+
+    .btn.btn-outline-secondary:hover {
+        border-color: orange;
+        /* Change the border color to orange on hover */
+        background-color: transparent;
+        color: orange;
+    }
+
+    .page-content{
+        height:100vh;
+    }
+</style>
+
 <br>
-<div class="row card shadow p-3">
-<h3>Category Timings</h3>
-<div class="row">
-    <div class="col-lg-6">
-        <h6>Central repository for all your category timings</h6>
-    </div>
- 
-    <div class="col-lg-3">
-        <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
-    </div>
-    <div class="col-lg-3">
-            <button class="btn btn-orange m-1" data-toggle="modal" data-target="#category_timing">New Category Timing</button>
-        </div>
-        
-</div>
+
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="card shadow">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="p-0">Category Timing</h3>
+                    <p class="text-muted">Central repository for all your category timings</p>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <div class="input-group mr-2">
+                        <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
+                        <div class="search-box ms-2">
+                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                                                <i class="ri-search-line search-icon "></i>
+                                            </div>&nbsp;&nbsp;
+
+
+                        <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
+                        <button type="button" class="btn btn-sm btn-orange m-1" data-bs-toggle="modal" data-bs-target="#chargesModal">
+                            <i class="bi bi-plus-lg fw-bolder text-white"></i> New Category Timing</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>DESCRIPTION	</th>
+                        <th>SLOT COUNT	</th>
+                        <th>UPDATED</th>
+                    </tr>
+                </thead>
+                <tbody>
+        @foreach($time as $t)
+        <tr>
+            <td>
+            <a href="{{ route('category-timing.edit', ['id' => $t->id]) }}">
+             {{ $t->name }}
+            </a>
+                <br>
+                handle :{{$t->handle}}
+            </td>
+            <td>{{$t->description}}</td>
+            <td>Slot Count</td>
+            <td>{{ $t->updated_at->format('d M, Y - h:i A') }}
+                <br>
+                {{$t->username}}
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
 <!-- create Modal -->
-<div class="modal fade" id="category_timing" tabindex="-1" role="dialog" aria-labelledby="addCategoryModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-left modal-lg large-modal" role="document">
-        <div class="modal-content p-3">
-            <h5>New Timing Group</h5>
+<div class="modal fade modal-lg" id="chargesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">New Timing Group</h4>
+
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span> -->
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
             <form method="POST">
                 @csrf
                 <div class="row mt-2">
@@ -99,38 +202,8 @@
     </div>
   
 </div>
-<div class="card mt-3">
-        <div class="row">
-        <table class="table table-responsive table-hover" id="dataTable">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">SLOT COUNT</th>
-      <th scope="col">UPDATED</th>
-    </tr>
-  </thead>
-  <tbody>
-        @foreach($time as $t)
-        <tr>
-            <td>
-            <a href="{{ route('category-timing.edit', ['id' => $t->id]) }}">
-             {{ $t->name }}
-            </a>
-                <br>
-                handle :{{$t->handle}}
-            </td>
-            <td>{{$t->description}}</td>
-            <td>Slot Count</td>
-            <td>{{ $t->updated_at->format('d M, Y - h:i A') }}
-                <br>
-                {{$t->username}}
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
- 
-</table>
+
+  
     <div class="d-flex justify-content-end">
         {!! $time->links() !!}
     </div>
