@@ -15,9 +15,7 @@
     display: flex;
     flex-direction: column;
   }
-</style>
 
-<style>
   .positive-value {
     color: red;
   }
