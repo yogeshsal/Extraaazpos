@@ -78,7 +78,7 @@ Route::put('/update', [App\Http\Controllers\CustomerController::class, 'update']
 //ORDER
 // Route::view('orders', 'orders.index');
 Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index1']);
-Route::get('/orders/pay', [App\Http\Controllers\OrderController::class, 'payorder']);
+Route::get('/orders/pay', [App\Http\Controllers\OrderController::class, 'payorder'])->name('orders.pay');;
 
 
 //ITEM

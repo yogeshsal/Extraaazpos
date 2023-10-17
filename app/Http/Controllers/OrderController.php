@@ -54,6 +54,10 @@ class OrderController extends Controller
 
     public function payorder()
     {
-        return view('orders.pay');
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        
+        return view('orders.pay', compact('restaurant_id'));
     }
 }

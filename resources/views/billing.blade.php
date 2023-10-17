@@ -338,7 +338,8 @@
                                 class="btn btn-light btn-icon rounded-pill"><i class=" ri-earth-line"></i></button>
                             <button type="button" data-bs-toggle="modal" data-bs-target="#modalnote"
                                 class="btn btn-light btn-icon rounded-pill"><i class=" ri-file-edit-line"></i></button>
-                            <button class="btn btn-outline-success btn-lg float-end" type="button">Collect</button>
+                            <button id="payButton" class="btn btn-outline-success btn-lg float-end" type="button"
+                                onclick="navigateToPayRoute()">Collect</button>
 
 
 
@@ -954,4 +955,16 @@ document.getElementById('saveCustomerButton').addEventListener('click', function
     $('#customer').modal('hide');
 });
 </script>
+
+
+<script>
+function navigateToPayRoute() {
+    // Use the Laravel route function to generate the URL
+    var payRouteUrl = "{{ route('orders.pay') }}";
+
+    // Redirect to the pay route
+    window.location.href = payRouteUrl;
+}
+</script>
+
 @endsection
