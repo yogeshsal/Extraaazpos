@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: column;
 }
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -37,7 +38,6 @@ tr {
     border-bottom: 2px solid #F5F5F5;
     /* Light grey border between rows */
 }
-
 </style>
 
 <div class="main-content">
@@ -52,7 +52,7 @@ tr {
 
                         <div class="flex-container">
                             <div class="flex-column">
-                                <h2>Session {{$id}}</h2>
+                                <h2>Register {{$id}}</h2>
                                 <h6>Register : <?php echo $locationname   ?></h6>
                             </div>
                             <div class="flex-column">
@@ -200,7 +200,7 @@ tr {
     Featured
   </div> -->
             <div class="card-body">
-            <h3 class="p-0">Payments</h3>
+                <h3 class="p-0">Payments</h3>
                 <table id="data-table">
                     <thead>
                         <tr>
