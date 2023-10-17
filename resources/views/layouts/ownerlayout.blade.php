@@ -168,10 +168,12 @@
                         {{$restaurant_id}}
                     </button>
 
+                    @if (!empty($locationname))
                     <button type="button" class="btn btn-light m-4" data-bs-container="body" data-bs-toggle="popover"
                         data-bs-placement="top" data-bs-content="UNIQUE EXTRAAAZPOS ID">
-                        <?php echo $locationname ?? "" ?>
+                        <?php echo $locationname; ?>
                     </button>
+                    @endif
 
                     <div class="ms-1 header-item d-none d-sm-flex">
                         <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle"
@@ -849,21 +851,6 @@
                                 <li class="nav-item">
                                     <a href="/add_floor" class="nav-link" data-key="t-starter"> Add Floor </a>
                                 </li>
-                                <!-- <li class="nav-item">
-                                    <a href="/owner" class="nav-link" data-key="t-starter"> Employees </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/owner" class="nav-link" data-key="t-starter"> Location </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/owner" class="nav-link" data-key="t-starter"> Brands </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/owner" class="nav-link" data-key="t-starter"> Print Templates </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/owner" class="nav-link" data-key="t-starter"> Integrations </a>
-                                </li> -->
                             </ul>
                         </div>
                     </li>
@@ -881,7 +868,6 @@
 
             <!-- Sidebar -->
         </div>
-
         <div class="sidebar-background"></div>
     </div>
 
