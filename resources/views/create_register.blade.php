@@ -15,7 +15,9 @@
 
                 </div>
             </div>
-            <div class="container"> @csrf <form action="{{ route('storeRegister') }}" method="post">
+            <div class="container">
+                <form action="{{ route('storeRegister') }}" method="post">
+                    @csrf
                     <div class="row">
                         <div class="card">
                             <div class="card-body">

@@ -280,7 +280,8 @@ class DailyRegisterController extends Controller
         }
 
         public function storeRegister(Request $request) 
-        {             
+        {           
+                   
             $data = new Daily_register;        
             $data->loc_id = $request->loc_id;
             $data->location = $request->locationname;
