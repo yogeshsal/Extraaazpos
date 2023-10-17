@@ -2,9 +2,39 @@
 @extends('layouts.ownerlayout')
 @extends('layouts.app')
 @section('ownercontent')
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f5f5f5;
+    color: #646464;
+    font-weight: 950;
+    font-size: small;
+}
+
+tr {
+    border-bottom: 2px solid #F5F5F5;
+    /* Light grey border between rows */
+}
+</style>
 <br>
-<div class="row card shadow p-3">
+<div class="main-content">
+<div class="page-content">
+<div class="card shadow">
+  <div class="card-body d-flex justify-content-between align-items-center">
+    
 <h3>Associate Locations</h3>
+
+
 <div class="row">
     <div class="col-lg-5">
         <input type="text" class="form-control">
@@ -18,8 +48,9 @@
     <button class="btn btn-orange m-1" type="submit">Save</button>
 
     </div>
+
     <br><br>
-    <table class="table table-hover">
+    <table id="data-table">
   <thead>
     <tr>
       <th></th>
@@ -40,6 +71,9 @@
 </table>
 </form>  
 </div>
+<div>
+</div>
+<div>
 
 
 
