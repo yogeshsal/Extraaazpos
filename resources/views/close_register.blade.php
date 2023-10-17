@@ -30,10 +30,36 @@
                         <div class="flex-container">
                             <div class="flex-column">
                                 <h2>Session {{$id}}</h2>
-                                <h6>Register : Register location name here</h6>
+                                <h6>Register : <?php echo $locationname   ?></h6>
                             </div>
                             <div class="flex-column">
-                                <h6><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp; Calculated a few Seconds ago
+                                @php $formattedTime = '';
+
+                                @endphp
+                                @php
+                                // Calculate the time difference
+                                $currentTime = now();
+                                $updatedAt = $opened_at;
+                                $diff = $currentTime->diff($updatedAt);
+
+                                // Determine the appropriate format based on the time elapsed
+
+
+                                if ($diff->y > 0) {
+                                $formattedTime = $diff->y . ' year' . ($diff->y > 1 ? 's' : '') . ' ago';
+                                } elseif ($diff->m > 0) {
+                                $formattedTime = $diff->m . ' month' . ($diff->m > 1 ? 's' : '') . ' ago';
+                                } elseif ($diff->d > 0) {
+                                $formattedTime = $diff->d . ' day' . ($diff->d > 1 ? 's' : '') . ' ago';
+                                } elseif ($diff->h > 0) {
+                                $formattedTime = $diff->h . ' hour' . ($diff->h > 1 ? 's' : '') . ' ago';
+                                } elseif ($diff->i > 0) {
+                                $formattedTime = $diff->i . ' minute' . ($diff->i > 1 ? 's' : '') . ' ago';
+                                } else {
+                                $formattedTime = 'just now';
+                                }
+                                @endphp
+                                <h6><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp; Calculated {{ $formattedTime }}
                                     &nbsp;
                                     <a href="/closeregister"><button class="btn btn-orange">Close Register</button></a>
                             </div>
