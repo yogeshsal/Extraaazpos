@@ -109,6 +109,7 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
 
+        //dd($id);
         $request->validate([
             'item_name' => 'required|string|max:255',
             'item_short_name' => 'required|string|max:255',
@@ -120,8 +121,9 @@ class ItemController extends Controller
             'item_default_sell_price' => 'required|string|max:255',
             'item_markup_price' => 'required|string|max:255',
         ]);
+       // dd($id);
         $item = Item::find($id);
-
+        //dd($item);
         if (!$item) {
             // Handle the case when the customer with the given ID is not found
             abort(404);
@@ -144,7 +146,9 @@ class ItemController extends Controller
             'item_markup_price' => 'required|string|max:255',
         ]);
 
-        // Update the customer's data
+        // Update the items's data
+
+        //dd($validatedData);
         $item->update($validatedData);        
         return redirect("/items")->with('success', 'Item updated successfully');
     }
