@@ -65,7 +65,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#mg" role="tab" aria-selected="true">
-                                    Modifier Groups
+                                    Modifier Groups ({{ $modifierGroupCount}})
                                 </a>
                             </li>
                         </ul>
@@ -339,7 +339,26 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="tab-pane" id="mg" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h4>Modifier Groups </h4>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a type="button" class="btn btn-orange"
+                                                href="{{ route('items.select_modifiergroup', $item->id ) }}">Update
+                                            </a>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+
+
 
                                 </div>
                             </div>
@@ -348,6 +367,8 @@
                 </div>
             </div>
         </div>
+        
+
     </div>
     <!-- End Page-content -->
 </div>
