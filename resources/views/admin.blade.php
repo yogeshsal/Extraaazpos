@@ -44,7 +44,7 @@ $date = date('Y-m-d');
                     <div class="col-md-6">
                         <div class="card shadow-lg">
                             <div class="card-body">
-                                <h5 class="card-title">Increasing Graph</h5>
+                                <h5 class="card-title">Net Sales</h5>
                                 <canvas id="increasingGraph" width="400" height="200"></canvas>
                             </div>
                         </div>
@@ -52,7 +52,7 @@ $date = date('Y-m-d');
                     <div class="col-md-6">
                         <div class="card shadow-lg">
                             <div class="card-body">
-                                <h5 class="card-title">Decreasing Graph </h5>
+                                <h5 class="card-title">Sales Count</h5>
                                 <canvas id="decreasingGraph" width="400" height="200"></canvas>
                             </div>
                         </div>
