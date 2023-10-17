@@ -59,7 +59,8 @@
                                 $formattedTime = 'just now';
                                 }
                                 @endphp
-                                <h6><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp; Calculated {{ $formattedTime }}
+                                <h6><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp; Calculated
+                                    {{ $formattedTime }}
                                     &nbsp;
                                     <a href="/closeregister"><button class="btn btn-orange">Close Register</button></a>
                             </div>
@@ -141,7 +142,7 @@
                             $formattedTime = 'just now';
                             }
                             @endphp
-                            Register was opened {{ $formattedTime }} ago by {{$user_name}}
+                            Register was opened {{ $formattedTime }} by {{$user_name}}
 
                         </div>
 
