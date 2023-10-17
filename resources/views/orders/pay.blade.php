@@ -3,14 +3,13 @@
 
 @section('ownercontent')
 <div class="main-content">
-  <div class="page-content">
+  <div class="page-content" style="background-color: #fff;">
     <div class="container card shadow">
       <div class="row">
         <div class="col-md-2"></div>
         <div class="col-8">
           <div class="card-body d-flex justify-content-between align-items-center">
             <div style="background-color: #fff;">
-
               <div class="d-flex justify-content-between">
                 <div>
                   <h4>Select Payment Mode </h4>
