@@ -40,6 +40,20 @@ $date = date('Y-m-d');
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card shadow-lg">
+                            <div id="chartcontainer1" style="width:100%; height:400px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card shadow-lg">
+                            <div id="chartcontainer2" style="width:100%; height:400px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card shadow-lg">
                             <div class="card-body">
                                 <h5 class="card-title">Increasing Graph</h5>
                                 <canvas id="increasingGraph" width="400" height="200"></canvas>
@@ -230,13 +244,14 @@ $date = date('Y-m-d');
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
     // Data for the increasing graph
     var increasingData = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
         datasets: [{
             label: "Increasing Data",
-            data: [45, 20, 87, 40, 66, 60, 4, 12, 33, 0, 29, 11],
+            data: [5, 20, 100, 40, 80, 10, 99, 20, 68, 40, 33, 10, 67, 79, 40, 33, 10, 99, 20],
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
@@ -244,10 +259,10 @@ $date = date('Y-m-d');
     };
     // Data for the decreasing graph
     var decreasingData = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", ],
         datasets: [{
             label: "Decreasing Data",
-            data: [90, 50, 10, 30, 20, 10, 40, 66, 60, 4, 12, 33],
+            data: [5, 20, 100, 40, 33, 10, 33, 77, 99, 20, 100, 40, 99, 20, 88, 40, 33, 40, 8],
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1
@@ -268,8 +283,56 @@ $date = date('Y-m-d');
 </script>
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const chart1 = Highcharts.chart('chartcontainer1', {
+            chart1: {
+                type: 'line'
+            },
+            title: {
+                text: 'Fruit Consumption'
+            },
+            xAxis: {
+                categories: ['Apples', 'Bananas', 'Oranges']
+            },
+            yAxis: {
+                title: {
+                    text: 'Fruit eaten'
+                }
+            },
+            series: [{
+                name: 'Jane',
+                data: [1, 0, 4]
+            }, {
+                name: 'John',
+                data: [5, 7, 3]
+            }]
+        });
 
-
-
+        const chart2 = Highcharts.chart('chartcontainer2', {
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'Fruit Consumption'
+            },
+            xAxis: {
+                categories: ['Apples', 'Bananas', 'Oranges']
+            },
+            yAxis: {
+                title: {
+                    text: 'Fruit eaten'
+                }
+            },
+            series: [{
+                name: 'Jane',
+                data: [1, 0, 4]
+            }, {
+                name: 'John',
+                data: [5, 7, 3]
+            }]
+        });
+    });
+</script>
 
 @endsection
