@@ -102,7 +102,6 @@ class ItemController extends Controller
 
         $modifierGroupCount = $modifierGroup->count();
         
-        return view('catalogue.items.edit', compact('item','categories','locations','foodtype','locationCount','modifierGroup','modifierGroupCount'));
         $tax = Taxitem::leftJoin('taxes', 'taxitems.tax_id', '=', 'taxes.id')
             ->whereJsonContains('item_id', $id)->get();
 
@@ -113,7 +112,7 @@ class ItemController extends Controller
         $restaurant_id = $data1[0]['restaurant_id'];
 
 
-        return view('catalogue.items.edit', compact('item', 'categories', 'locations', 'foodtype', 'locationCount', 'tax', 'charge', 'restaurant_id'));
+        return view('catalogue.items.edit', compact('item', 'categories', 'locations', 'foodtype', 'locationCount', 'tax', 'charge', 'restaurant_id','modifierGroup','modifierGroupCount'));
     }
 
 

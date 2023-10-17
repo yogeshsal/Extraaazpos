@@ -65,7 +65,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#mg" role="tab" aria-selected="true">
-                                    Modifier Groups
+                                    Modifier Groups ({{ $modifierGroupCount}})
                                 </a>
                             </li>
                         </ul>
@@ -339,7 +339,26 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="tab-pane" id="mg" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h4>Modifier Groups </h4>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a type="button" class="btn btn-orange"
+                                                href="{{ route('items.select_modifiergroup', $item->id ) }}">Update
+                                            </a>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+
+
 
                                 </div>
                             </div>
@@ -348,82 +367,8 @@
                 </div>
             </div>
         </div>
-        <div id="tab3">
-            <span>Inside Tab 3, how <b>interesting</b>.</span>
-        </div>
-        <div id="tab4">
-           
-        <div class="card shadow p-3">
-                <div class="row">
-                        <div class="col">
-                            <h4>Associated Locations</h4>
-                        </div>
-                            <div class="col-auto">
-                            <a type="button" class="btn btn-orange" href="{{ route('items.select_location', $item->id ) }}">Restrict items</a>  
-                            </div>
-                </div>
-        </div>
+        
 
-
-        <div class="card shadow p-3 mt-3">
-                    <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>OVERRIDE SALES PRICE</th>
-                            
-                        </tr>
-                      
-                    </thead>
-                        <tbody>
-                        @foreach($locations as $l )
-                        <tr>
-                            <td>{{$l->name}}</td>
-                            <td></td>
-                        </tr>
-                     @endforeach
-                        
-
-                        </tbody>
-                </table>
-             </div>
-            
-            
-            </div>
-        <div id="tab5">
-        <div class="card shadow p-3">
-                <div class="row">
-                        <div class="col">
-                            <h4>Modifier Groups </h4>
-                        </div>
-                            <div class="col-auto">
-                            <a type="button" class="btn btn-orange" href="{{ route('items.select_modifiergroup', $item->id ) }}">Update</a>  
-                            </div>
-                </div>
-        </div>  
-         <div class="card shadow p-3 mt-3">
-                    <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Modifier group</th>
-                       
-                        </tr>
-                      
-                    </thead>
-                        <tbody>
-                        @foreach($modifierGroup as $m)
-                    <tr>
-                    <td>{{$m->modifier_group_name}}</td>
-                    
-                 </tr>
-                   @endforeach
-                        
-
-                        </tbody>
-                </table>
-             </div> 
-
-        </div>
     </div>
     <!-- End Page-content -->
 </div>
