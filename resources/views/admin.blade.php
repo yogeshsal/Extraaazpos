@@ -184,8 +184,8 @@ $date = date('Y-m-d');
             </div>
 
             <hr>
-            <h4 class="p-3 my-4">Top Selling Products </h4>
-            <div class="container mb-4">
+            <h4 class="p-3 mb-4">Top Selling Products </h4>
+            <div class="container-fluid mb-4">
                 <table class="table table-hover table-bordered table-condensed table-card" id="dataTable">
                     <thead class="bg-light">
                         <tr>

@@ -43,7 +43,7 @@ Route::post('/closeregister', [App\Http\Controllers\DailyRegisterController::cla
 
 
 //register Session
- Route::get('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('admin');
+Route::get('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('admin');
 //  Route::get('index', [App\Http\Controllers\RegisterSessionController::class, 'fetchSessions'])->middleware('owner');
 
 // Route::post('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('owner');
@@ -63,11 +63,11 @@ Route::get('billing', [App\Http\Controllers\FloorSettingController::class, 'show
 Route::get('/customers', [App\Http\Controllers\CustomerController::class, 'index']);
 // Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
 Route::post('/create-customer', [App\Http\Controllers\CustomerController::class, 'store'])->name('customers.store');
-Route::get('/customers/{id}/edit', [App\Http\Controllers\CustomerController::class,'edit'])->name('customers.edit');
-Route::put('/customers/{id}', [App\Http\Controllers\CustomerController::class,'update'])->name('customers.update');
+Route::get('/customers/{id}/edit', [App\Http\Controllers\CustomerController::class, 'edit'])->name('customers.edit');
+Route::put('/customers/{id}', [App\Http\Controllers\CustomerController::class, 'update'])->name('customers.update');
 // Route::put('/customers/{id}', [App\Http\Controllers\CustomerController::class, 'update'])->name('customers.update');
 // Route::get('/customers/{id}', [App\Http\Controllers\CustomerController::class, 'show'])->name('customers.show');
-Route::put('/update', [App\Http\Controllers\CustomerController::class,'update'])->name('update');
+Route::put('/update', [App\Http\Controllers\CustomerController::class, 'update'])->name('update');
 // Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 //billing
 
@@ -78,6 +78,7 @@ Route::put('/update', [App\Http\Controllers\CustomerController::class,'update'])
 //ORDER
 // Route::view('orders', 'orders.index');
 Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index1']);
+Route::get('/orders/pay', [App\Http\Controllers\OrderController::class, 'payorder']);
 
 
 //ITEM
@@ -85,10 +86,10 @@ Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index1']);
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index']);
 Route::post('/create-item', [App\Http\Controllers\ItemController::class, 'store'])->name('items.store');
 Route::get('/items/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit'])->name('items.edit');
-Route::put('/items/{id}', [App\Http\Controllers\ItemController::class,'update'])->name('items.update');
-Route::put('/items/{id}/update-image', [App\Http\Controllers\ItemController::class,'updateImage'])->name('items.updateImage');
+Route::put('/items/{id}', [App\Http\Controllers\ItemController::class, 'update'])->name('items.update');
+Route::put('/items/{id}/update-image', [App\Http\Controllers\ItemController::class, 'updateImage'])->name('items.updateImage');
 Route::get('/items/select_location/{id}', [App\Http\Controllers\ItemController::class, 'select_location'])->name('items.select_location');
-Route::post('/location-items/{id}', [App\Http\Controllers\ItemController::class,'restrictItems'])->name('loction.items');
+Route::post('/location-items/{id}', [App\Http\Controllers\ItemController::class, 'restrictItems'])->name('loction.items');
 
 
 
@@ -100,8 +101,8 @@ Route::post('/location-items/{id}', [App\Http\Controllers\ItemController::class,
 Route::get('categories', [App\Http\Controllers\CategoryController::class, 'index'])->middleware('admin');
 Route::post('/create-category', [App\Http\Controllers\CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categories/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('categories.edit');
-Route::put('/categories/{id}', [App\Http\Controllers\CategoryController::class,'catupdate'])->name('categories.update');
-Route::put('/categories/{id}/update-image', [App\Http\Controllers\CategoryController::class,'updateImage'])->name('categories.updateImage');
+Route::put('/categories/{id}', [App\Http\Controllers\CategoryController::class, 'catupdate'])->name('categories.update');
+Route::put('/categories/{id}/update-image', [App\Http\Controllers\CategoryController::class, 'updateImage'])->name('categories.updateImage');
 
 Route::view('select-item', 'catalogue.categories.select-items');
 Route::get('/show-items/{id}', [App\Http\Controllers\CategoryController::class, 'showitems'])->name('categories.items');
@@ -116,14 +117,14 @@ Route::post('/updateitems/{catid}', [App\Http\Controllers\CategoryController::cl
 Route::get('/modifiergroups', [App\Http\Controllers\ModifierGroupsController::class, 'index']);
 Route::post('/create-modifier-group', [App\Http\Controllers\ModifierGroupsController::class, 'store'])->name('modifiergroups.store');
 Route::get('/modifiergroups/edit/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'edit'])->name('modifiergroups.edit');
-Route::put('/modifiergroups/{id}', [App\Http\Controllers\ModifierGroupsController::class,'update'])->name('modifiergroups.update');
+Route::put('/modifiergroups/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'update'])->name('modifiergroups.update');
 Route::get('/modifiergroups/select_items/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'select_items'])->name('modifiergroups.select_items');
-Route::post('/modifiergroups-items/{id}', [App\Http\Controllers\ModifierGroupsController::class,'restrictItems'])->name('modifiergroups.items');
+Route::post('/modifiergroups-items/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'restrictItems'])->name('modifiergroups.items');
 
 Route::get('/modifiergroups/create_modifier/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'listModifier'])->name('modifiergroups.create_modifier');
-Route::post('/modifiergroups-modifier/{id}', [App\Http\Controllers\ModifierGroupsController::class,'createModifier'])->name('modifiergroups.modifier');
+Route::post('/modifiergroups-modifier/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'createModifier'])->name('modifiergroups.modifier');
 Route::get('/modifier/edit/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'editModifier'])->name('modifier.edit');
-Route::put('/modifier/{id}', [App\Http\Controllers\ModifierGroupsController::class,'update_modifier'])->name('modifier.update');
+Route::put('/modifier/{id}', [App\Http\Controllers\ModifierGroupsController::class, 'update_modifier'])->name('modifier.update');
 
 
 
@@ -131,9 +132,9 @@ Route::put('/modifier/{id}', [App\Http\Controllers\ModifierGroupsController::cla
 Route::get('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'index'])->middleware('admin');
 Route::post('/category-timing', [App\Http\Controllers\CategoryTimingController::class, 'addCategoryTiming'])->middleware('admin');
 Route::get('/category-timing/edit/{id}', [App\Http\Controllers\CategoryTimingController::class, 'edit'])->name('category-timing.edit');
-Route::put('/category-timing/{id}', [App\Http\Controllers\CategoryTimingController::class,'update'])->name('category-timing.update');
+Route::put('/category-timing/{id}', [App\Http\Controllers\CategoryTimingController::class, 'update'])->name('category-timing.update');
 Route::get('/category-timing/select_category/{id}', [App\Http\Controllers\CategoryTimingController::class, 'select_category'])->name('category-timing.select_category');
-Route::post('/associate-categories/{id}', [App\Http\Controllers\CategoryTimingController::class,'associateCategories'])->name('associate.categories');
+Route::post('/associate-categories/{id}', [App\Http\Controllers\CategoryTimingController::class, 'associateCategories'])->name('associate.categories');
 
 Route::get('/get-categoryid/{categoryId}', [App\Http\Controllers\OrderController::class, 'getitems']);
 
@@ -143,9 +144,11 @@ Route::post('/discounts', [App\Http\Controllers\DiscountController::class, 'add_
 Route::get('/discounts/{id}/edit', [App\Http\Controllers\DiscountController::class, 'edit'])->name('discounts.edit');
 Route::put('/discounts/update/{id}', [App\Http\Controllers\DiscountController::class, 'update'])->name('discounts.update');
 Route::get('/discounts/select_items/{id}', [App\Http\Controllers\DiscountController::class, 'select_items'])->name('discounts.select_items');
+
 Route::post('/discounts-items/{id}', [App\Http\Controllers\DiscountController::class,'discountItems'])->name('discounts.items');
 Route::get('/discunts/select_location/{id}', [App\Http\Controllers\DiscountController::class, 'select_location'])->name('discounts.select_location');
 Route::post('/restrict-items/{id}', [App\Http\Controllers\DiscountController::class,'restrictItems'])->name('restrict.items');
+
 
 
 
@@ -155,9 +158,9 @@ Route::post('/restrict-items/{id}', [App\Http\Controllers\DiscountController::cl
 Route::get('/taxes', [App\Http\Controllers\TaxController::class, 'index']);
 Route::post('/create-taxes', [App\Http\Controllers\TaxController::class, 'store'])->name('taxes.store');
 Route::get('/taxes/edit/{id}', [App\Http\Controllers\TaxController::class, 'edit'])->name('taxes.edit');
-Route::put('/taxes/{id}', [App\Http\Controllers\TaxController::class,'update'])->name('taxes.update');
+Route::put('/taxes/{id}', [App\Http\Controllers\TaxController::class, 'update'])->name('taxes.update');
 Route::get('/taxes/select_items/{id}', [App\Http\Controllers\TaxController::class, 'select_items'])->name('taxes.select_items');
-Route::post('/tax-items/{id}', [App\Http\Controllers\TaxController::class,'taxItems'])->name('tax.items');
+Route::post('/tax-items/{id}', [App\Http\Controllers\TaxController::class, 'taxItems'])->name('tax.items');
 
 
 
@@ -165,10 +168,10 @@ Route::post('/tax-items/{id}', [App\Http\Controllers\TaxController::class,'taxIt
 //charges
 Route::get('/charges', [App\Http\Controllers\ChargeController::class, 'index']);
 Route::post('/create-charge', [App\Http\Controllers\ChargeController::class, 'store'])->name('catalogue.store');
-Route::get('/charges/edit/{id}', [App\Http\Controllers\ChargeController::class,'edit'])->name('charge.edit');
-Route::put('/charges/{id}', [App\Http\Controllers\ChargeController::class,'update'])->name('charge.update');
+Route::get('/charges/edit/{id}', [App\Http\Controllers\ChargeController::class, 'edit'])->name('charge.edit');
+Route::put('/charges/{id}', [App\Http\Controllers\ChargeController::class, 'update'])->name('charge.update');
 Route::get('/charges/select_items/{id}', [App\Http\Controllers\ChargeController::class, 'select_items'])->name('charge.select_items');
-Route::post('/restrict-items/{id}', [App\Http\Controllers\ChargeController::class,'restrictItems'])->name('restrict.items');
+Route::post('/restrict-items/{id}', [App\Http\Controllers\ChargeController::class, 'restrictItems'])->name('restrict.items');
 
 
 //company-admin
