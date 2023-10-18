@@ -263,8 +263,12 @@ class ItemController extends Controller
             $ids = $selectedLocationIds[0];
         }
        
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+
         
-       return view('catalogue.items.select_modifiergroup',compact('modifierGroup','ids'));
+       return view('catalogue.items.select_modifiergroup',compact('modifierGroup','ids','restaurant_id'));
     }
 
     public function updateModofiergroupItems(Request $request,$id)

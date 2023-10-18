@@ -685,7 +685,7 @@
                                     <a href="/session" class="nav-link" data-key="t-starter"> Register Sessions </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link" data-key="t-starter"> Bill History </a>
+                                    <a href="/billhistory" class="nav-link" data-key="t-starter"> Bill History </a>
                                 </li>
                             </ul>
                         </div>
