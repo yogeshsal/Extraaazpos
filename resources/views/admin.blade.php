@@ -39,6 +39,20 @@ $date = date('Y-m-d');
             <!-- chart card -->
             <div class="container-fluid">
                 <div class="row">
+                    <!-- <div class="col-md-6">
+                        <div class="card shadow-lg">
+                            <div id="chartcontainer1" style="width:100%; height:400px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card shadow-lg">
+                            <div id="chartcontainer2" style="width:100%; height:400px;"></div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
                     <div class="col-md-6">
                         <div class="card shadow-lg">
                             <div class="card-body">
@@ -241,6 +255,7 @@ $date = date('Y-m-d');
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
     // Data for the increasing graph
     var increasingData = {
@@ -279,8 +294,56 @@ $date = date('Y-m-d');
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const chart1 = Highcharts.chart('chartcontainer1', {
+        chart1: {
+            type: 'line'
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [1, 0, 4]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
 
-
-
+    const chart2 = Highcharts.chart('chartcontainer2', {
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [1, 0, 4]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
+});
+</script>
 
 @endsection
