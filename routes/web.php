@@ -40,8 +40,8 @@ Route::post('store-form', [App\Http\Controllers\LocationController::class, 'stor
 Route::post('select_register', [App\Http\Controllers\DailyRegisterController::class, 'passlocation']);
 Route::post('/storeRegister', [App\Http\Controllers\DailyRegisterController::class, 'storeregister'])->name('storeRegister');
 Route::post('/closeregister', [App\Http\Controllers\DailyRegisterController::class, 'closeregister'])->middleware('admin');
-Route::view('billhistory', 'pos.billhistory');
-
+//Route::view('billhistory', 'pos.billhistory');
+Route::get('/billhistory', [App\Http\Controllers\DailyRegisterController::class, 'billhistory']);
 //register Session
 Route::get('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('admin');
 //  Route::get('index', [App\Http\Controllers\RegisterSessionController::class, 'fetchSessions'])->middleware('owner');

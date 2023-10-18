@@ -1,1 +1,7 @@
-<h1>bill history</h1>
+@extends('layouts.ownerlayout')
+@extends('layouts.app')
+
+@section('ownercontent')
+
+<h1>billhistory</h1>
+@endsection
