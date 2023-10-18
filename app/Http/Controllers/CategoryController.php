@@ -137,10 +137,13 @@ class CategoryController extends Controller
 
 public function showitems($id){  
     
-      
-    $items = Item::join('categories', 'items.item_category_id', '=', 'categories.id')
-    ->select('items.*', 'categories.cat_name')
-    ->get();
+    
+    $items = Item::all();
+    
+    // join('categories', 'items.item_category_id', '=', 'categories.id')
+    // ->select('items.*', 'categories.cat_name')
+    // ->get();
+    
    
     $currentUserId = Auth::user()->id;
     $data1 = User::where('id', $currentUserId)->get()->toArray();
