@@ -34,6 +34,10 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {        
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        
         $data = new Category;
         $data->cat_name= $request->cat_name;
         $data->cat_short_name= $request->cat_short_name;
@@ -42,13 +46,9 @@ class CategoryController extends Controller
         $data->cat_timing_group	= $request->cat_timing_group;
         $data->cat_desc= $request->cat_desc;
         $data->user_id= Auth::user()->id;
-       
-        // if (is_array($request->loc_id)) {
-        //     $data->loc_id = implode(',', $request->loc_id); // Convert array to comma-separated string
-        // } else {
-        //     $data->loc_id = $request->loc_id; // Use the value as-is if it's not an array
-        // }
+        $data->restaurant_id = $restaurant_id;       
 
+        //dd($data);
         $data->save();
         return redirect('categories');
     }

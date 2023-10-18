@@ -205,8 +205,8 @@ tr {
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="timing_group">Timing Group</label><br>
-                                                    <select name="timing_group" class="form-select mb-3">
+                                                    <label for="cat_timing_group">Timing Group</label><br>
+                                                    <select name="cat_timing_group" class="form-select mb-3">
                                                         @foreach ($timing as $time)
                                                         <option value="{{$time->id}}">{{$time->name}}</option>
                                                         @endforeach
