@@ -15,7 +15,11 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $data = Category ::where('user_id', Auth::user()->id)
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];
+        
+        $data = Category ::where('restaurant_id',$restaurant_id )
         ->with('items')
         ->paginate(2);
 
@@ -23,9 +27,7 @@ class CategoryController extends Controller
 
         $timing = CategoryTiming::where('user_id',Auth::user()->id)->get();
 
-        $currentUserId = Auth::user()->id;
-        $data1 = User::where('id', $currentUserId)->get()->toArray();
-        $restaurant_id = $data1[0]['restaurant_id'];
+        
         
         return view('catalogue.categories.index',['categories'=>$data,'location'=>$location,'timing'=>$timing, 'restaurant_id'=>$restaurant_id]);
     }
