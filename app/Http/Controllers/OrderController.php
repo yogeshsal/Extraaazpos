@@ -34,23 +34,25 @@ class OrderController extends Controller
     {
         // Get the currently logged-in user's ID
         $userId = Auth::id();
-
+    
         $data = DB::table('items AS i')
-            ->leftJoin('taxitems AS t', function ($join) {
+            ->leftJoin('taxitems AS t', function ($join) use ($categoryId) {
                 $join->on(DB::raw('JSON_UNQUOTE(JSON_EXTRACT(t.item_id, \'$[0]\'))'), '=', 'i.id')
                     ->orWhere(DB::raw('JSON_UNQUOTE(JSON_EXTRACT(t.item_id, \'$[1]\'))'), '=', 'i.id');
             })
             ->leftJoin('taxes AS tx', 't.tax_id', '=', 'tx.id')
-            ->select('i.id','i.item_default_sell_price', 'i.item_image', 'i.item_name', 't.tax_id', 't.status AS tax_status', 'tx.name AS tax_name')
+            ->select('i.id', 'i.item_default_sell_price', 'i.item_image', 'i.item_name', 't.tax_id', 't.status AS tax_status', 'tx.name AS tax_name')
             ->where('i.user_id', $userId) // Add a condition to filter items by the user's ID
+            ->where('i.item_category_id', $categoryId) // Add a condition to filter items by category
             ->get();
-
+    
         if ($data->isEmpty()) {
-            return response()->json(["message" => "No items with associated taxes found for this user."]);
+            return response()->json(["message" => "No items with associated taxes found for this user and category."]);
         }
-
+    
         return response()->json($data, 200, [], JSON_PRETTY_PRINT);
     }
+    
 
     public function payorder()
     {
