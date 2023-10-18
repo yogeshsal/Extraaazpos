@@ -14,12 +14,11 @@ class ChargeController extends Controller
     public function index()
     {
         
-        
-        $data = Charge::all(); 
-        
         $currentUserId = Auth::user()->id;
         $data1 = User::where('id', $currentUserId)->get()->toArray();
-        $restaurant_id = $data1[0]['restaurant_id'];    
+        $restaurant_id = $data1[0]['restaurant_id']; 
+        
+        $data = Charge::where('restaurant_id',$restaurant_id)->get();
         return view('catalogue.charges.index',compact('data','restaurant_id'));
     }
 
@@ -46,6 +45,7 @@ class ChargeController extends Controller
 
     public function edit($id)
     {
+        
         $Charge = Charge::find($id); 
         
         // $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
@@ -60,7 +60,9 @@ class ChargeController extends Controller
         
         $currentUserId = Auth::user()->id;
         $data1 = User::where('id', $currentUserId)->get()->toArray();
-        $restaurant_id = $data1[0]['restaurant_id'];    
+        $restaurant_id = $data1[0]['restaurant_id']; 
+        
+       
         return view('catalogue.charges.edit', compact('Charge','items','restaurant_id'));
     }
 

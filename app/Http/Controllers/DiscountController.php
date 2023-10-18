@@ -17,11 +17,12 @@ class DiscountController extends Controller
 {
     public function index()
     {
-        $data = Discount::all(); 
+        
         $currentUserId = Auth::user()->id;
         $data1 = User::where('id', $currentUserId)->get()->toArray();
-        $restaurant_id = $data1[0]['restaurant_id'];         
-             
+        $restaurant_id = $data1[0]['restaurant_id']; 
+        $data = Discount::where('restaurant_id',$restaurant_id)->get();
+        
         return view('catalogue.discounts.index',['data'=>$data, 'restaurant_id'=>$restaurant_id]);        
     }
 

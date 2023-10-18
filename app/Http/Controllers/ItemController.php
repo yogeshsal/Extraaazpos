@@ -25,7 +25,7 @@ class ItemController extends Controller
         $data1 = User::where('id', $currentUserId)->get()->toArray();
         $restaurant_id = $data1[0]['restaurant_id'];
         
-        $data = Item::where('restaurant_id',$restaurant_id )->with('category')->paginate(3);
+        $data = Item::where('restaurant_id',$restaurant_id )->with('category')->paginate(20);
 
         $resultArray = $data->toArray();
         //dd($resultArray);
@@ -37,7 +37,7 @@ class ItemController extends Controller
             $user_name = '';
         }
 
-        $categories = Category::pluck('cat_name', 'id');
+        $categories = Category::where('restaurant_id',$restaurant_id )->pluck('cat_name', 'id');
         $locations = Location::where('user_id', $currentUserId)
             ->pluck('name', 'id');
 

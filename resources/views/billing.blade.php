@@ -363,7 +363,10 @@
                                     </div>
                                     <div class="modal-body">
                                         <select class="form-select mb-3" aria-label=".form-select-lg example">
-                                            <option selected>Select Discount</option> git
+                                            <option selected>Select Discount</option>
+                                            @foreach($discounts as $d)
+                                            <option value="">{{$d->discount_name}}</option>   
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="modal-footer">
@@ -507,49 +510,14 @@
                                     <div class="modal-body">
                                         <!-- Outlined Styles -->
                                         <div class="hstack gap-2 d-grid flex-wrap">
-
+                                        @foreach($charges as $c)
                                             <button type="button" class="btn btn-outline-light custom-toggle text-start"
                                                 data-bs-toggle="button">
-                                                <span class="icon-on "> Service Charge</span>
-                                                <span class="icon-off "> Service Charge<i
+                                                <span class="icon-on "> {{$c->name}}</span>
+                                                <span class="icon-off "> {{$c->name}}<i
                                                         class="ri-check-fill align-bottom me-1 float-end"></i></span>
                                             </button>
-                                            <button type="button" class="btn btn-outline-light custom-toggle text-start"
-                                                data-bs-toggle="button">
-                                                <span class="icon-on "> Mudassar Charges</span>
-                                                <span class="icon-off"> Mudassar Charges<i
-                                                        class="ri-check-fill align-bottom me-1 float-end"></i></span>
-                                            </button>
-                                            <button type="button" class="btn btn-outline-light custom-toggle text-start"
-                                                data-bs-toggle="button">
-                                                <span class="icon-on "> AC Charges</span>
-                                                <span class="icon-off "> AC Charges<i
-                                                        class="ri-check-fill align-bottom me-1 float-end"></i></span>
-                                            </button>
-                                            <button type="button" class="btn btn-outline-light custom-toggle text-start"
-                                                data-bs-toggle="button">
-                                                <span class="icon-on "> 250</span>
-                                                <span class="icon-off "> 250<i
-                                                        class="ri-check-fill align-bottom me-1 float-end"></i></span>
-                                            </button>
-                                            <button type="button" class="btn btn-outline-light custom-toggle text-start"
-                                                data-bs-toggle="button">
-                                                <span class="icon-on "> Packet</span>
-                                                <span class="icon-off"> Packet<i
-                                                        class="ri-check-fill align-bottom me-1 float-end"></i></span>
-                                            </button>
-                                            <button type="button" class="btn btn-outline-light custom-toggle text-start"
-                                                data-bs-toggle="button">
-                                                <span class="icon-on "> Packing Charges</span>
-                                                <span class="icon-off "> Packing Charges<i
-                                                        class="ri-check-fill align-bottom me-1 float-end"></i></span>
-                                            </button>
-                                            <button type="button" class="btn btn-outline-light custom-toggle text-start"
-                                                data-bs-toggle="button">
-                                                <span class="icon-on "> New Charges</span>
-                                                <span class="icon-off "> New Charges<i
-                                                        class="ri-check-fill align-bottom me-1 float-end"></i></span>
-                                            </button>
+                                           @endforeach
                                             <!-- <input type="checkbox" class="btn-check" id="btn-check-outlined">
                                                         <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label>
                                                         <input type="checkbox" class="btn-check" id="btn-check-outlined">
