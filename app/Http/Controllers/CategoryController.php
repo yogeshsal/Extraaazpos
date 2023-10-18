@@ -17,7 +17,7 @@ class CategoryController extends Controller
     {
         $data = Category ::where('user_id', Auth::user()->id)
         ->with('items')
-        ->paginate(2);
+        ->paginate(20);
 
         $location =Location::where('user_id',Auth::user()->id)->get();
 
@@ -156,23 +156,34 @@ public function showitems($id){
 
     public function updateItems(Request $request, $categoryid)
     {
-        //dd($id);
-        //dd($categoryid);
         $selectedCategoryIds = $request->input('selected_categories');
-        //dd($selectedCategoryIds);
-        
-        
-       
-        if (!empty($selectedCategoryIds)) {
-        Item::whereIn('id', $selectedCategoryIds)
-        ->update(['item_category_id' => $categoryid]);
+        $itemId = Item::where('item_category_id', $categoryid)->pluck('id')->toArray();
+    
+        $commonValues = array_intersect($itemId, $selectedCategoryIds);
+        $notInCommonValues = array_diff($itemId, $selectedCategoryIds);
+    
+        if (!empty($commonValues)) {
+            Item::whereIn('id', $commonValues)->update(['item_category_id' => $categoryid]);
         }
+    
+        if (!empty($notInCommonValues)) {
+            Item::whereIn('id', $notInCommonValues)->update(['item_category_id' => null]);
+        }
+    
+        return redirect('categories');
+
+
         
-        // DB::table('items')
-        // ->where('id', $id)        
-        // ->update([
-        //     'item_category_id' => $categoryid, 
-        // ]);   
+        
+        // if (empty($selectedCategoryIds)) {
+        //     // If $selectedCategoryIds is empty, set the column to null for all relevant records.
+        //     Item::query()->update(['item_category_id' => null]);
+        // } else {
+        //     // If $selectedCategoryIds is not empty, update the records with the specified IDs.
+            // Item::whereIn('id', $selectedCategoryIds)
+            //     ->update(['item_category_id' => $categoryid]);
+        // }
+        
 
          return redirect('categories');
      }
