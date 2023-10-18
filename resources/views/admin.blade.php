@@ -17,8 +17,7 @@ $date = date('Y-m-d');
                 </div>
                 <div class="d-flex">
                     <div class="mr-2">
-                        <input class="form-control" list="locationList" id="locationDatalist"
-                            placeholder="Search locations...">
+                        <input class="form-control" list="locationList" id="locationDatalist" placeholder="Search locations...">
                         <datalist id="locationList">
                             <option value="San Francisco">
                             <option value="New York">
@@ -29,8 +28,7 @@ $date = date('Y-m-d');
                     </div>
                     <div>
                         <!-- <h4 class="text-dark">Sales Dashboard 1</h4> -->
-                        <input type="date" id="booking_from_date" name="from_date" class="form-control"
-                            value="{{$date}}">
+                        <input type="date" id="booking_from_date" name="from_date" class="form-control" value="{{$date}}">
                     </div>
                     <div>
                         <input type="date" id="booking_to_date" name="to_date" class="form-control" value="{{$date}}">
@@ -169,8 +167,7 @@ $date = date('Y-m-d');
                             <div class="card-body">
                                 <h5>Refunds this month</h4>
                                     <span id="refundValue">50,0998</span>
-                                    <span class=" text-danger fw-bolder float-end"><i
-                                            class="bi bi-caret-down-fill"></i>39%</span>
+                                    <span class=" text-danger fw-bolder float-end"><i class="bi bi-caret-down-fill"></i>39%</span>
                             </div>
                         </div>
                     </div>
@@ -260,40 +257,40 @@ $date = date('Y-m-d');
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script>
-// Data for the increasing graph
-var increasingData = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [{
-        label: "Increasing Data",
-        data: [45, 20, 87, 40, 66, 60, 4, 12, 33, 0, 29, 11],
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1
-    }]
-};
-// Data for the decreasing graph
-var decreasingData = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [{
-        label: "Decreasing Data",
-        data: [90, 50, 10, 30, 20, 10, 40, 66, 60, 4, 12, 33],
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1
-    }]
-};
-// Get the canvas elements
-var increasingCanvas = document.getElementById("increasingGraph").getContext('2d');
-var decreasingCanvas = document.getElementById("decreasingGraph").getContext('2d');
-// Create and render the charts
-var increasingChart = new Chart(increasingCanvas, {
-    type: 'line',
-    data: increasingData,
-});
-var decreasingChart = new Chart(decreasingCanvas, {
-    type: 'line',
-    data: decreasingData,
-});
+    // Data for the increasing graph
+    var increasingData = {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+            label: "Increasing Data",
+            data: [45, 20, 87, 40, 66, 60, 4, 12, 33, 0, 29, 11],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    };
+    // Data for the decreasing graph
+    var decreasingData = {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+            label: "Decreasing Data",
+            data: [90, 50, 10, 30, 20, 10, 40, 66, 60, 4, 12, 33],
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }]
+    };
+    // Get the canvas elements
+    var increasingCanvas = document.getElementById("increasingGraph").getContext('2d');
+    var decreasingCanvas = document.getElementById("decreasingGraph").getContext('2d');
+    // Create and render the charts
+    var increasingChart = new Chart(increasingCanvas, {
+        type: 'line',
+        data: increasingData,
+    });
+    var decreasingChart = new Chart(decreasingCanvas, {
+        type: 'line',
+        data: decreasingData,
+    });
 </script>
 
 

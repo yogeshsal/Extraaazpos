@@ -137,16 +137,20 @@ class CategoryController extends Controller
 
 public function showitems($id){  
     
-    //dd($id);    
-    $items = Item::
-    join('categories', 'items.item_category_id', '=', 'categories.id')
+      
+    $items = Item::join('categories', 'items.item_category_id', '=', 'categories.id')
     ->select('items.*', 'categories.cat_name')
     ->get();
-    //dd($items);
+   
     $currentUserId = Auth::user()->id;
     $data1 = User::where('id', $currentUserId)->get()->toArray();
     $restaurant_id = $data1[0]['restaurant_id'];
-    return view('catalogue.categories.select-items', compact('items','restaurant_id'));
+
+    $selectedItemIds = Item::where('item_category_id', $id)->pluck('id')->flatten()->toArray();
+    $ids= $selectedItemIds;
+
+
+    return view('catalogue.categories.select-items', compact('items','restaurant_id','ids'));
 }
 
 
