@@ -337,7 +337,38 @@
                                                 href="{{ route('items.select_location', $item->id ) }}">Restrict
                                                 items</a>
                                         </div>
+                                        <div class="card shadow p-3 mt-3">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+
+                                                    <th scope="col">Name</th>
+                                                    <th>SORT ORDER</th>
+                                                    <th>OVERRIDE SALES PRICE</th>
+                                                    <th>RECOMMENDED</th>
+                                                    <th>AVAILABILITY</th>
+                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($locations as $i)
+                                                <tr>
+                                                    <td>{{$i->name}}</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    
+                                                    
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+
                                     </div>
+                                    </div>
+
+                                    
                                 </div>
 
 
@@ -360,17 +391,17 @@
 
 
 
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-
     </div>
-    <!-- End Page-content -->
+
+
+</div>
+<!-- End Page-content -->
 </div>
 <!-- end main content-->
 </div>
