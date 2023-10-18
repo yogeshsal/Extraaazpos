@@ -3,7 +3,8 @@
 
 @section('ownercontent')
 <!-- Include Bootstrap CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css"
+    rel="stylesheet">
 
 <!-- Include jQuery (required for Bootstrap Switch) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -17,7 +18,9 @@
     .grey-background {
         background-color: #F5F5F5;
     }
-
+.astrik{
+    color:red;
+}
     .circle {
         width: 30px;
         height: 30px;
@@ -213,132 +216,135 @@
             </div>
 
             <!-- modal starts here -->
-            <!-- ... Previous HTML code ... -->
-            <div class="modal fade modal-lg" id="add_location_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">Create New Location</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+<!-- ... Previous HTML code ... -->
+<div class="modal fade modal-lg" id="add_location_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Create New Location</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-                        <div class="modal-body">
-                            <div class="container">
-                                <form action="{{ route('locations.store') }}" method="POST">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="name">Name<span class="red-asterisk"></span></label>
-                                                <input type="text" name="name" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group mt-3">
-                                                <label for="type">Type<span class="red-asterisk"></span></label>
-                                                <select name="type" id="type" class="form-control" required>
-                                                    <option value="Online">Online</option>
-                                                    <option value="Inventory">Inventory</option>
-                                                    <option value="Point Of Sale">Point Of Sale</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group mt-3">
-                                                <label for="handle">Handle</label>
-                                                <input type="text" name="handle" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="tax_number">Tax Number</label>
-                                                <input type="text" name="tax_number" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="city">City<span class="red-asterisk"></span></label>
-                                                <input type="text" name="city" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="state">State</label>
-                                                <input type="text" name="state" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="fssai_id">FSSAI ID</label>
-                                                <input type="text" name="fssai_id" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="form-group">
-                                            <label for="address">Address<span class="red-asterisk"></span></label>
-                                            <textarea name="address" class="form-control" required id="addressTextarea1" rows="2"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="stock_location">Stock Location</label>
-                                                <input type="text" name="stock_location" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="brand">Brand</label>
-                                                <select name="brand" id="brand" class="form-control">
-                                                    <option value="" disabled selected></option>
-                                                    <option value="AY Cafe">AY Cafe</option>
-                                                    <option value="ABC Cafe">ABC Cafe</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="max_slot_number">Max Slot Number</label>
-                                                <input type="text" name="max_slot_number" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-
-                                                <input type="hidden" name="user_id" class="form-control" value={{$currentUserId}}>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-
-                                                <input type="hidden" name="restaurant_id" class="form-control" value={{$restaurant_id}}>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class=" modal-footer">
-                                        <div class="ml-auto">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-orange">Create
-                                                Location</button>
-                                        </div>
-                                    </div>
-                                </form>
+            <div class="modal-body">
+                <div class="container">
+                    <form action="{{ route('locations.store') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Name<span class="red-asterisk"></span></label>
+                                    <input type="text" name="name" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mt-3">
+                                    <label for="type">Type<span class="red-asterisk"></span></label>
+                                    <select name="type" id="type" class="form-control" required>
+                                        <option value="Online">Online</option>
+                                        <option value="Inventory">Inventory</option>
+                                        <option value="Point Of Sale">Point Of Sale</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mt-3">
+                                    <label for="handle">Handle</label>
+                                    <input type="text" name="handle" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tax_number">Tax Number</label>
+                                    <input type="text" name="tax_number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="city">City<span class="red-asterisk"></span></label>
+                                    <input type="text" name="city" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="state">State</label>
+                                    <input type="text" name="state" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="fssai_id">FSSAI ID</label>
+                                    <input type="text" name="fssai_id" class="form-control">
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="row mt-2">
+                            <div class="form-group">
+                                <label for="address">Address<span class="red-asterisk"></span></label>
+                                <textarea name="address" class="form-control" required id="addressTextarea1"
+                                    rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="stock_location">Stock Location</label>
+                                    <input type="text" name="stock_location" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="brand">Brand</label>
+                                    <select name="brand" id="brand" class="form-control">
+                                        <option value="" disabled selected></option>
+                                        <option value="AY Cafe">AY Cafe</option>
+                                        <option value="ABC Cafe">ABC Cafe</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="max_slot_number">Max Slot Number</label>
+                                    <input type="text" name="max_slot_number" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input type="hidden" name="user_id" class="form-control" value={{$currentUserId}}>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input type="hidden" name="restaurant_id" class="form-control"
+                                        value={{$restaurant_id}}>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" modal-footer">
+                            <div class="ml-auto">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-orange">Create
+                                    Location</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
     </div>
+</div>
+</div>
+
+</div>
 </div>
 </div>
 </div>
@@ -355,7 +361,8 @@
 
         <div class="btn-group" role="group" aria-label="Default button group">
             <button type="button" class="btn btn-danger">Archive</button>
-            <button type="button" class="btn btn-light"> <i class="bi bi-arrow-clockwise"></i> Publish Catalogue</button>
+            <button type="button" class="btn btn-light"> <i class="bi bi-arrow-clockwise"></i> Publish
+                Catalogue</button>
         </div>
 
     </div>
@@ -363,43 +370,168 @@
     <div class="offcanvas-body">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="true">Info</button>
+                <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane"
+                    type="button" role="tab" aria-controls="info-tab-pane" aria-selected="true">Info</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="catalogue-tab" data-bs-toggle="tab" data-bs-target="#catalogue-tab-pane" type="button" role="tab" aria-controls="catalogue-tab-pane" aria-selected="false">Catalogue</button>
+                <button class="nav-link" id="catalogue-tab" data-bs-toggle="tab" data-bs-target="#catalogue-tab-pane"
+                    type="button" role="tab" aria-controls="catalogue-tab-pane" aria-selected="false">Catalogue</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="publish-tab" data-bs-toggle="tab" data-bs-target="#publish-tab-pane" type="button" role="tab" aria-controls="publish-tab-pane" aria-selected="false">Publish Log</button>
+                <button class="nav-link" id="publish-tab" data-bs-toggle="tab" data-bs-target="#publish-tab-pane"
+                    type="button" role="tab" aria-controls="publish-tab-pane" aria-selected="false">Publish Log</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="resgisters-tab" data-bs-toggle="tab" data-bs-target="#resgisters-tab-pane" type="button" role="tab" aria-controls="resgisters-tab-pane" aria-selected="false">Registers</button>
+                <button class="nav-link" id="resgisters-tab" data-bs-toggle="tab" data-bs-target="#resgisters-tab-pane"
+                    type="button" role="tab" aria-controls="resgisters-tab-pane"
+                    aria-selected="false">Registers</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="machines-tab" data-bs-toggle="tab" data-bs-target="#machines-tab-pane" type="button" role="tab" aria-controls="machines-tab-pane" aria-selected="false">EDC Machines</button>
+                <button class="nav-link" id="machines-tab" data-bs-toggle="tab" data-bs-target="#machines-tab-pane"
+                    type="button" role="tab" aria-controls="machines-tab-pane" aria-selected="false">EDC
+                    Machines</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="areas-tab" data-bs-toggle="tab" data-bs-target="#areas-tab-pane" type="button" role="tab" aria-controls="areas-tab-pane" aria-selected="false">Areas</button>
+                <button class="nav-link" id="areas-tab" data-bs-toggle="tab" data-bs-target="#areas-tab-pane"
+                    type="button" role="tab" aria-controls="areas-tab-pane" aria-selected="false">Areas</button>
             </li>
 
         </ul>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                Info</div>
-            <div class="tab-pane fade" id="catalogue-tab-pane" role="tabpanel" aria-labelledby="catalogue-tab" tabindex="0">
+            <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0">
+                <form action="{{ route('locations.store') }}" method="POST">
+                    @csrf
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="title">Title<span class="red-asterisk"></span></label>
+                                <input type="text" name="name" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mt-3">
+                                <label for="type">Type<span class="red-asterisk"></span></label>
+                                <select name="type" id="type" class="form-control" required>
+                                    <option value="Online">Online</option>
+                                    <option value="Inventory">Inventory</option>
+                                    <option value="Point Of Sale">Point Of Sale</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mt-3">
+                                <label for="handle">Handle</label>
+                                <input type="text" name="handle" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <div class="form-group">
+                                <label for="tax_number">Tax Number</label>
+                                <input type="text" name="tax_number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <div class="form-group">
+                                <label for="city">City<span class="red-asterisk"></span></label>
+                                <input type="text" name="city" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mt-2">
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" name="state" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <div class="form-group">
+                                <label for="external_id">External ID</label>
+                                <input type="text" name="fssai_id" class="form-control">
+                            </div>
+                        </div>
+                    
+                    <div class="col-md-6 mt-2">
+                        <div class="form-group">
+                            <label for="fssai_id">FSSAI ID</label>
+                            <input type="text" name="fssai_id" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="form-group">
+                            <label for="address">Address<span class="red-asterisk"></span></label>
+                            <textarea name="address" class="form-control" required id="addressTextarea1"
+                                rows="2"></textarea>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="stock_location">Stock Location<span class="red-asterisk"></span></label>
+                                <input type="text" name="stock_location" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="max_slot_number">Max Slot Number</label>
+                                <input type="text" name="max_slot_number" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-md-6 mt-2">
+                            <div class="form-group">
+                                <label for=" ">Tag your locations for easy bulk operations</label>
+                                <button type="submit" class="btn btn-light ">+New tag</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <input type="hidden" name="user_id" class="form-control" value={{$currentUserId}}>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <input type="hidden" name="restaurant_id" class="form-control" value={{$restaurant_id}}>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" modal-footer mt-4">
+                        <div class="ml-auto">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-orange">Create
+                                Location</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="catalogue-tab-pane" role="tabpanel" aria-labelledby="catalogue-tab"
+                tabindex="0">
                 Catalogue</div>
             <div class="tab-pane fade" id="publish-tab-pane" role="tabpanel" aria-labelledby="publish-tab" tabindex="0">
                 Publish
             </div>
 
-            <div class="tab-pane fade" id="registers-tab-pane" role="tabpanel" aria-labelledby="registers-tab" tabindex="0">
+            <div class="tab-pane fade" id="registers-tab-pane" role="tabpanel" aria-labelledby="registers-tab"
+                tabindex="0">
                 Registers
             </div>
 
-            <div class="tab-pane fade" id="machines-tab-pane" role="tabpanel" aria-labelledby="machines-tab" tabindex="0"> EDC
+            <div class="tab-pane fade" id="machines-tab-pane" role="tabpanel" aria-labelledby="machines-tab"
+                tabindex="0"> EDC
                 Machines
             </div>
 
-            <div class="tab-pane fade" id="areas-tab-pane" role="tabpanel" aria-labelledby="areas-tab" tabindex="0">Areas
+            <div class="tab-pane fade" id="areas-tab-pane" role="tabpanel" aria-labelledby="areas-tab" tabindex="0">
+                Areas
             </div>
         </div>
     </div>
