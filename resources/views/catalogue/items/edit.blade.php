@@ -27,6 +27,30 @@
     justify-content: center;
     align-items: center;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f5f5f5;
+    color: #646464;
+    font-weight: 950;
+    font-size: small;
+}
+
+tr {
+    border-bottom: 2px solid #F5F5F5;
+    /* Light grey border between rows */
+}
+
+
 </style>
 
 
@@ -71,7 +95,7 @@
                         </ul>
                         <!-- Tab panes -->
 
-                        <div class="card-outer center-content">
+                       
                             <div class="tab-content  text-muted ">
                                 <div class="tab-pane active " id="home" role="tabpanel">
 
@@ -328,7 +352,51 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="settings" role="tabpanel">
-                                    <div class="row">
+
+
+
+                                <div class="card shadow">
+                                        <div class="card-body d-flex justify-content-between ">
+                                            <div>
+                                                <h3 class="p-0">Associated Locations </h3>
+                                            </div>
+
+                                            <div class="d-flex align-items-center">
+                                                <div class="input-group mr-2">
+
+                                                   
+                                                <a type="button" class="btn btn-orange"
+                                                href="{{ route('items.select_location', $item->id ) }}">Restrict
+                                                items</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <table id="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Name</th>
+                                                        <th>SORT ORDER</th>
+                                                        <th>OVERRIDE SALES PRICE</th>
+                                                        <th>RECOMMENDED</th>
+                                                        <th>AVAILABILITY</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($locations as $i)
+                                                    <tr>
+                                                        <td>{{$i->name}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+
+                                    </div>
+                                    <!-- <div class="row">
                                         <div class="col">
                                             <h4>Associated Locations</h4>
                                         </div>
@@ -337,43 +405,12 @@
                                                 href="{{ route('items.select_location', $item->id ) }}">Restrict
                                                 items</a>
                                         </div>
-                                        <div class="card shadow p-3 mt-3">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-
-                                                    <th scope="col">Name</th>
-                                                    <th>SORT ORDER</th>
-                                                    <th>OVERRIDE SALES PRICE</th>
-                                                    <th>RECOMMENDED</th>
-                                                    <th>AVAILABILITY</th>
-                                                   
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach($locations as $i)
-                                                <tr>
-                                                    <td>{{$i->name}}</td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    
-                                                    
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-
-                                    </div>
-                                    </div>
-
-                                    
+                                    </div> -->
                                 </div>
 
 
                                 <div class="tab-pane" id="mg" role="tabpanel">
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col">
                                             <h4>Modifier Groups </h4>
                                         </div>
@@ -384,8 +421,28 @@
                                         </div>
 
 
-                                        <div class="card shadow p-3 mt-3">
-                                        <table class="table table-hover">
+
+
+                                    </div> -->
+                                    
+                                    <div class="card shadow">
+                                        <div class="card-body d-flex justify-content-between ">
+                                            <div>
+                                                <h3 class="p-0">Modifier Groups </h3>
+                                            </div>
+
+                                            <div class="d-flex align-items-center">
+                                                <div class="input-group mr-2">
+
+                                                   
+                                                    <a type="button" class="btn btn-orange"
+                                                        href="{{ route('items.select_modifiergroup', $item->id ) }}">Update
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <table id="data-table">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Modifier Group</th>
@@ -399,29 +456,19 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-
-                                    </div>
-
-
-
                                     </div>
                                 </div>
-
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+
+  
+        <!-- End Page-content -->
     </div>
-
-
-</div>
-<!-- End Page-content -->
-</div>
-<!-- end main content-->
+    <!-- end main content-->
 </div>
 <!-- /content -->
 </div>
@@ -452,17 +499,7 @@ function filterTable() {
 
 // Add an event listener to the search input
 document.getElementById("searchInput").addEventListener("keyup", filterTable);
-</script>
 
-
-
-
-
-
-
-
-
-<script>
 $(document).ready(function() {
     $('#item_is_recommended').bootstrapSwitch();
     $('#item_is_package_good').bootstrapSwitch();
