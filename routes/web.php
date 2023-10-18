@@ -40,8 +40,8 @@ Route::post('store-form', [App\Http\Controllers\LocationController::class, 'stor
 Route::post('select_register', [App\Http\Controllers\DailyRegisterController::class, 'passlocation']);
 Route::post('/storeRegister', [App\Http\Controllers\DailyRegisterController::class, 'storeregister'])->name('storeRegister');
 Route::post('/closeregister', [App\Http\Controllers\DailyRegisterController::class, 'closeregister'])->middleware('admin');
-Route::view('billhistory', 'pos.billhistory');
-
+//Route::view('billhistory', 'pos.billhistory');
+Route::get('/billhistory', [App\Http\Controllers\DailyRegisterController::class, 'billhistory']);
 //register Session
 Route::get('session', [App\Http\Controllers\RegisterSessionController::class, 'index'])->middleware('admin');
 //  Route::get('index', [App\Http\Controllers\RegisterSessionController::class, 'fetchSessions'])->middleware('owner');
@@ -198,3 +198,15 @@ Route::get('/materials', [App\Http\Controllers\MaterialController::class, 'index
 Route::view('intermediates', 'rawmaterials.intermediates.index');
 Route::view('raw-categories', 'rawmaterials.categories.index');
 Route::view('taxes1', 'rawmaterials.taxes.index');
+
+
+//cart
+
+Route::post('/save-to-cart', [App\Http\Controllers\CartController::class, 'saveToCart'])->name('cart.saveToCart');
+Route::post('/update-cart-item', [App\Http\Controllers\CartController::class, 'updateCartItem'])->name('cart.updateCartItem');
+Route::delete('/remove-from-cart/{product_name}', [App\Http\Controllers\CartController::class, 'removeCartItem'])->name('cart.removeCartItem');
+
+Route::post('/get-cart-items', [App\Http\Controllers\CartController::class, 'getCartItems'])->name('cart.getCartItems');
+
+
+

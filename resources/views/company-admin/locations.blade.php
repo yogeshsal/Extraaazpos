@@ -149,8 +149,6 @@ table tr:hover {
                     <table id="data-table">
                         <thead>
                             <tr>
-                                <th class="grey-background"></th>
-                                <th class="grey-background"><input type="checkbox"></th>
                                 <th class="grey-background">NAME</th>
                                 <th class="grey-background">CITY</th>
                                 <th class="grey-background">PRODUCTS</th>
@@ -165,8 +163,6 @@ table tr:hover {
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
                             </tr>
                         </tbody>
                     </table>
@@ -176,8 +172,6 @@ table tr:hover {
                     <table id="data-table">
                         <thead>
                             <tr>
-                                <th class="grey-background"></th>
-                                <th class="grey-background"><input type="checkbox"></th>
                                 <th class="grey-background">NAME</th>
                                 <th class="grey-background">CITY</th>
                                 <th class="grey-background">PRODUCTS</th>
@@ -188,8 +182,6 @@ table tr:hover {
                         <tbody>
 
                             <tr>
-                                <td> </td>
-                                <td> </td>
                                 <td> </td>
                                 <td> </td>
                                 <td></td>
@@ -204,7 +196,6 @@ table tr:hover {
                     <table id="data-table">
                         <thead>
                             <tr>
-                                <th class="grey-background"><input type="checkbox"></th>
                                 <th class="grey-background">NAME</th>
                                 <th class="grey-background">CITY</th>
                                 <th class="grey-background">REGISTERS</th>
@@ -216,7 +207,6 @@ table tr:hover {
                         <tbody>
                             @foreach($locations as $location)
                             <tr>
-                                <td> </td>
                                 <td>{{ $location->name }}</td>
                                 <td>{{ $location->city }}</td>
                                 <td></td>

@@ -296,5 +296,13 @@ class DailyRegisterController extends Controller
             return redirect('/billing');
         }
 
+        
+        public function billhistory()
+            {        
+                $currentUserId = Auth::user()->id;
+                $data1 = User::where('id', $currentUserId)->get()->toArray();
+                $restaurant_id = $data1[0]['restaurant_id'];  
+                return View('pos.billhistory', compact('restaurant_id'));
+            }
 
 }

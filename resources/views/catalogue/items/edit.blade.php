@@ -350,7 +350,6 @@
                                         </div>
 
                                     </div>
-</div>
                                     <!-- <div class="row">
                                         <div class="col">
                                             <h4>Associated Locations</h4>
@@ -360,8 +359,8 @@
                                                 href="{{ route('items.select_location', $item->id ) }}">Restrict
                                                 items</a>
                                         </div>
-                                    </div>
-                                </div> -->
+                                    </div> -->
+                                </div>
 
 
                                 <div class="tab-pane" id="mg" role="tabpanel">
