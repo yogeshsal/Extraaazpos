@@ -49,13 +49,10 @@
         color: orange;
     }
 
-    .page-content{
-        height:100vh;
+    .page-content {
+        height: 100vh;
     }
 </style>
-
-<br>
-
 <div class="main-content">
 
     <div class="page-content">
@@ -70,9 +67,9 @@
                     <div class="input-group mr-2">
                         <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i> Help</button>
                         <div class="search-box ms-2">
-                                                <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
-                                                <i class="ri-search-line search-icon "></i>
-                                            </div>&nbsp;&nbsp;
+                            <input type="text" class="form-control search" id="searchInput" placeholder=" Search...">
+                            <i class="ri-search-line search-icon "></i>
+                        </div>&nbsp;&nbsp;
 
 
                         <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i> Filters</button>
@@ -213,8 +210,8 @@
                             </div>
                         </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <div class="modal-footer mt-4">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-orange">Save</button>
                         </div>
                     </form>
