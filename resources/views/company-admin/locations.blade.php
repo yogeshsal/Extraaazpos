@@ -3,8 +3,7 @@
 
 @section('ownercontent')
 <!-- Include Bootstrap CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css"
-    rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
 
 <!-- Include jQuery (required for Bootstrap Switch) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -15,73 +14,73 @@
 <!-- Include Bootstrap Switch JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
 <style>
-.grey-background {
-    background-color: #F5F5F5;
-}
+    .grey-background {
+        background-color: #F5F5F5;
+    }
 
-.circle {
-    width: 30px;
-    height: 30px;
-    background-color: grey;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-}
+    .circle {
+        width: 30px;
+        height: 30px;
+        background-color: grey;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
 
-.red-asterisk {
-    color: red;
-}
+    .red-asterisk {
+        color: red;
+    }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-.red-asterisk::after {
-    content: " *";
-    color: red;
-}
+    .red-asterisk::after {
+        content: " *";
+        color: red;
+    }
 
-th,
-td {
-    padding: 8px;
-    text-align: left;
-}
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+    }
 
-tr {
-    border-bottom: 2px solid #F5F5F5;
-    /* Light grey border between rows */
-}
+    tr {
+        border-bottom: 2px solid #F5F5F5;
+        /* Light grey border between rows */
+    }
 
-table tr:hover {
-    background-color: #b8b8b8;
-}
+    table tr:hover {
+        background-color: #b8b8b8;
+    }
 
-.btn.btn-outline-secondary {
-    border-color: #6c757d;
-    /* Set the default border color */
-}
+    .btn.btn-outline-secondary {
+        border-color: #6c757d;
+        /* Set the default border color */
+    }
 
-.btn.btn-outline-secondary:hover {
-    border-color: orange;
-    /* Change the border color to orange on hover */
-    background-color: transparent;
-    color: orange;
-}
+    .btn.btn-outline-secondary:hover {
+        border-color: orange;
+        /* Change the border color to orange on hover */
+        background-color: transparent;
+        color: orange;
+    }
 
-.form-row {
-    margin-bottom: 20px;
-    /* Add space below each row */
-}
+    .form-row {
+        margin-bottom: 20px;
+        /* Add space below each row */
+    }
 
-.table-image {
-    width: 100px;
-    /* Set the desired width */
-    height: auto;
-    /* Auto-adjust the height to maintain the aspect ratio */
-}
+    .table-image {
+        width: 100px;
+        /* Set the desired width */
+        height: auto;
+        /* Auto-adjust the height to maintain the aspect ratio */
+    }
 </style>
 
 <div class="main-content">
@@ -109,10 +108,9 @@ table tr:hover {
                 </div>
                 <div class="d-flex align-items-center">
                     <div class="input-group mr-2">
-                        <button type="button" class="btn btn-outline-secondary m-1"> <i
-                                class="bi bi-question-circle"></i> Help</button>
-                        <input type="search" id="searchInput" class="form-control rounded m-1"
-                            placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
+                        <button type="button" class="btn btn-outline-secondary m-1"> <i class="bi bi-question-circle"></i>
+                            Help</button>
+                        <input type="search" id="searchInput" class="form-control rounded m-1" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" />
                         <button type="button" class="btn btn-outline-secondary m-1"><i class="bi bi-sliders2"></i>
                             Filters</button>
                         <a href="#" class="btn btn-orange m-1" data-toggle="modal" data-target="#add_location_modal">
@@ -126,26 +124,20 @@ table tr:hover {
             <div class="card shadow mt-4 container-fluid">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="online-tab" data-bs-toggle="tab"
-                            data-bs-target="#online-tab-pane" type="button" role="tab" aria-controls="online-tab-pane"
-                            aria-selected="true">Online</button>
+                        <button class="nav-link active" id="online-tab" data-bs-toggle="tab" data-bs-target="#online-tab-pane" type="button" role="tab" aria-controls="online-tab-pane" aria-selected="true">Online</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="inventory-tab" data-bs-toggle="tab"
-                            data-bs-target="#inventory-tab-pane" type="button" role="tab"
-                            aria-controls="inventory-tab-pane" aria-selected="false">Inventory</button>
+                        <button class="nav-link" id="inventory-tab" data-bs-toggle="tab" data-bs-target="#inventory-tab-pane" type="button" role="tab" aria-controls="inventory-tab-pane" aria-selected="false">Inventory</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pos-tab" data-bs-toggle="tab" data-bs-target="#pos-tab-pane"
-                            type="button" role="tab" aria-controls="pos-tab-pane" aria-selected="false">Point Of
+                        <button class="nav-link" id="pos-tab" data-bs-toggle="tab" data-bs-target="#pos-tab-pane" type="button" role="tab" aria-controls="pos-tab-pane" aria-selected="false">Point Of
                             Sale</button>
                     </li>
                 </ul>
             </div>
 
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="online-tab-pane" role="tabpanel" aria-labelledby="online-tab"
-                    tabindex="0">
+                <div class="tab-pane fade show active" id="online-tab-pane" role="tabpanel" aria-labelledby="online-tab" tabindex="0">
                     <table id="data-table">
                         <thead>
                             <tr>
@@ -167,8 +159,7 @@ table tr:hover {
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade" id="inventory-tab-pane" role="tabpanel" aria-labelledby="inventory-tab"
-                    tabindex="0">
+                <div class="tab-pane fade" id="inventory-tab-pane" role="tabpanel" aria-labelledby="inventory-tab" tabindex="0">
                     <table id="data-table">
                         <thead>
                             <tr>
@@ -200,19 +191,19 @@ table tr:hover {
                                 <th class="grey-background">CITY</th>
                                 <th class="grey-background">REGISTERS</th>
                                 <th class="grey-background">PRODUCTS</th>
-                                <th class="grey-background"></th>
-                                <th class="grey-background"> </th>
+
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($locations as $location)
                             <tr>
-                                <td>{{ $location->name }}</td>
+                                <td data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                    {{ $location->name }}
+                                </td>
                                 <td>{{ $location->city }}</td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -223,9 +214,7 @@ table tr:hover {
 
             <!-- modal starts here -->
             <!-- ... Previous HTML code ... -->
-
-            <div class="modal fade modal-lg" id="add_location_modal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade modal-lg" id="add_location_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -290,8 +279,7 @@ table tr:hover {
                                     <div class="row mt-2">
                                         <div class="form-group">
                                             <label for="address">Address<span class="red-asterisk"></span></label>
-                                            <textarea name="address" class="form-control" required id="addressTextarea1"
-                                                rows="2"></textarea>
+                                            <textarea name="address" class="form-control" required id="addressTextarea1" rows="2"></textarea>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -323,24 +311,21 @@ table tr:hover {
                                         <div class="col-md-3">
                                             <div class="form-group">
 
-                                                <input type="hidden" name="user_id" class="form-control"
-                                                    value={{$currentUserId}}>
+                                                <input type="hidden" name="user_id" class="form-control" value={{$currentUserId}}>
                                             </div>
                                         </div>
 
                                         <div class="col-md-3">
                                             <div class="form-group">
 
-                                                <input type="hidden" name="restaurant_id" class="form-control"
-                                                    value={{$restaurant_id}}>
+                                                <input type="hidden" name="restaurant_id" class="form-control" value={{$restaurant_id}}>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class=" modal-footer">
                                         <div class="ml-auto">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                             <button type="submit" class="btn btn-orange">Create
                                                 Location</button>
                                         </div>
@@ -357,5 +342,71 @@ table tr:hover {
 </div>
 </div>
 </div>
+
+<!-- off canvas modal -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header d-flex">
+        <div>
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Maharashtra Palace</h4>
+                <p>Created a year ago by <span class="text-muted h6">abcd1234@xyz.com</span></p>
+
+        </div>
+
+
+        <div class="btn-group" role="group" aria-label="Default button group">
+            <button type="button" class="btn btn-danger">Archive</button>
+            <button type="button" class="btn btn-light"> <i class="bi bi-arrow-clockwise"></i> Publish Catalogue</button>
+        </div>
+
+    </div>
+    <hr>
+    <div class="offcanvas-body">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button" role="tab" aria-controls="info-tab-pane" aria-selected="true">Info</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="catalogue-tab" data-bs-toggle="tab" data-bs-target="#catalogue-tab-pane" type="button" role="tab" aria-controls="catalogue-tab-pane" aria-selected="false">Catalogue</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="publish-tab" data-bs-toggle="tab" data-bs-target="#publish-tab-pane" type="button" role="tab" aria-controls="publish-tab-pane" aria-selected="false">Publish Log</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="resgisters-tab" data-bs-toggle="tab" data-bs-target="#resgisters-tab-pane" type="button" role="tab" aria-controls="resgisters-tab-pane" aria-selected="false">Registers</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="machines-tab" data-bs-toggle="tab" data-bs-target="#machines-tab-pane" type="button" role="tab" aria-controls="machines-tab-pane" aria-selected="false">EDC Machines</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="areas-tab" data-bs-toggle="tab" data-bs-target="#areas-tab-pane" type="button" role="tab" aria-controls="areas-tab-pane" aria-selected="false">Areas</button>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                Info</div>
+            <div class="tab-pane fade" id="catalogue-tab-pane" role="tabpanel" aria-labelledby="catalogue-tab" tabindex="0">
+                Catalogue</div>
+            <div class="tab-pane fade" id="publish-tab-pane" role="tabpanel" aria-labelledby="publish-tab" tabindex="0">
+                Publish
+            </div>
+
+            <div class="tab-pane fade" id="registers-tab-pane" role="tabpanel" aria-labelledby="registers-tab" tabindex="0">
+                Registers
+            </div>
+
+            <div class="tab-pane fade" id="machines-tab-pane" role="tabpanel" aria-labelledby="machines-tab" tabindex="0"> EDC
+                Machines
+            </div>
+
+            <div class="tab-pane fade" id="areas-tab-pane" role="tabpanel" aria-labelledby="areas-tab" tabindex="0">Areas
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 @endsection
