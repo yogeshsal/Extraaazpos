@@ -46,7 +46,7 @@ class ChargeController extends Controller
     public function edit($id)
     {
         
-        
+        $Charge = Charge::find($id); 
         
         // $items = item::leftjoin('categories','items.item_category_id','=','categories.id')
         // ->select('items.*','categories.cat_name')
