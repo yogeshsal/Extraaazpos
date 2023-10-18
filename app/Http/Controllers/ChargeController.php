@@ -13,6 +13,8 @@ class ChargeController extends Controller
 {
     public function index()
     {
+        
+        
         $data = Charge::all(); 
         
         $currentUserId = Auth::user()->id;
@@ -23,6 +25,10 @@ class ChargeController extends Controller
 
     public function store(Request $request)
     {
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id']; 
+        
         $data = new Charge;
         $data->name = $request->name;
         $data->charge_type = $request->charge_type;
@@ -32,6 +38,7 @@ class ChargeController extends Controller
         $data->applicable_modes = $request->applicable_modes;
         $data->auto_apply_billing_types = $request->auto_apply_billing_types;
         $data->user_id= Auth::user()->id;
+        $data->restaurant_id = $restaurant_id;
         $data->save();
         return redirect('/charges');
 

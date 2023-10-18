@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('charges', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->string('charge_type');
             $table->string('description');
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('applicable_modes');
             $table->string('auto_apply_billing_types');
             $table->integer('user_id');
+            $table->string('restaurant_id')->nullable();
             $table->timestamps();
         });
     }
