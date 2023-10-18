@@ -16,6 +16,8 @@ class Tax extends Model
         'description',
         'applicable_on',
         'tax_percentage',
-        'applicable_modes',       
+        'applicable_modes',  
+        'user_id',
+        'restaurant_id'     
     ];
 }

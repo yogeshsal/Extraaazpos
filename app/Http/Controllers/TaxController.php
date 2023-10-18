@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\Tax;
-use App\models\Category;
-use App\models\Location;
-use App\models\item;
-use App\models\Taxitem;
-use App\models\User;
+use App\Models\Tax;
+use App\Models\Category;
+use App\Models\Location;
+use App\Models\item;
+use App\Models\Taxitem;
+use App\Models\User;
 
 use Auth;
 
@@ -32,7 +32,11 @@ class TaxController extends Controller
     
     public function store(Request $request)
     {       
-             
+            
+            $currentUserId = Auth::user()->id;
+            $data1 = User::where('id', $currentUserId)->get()->toArray();
+            $restaurant_id = $data1[0]['restaurant_id']; 
+            
             $data = new Tax;        
             $data->tax_type = $request->tax_type;
             $data->tax_code = $request->tax_code;
@@ -41,7 +45,8 @@ class TaxController extends Controller
             $data->applicable_on = $request->applicable_on;
             $data->tax_percentage = $request->tax_percentage;
             $data->applicable_modes = $request->applicable_modes;  
-            $data->user_id = Auth::user()->id;           
+            $data->user_id= Auth::user()->id;
+            $data->restaurant_id = $restaurant_id;          
             $data->save();            
             return redirect('taxes')
             ->with('success', 'Taxes added successfully.');        

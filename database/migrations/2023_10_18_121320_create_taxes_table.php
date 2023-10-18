@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('taxs', function (Blueprint $table) {
+        Schema::create('taxes', function (Blueprint $table) {
             $table->id();
             $table->string('tax_type');
             $table->string('tax_code');
@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('applicable_on');
             $table->decimal('tax_percentage', 8, 2);
             $table->string('applicable_modes');
-            // You can add more fields as needed
+            $table->integer('user_id');
+            $table->string('restaurant_id')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taxs');
+        Schema::dropIfExists('taxes');
     }
 };
