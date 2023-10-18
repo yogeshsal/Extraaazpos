@@ -112,8 +112,11 @@ class ChargeController extends Controller
             $ids = $selectedItemIds[0];
         }
        
+        $currentUserId = Auth::user()->id;
+        $data1 = User::where('id', $currentUserId)->get()->toArray();
+        $restaurant_id = $data1[0]['restaurant_id'];   
         
-       return view('catalogue.charges.select_items',compact('items','ids'));
+       return view('catalogue.charges.select_items',compact('items','ids','restaurant_id'));
     }
 
     public function restrictItems(Request $request,$id)
