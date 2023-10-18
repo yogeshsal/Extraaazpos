@@ -18,14 +18,14 @@ class TaxController extends Controller
     public function index()
     {
         $currentUserId = Auth::user()->id;
-        // $data = Tax::all(); // Fetch all posts           
-        $data = Tax::select('taxes.*', 'users.name as user_name')
-        ->join('users', 'taxes.user_id', '=', 'users.id')
-        ->get(); 
-        
         $currentUserId = Auth::user()->id;
         $data1 = User::where('id', $currentUserId)->get()->toArray();
-        $restaurant_id = $data1[0]['restaurant_id'];    
+        $restaurant_id = $data1[0]['restaurant_id']; 
+        
+        $data = Tax::select('taxes.*', 'users.name as user_name')
+        ->join('users', 'taxes.user_id', '=', 'users.id')
+        ->where('taxes.restaurant_id',$restaurant_id)
+        ->get();
         return view('catalogue.taxes.index', compact('data', 'restaurant_id'));       
         
     }
