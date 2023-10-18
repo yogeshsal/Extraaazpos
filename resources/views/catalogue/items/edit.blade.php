@@ -71,7 +71,7 @@
                         </ul>
                         <!-- Tab panes -->
 
-                        <div class="card-outer center-content">
+                       
                             <div class="tab-content  text-muted ">
                                 <div class="tab-pane active " id="home" role="tabpanel">
 
@@ -328,7 +328,30 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="settings" role="tabpanel">
-                                    <div class="row">
+
+
+
+                                <div class="card shadow">
+                                        <div class="card-body d-flex justify-content-between ">
+                                            <div>
+                                                <h3 class="p-0">Associated Locations </h3>
+                                            </div>
+
+                                            <div class="d-flex align-items-center">
+                                                <div class="input-group mr-2">
+
+                                                   
+                                                <a type="button" class="btn btn-orange"
+                                                href="{{ route('items.select_location', $item->id ) }}">Restrict
+                                                items</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+</div>
+                                    <!-- <div class="row">
                                         <div class="col">
                                             <h4>Associated Locations</h4>
                                         </div>
@@ -338,11 +361,11 @@
                                                 items</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
 
                                 <div class="tab-pane" id="mg" role="tabpanel">
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col">
                                             <h4>Modifier Groups </h4>
                                         </div>
@@ -355,24 +378,39 @@
 
 
 
+                                    </div> -->
+                                    
+                                    <div class="card shadow">
+                                        <div class="card-body d-flex justify-content-between ">
+                                            <div>
+                                                <h3 class="p-0">Modifier Groups </h3>
+                                            </div>
+
+                                            <div class="d-flex align-items-center">
+                                                <div class="input-group mr-2">
+
+                                                   
+                                                    <a type="button" class="btn btn-orange"
+                                                        href="{{ route('items.select_modifiergroup', $item->id ) }}">Update
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
                                     </div>
-                                </div>
-
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
 
+
+  
+        <!-- End Page-content -->
     </div>
-    <!-- End Page-content -->
-</div>
-<!-- end main content-->
+    <!-- end main content-->
 </div>
 <!-- /content -->
 </div>
@@ -403,17 +441,7 @@ function filterTable() {
 
 // Add an event listener to the search input
 document.getElementById("searchInput").addEventListener("keyup", filterTable);
-</script>
 
-
-
-
-
-
-
-
-
-<script>
 $(document).ready(function() {
     $('#item_is_recommended').bootstrapSwitch();
     $('#item_is_package_good').bootstrapSwitch();
