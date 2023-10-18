@@ -147,7 +147,7 @@
 </div>
 <!-- end main content-->
 </div>
-5:15 PM
+
 <script script src="https://code.jquery.com/jquery-3.6.0.min.js">
 </script>
 <script>
@@ -315,25 +315,130 @@
     var selectedItems = [];
 
     function selectItem(itemName, itemPrice) {
+    // Check if the item is already in the selectedItems array
+    var existingItem = selectedItems.find(item => item.name === itemName);
+
+    if (existingItem) {
+        // If it already exists, increase the quantity
+        existingItem.quantity += 1;
+        // Update the item in the database
+        updateCartItem(existingItem);
+    } else {
+        // If it's not in the array, add it
         var selectedItem = {
             name: itemName,
             price: itemPrice,
             quantity: 1 // Start with a quantity of 1
         };
-
-        // Check if the item is already in the selectedItems array
-        var existingItem = selectedItems.find(item => item.name === itemName);
-
-        if (existingItem) {
-            // If it already exists, increase the quantity
-            existingItem.quantity += 1;
-        } else {
-            // If it's not in the array, add it
-            selectedItems.push(selectedItem);
-        }
-
-        updateBillData();
+        selectedItems.push(selectedItem);
+        // Save the new item to the database
+        saveToDatabase(selectedItem);
     }
+    updateBillData();
+}
+
+function fetchCartItems() {
+    $.ajax({
+        url: '/get-cart-items',
+        method: 'GET',
+        success: function (response) {
+            var cartItems = response.cartItems;
+            selectedItems = cartItems; // Store the retrieved cart items in the selectedItems array
+
+            var billdata = document.getElementById('billdata').getElementsByTagName('tbody')[0];
+
+            // Clear existing rows in the table
+            billdata.innerHTML = '';
+
+            selectedItems.forEach(function (item) {
+                // Create a new row for each cart item
+                var row = billdata.insertRow(-1);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+
+                cell1.innerHTML = item.product_name;
+                cell2.innerHTML = item.quantity;
+                cell3.innerHTML = item.unit_price;
+                cell4.innerHTML = item.product_total;
+            });
+
+            // After fetching and updating cart items, you can also update the total amounts.
+            updateTotalAmounts();
+        },
+        error: function (error) {
+            console.error('Error fetching cart items:', error);
+        }
+    });
+}
+
+    function saveToDatabase(selectedItem) {
+    // Log the data before sending it
+    console.log('Data to be sent:', {
+        _token: '{{ csrf_token() }}',
+        customer_id: localStorage.getItem('selectedCustomer'),
+        product_name: selectedItem.name,
+        unit_price: selectedItem.price,
+        quantity: selectedItem.quantity,
+        product_total: selectedItem.price * selectedItem.quantity,
+    });
+
+    // You can use JavaScript Fetch API or an AJAX request to save the item to the database
+    fetch('/save-to-cart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}', // Include CSRF token if needed
+        },
+        body: JSON.stringify({
+            _token: '{{ csrf_token() }}', // Include CSRF token in the request
+            customer_id: localStorage.getItem('selectedCustomer'), // Retrieve customer ID from localStorage
+            product_name: selectedItem.name,
+            unit_price: selectedItem.price,
+            quantity: selectedItem.quantity,
+            product_total: selectedItem.price * selectedItem.quantity,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response as needed
+        console.log('Item saved to the database:', data);
+    })
+    .catch(error => {
+        // Handle errors if the request fails
+        console.error('Error:', error);
+    });
+}
+function updateCartItem(selectedItem) {
+        // Prepare the data to be sent
+        var requestData = {
+            _token: '{{ csrf_token() }}',
+            customer_id: localStorage.getItem('selectedCustomer'),
+            product_name: selectedItem.name,
+            unit_price: selectedItem.price,
+            quantity: selectedItem.quantity,
+            product_total: selectedItem.price * selectedItem.quantity,
+        };
+
+        // Send an AJAX request to update the cart item
+        fetch('/update-cart-item', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            },
+            body: JSON.stringify(requestData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Item updated in the database:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+   
 
     function updateBillData() {
         var billData = document.getElementById('billdata').getElementsByTagName('tbody')[0];
@@ -406,16 +511,46 @@
     function increaseQuantity(index) {
         selectedItems[index].quantity += 1;
         updateBillData();
+          updateCartItem(selectedItems[index]);
     }
 
     function decreaseQuantity(index) {
-        if (selectedItems[index].quantity > 1) {
-            selectedItems[index].quantity -= 1;
-        } else {
-            // If quantity is 1 or less, remove the item from the array
-            selectedItems.splice(index, 1);
-        }
+    if (selectedItems[index].quantity > 1) {
+        selectedItems[index].quantity -= 1;
+        updateBillData();
+        updateCartItem(selectedItems[index]);
+    } else {
+        // If quantity is 1 or less, remove the item from the array and database
+        var itemToRemove = selectedItems[index];
+        selectedItems.splice(index, 1);
+        removeItemFromCart(itemToRemove);
         updateBillData();
     }
+}
+
+function removeItemFromCart(item) {
+    // You can use an AJAX request to remove the item from the database by item ID or unique identifier
+    fetch('/remove-from-cart/' + item.name, {
+        method: 'DELETE', // Use DELETE method
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Log a message or handle success
+            console.log('Item removed from the database:', item.name);
+        } else {
+            // Handle the case where the item removal from the database failed
+            console.error('Error removing item from the database.');
+        }
+    })
+    .catch(error => {
+        // Handle errors if the request fails
+        console.error('Error:', error);
+    });
+}
 </script>
 @endsection
