@@ -27,6 +27,30 @@
     justify-content: center;
     align-items: center;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f5f5f5;
+    color: #646464;
+    font-weight: 950;
+    font-size: small;
+}
+
+tr {
+    border-bottom: 2px solid #F5F5F5;
+    /* Light grey border between rows */
+}
+
+
 </style>
 
 
@@ -348,6 +372,28 @@
 
                                             </div>
                                         </div>
+                                        <table id="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Name</th>
+                                                        <th>SORT ORDER</th>
+                                                        <th>OVERRIDE SALES PRICE</th>
+                                                        <th>RECOMMENDED</th>
+                                                        <th>AVAILABILITY</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($locations as $i)
+                                                    <tr>
+                                                        <td>{{$i->name}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
 
                                     </div>
                                     <!-- <div class="row">
@@ -396,7 +442,20 @@
 
                                             </div>
                                         </div>
-
+                                        <table id="data-table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Modifier Group</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($modifierGroup as $mg)
+                                                <tr>
+                                                    <td>{{$mg->modifier_group_name}}</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
