@@ -384,6 +384,24 @@
                                         </div>
 
 
+                                        <div class="card shadow p-3 mt-3">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Modifier Group</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($modifierGroup as $mg)
+                                                <tr>
+                                                    <td>{{$mg->modifier_group_name}}</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
 
 
                                     </div>
