@@ -41,7 +41,7 @@ class OrderController extends Controller
                     ->orWhere(DB::raw('JSON_UNQUOTE(JSON_EXTRACT(t.item_id, \'$[1]\'))'), '=', 'i.id');
             })
             ->leftJoin('taxes AS tx', 't.tax_id', '=', 'tx.id')
-            ->select('i.item_default_sell_price', 'i.item_image', 'i.item_name', 't.tax_id', 't.status AS tax_status', 'tx.name AS tax_name')
+            ->select('i.id','i.item_default_sell_price', 'i.item_image', 'i.item_name', 't.tax_id', 't.status AS tax_status', 'tx.name AS tax_name')
             ->where('i.user_id', $userId) // Add a condition to filter items by the user's ID
             ->get();
 

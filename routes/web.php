@@ -198,3 +198,15 @@ Route::get('/materials', [App\Http\Controllers\MaterialController::class, 'index
 Route::view('intermediates', 'rawmaterials.intermediates.index');
 Route::view('raw-categories', 'rawmaterials.categories.index');
 Route::view('taxes1', 'rawmaterials.taxes.index');
+
+
+//cart
+
+Route::post('/save-to-cart', [App\Http\Controllers\CartController::class, 'saveToCart'])->name('cart.saveToCart');
+Route::post('/update-cart-item', [App\Http\Controllers\CartController::class, 'updateCartItem'])->name('cart.updateCartItem');
+Route::delete('/remove-from-cart/{product_name}', [App\Http\Controllers\CartController::class, 'removeCartItem'])->name('cart.removeCartItem');
+
+Route::post('/get-cart-items', [App\Http\Controllers\CartController::class, 'getCartItems'])->name('cart.getCartItems');
+
+
+
